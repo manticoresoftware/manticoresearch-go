@@ -82,6 +82,7 @@ func Test_openapi_SearchAPIService(t *testing.T) {
 			searchReq.SetLimit(10);
 			searchReq.SetTrackScores(false);
 			resp, httpRes, err := search.SearchRequest(*searchReq).Execute()
+			fmt.Printf("%+v\n", httpRes)
 				
 			require.Nil(t, err)
 			require.NotNil(t, resp)
