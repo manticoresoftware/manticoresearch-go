@@ -1,4 +1,4 @@
-module github.com/manticoresoftware/manticoresearch-go
+module github.com/manticoresoftware/manticoresearch-go/v1.0.0
 
 go 1.18
 
