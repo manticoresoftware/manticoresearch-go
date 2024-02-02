@@ -26,4 +26,3 @@ jobs:
       run: |
         go mod tidy
         GOPROXY=proxy.golang.org go list -m github.com/manticoresoftware/manticoresearch-go@$VERSION
-
