@@ -1,0 +1,35 @@
+name: tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+
+    name: unit tests
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        go-version: [ '1.18', '1.19', '1.20', '1.21.x' ]
+
+    services:
+      manticoresearch-manticore:
+        image: manticoresearch/manticore:dev
+        ports:
+          - 9408:9308
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Install dependencies
+        run: |
+          go get github.com/stretchr/testify/assert    
+      - name: Test with the Go CLI
+        run: cd test && go test

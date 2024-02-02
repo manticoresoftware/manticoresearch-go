@@ -1,0 +1,33 @@
+name: Publishing
+
+on:
+  push:
+    branches-ignore: [ master ]
+
+jobs:
+  publish:
+    name: Publish the client to the public registry
+    runs-on: ubuntu-22.04
+    env:
+      VERSION: ${{ github.ref_name }}
+    strategy:
+      matrix:
+        go: [ '17' ]
+    services:
+      manticoresearch-manticore:
+        image: manticoresearch/manticore:dev
+        ports:
+          - 9408:9308
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Go ${{ matrix.go-version }}
+      uses: actions/setup-go@v4
+      with:
+        go-version: ${{ matrix.go-version }}
+    - name: Install dependencies
+      run: go get .    
+    - name: Publish
+      run: |
+        go mod tidy
+        GOPROXY=proxy.golang.org go list -m github.com/manticoresoftware/manticoresearch-go@$VERSION
+
