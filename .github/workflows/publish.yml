@@ -12,12 +12,8 @@ jobs:
       VERSION: ${{ github.ref_name }}
     strategy:
       matrix:
-        go: [ '17' ]
-    services:
-      manticoresearch-manticore:
-        image: manticoresearch/manticore:dev
-        ports:
-          - 9408:9308
+        go: [ '1.18' ]
+
     steps:
     - uses: actions/checkout@v2
     - name: Setup Go ${{ matrix.go-version }}
@@ -30,4 +26,3 @@ jobs:
       run: |
         go mod tidy
         GOPROXY=proxy.golang.org go list -m github.com/manticoresoftware/manticoresearch-go@$VERSION
-

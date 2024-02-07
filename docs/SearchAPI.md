@@ -5,7 +5,7 @@ All URIs are relative to *http://127.0.0.1:9308*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Search**](SearchAPI.md#Search) | **Post** /search | Performs a search on an index
-[**Percolate**](SearchAPI.md#Percolate) | **Post** /pq/{index}/search | Performs a reverse search on a percolate index
+[**Percolate**](SearchAPI.md#Percolate) | **Post** /pq/{index}/percolate | Performs a reverse search on a percolate index
 
 
 ## Search
@@ -31,7 +31,7 @@ import (
 func main() {
 	searchRequest := *openapiclient.NewSearchRequest("test") // SearchRequest | 
 	query := map[string]interface{} {"query_string": "Title"}
-	searchRequest.SetQuery(query);
+	searchRequest.SetQuery(query)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -45,7 +45,7 @@ func main() {
 }
 ```
 
-### Parameters
+### Path Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -83,7 +83,7 @@ No authorization required
 
 > SearchResponse Percolate(ctx, index).PercolateRequest(percolateRequest).Execute()
 
-Performs a reverse search on a percolate index
+Perform reverse search on a percolate index
 
 
 
@@ -115,7 +115,7 @@ func main() {
 }
 ```
 
-### Parameters
+### Path Parameters
 
 
 Name | Type | Description  | Notes
