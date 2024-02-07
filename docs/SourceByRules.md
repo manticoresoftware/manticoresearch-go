@@ -1,5 +1,7 @@
 # SourceByRules
 
+Query fields to be included/excluded to/from response
+
 ## Properties
 
 Name | Type | Description | Notes

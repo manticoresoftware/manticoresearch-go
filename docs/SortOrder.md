@@ -1,5 +1,7 @@
 # SortOrder
 
+Query sort expression
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,5 +1,7 @@
 # SortMVA
 
+Query sort expression for MVA attributes
+
 ## Properties
 
 Name | Type | Description | Notes

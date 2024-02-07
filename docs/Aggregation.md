@@ -1,5 +1,7 @@
 # Aggregation
 
+Aggregation Alias
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,5 +1,7 @@
 # EqualsFilter
 
+Equals attribute filter
+
 ## Properties
 
 Name | Type | Description | Notes

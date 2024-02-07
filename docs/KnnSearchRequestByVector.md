@@ -1,5 +1,7 @@
 # KnnSearchRequestByVector
 
+Request object for knn search operation
+
 ## Properties
 
 Name | Type | Description | Notes

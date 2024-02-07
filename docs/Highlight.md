@@ -1,5 +1,7 @@
 # Highlight
 
+Query HIGHLIGHT expression
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,5 +1,7 @@
 # ErrorResponse
 
+Error response
+
 ## Properties
 
 Name | Type | Description | Notes

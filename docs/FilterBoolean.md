@@ -1,5 +1,7 @@
 # FilterBoolean
 
+Query filter
+
 ## Properties
 
 Name | Type | Description | Notes

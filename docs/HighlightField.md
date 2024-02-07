@@ -1,5 +1,7 @@
 # HighlightField
 
+Query Highlight field with defined options
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,5 +1,7 @@
 # GeoDistanceFilter
 
+Geo distance attribute filter
+
 ## Properties
 
 Name | Type | Description | Notes

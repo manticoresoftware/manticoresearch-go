@@ -1,5 +1,7 @@
 # SearchRequest
 
+Request object for search operation
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,5 +1,7 @@
 # UpdateDocumentRequest
 
+Request object for update operation.
+
 ## Properties
 
 Name | Type | Description | Notes

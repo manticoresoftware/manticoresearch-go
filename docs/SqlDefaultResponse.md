@@ -1,5 +1,7 @@
 # SqlDefaultResponse
 
+Response object from sql request.
+
 ## Properties
 
 Name | Type | Description | Notes

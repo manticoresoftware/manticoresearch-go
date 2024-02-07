@@ -1,5 +1,7 @@
 # BoolFilter
 
+Boolean attribute filter
+
 ## Properties
 
 Name | Type | Description | Notes

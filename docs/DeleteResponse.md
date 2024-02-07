@@ -1,5 +1,7 @@
 # DeleteResponse
 
+Delete response
+
 ## Properties
 
 Name | Type | Description | Notes

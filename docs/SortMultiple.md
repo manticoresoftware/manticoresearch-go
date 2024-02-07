@@ -1,5 +1,7 @@
 # SortMultiple
 
+Query sort expression for multiple attributes
+
 ## Properties
 
 Name | Type | Description | Notes

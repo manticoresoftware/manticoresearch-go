@@ -1,5 +1,7 @@
 # SuccessResponse
 
+Success response
+
 ## Properties
 
 Name | Type | Description | Notes

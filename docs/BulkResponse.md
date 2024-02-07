@@ -1,5 +1,7 @@
 # BulkResponse
 
+Bulk response
+
 ## Properties
 
 Name | Type | Description | Notes

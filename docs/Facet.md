@@ -1,5 +1,7 @@
 # Facet
 
+Query FACET expression
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,5 +1,7 @@
 # MatchFilter
 
+Query match filter
+
 ## Properties
 
 Name | Type | Description | Notes

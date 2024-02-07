@@ -1,5 +1,9 @@
 # DeleteDocumentRequest
 
+Request object for delete operation.
+Documents can be deleted either one by one by specifying the document id or by providing a query object.
+For more information see [Delete API](https://manual.manticoresearch.com/Deleting_documents)
+        
 ## Properties
 
 Name | Type | Description | Notes

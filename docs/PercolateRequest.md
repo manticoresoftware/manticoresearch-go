@@ -1,5 +1,7 @@
 # PercolateRequest
 
+Request object with documents to percolate
+
 ## Properties
 
 Name | Type | Description | Notes

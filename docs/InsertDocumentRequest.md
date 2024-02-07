@@ -1,5 +1,7 @@
 # InsertDocumentRequest
 
+Request object for insert operation.
+
 ## Properties
 
 Name | Type | Description | Notes
