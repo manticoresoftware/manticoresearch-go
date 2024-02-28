@@ -1,18 +1,19 @@
 name: Publishing
 
-on:
-  push:
-    branches-ignore: [ master ]
+on: [push]
 
 jobs:
+  test:
+    uses: ./.github/workflows/test.yml
   publish:
     name: Publish the client to the public registry
+    needs: [test]
     runs-on: ubuntu-22.04
     env:
       VERSION: ${{ github.ref_name }}
     strategy:
       matrix:
-        go: [ '1.18' ]
+        go: [ '17' ]
 
     steps:
     - uses: actions/checkout@v2
@@ -25,4 +26,5 @@ jobs:
     - name: Publish
       run: |
         go mod tidy
-        GOPROXY=proxy.golang.org go list -m github.com/manticoresoftware/manticoresearch-go@$VERSION
+        GOPROXY=proxy.golang.org go list -m github.com/manticoresoftware/manticoresearch-go@v1.0.0
+
