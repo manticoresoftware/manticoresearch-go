@@ -15,7 +15,7 @@
 
 ```shell
 
-go get github.com/manticoresoftware/manticoresearch-go
+go get github.com/manticoresoftware/manticoresearch-go@dev 
 
 ```
 
