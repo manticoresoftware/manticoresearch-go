@@ -114,6 +114,7 @@ Class | Method | HTTP request | Description
 *IndexAPI* | [**Insert**](docs/IndexAPI.md#insert) | **Post** /insert | Create a new document in an index
 *IndexAPI* | [**Replace**](docs/IndexAPI.md#replace) | **Post** /replace | Replace new document in an index
 *IndexAPI* | [**Update**](docs/IndexAPI.md#update) | **Post** /update | Update a document in an index
+*IndexAPI* | [**Update_0**](docs/IndexAPI.md#update_0) | **Post** /{index}/_update/{id} | Partially replaces a document in an index
 *SearchAPI* | [**Percolate**](docs/SearchAPI.md#percolate) | **Post** /pq/{index}/search | Perform reverse search on a percolate index
 *SearchAPI* | [**Search**](docs/SearchAPI.md#search) | **Post** /search | Performs a search on an index
 *UtilsAPI* | [**Sql**](docs/UtilsAPI.md#sql) | **Post** /sql | Perform SQL requests
@@ -154,6 +155,7 @@ Class | Method | HTTP request | Description
  - [PercolateRequestQuery](docs/PercolateRequestQuery.md)
  - [QueryFilter](docs/QueryFilter.md)
  - [RangeFilter](docs/RangeFilter.md)
+ - [ReplaceDocumentRequest](docs/ReplaceDocumentRequest.md)
  - [SearchRequest](docs/SearchRequest.md)
  - [SearchResponse](docs/SearchResponse.md)
  - [SearchResponseHits](docs/SearchResponseHits.md)
