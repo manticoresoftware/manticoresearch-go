@@ -91,7 +91,7 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "http://127.0.0.1:9308",
+				URL:         fmt.Sprintf("http://%s:9308",GetDefaultIP()),
 				Description: "Default Manticore Search HTTP",
 			},
 		},
