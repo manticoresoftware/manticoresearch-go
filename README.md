@@ -35,8 +35,9 @@ import (
 )
 
 func main() {
-
+  
   // Initialize ApiClient
+  openapiclient.SetDefaultIP("127.0.0.1") // If not set or set to "", defaults to 127.0.0.1
   configuration := openapiclient.NewConfiguration()
   apiClient := openapiclient.NewAPIClient(configuration)
   
