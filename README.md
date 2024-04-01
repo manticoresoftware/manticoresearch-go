@@ -38,6 +38,8 @@ func main() {
 
   // Initialize ApiClient
   configuration := openapiclient.NewConfiguration()
+  // Set Manticore's host/port if necessary (http://127.0.0.1:9308 by default) 
+  // configuration.Servers[0].URL = "http://127.0.0.2:9408"
   apiClient := openapiclient.NewAPIClient(configuration)
   
   // Add documents to an index 
