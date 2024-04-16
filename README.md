@@ -126,6 +126,9 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Aggregation](docs/Aggregation.md)
+ - [AggregationComposite](docs/AggregationComposite.md)
+ - [AggregationCompositeSourcesInnerValue](docs/AggregationCompositeSourcesInnerValue.md)
+ - [AggregationCompositeSourcesInnerValueTerms](docs/AggregationCompositeSourcesInnerValueTerms.md)
  - [AggregationSortInnerValue](docs/AggregationSortInnerValue.md)
  - [AggregationTerms](docs/AggregationTerms.md)
  - [BoolFilter](docs/BoolFilter.md)

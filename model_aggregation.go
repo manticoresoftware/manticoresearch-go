@@ -22,6 +22,7 @@ var _ MappedNullable = &Aggregation{}
 type Aggregation struct {
 	Terms *AggregationTerms `json:"terms,omitempty"`
 	Sort []map[string]AggregationSortInnerValue `json:"sort,omitempty"`
+	Composite *AggregationComposite `json:"composite,omitempty"`
 }
 
 // NewAggregation instantiates a new Aggregation object
@@ -105,6 +106,38 @@ func (o *Aggregation) SetSort(v []map[string]AggregationSortInnerValue) {
 	o.Sort = v
 }
 
+// GetComposite returns the Composite field value if set, zero value otherwise.
+func (o *Aggregation) GetComposite() AggregationComposite {
+	if o == nil || IsNil(o.Composite) {
+		var ret AggregationComposite
+		return ret
+	}
+	return *o.Composite
+}
+
+// GetCompositeOk returns a tuple with the Composite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetCompositeOk() (*AggregationComposite, bool) {
+	if o == nil || IsNil(o.Composite) {
+		return nil, false
+	}
+	return o.Composite, true
+}
+
+// HasComposite returns a boolean if a field has been set.
+func (o *Aggregation) HasComposite() bool {
+	if o != nil && !IsNil(o.Composite) {
+		return true
+	}
+
+	return false
+}
+
+// SetComposite gets a reference to the given AggregationComposite and assigns it to the Composite field.
+func (o *Aggregation) SetComposite(v AggregationComposite) {
+	o.Composite = &v
+}
+
 func (o Aggregation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -120,6 +153,9 @@ func (o Aggregation) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Sort) {
 		toSerialize["sort"] = o.Sort
+	}
+	if !IsNil(o.Composite) {
+		toSerialize["composite"] = o.Composite
 	}
 	return toSerialize, nil
 }
