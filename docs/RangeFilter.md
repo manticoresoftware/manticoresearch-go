@@ -1,16 +1,14 @@
 # RangeFilter
 
-Range attribute filter
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | **string** |  | 
-**Lte** | Pointer to **NullableFloat32** |  | [optional] 
-**Gte** | Pointer to **NullableFloat32** |  | [optional] 
-**Lt** | Pointer to **NullableFloat32** |  | [optional] 
-**Gt** | Pointer to **NullableFloat32** |  | [optional] 
+**Lte** | Pointer to [**NullableRangeFilterLte**](RangeFilterLte.md) |  | [optional] 
+**Gte** | Pointer to [**NullableRangeFilterLte**](RangeFilterLte.md) |  | [optional] 
+**Lt** | Pointer to [**NullableRangeFilterLte**](RangeFilterLte.md) |  | [optional] 
+**Gt** | Pointer to [**NullableRangeFilterLte**](RangeFilterLte.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +51,20 @@ SetField sets Field field to given value.
 
 ### GetLte
 
-`func (o *RangeFilter) GetLte() float32`
+`func (o *RangeFilter) GetLte() RangeFilterLte`
 
 GetLte returns the Lte field if non-nil, zero value otherwise.
 
 ### GetLteOk
 
-`func (o *RangeFilter) GetLteOk() (*float32, bool)`
+`func (o *RangeFilter) GetLteOk() (*RangeFilterLte, bool)`
 
 GetLteOk returns a tuple with the Lte field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLte
 
-`func (o *RangeFilter) SetLte(v float32)`
+`func (o *RangeFilter) SetLte(v RangeFilterLte)`
 
 SetLte sets Lte field to given value.
 
@@ -88,20 +86,20 @@ HasLte returns a boolean if a field has been set.
 UnsetLte ensures that no value is present for Lte, not even an explicit nil
 ### GetGte
 
-`func (o *RangeFilter) GetGte() float32`
+`func (o *RangeFilter) GetGte() RangeFilterLte`
 
 GetGte returns the Gte field if non-nil, zero value otherwise.
 
 ### GetGteOk
 
-`func (o *RangeFilter) GetGteOk() (*float32, bool)`
+`func (o *RangeFilter) GetGteOk() (*RangeFilterLte, bool)`
 
 GetGteOk returns a tuple with the Gte field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGte
 
-`func (o *RangeFilter) SetGte(v float32)`
+`func (o *RangeFilter) SetGte(v RangeFilterLte)`
 
 SetGte sets Gte field to given value.
 
@@ -123,20 +121,20 @@ HasGte returns a boolean if a field has been set.
 UnsetGte ensures that no value is present for Gte, not even an explicit nil
 ### GetLt
 
-`func (o *RangeFilter) GetLt() float32`
+`func (o *RangeFilter) GetLt() RangeFilterLte`
 
 GetLt returns the Lt field if non-nil, zero value otherwise.
 
 ### GetLtOk
 
-`func (o *RangeFilter) GetLtOk() (*float32, bool)`
+`func (o *RangeFilter) GetLtOk() (*RangeFilterLte, bool)`
 
 GetLtOk returns a tuple with the Lt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLt
 
-`func (o *RangeFilter) SetLt(v float32)`
+`func (o *RangeFilter) SetLt(v RangeFilterLte)`
 
 SetLt sets Lt field to given value.
 
@@ -158,20 +156,20 @@ HasLt returns a boolean if a field has been set.
 UnsetLt ensures that no value is present for Lt, not even an explicit nil
 ### GetGt
 
-`func (o *RangeFilter) GetGt() float32`
+`func (o *RangeFilter) GetGt() RangeFilterLte`
 
 GetGt returns the Gt field if non-nil, zero value otherwise.
 
 ### GetGtOk
 
-`func (o *RangeFilter) GetGtOk() (*float32, bool)`
+`func (o *RangeFilter) GetGtOk() (*RangeFilterLte, bool)`
 
 GetGtOk returns a tuple with the Gt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGt
 
-`func (o *RangeFilter) SetGt(v float32)`
+`func (o *RangeFilter) SetGt(v RangeFilterLte)`
 
 SetGt sets Gt field to given value.
 

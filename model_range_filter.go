@@ -23,10 +23,10 @@ var _ MappedNullable = &RangeFilter{}
 // RangeFilter Range attribute filter
 type RangeFilter struct {
 	Field string `json:"field"`
-	Lte NullableFloat32 `json:"lte,omitempty"`
-	Gte NullableFloat32 `json:"gte,omitempty"`
-	Lt NullableFloat32 `json:"lt,omitempty"`
-	Gt NullableFloat32 `json:"gt,omitempty"`
+	Lte NullableRangeFilterLte `json:"lte,omitempty"`
+	Gte NullableRangeFilterLte `json:"gte,omitempty"`
+	Lt NullableRangeFilterLte `json:"lt,omitempty"`
+	Gt NullableRangeFilterLte `json:"gt,omitempty"`
 }
 
 type _RangeFilter RangeFilter
@@ -74,9 +74,9 @@ func (o *RangeFilter) SetField(v string) {
 }
 
 // GetLte returns the Lte field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RangeFilter) GetLte() float32 {
+func (o *RangeFilter) GetLte() RangeFilterLte {
 	if o == nil || IsNil(o.Lte.Get()) {
-		var ret float32
+		var ret RangeFilterLte
 		return ret
 	}
 	return *o.Lte.Get()
@@ -85,7 +85,7 @@ func (o *RangeFilter) GetLte() float32 {
 // GetLteOk returns a tuple with the Lte field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RangeFilter) GetLteOk() (*float32, bool) {
+func (o *RangeFilter) GetLteOk() (*RangeFilterLte, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *RangeFilter) HasLte() bool {
 	return false
 }
 
-// SetLte gets a reference to the given NullableFloat32 and assigns it to the Lte field.
-func (o *RangeFilter) SetLte(v float32) {
+// SetLte gets a reference to the given NullableRangeFilterLte and assigns it to the Lte field.
+func (o *RangeFilter) SetLte(v RangeFilterLte) {
 	o.Lte.Set(&v)
 }
 // SetLteNil sets the value for Lte to be an explicit nil
@@ -116,9 +116,9 @@ func (o *RangeFilter) UnsetLte() {
 }
 
 // GetGte returns the Gte field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RangeFilter) GetGte() float32 {
+func (o *RangeFilter) GetGte() RangeFilterLte {
 	if o == nil || IsNil(o.Gte.Get()) {
-		var ret float32
+		var ret RangeFilterLte
 		return ret
 	}
 	return *o.Gte.Get()
@@ -127,7 +127,7 @@ func (o *RangeFilter) GetGte() float32 {
 // GetGteOk returns a tuple with the Gte field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RangeFilter) GetGteOk() (*float32, bool) {
+func (o *RangeFilter) GetGteOk() (*RangeFilterLte, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -143,8 +143,8 @@ func (o *RangeFilter) HasGte() bool {
 	return false
 }
 
-// SetGte gets a reference to the given NullableFloat32 and assigns it to the Gte field.
-func (o *RangeFilter) SetGte(v float32) {
+// SetGte gets a reference to the given NullableRangeFilterLte and assigns it to the Gte field.
+func (o *RangeFilter) SetGte(v RangeFilterLte) {
 	o.Gte.Set(&v)
 }
 // SetGteNil sets the value for Gte to be an explicit nil
@@ -158,9 +158,9 @@ func (o *RangeFilter) UnsetGte() {
 }
 
 // GetLt returns the Lt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RangeFilter) GetLt() float32 {
+func (o *RangeFilter) GetLt() RangeFilterLte {
 	if o == nil || IsNil(o.Lt.Get()) {
-		var ret float32
+		var ret RangeFilterLte
 		return ret
 	}
 	return *o.Lt.Get()
@@ -169,7 +169,7 @@ func (o *RangeFilter) GetLt() float32 {
 // GetLtOk returns a tuple with the Lt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RangeFilter) GetLtOk() (*float32, bool) {
+func (o *RangeFilter) GetLtOk() (*RangeFilterLte, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -185,8 +185,8 @@ func (o *RangeFilter) HasLt() bool {
 	return false
 }
 
-// SetLt gets a reference to the given NullableFloat32 and assigns it to the Lt field.
-func (o *RangeFilter) SetLt(v float32) {
+// SetLt gets a reference to the given NullableRangeFilterLte and assigns it to the Lt field.
+func (o *RangeFilter) SetLt(v RangeFilterLte) {
 	o.Lt.Set(&v)
 }
 // SetLtNil sets the value for Lt to be an explicit nil
@@ -200,9 +200,9 @@ func (o *RangeFilter) UnsetLt() {
 }
 
 // GetGt returns the Gt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RangeFilter) GetGt() float32 {
+func (o *RangeFilter) GetGt() RangeFilterLte {
 	if o == nil || IsNil(o.Gt.Get()) {
-		var ret float32
+		var ret RangeFilterLte
 		return ret
 	}
 	return *o.Gt.Get()
@@ -211,7 +211,7 @@ func (o *RangeFilter) GetGt() float32 {
 // GetGtOk returns a tuple with the Gt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RangeFilter) GetGtOk() (*float32, bool) {
+func (o *RangeFilter) GetGtOk() (*RangeFilterLte, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -227,8 +227,8 @@ func (o *RangeFilter) HasGt() bool {
 	return false
 }
 
-// SetGt gets a reference to the given NullableFloat32 and assigns it to the Gt field.
-func (o *RangeFilter) SetGt(v float32) {
+// SetGt gets a reference to the given NullableRangeFilterLte and assigns it to the Gt field.
+func (o *RangeFilter) SetGt(v RangeFilterLte) {
 	o.Gt.Set(&v)
 }
 // SetGtNil sets the value for Gt to be an explicit nil

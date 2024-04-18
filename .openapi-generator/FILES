@@ -42,6 +42,8 @@ docs/PercolateRequest.md
 docs/PercolateRequestQuery.md
 docs/QueryFilter.md
 docs/RangeFilter.md
+docs/RangeFilterLte.md
+docs/ReplaceDocumentRequest.md
 docs/SearchAPI.md
 docs/SearchRequest.md
 docs/SearchResponse.md

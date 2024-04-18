@@ -161,6 +161,7 @@ Class | Method | HTTP request | Description
  - [PercolateRequestQuery](docs/PercolateRequestQuery.md)
  - [QueryFilter](docs/QueryFilter.md)
  - [RangeFilter](docs/RangeFilter.md)
+ - [RangeFilterLte](docs/RangeFilterLte.md)
  - [ReplaceDocumentRequest](docs/ReplaceDocumentRequest.md)
  - [SearchRequest](docs/SearchRequest.md)
  - [SearchResponse](docs/SearchResponse.md)
