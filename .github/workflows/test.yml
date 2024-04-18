@@ -31,5 +31,5 @@ jobs:
           go get github.com/stretchr/testify/assert    
       - name: Test with the Go CLI
         run: |
-        sleep 3m
-        cd test && go test
+          sleep 3m
+          cd test && go test
