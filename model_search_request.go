@@ -33,7 +33,7 @@ type SearchRequest struct {
 	Aggs *map[string]Aggregation `json:"aggs,omitempty"`
 	Expressions *map[string]string `json:"expressions,omitempty"`
 	Highlight *Highlight `json:"highlight,omitempty"`
-	Source map[string]interface{} `json:"source,omitempty"`
+	Source map[string]interface{} `json:"_source,omitempty"`
 	Options map[string]interface{} `json:"options,omitempty"`
 	Profile *bool `json:"profile,omitempty"`
 	TrackScores *bool `json:"track_scores,omitempty"`
