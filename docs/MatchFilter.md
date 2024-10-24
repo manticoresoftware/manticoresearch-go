@@ -1,19 +1,16 @@
 # MatchFilter
 
-Query match filter
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**QueryString** | **string** |  | [default to ""]
-**QueryFields** | **string** |  | [default to "*"]
+**Match** | Pointer to [**MatchFilterMatch**](MatchFilterMatch.md) |  | [optional] 
 
 ## Methods
 
 ### NewMatchFilter
 
-`func NewMatchFilter(queryString string, queryFields string, ) *MatchFilter`
+`func NewMatchFilter() *MatchFilter`
 
 NewMatchFilter instantiates a new MatchFilter object
 This constructor will assign default values to properties that have it defined,
@@ -28,45 +25,30 @@ NewMatchFilterWithDefaults instantiates a new MatchFilter object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetQueryString
+### GetMatch
 
-`func (o *MatchFilter) GetQueryString() string`
+`func (o *MatchFilter) GetMatch() MatchFilterMatch`
 
-GetQueryString returns the QueryString field if non-nil, zero value otherwise.
+GetMatch returns the Match field if non-nil, zero value otherwise.
 
-### GetQueryStringOk
+### GetMatchOk
 
-`func (o *MatchFilter) GetQueryStringOk() (*string, bool)`
+`func (o *MatchFilter) GetMatchOk() (*MatchFilterMatch, bool)`
 
-GetQueryStringOk returns a tuple with the QueryString field if it's non-nil, zero value otherwise
+GetMatchOk returns a tuple with the Match field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetQueryString
+### SetMatch
 
-`func (o *MatchFilter) SetQueryString(v string)`
+`func (o *MatchFilter) SetMatch(v MatchFilterMatch)`
 
-SetQueryString sets QueryString field to given value.
+SetMatch sets Match field to given value.
 
+### HasMatch
 
-### GetQueryFields
+`func (o *MatchFilter) HasMatch() bool`
 
-`func (o *MatchFilter) GetQueryFields() string`
-
-GetQueryFields returns the QueryFields field if non-nil, zero value otherwise.
-
-### GetQueryFieldsOk
-
-`func (o *MatchFilter) GetQueryFieldsOk() (*string, bool)`
-
-GetQueryFieldsOk returns a tuple with the QueryFields field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQueryFields
-
-`func (o *MatchFilter) SetQueryFields(v string)`
-
-SetQueryFields sets QueryFields field to given value.
-
+HasMatch returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

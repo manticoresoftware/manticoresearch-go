@@ -1,14 +1,12 @@
 # BulkResponse
 
-Bulk response
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | Pointer to **[]map[string]interface{}** |  | [optional] 
-**Errors** | Pointer to **bool** |  | [optional] 
-**Error** | Pointer to **string** |  | [optional] 
+**Items** | Pointer to **[]map[string]interface{}** | List of results | [optional] 
+**Errors** | Pointer to **bool** | Errors occurred during the bulk operation | [optional] 
+**Error** | Pointer to **string** | Error message describing an error if such occurred | [optional] 
 
 ## Methods
 

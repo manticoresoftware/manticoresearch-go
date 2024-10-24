@@ -1,19 +1,16 @@
 # MatchPhraseFilter
 
-Query match expression
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**QueryPhrase** | **string** |  | 
-**QueryFields** | **string** |  | 
+**MatchPhrase** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
 
 ### NewMatchPhraseFilter
 
-`func NewMatchPhraseFilter(queryPhrase string, queryFields string, ) *MatchPhraseFilter`
+`func NewMatchPhraseFilter() *MatchPhraseFilter`
 
 NewMatchPhraseFilter instantiates a new MatchPhraseFilter object
 This constructor will assign default values to properties that have it defined,
@@ -28,45 +25,30 @@ NewMatchPhraseFilterWithDefaults instantiates a new MatchPhraseFilter object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetQueryPhrase
+### GetMatchPhrase
 
-`func (o *MatchPhraseFilter) GetQueryPhrase() string`
+`func (o *MatchPhraseFilter) GetMatchPhrase() map[string]string`
 
-GetQueryPhrase returns the QueryPhrase field if non-nil, zero value otherwise.
+GetMatchPhrase returns the MatchPhrase field if non-nil, zero value otherwise.
 
-### GetQueryPhraseOk
+### GetMatchPhraseOk
 
-`func (o *MatchPhraseFilter) GetQueryPhraseOk() (*string, bool)`
+`func (o *MatchPhraseFilter) GetMatchPhraseOk() (*map[string]string, bool)`
 
-GetQueryPhraseOk returns a tuple with the QueryPhrase field if it's non-nil, zero value otherwise
+GetMatchPhraseOk returns a tuple with the MatchPhrase field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetQueryPhrase
+### SetMatchPhrase
 
-`func (o *MatchPhraseFilter) SetQueryPhrase(v string)`
+`func (o *MatchPhraseFilter) SetMatchPhrase(v map[string]string)`
 
-SetQueryPhrase sets QueryPhrase field to given value.
+SetMatchPhrase sets MatchPhrase field to given value.
 
+### HasMatchPhrase
 
-### GetQueryFields
+`func (o *MatchPhraseFilter) HasMatchPhrase() bool`
 
-`func (o *MatchPhraseFilter) GetQueryFields() string`
-
-GetQueryFields returns the QueryFields field if non-nil, zero value otherwise.
-
-### GetQueryFieldsOk
-
-`func (o *MatchPhraseFilter) GetQueryFieldsOk() (*string, bool)`
-
-GetQueryFieldsOk returns a tuple with the QueryFields field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQueryFields
-
-`func (o *MatchPhraseFilter) SetQueryFields(v string)`
-
-SetQueryFields sets QueryFields field to given value.
-
+HasMatchPhrase returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

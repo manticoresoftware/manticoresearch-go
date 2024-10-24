@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -18,13 +18,20 @@ import (
 // checks if the SuccessResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SuccessResponse{}
 
-// SuccessResponse Success response
+// SuccessResponse Response object indicating the success of an operation, such as inserting or updating a document
 type SuccessResponse struct {
-	Index *string `json:"_index,omitempty"`
-	Id *int64 `json:"_id,omitempty"`
-	Created *bool `json:"created,omitempty"`
-	Result *string `json:"result,omitempty"`
-	Found *bool `json:"found,omitempty"`
+	// Name of the document index
+	Index *string
+	// ID of the document affected by the request operation
+	Id *int64
+	// Indicates whether the document was created as a result of the operation
+	Created *bool
+	// Result of the operation, typically 'created', 'updated', or 'deleted'
+	Result *string
+	// Indicates whether the document was found in the index
+	Found *bool
+	// HTTP status code representing the result of the operation
+	Status *int32
 }
 
 // NewSuccessResponse instantiates a new SuccessResponse object
@@ -204,6 +211,38 @@ func (o *SuccessResponse) SetFound(v bool) {
 	o.Found = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *SuccessResponse) GetStatus() int32 {
+	if o == nil || IsNil(o.Status) {
+		var ret int32
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SuccessResponse) GetStatusOk() (*int32, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *SuccessResponse) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given int32 and assigns it to the Status field.
+func (o *SuccessResponse) SetStatus(v int32) {
+	o.Status = &v
+}
+
 func (o SuccessResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -228,6 +267,9 @@ func (o SuccessResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Found) {
 		toSerialize["found"] = o.Found
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
 	}
 	return toSerialize, nil
 }

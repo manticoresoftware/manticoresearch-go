@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -18,12 +18,18 @@ import (
 // checks if the DeleteResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeleteResponse{}
 
-// DeleteResponse Success response
+// DeleteResponse Response object for successful delete request
 type DeleteResponse struct {
-	Index *string `json:"_index,omitempty"`
-	Deleted *int32 `json:"deleted,omitempty"`
-	Id *int64 `json:"_id,omitempty"`
-	Result *string `json:"result,omitempty"`
+	// The name of the index from which the document was deleted
+	Index *string
+	// Number of documents deleted
+	Deleted *int32
+	// The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned
+	Id *int64
+	// Indicates whether any documents to be deleted were found
+	Found *bool
+	// Result of the delete operation, typically 'deleted'
+	Result *string
 }
 
 // NewDeleteResponse instantiates a new DeleteResponse object
@@ -139,6 +145,38 @@ func (o *DeleteResponse) SetId(v int64) {
 	o.Id = &v
 }
 
+// GetFound returns the Found field value if set, zero value otherwise.
+func (o *DeleteResponse) GetFound() bool {
+	if o == nil || IsNil(o.Found) {
+		var ret bool
+		return ret
+	}
+	return *o.Found
+}
+
+// GetFoundOk returns a tuple with the Found field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteResponse) GetFoundOk() (*bool, bool) {
+	if o == nil || IsNil(o.Found) {
+		return nil, false
+	}
+	return o.Found, true
+}
+
+// HasFound returns a boolean if a field has been set.
+func (o *DeleteResponse) HasFound() bool {
+	if o != nil && !IsNil(o.Found) {
+		return true
+	}
+
+	return false
+}
+
+// SetFound gets a reference to the given bool and assigns it to the Found field.
+func (o *DeleteResponse) SetFound(v bool) {
+	o.Found = &v
+}
+
 // GetResult returns the Result field value if set, zero value otherwise.
 func (o *DeleteResponse) GetResult() string {
 	if o == nil || IsNil(o.Result) {
@@ -189,6 +227,9 @@ func (o DeleteResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Id) {
 		toSerialize["_id"] = o.Id
+	}
+	if !IsNil(o.Found) {
+		toSerialize["found"] = o.Found
 	}
 	if !IsNil(o.Result) {
 		toSerialize["result"] = o.Result

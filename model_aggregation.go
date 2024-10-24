@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -18,11 +18,11 @@ import (
 // checks if the Aggregation type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Aggregation{}
 
-// Aggregation Aggregation Alias
+// Aggregation struct for Aggregation
 type Aggregation struct {
-	Terms *AggregationTerms `json:"terms,omitempty"`
-	Sort []map[string]AggregationSortInnerValue `json:"sort,omitempty"`
-	Composite *AggregationComposite `json:"composite,omitempty"`
+	Terms *AggTerms
+	Sort []interface{}
+	Composite *AggComposite
 }
 
 // NewAggregation instantiates a new Aggregation object
@@ -43,9 +43,9 @@ func NewAggregationWithDefaults() *Aggregation {
 }
 
 // GetTerms returns the Terms field value if set, zero value otherwise.
-func (o *Aggregation) GetTerms() AggregationTerms {
+func (o *Aggregation) GetTerms() AggTerms {
 	if o == nil || IsNil(o.Terms) {
-		var ret AggregationTerms
+		var ret AggTerms
 		return ret
 	}
 	return *o.Terms
@@ -53,7 +53,7 @@ func (o *Aggregation) GetTerms() AggregationTerms {
 
 // GetTermsOk returns a tuple with the Terms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Aggregation) GetTermsOk() (*AggregationTerms, bool) {
+func (o *Aggregation) GetTermsOk() (*AggTerms, bool) {
 	if o == nil || IsNil(o.Terms) {
 		return nil, false
 	}
@@ -69,15 +69,15 @@ func (o *Aggregation) HasTerms() bool {
 	return false
 }
 
-// SetTerms gets a reference to the given AggregationTerms and assigns it to the Terms field.
-func (o *Aggregation) SetTerms(v AggregationTerms) {
+// SetTerms gets a reference to the given AggTerms and assigns it to the Terms field.
+func (o *Aggregation) SetTerms(v AggTerms) {
 	o.Terms = &v
 }
 
 // GetSort returns the Sort field value if set, zero value otherwise.
-func (o *Aggregation) GetSort() []map[string]AggregationSortInnerValue {
+func (o *Aggregation) GetSort() []interface{} {
 	if o == nil || IsNil(o.Sort) {
-		var ret []map[string]AggregationSortInnerValue
+		var ret []interface{}
 		return ret
 	}
 	return o.Sort
@@ -85,7 +85,7 @@ func (o *Aggregation) GetSort() []map[string]AggregationSortInnerValue {
 
 // GetSortOk returns a tuple with the Sort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Aggregation) GetSortOk() ([]map[string]AggregationSortInnerValue, bool) {
+func (o *Aggregation) GetSortOk() ([]interface{}, bool) {
 	if o == nil || IsNil(o.Sort) {
 		return nil, false
 	}
@@ -101,15 +101,15 @@ func (o *Aggregation) HasSort() bool {
 	return false
 }
 
-// SetSort gets a reference to the given []map[string]AggregationSortInnerValue and assigns it to the Sort field.
-func (o *Aggregation) SetSort(v []map[string]AggregationSortInnerValue) {
+// SetSort gets a reference to the given []interface{} and assigns it to the Sort field.
+func (o *Aggregation) SetSort(v []interface{}) {
 	o.Sort = v
 }
 
 // GetComposite returns the Composite field value if set, zero value otherwise.
-func (o *Aggregation) GetComposite() AggregationComposite {
+func (o *Aggregation) GetComposite() AggComposite {
 	if o == nil || IsNil(o.Composite) {
-		var ret AggregationComposite
+		var ret AggComposite
 		return ret
 	}
 	return *o.Composite
@@ -117,7 +117,7 @@ func (o *Aggregation) GetComposite() AggregationComposite {
 
 // GetCompositeOk returns a tuple with the Composite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Aggregation) GetCompositeOk() (*AggregationComposite, bool) {
+func (o *Aggregation) GetCompositeOk() (*AggComposite, bool) {
 	if o == nil || IsNil(o.Composite) {
 		return nil, false
 	}
@@ -133,8 +133,8 @@ func (o *Aggregation) HasComposite() bool {
 	return false
 }
 
-// SetComposite gets a reference to the given AggregationComposite and assigns it to the Composite field.
-func (o *Aggregation) SetComposite(v AggregationComposite) {
+// SetComposite gets a reference to the given AggComposite and assigns it to the Composite field.
+func (o *Aggregation) SetComposite(v AggComposite) {
 	o.Composite = &v
 }
 

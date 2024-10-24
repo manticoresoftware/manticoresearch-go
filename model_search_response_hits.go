@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -18,12 +18,16 @@ import (
 // checks if the SearchResponseHits type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SearchResponseHits{}
 
-// SearchResponseHits struct for SearchResponseHits
+// SearchResponseHits Object containing the search hits, which represent the documents that matched the query.
 type SearchResponseHits struct {
-	MaxScore *int32 `json:"max_score,omitempty"`
-	Total *int32 `json:"total,omitempty"`
-	TotalRelation *string `json:"total_relation,omitempty"`
-	Hits []map[string]interface{} `json:"hits,omitempty"`
+	// Maximum score among the matched documents
+	MaxScore *int32
+	// Total number of matched documents
+	Total *int32
+	// Indicates whether the total number of hits is accurate or an estimate
+	TotalRelation *string
+	// Array of hit objects, each representing a matched document
+	Hits []map[string]interface{}
 }
 
 // NewSearchResponseHits instantiates a new SearchResponseHits object

@@ -1,16 +1,15 @@
 # SuccessResponse
 
-Success response
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**Created** | Pointer to **bool** |  | [optional] 
-**Result** | Pointer to **string** |  | [optional] 
-**Found** | Pointer to **bool** |  | [optional] 
+**Index** | Pointer to **string** | Name of the document index | [optional] 
+**Id** | Pointer to **int64** | ID of the document affected by the request operation | [optional] 
+**Created** | Pointer to **bool** | Indicates whether the document was created as a result of the operation | [optional] 
+**Result** | Pointer to **string** | Result of the operation, typically &#39;created&#39;, &#39;updated&#39;, or &#39;deleted&#39; | [optional] 
+**Found** | Pointer to **bool** | Indicates whether the document was found in the index | [optional] 
+**Status** | Pointer to **int32** | HTTP status code representing the result of the operation | [optional] 
 
 ## Methods
 
@@ -155,6 +154,31 @@ SetFound sets Found field to given value.
 `func (o *SuccessResponse) HasFound() bool`
 
 HasFound returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *SuccessResponse) GetStatus() int32`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *SuccessResponse) GetStatusOk() (*int32, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *SuccessResponse) SetStatus(v int32)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *SuccessResponse) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

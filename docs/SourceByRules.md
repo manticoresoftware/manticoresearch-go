@@ -1,19 +1,17 @@
 # SourceByRules
 
-Query fields to be included/excluded to/from response
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Includes** | **[]string** |  | [default to []]
-**Excludes** | **[]string** |  | [default to [""]]
+**Includes** | Pointer to **[]string** |  | [optional] [default to []]
+**Excludes** | Pointer to **[]string** |  | [optional] [default to []]
 
 ## Methods
 
 ### NewSourceByRules
 
-`func NewSourceByRules(includes []string, excludes []string, ) *SourceByRules`
+`func NewSourceByRules() *SourceByRules`
 
 NewSourceByRules instantiates a new SourceByRules object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetIncludes sets Includes field to given value.
 
+### HasIncludes
+
+`func (o *SourceByRules) HasIncludes() bool`
+
+HasIncludes returns a boolean if a field has been set.
 
 ### GetExcludes
 
@@ -67,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetExcludes sets Excludes field to given value.
 
+### HasExcludes
+
+`func (o *SourceByRules) HasExcludes() bool`
+
+HasExcludes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

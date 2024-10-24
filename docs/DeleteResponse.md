@@ -1,15 +1,14 @@
 # DeleteResponse
 
-Delete response
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | Pointer to **string** |  | [optional] 
-**Deleted** | Pointer to **int32** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to **string** |  | [optional] 
+**Index** | Pointer to **string** | The name of the index from which the document was deleted | [optional] 
+**Deleted** | Pointer to **int32** | Number of documents deleted | [optional] 
+**Id** | Pointer to **int64** | The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned | [optional] 
+**Found** | Pointer to **bool** | Indicates whether any documents to be deleted were found | [optional] 
+**Result** | Pointer to **string** | Result of the delete operation, typically &#39;deleted&#39; | [optional] 
 
 ## Methods
 
@@ -104,6 +103,31 @@ SetId sets Id field to given value.
 `func (o *DeleteResponse) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetFound
+
+`func (o *DeleteResponse) GetFound() bool`
+
+GetFound returns the Found field if non-nil, zero value otherwise.
+
+### GetFoundOk
+
+`func (o *DeleteResponse) GetFoundOk() (*bool, bool)`
+
+GetFoundOk returns a tuple with the Found field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFound
+
+`func (o *DeleteResponse) SetFound(v bool)`
+
+SetFound sets Found field to given value.
+
+### HasFound
+
+`func (o *DeleteResponse) HasFound() bool`
+
+HasFound returns a boolean if a field has been set.
 
 ### GetResult
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Percolate** | **map[string]interface{}** |  | 
+**Percolate** | **map[string]interface{}** | Object representing the document to percolate | 
 
 ## Methods
 

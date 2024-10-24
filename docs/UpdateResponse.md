@@ -1,15 +1,13 @@
 # UpdateResponse
 
-Update response
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | Pointer to **string** |  | [optional] 
-**Updated** | Pointer to **int32** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to **string** |  | [optional] 
+**Index** | Pointer to **string** | Name of the document index | [optional] 
+**Updated** | Pointer to **int32** | Number of documents updated | [optional] 
+**Id** | Pointer to **int64** | Document ID | [optional] 
+**Result** | Pointer to **string** | Result of the update operation, typically &#39;updated&#39; | [optional] 
 
 ## Methods
 

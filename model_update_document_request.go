@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -13,22 +13,24 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
+	_"bytes"
+	_"fmt"
 )
 
 // checks if the UpdateDocumentRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateDocumentRequest{}
 
-// UpdateDocumentRequest Payload for update document
+// UpdateDocumentRequest Payload for updating a document or multiple documents in an index
 type UpdateDocumentRequest struct {
-	Index string `json:"index"`
-	// Index name
-	Doc map[string]interface{} `json:"doc"`
+	// Name of the document index
+	Index string
+	// Name of the document cluster
+	Cluster *string
+	// Object containing the document fields to update
+	Doc map[string]interface{}
 	// Document ID
-	Id *int64 `json:"id,omitempty"`
-	// Query tree object
-	Query map[string]interface{} `json:"query,omitempty"`
+	Id *int64
+	Query NullableQueryFilter
 }
 
 type _UpdateDocumentRequest UpdateDocumentRequest
@@ -74,6 +76,38 @@ func (o *UpdateDocumentRequest) GetIndexOk() (*string, bool) {
 // SetIndex sets field value
 func (o *UpdateDocumentRequest) SetIndex(v string) {
 	o.Index = v
+}
+
+// GetCluster returns the Cluster field value if set, zero value otherwise.
+func (o *UpdateDocumentRequest) GetCluster() string {
+	if o == nil || IsNil(o.Cluster) {
+		var ret string
+		return ret
+	}
+	return *o.Cluster
+}
+
+// GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateDocumentRequest) GetClusterOk() (*string, bool) {
+	if o == nil || IsNil(o.Cluster) {
+		return nil, false
+	}
+	return o.Cluster, true
+}
+
+// HasCluster returns a boolean if a field has been set.
+func (o *UpdateDocumentRequest) HasCluster() bool {
+	if o != nil && !IsNil(o.Cluster) {
+		return true
+	}
+
+	return false
+}
+
+// SetCluster gets a reference to the given string and assigns it to the Cluster field.
+func (o *UpdateDocumentRequest) SetCluster(v string) {
+	o.Cluster = &v
 }
 
 // GetDoc returns the Doc field value
@@ -133,36 +167,45 @@ func (o *UpdateDocumentRequest) SetId(v int64) {
 }
 
 // GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateDocumentRequest) GetQuery() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+func (o *UpdateDocumentRequest) GetQuery() QueryFilter {
+	if o == nil || IsNil(o.Query.Get()) {
+		var ret QueryFilter
 		return ret
 	}
-	return o.Query
+	return *o.Query.Get()
 }
 
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateDocumentRequest) GetQueryOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Query) {
-		return map[string]interface{}{}, false
+func (o *UpdateDocumentRequest) GetQueryOk() (*QueryFilter, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return o.Query, true
+	return o.Query.Get(), o.Query.IsSet()
 }
 
 // HasQuery returns a boolean if a field has been set.
 func (o *UpdateDocumentRequest) HasQuery() bool {
-	if o != nil && IsNil(o.Query) {
+	if o != nil && o.Query.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetQuery gets a reference to the given map[string]interface{} and assigns it to the Query field.
-func (o *UpdateDocumentRequest) SetQuery(v map[string]interface{}) {
-	o.Query = v
+// SetQuery gets a reference to the given NullableQueryFilter and assigns it to the Query field.
+func (o *UpdateDocumentRequest) SetQuery(v QueryFilter) {
+	o.Query.Set(&v)
+}
+// SetQueryNil sets the value for Query to be an explicit nil
+func (o *UpdateDocumentRequest) SetQueryNil() {
+	o.Query.Set(nil)
+}
+
+// UnsetQuery ensures that no value is present for Query, not even an explicit nil
+func (o *UpdateDocumentRequest) UnsetQuery() {
+	o.Query.Unset()
 }
 
 func (o UpdateDocumentRequest) MarshalJSON() ([]byte, error) {
@@ -176,52 +219,17 @@ func (o UpdateDocumentRequest) MarshalJSON() ([]byte, error) {
 func (o UpdateDocumentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["index"] = o.Index
+	if !IsNil(o.Cluster) {
+		toSerialize["cluster"] = o.Cluster
+	}
 	toSerialize["doc"] = o.Doc
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Query != nil {
-		toSerialize["query"] = o.Query
+	if o.Query.IsSet() {
+		toSerialize["query"] = o.Query.Get()
 	}
 	return toSerialize, nil
-}
-
-func (o *UpdateDocumentRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"index",
-		"doc",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varUpdateDocumentRequest := _UpdateDocumentRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateDocumentRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UpdateDocumentRequest(varUpdateDocumentRequest)
-
-	return err
 }
 
 type NullableUpdateDocumentRequest struct {

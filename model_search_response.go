@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -18,14 +18,19 @@ import (
 // checks if the SearchResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SearchResponse{}
 
-// SearchResponse Response object of a search request
+// SearchResponse Response object containing the results of a search request
 type SearchResponse struct {
-	Took *int32 `json:"took,omitempty"`
-	TimedOut *bool `json:"timed_out,omitempty"`
-	Aggregations map[string]interface{} `json:"aggregations,omitempty"`
-	Hits *SearchResponseHits `json:"hits,omitempty"`
-	Profile map[string]interface{} `json:"profile,omitempty"`
-	Warning map[string]interface{} `json:"warning,omitempty"`
+	// Time taken to execute the search
+	Took *int32
+	// Indicates whether the search operation timed out
+	TimedOut *bool
+	// Aggregated search results grouped by the specified criteria
+	Aggregations map[string]interface{}
+	Hits *SearchResponseHits
+	// Profile information about the search execution, if profiling is enabled
+	Profile map[string]interface{}
+	// Warnings encountered during the search operation
+	Warning map[string]interface{}
 }
 
 // NewSearchResponse instantiates a new SearchResponse object

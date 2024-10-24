@@ -7,9 +7,10 @@ Method | HTTP request | Description
 [**Bulk**](IndexAPI.md#Bulk) | **Post** /bulk | Bulk index operations
 [**Delete**](IndexAPI.md#Delete) | **Post** /delete | Delete a document in an index
 [**Insert**](IndexAPI.md#Insert) | **Post** /insert | Create a new document in an index
+[**PartialReplace**](IndexAPI.md#PartialReplace) | **Post** /{index}/_update/{id} | Partially replaces a document in an index
 [**Replace**](IndexAPI.md#Replace) | **Post** /replace | Replace new document in an index
 [**Update**](IndexAPI.md#Update) | **Post** /update | Update a document in an index
-[**Update_0**](IndexAPI.md#Update_0) | **Post** /{index}/_update/{id} | Partially replaces a document in an index
+
 
 
 ## Bulk
@@ -33,7 +34,7 @@ import (
 )
 
 func main() {
-	body := "["'{\"insert\": {\"index\": \"test\", \"id\": 1, \"doc\": {\"title\": \"Title 1\"}}},\\n{\"insert\": {\"index\": \"test\", \"id\": 2, \"doc\": {\"title\": \"Title 2\"}}}'"]" // string | 
+	body := "body_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -165,7 +166,7 @@ import (
 )
 
 func main() {
-	insertDocumentRequest := *openapiclient.NewInsertDocumentRequest("Index_example", map[string]interface{}{"key": interface{}(123)}) // InsertDocumentRequest | 
+	insertDocumentRequest := *openapiclient.NewInsertDocumentRequest("Index_example", map[string]interface{}(123)) // InsertDocumentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -210,6 +211,81 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## PartialReplace
+
+> UpdateResponse PartialReplace(ctx, index, id).ReplaceDocumentRequest(replaceDocumentRequest).Execute()
+
+Partially replaces a document in an index
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/manticoresoftware/manticoresearch-go"
+)
+
+func main() {
+	index := "index_example" // string | Name of the percolate index
+	id := float32(8.14) // float32 | Id of the document to replace
+	replaceDocumentRequest := *openapiclient.NewReplaceDocumentRequest(map[string]interface{}(123)) // ReplaceDocumentRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IndexAPI.PartialReplace(context.Background(), index, id).ReplaceDocumentRequest(replaceDocumentRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IndexAPI.PartialReplace``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PartialReplace`: UpdateResponse
+	fmt.Fprintf(os.Stdout, "Response from `IndexAPI.PartialReplace`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**index** | **string** | Name of the percolate index | 
+**id** | **float32** | Id of the document to replace | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPartialReplaceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **replaceDocumentRequest** | [**ReplaceDocumentRequest**](ReplaceDocumentRequest.md) |  | 
+
+### Return type
+
+[**UpdateResponse**](UpdateResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## Replace
 
 > SuccessResponse Replace(ctx).InsertDocumentRequest(insertDocumentRequest).Execute()
@@ -231,7 +307,7 @@ import (
 )
 
 func main() {
-	insertDocumentRequest := *openapiclient.NewInsertDocumentRequest("Index_example", map[string]interface{}{"key": interface{}(123)}) // InsertDocumentRequest | 
+	insertDocumentRequest := *openapiclient.NewInsertDocumentRequest("Index_example", map[string]interface{}(123)) // InsertDocumentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -297,7 +373,7 @@ import (
 )
 
 func main() {
-	updateDocumentRequest := *openapiclient.NewUpdateDocumentRequest("Index_example", map[string]interface{}{"key": interface{}(123)}) // UpdateDocumentRequest | 
+	updateDocumentRequest := *openapiclient.NewUpdateDocumentRequest("Index_example", map[string]interface{}({gid=10})) // UpdateDocumentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -336,77 +412,6 @@ No authorization required
 
 - **Content-Type**: application/json
 - **Accept**: application/json
-
-## Update_0
-
-> UpdateResponse Update_0(ctx, index, id).ReplaceDocumentRequest(replaceDocumentRequest).Execute()
-
-Partially replaces a document in an index
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/manticoresoftware/manticoresearch-go"
-)
-
-func main() {
-	index := "index_example" // string | Name of the percolate index
-	id := float32(8.14) // float32 | Id of the document to replace
-	replaceDocumentRequest := *openapiclient.NewReplaceDocumentRequest(map[string]interface{}{"key": interface{}(123)}) // ReplaceDocumentRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IndexAPI.Update_0(context.Background(), index, id).ReplaceDocumentRequest(replaceDocumentRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `IndexAPI.Update_0``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `Update_0`: UpdateResponse
-	fmt.Fprintf(os.Stdout, "Response from `IndexAPI.Update_0`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**index** | **string** | Name of the percolate index | 
-**id** | **float32** | Id of the document to replace | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdate_1Request struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **replaceDocumentRequest** | [**ReplaceDocumentRequest**](ReplaceDocumentRequest.md) |  | 
-
-### Return type
-
-[**UpdateResponse**](UpdateResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

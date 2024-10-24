@@ -1,15 +1,14 @@
 # UpdateDocumentRequest
 
-Request object for update operation.
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | **string** |  | 
-**Doc** | **map[string]interface{}** | Index name | 
+**Index** | **string** | Name of the document index | 
+**Cluster** | Pointer to **string** | Name of the document cluster | [optional] 
+**Doc** | **map[string]interface{}** | Object containing the document fields to update | 
 **Id** | Pointer to **int64** | Document ID | [optional] 
-**Query** | Pointer to **map[string]interface{}** | Query tree object | [optional] 
+**Query** | Pointer to [**NullableQueryFilter**](QueryFilter.md) |  | [optional] 
 
 ## Methods
 
@@ -49,6 +48,31 @@ and a boolean to check if the value has been set.
 
 SetIndex sets Index field to given value.
 
+
+### GetCluster
+
+`func (o *UpdateDocumentRequest) GetCluster() string`
+
+GetCluster returns the Cluster field if non-nil, zero value otherwise.
+
+### GetClusterOk
+
+`func (o *UpdateDocumentRequest) GetClusterOk() (*string, bool)`
+
+GetClusterOk returns a tuple with the Cluster field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCluster
+
+`func (o *UpdateDocumentRequest) SetCluster(v string)`
+
+SetCluster sets Cluster field to given value.
+
+### HasCluster
+
+`func (o *UpdateDocumentRequest) HasCluster() bool`
+
+HasCluster returns a boolean if a field has been set.
 
 ### GetDoc
 
@@ -97,20 +121,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetQuery
 
-`func (o *UpdateDocumentRequest) GetQuery() map[string]interface{}`
+`func (o *UpdateDocumentRequest) GetQuery() QueryFilter`
 
 GetQuery returns the Query field if non-nil, zero value otherwise.
 
 ### GetQueryOk
 
-`func (o *UpdateDocumentRequest) GetQueryOk() (*map[string]interface{}, bool)`
+`func (o *UpdateDocumentRequest) GetQueryOk() (*QueryFilter, bool)`
 
 GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuery
 
-`func (o *UpdateDocumentRequest) SetQuery(v map[string]interface{})`
+`func (o *UpdateDocumentRequest) SetQuery(v QueryFilter)`
 
 SetQuery sets Query field to given value.
 

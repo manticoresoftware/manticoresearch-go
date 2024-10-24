@@ -1,17 +1,13 @@
 # DeleteDocumentRequest
 
-Request object for delete operation.
-Documents can be deleted either one by one by specifying the document id or by providing a query object.
-For more information see [Delete API](https://manual.manticoresearch.com/Deleting_documents)
-        
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Index** | **string** | Index name | 
-**Cluster** | Pointer to **string** | cluster name | [optional] 
-**Id** | Pointer to **int64** | Document ID | [optional] 
-**Query** | Pointer to **map[string]interface{}** | Query tree object | [optional] 
+**Cluster** | Pointer to **string** | Cluster name | [optional] 
+**Id** | Pointer to **int64** | The ID of document for deletion | [optional] 
+**Query** | Pointer to **map[string]interface{}** | Defines the criteria to match documents for deletion | [optional] 
 
 ## Methods
 

@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -18,15 +18,15 @@ import (
 // checks if the BulkResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BulkResponse{}
 
-// BulkResponse Success bulk response
+// BulkResponse Success response for bulk search requests
 type BulkResponse struct {
-	Items []map[string]interface{} `json:"items,omitempty"`
-	Errors *bool `json:"errors,omitempty"`
-	Error *string `json:"error,omitempty"`
-	AdditionalProperties map[string]interface{}
+	// List of results
+	Items []map[string]interface{}
+	// Errors occurred during the bulk operation
+	Errors *bool
+	// Error message describing an error if such occurred
+	Error *string
 }
-
-type _BulkResponse BulkResponse
 
 // NewBulkResponse instantiates a new BulkResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -160,35 +160,7 @@ func (o BulkResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *BulkResponse) UnmarshalJSON(data []byte) (err error) {
-	varBulkResponse := _BulkResponse{}
-
-	err = json.Unmarshal(data, &varBulkResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = BulkResponse(varBulkResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "items")
-		delete(additionalProperties, "errors")
-		delete(additionalProperties, "error")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBulkResponse struct {

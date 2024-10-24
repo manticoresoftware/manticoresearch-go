@@ -1,17 +1,15 @@
 # SearchResponse
 
-Response object of a search request
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Took** | Pointer to **int32** |  | [optional] 
-**TimedOut** | Pointer to **bool** |  | [optional] 
-**Aggregations** | Pointer to **map[string]interface{}** |  | [optional] 
+**Took** | Pointer to **int32** | Time taken to execute the search | [optional] 
+**TimedOut** | Pointer to **bool** | Indicates whether the search operation timed out | [optional] 
+**Aggregations** | Pointer to **map[string]interface{}** | Aggregated search results grouped by the specified criteria | [optional] 
 **Hits** | Pointer to [**SearchResponseHits**](SearchResponseHits.md) |  | [optional] 
-**Profile** | Pointer to **map[string]interface{}** |  | [optional] 
-**Warning** | Pointer to **map[string]interface{}** |  | [optional] 
+**Profile** | Pointer to **map[string]interface{}** | Profile information about the search execution, if profiling is enabled | [optional] 
+**Warning** | Pointer to **map[string]interface{}** | Warnings encountered during the search operation | [optional] 
 
 ## Methods
 

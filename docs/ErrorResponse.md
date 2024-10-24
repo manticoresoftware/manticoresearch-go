@@ -1,19 +1,17 @@
 # ErrorResponse
 
-Error response
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Error** | **map[string]interface{}** |  | 
-**Status** | Pointer to **int32** |  | [optional] 
+**Error** | [**ResponseError**](ResponseError.md) |  | 
+**Status** | Pointer to **int32** | HTTP status code of the error response | [optional] [default to 500]
 
 ## Methods
 
 ### NewErrorResponse
 
-`func NewErrorResponse(error_ map[string]interface{}, ) *ErrorResponse`
+`func NewErrorResponse(error_ ResponseError, ) *ErrorResponse`
 
 NewErrorResponse instantiates a new ErrorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetError
 
-`func (o *ErrorResponse) GetError() map[string]interface{}`
+`func (o *ErrorResponse) GetError() ResponseError`
 
 GetError returns the Error field if non-nil, zero value otherwise.
 
 ### GetErrorOk
 
-`func (o *ErrorResponse) GetErrorOk() (*map[string]interface{}, bool)`
+`func (o *ErrorResponse) GetErrorOk() (*ResponseError, bool)`
 
 GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetError
 
-`func (o *ErrorResponse) SetError(v map[string]interface{})`
+`func (o *ErrorResponse) SetError(v ResponseError)`
 
 SetError sets Error field to given value.
 

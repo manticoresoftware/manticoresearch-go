@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Field** | Pointer to **string** | Attribute Name to Aggregate | [optional] 
-**Size** | Pointer to **int32** | Maximum Number of Buckets in the Result | [optional] 
+**Field** | Pointer to **string** | Name of attribute to aggregate by | [optional] 
+**Size** | Pointer to **int32** | Maximum number of buckets in the result | [optional] 
 
 ## Methods
 

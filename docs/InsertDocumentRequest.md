@@ -1,15 +1,13 @@
 # InsertDocumentRequest
 
-Request object for insert operation.
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | **string** | Name of the index | 
-**Cluster** | Pointer to **string** | cluster name | [optional] 
-**Id** | Pointer to **int64** | Document ID.  | [optional] 
-**Doc** | **map[string]interface{}** | Object with document data  | 
+**Index** | **string** | Name of the index to insert the document into | 
+**Cluster** | Pointer to **string** | Name of the cluster to insert the document into | [optional] 
+**Id** | Pointer to **int64** | Document ID. If not provided, an ID will be auto-generated  | [optional] 
+**Doc** | **map[string]interface{}** | Object containing document data  | 
 
 ## Methods
 

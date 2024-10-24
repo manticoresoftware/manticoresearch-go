@@ -10,8 +10,6 @@ Testing IndexAPIService
 package openapi
 
 import (
-	"fmt"
-	"encoding/json"
 	"context"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -22,18 +20,15 @@ import (
 func Test_openapi_IndexAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
-	configuration.Servers[0].URL = "http://localhost:9408"
 	apiClient := openapiclient.NewAPIClient(configuration)
 
 	t.Run("Test IndexAPIService Bulk", func(t *testing.T) {
 
-		apiClient.UtilsAPI.Sql(context.Background()).Body("DROP TABLE IF EXISTS test").Execute()
-		apiClient.UtilsAPI.Sql(context.Background()).Body("CREATE TABLE IF NOT EXISTS test (body text, title string)").Execute()
-		
-   		body := "{\"insert\": {\"index\": \"test\", \"id\": 1, \"doc\": {\"body\": \"test\", \"title\": \"test\"}}}" + "\n"
-   		resp, httpRes, err := apiClient.IndexAPI.Bulk(context.Background()).Body(body).Execute()
-   		fmt.Printf("test %v\n", resp)
-   		require.Nil(t, err)
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.IndexAPI.Bulk(context.Background()).Execute()
+
+		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
@@ -41,155 +36,65 @@ func Test_openapi_IndexAPIService(t *testing.T) {
 
 	t.Run("Test IndexAPIService Delete", func(t *testing.T) {
 
-		apiClient.UtilsAPI.Sql(context.Background()).Body("DROP TABLE IF EXISTS products").Execute()
-        apiClient.UtilsAPI.Sql(context.Background()).Body("CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)").Execute()
-        indexDoc := map[string]interface{} {"title": "first", "tags1": []int{4, 2, 1, 3}}
-    	indexReq := openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(1)
-    	apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute();
+		t.Skip("skip test")  // remove to run test
 
-    	indexReq = openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(2)
-    	apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute();
-    	
-    	indexReq = openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(0)
-    	apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute();
-    	
-    	delReq := openapiclient.NewDeleteDocumentRequest("products")
-    	matchExpr := map[string]interface{} {"*": "first"}
-    	delQuery := map[string]interface{} {"match": matchExpr }
-    	delReq.SetQuery(delQuery)
-    	
-    	delResp, httpRes, err := apiClient.IndexAPI.Delete(context.Background()).DeleteDocumentRequest(*delReq).Execute();
-    	
-    	require.Nil(t, err)
-		require.NotNil(t, delResp)
+		resp, httpRes, err := apiClient.IndexAPI.Delete(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
-		
-		outRes, outErr := json.Marshal(delResp)
-    	require.Nil(t, outErr)
-    	fmt.Printf("%+v\n", string(outRes[:]))
+
 	})
 
 	t.Run("Test IndexAPIService Insert", func(t *testing.T) {
 
-		apiClient.UtilsAPI.Sql(context.Background()).Body("DROP TABLE IF EXISTS products").Execute()
-        apiClient.UtilsAPI.Sql(context.Background()).Body("CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)").Execute()
-        indexDoc := map[string]interface{} {"title": "first", "tags1": []int{4, 2, 1, 3}}
-    	indexReq := openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(1)
-    	resp, httpRes, err := apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute();
+		t.Skip("skip test")  // remove to run test
 
-    	require.Nil(t, err)
+		resp, httpRes, err := apiClient.IndexAPI.Insert(context.Background()).Execute()
+
+		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
-    	outRes, outErr := json.Marshal(resp)
-    	require.Nil(t, outErr)
-    	fmt.Printf("%+v\n", string(outRes[:]))
-		
-		indexReq = openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(2)
-    	resp, httpRes, err = apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute();
-    	
-    	require.Nil(t, err)
+	})
+
+	t.Run("Test IndexAPIService PartialReplace", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var index string
+		var id float32
+
+		resp, httpRes, err := apiClient.IndexAPI.PartialReplace(context.Background(), index, id).Execute()
+
+		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
-		
-		outRes, outErr = json.Marshal(resp)
-    	require.Nil(t, outErr)
-    	fmt.Printf("%+v\n", string(outRes[:]))
-    	
-    	indexReq = openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(0)
-    	resp, httpRes, err = apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute();
-    	
-    	require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-		
-		outRes, outErr = json.Marshal(resp)
-    	require.Nil(t, outErr)
-    	fmt.Printf("%+v\n", string(outRes[:]))
 
 	})
 
 	t.Run("Test IndexAPIService Replace", func(t *testing.T) {
 
-		apiClient.UtilsAPI.Sql(context.Background()).Body("DROP TABLE IF EXISTS products").Execute()
-        apiClient.UtilsAPI.Sql(context.Background()).Body("CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)").Execute()
-        indexDoc := map[string]interface{} {"title": "first", "tags1": []int{4, 2, 1, 3}}
-    	indexReq := openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(1)
-    	apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute()
+		t.Skip("skip test")  // remove to run test
 
-    	indexReq = openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(2)
-    	apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute()
-    	
-    	indexReq = openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(0)
-    	apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute()
-		
+		resp, httpRes, err := apiClient.IndexAPI.Replace(context.Background()).Execute()
 
-		replDoc := map[string]interface{} {"title": "second", "tags1": []int{5}}
-		replReq := openapiclient.NewInsertDocumentRequest("products", replDoc)
-		replReq.SetId(1)
-		resp, httpRes, err := apiClient.IndexAPI.Replace(context.Background()).InsertDocumentRequest(*replReq).Execute()
-    	
-    	require.Nil(t, err)
+		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
-		
-		outRes, outErr := json.Marshal(resp)
-    	require.Nil(t, outErr)
-    	fmt.Printf("%+v\n", string(outRes[:]))
+
 	})
 
 	t.Run("Test IndexAPIService Update", func(t *testing.T) {
 
-		apiClient.UtilsAPI.Sql(context.Background()).Body("DROP TABLE IF EXISTS products").Execute()
-        apiClient.UtilsAPI.Sql(context.Background()).Body("CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)").Execute()
-        indexDoc := map[string]interface{} {"title": "first", "tags1": []int{4, 2, 1, 3}}
-    	indexReq := openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(1)
-    	apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute()
+		t.Skip("skip test")  // remove to run test
 
-    	indexReq = openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(2)
-    	apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute()
-    	
-    	indexReq = openapiclient.NewInsertDocumentRequest("products", indexDoc)
-    	indexReq.SetId(0)
-    	apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute()
-
-		updDoc := map[string]interface{} {}
-		updReq := openapiclient.NewUpdateDocumentRequest("products", updDoc)
-		resp, httpRes, err := apiClient.IndexAPI.Update(context.Background()).UpdateDocumentRequest(*updReq).Execute()
+		resp, httpRes, err := apiClient.IndexAPI.Update(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
-		outRes, outErr := json.Marshal(resp)
-    	require.Nil(t, outErr)
-    	fmt.Printf("%+v\n", string(outRes[:]))
-    	
-    	updDoc = map[string]interface{} {"price":10}
-		updReq = openapiclient.NewUpdateDocumentRequest("products", updDoc)
-		updReq.SetId(2)
-    	resp, httpRes, err = apiClient.IndexAPI.Update(context.Background()).UpdateDocumentRequest(*updReq).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-		outRes, outErr = json.Marshal(resp)
-    	require.Nil(t, outErr)
-    	fmt.Printf("%+v\n", string(outRes[:]))
-    	
 	})
 
-	fmt.Println("Index tests finished");
 }

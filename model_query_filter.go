@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -13,27 +13,36 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the QueryFilter type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &QueryFilter{}
 
-// QueryFilter Query string filter
+// QueryFilter Object used to apply various conditions, such as full-text matching or attribute filtering, to a search query
 type QueryFilter struct {
-	QueryString string `json:"query_string"`
+	// Filter object defining a query string
+	QueryString interface{}
+	// Filter object defining a match keyword passed as a string or in a Match object
+	Match interface{}
+	// Filter object defining a match phrase
+	MatchPhrase interface{}
+	// Filter object to select all documents
+	MatchAll interface{}
+	Bool *BoolFilter
+	Equals interface{}
+	// Filter to match a given set of attribute values.
+	In map[string]interface{}
+	// Filter to match a given range of attribute values passed in Range objects
+	Range map[string]interface{}
+	GeoDistance *GeoDistance
 }
-
-type _QueryFilter QueryFilter
 
 // NewQueryFilter instantiates a new QueryFilter object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQueryFilter(queryString string) *QueryFilter {
+func NewQueryFilter() *QueryFilter {
 	this := QueryFilter{}
-	this.QueryString = queryString
 	return &this
 }
 
@@ -45,28 +54,297 @@ func NewQueryFilterWithDefaults() *QueryFilter {
 	return &this
 }
 
-// GetQueryString returns the QueryString field value
-func (o *QueryFilter) GetQueryString() string {
+// GetQueryString returns the QueryString field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QueryFilter) GetQueryString() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
-
 	return o.QueryString
 }
 
-// GetQueryStringOk returns a tuple with the QueryString field value
+// GetQueryStringOk returns a tuple with the QueryString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryFilter) GetQueryStringOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QueryFilter) GetQueryStringOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.QueryString) {
 		return nil, false
 	}
 	return &o.QueryString, true
 }
 
-// SetQueryString sets field value
-func (o *QueryFilter) SetQueryString(v string) {
+// HasQueryString returns a boolean if a field has been set.
+func (o *QueryFilter) HasQueryString() bool {
+	if o != nil && !IsNil(o.QueryString) {
+		return true
+	}
+
+	return false
+}
+
+// SetQueryString gets a reference to the given interface{} and assigns it to the QueryString field.
+func (o *QueryFilter) SetQueryString(v interface{}) {
 	o.QueryString = v
+}
+
+// GetMatch returns the Match field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QueryFilter) GetMatch() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Match
+}
+
+// GetMatchOk returns a tuple with the Match field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QueryFilter) GetMatchOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Match) {
+		return nil, false
+	}
+	return &o.Match, true
+}
+
+// HasMatch returns a boolean if a field has been set.
+func (o *QueryFilter) HasMatch() bool {
+	if o != nil && !IsNil(o.Match) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatch gets a reference to the given interface{} and assigns it to the Match field.
+func (o *QueryFilter) SetMatch(v interface{}) {
+	o.Match = v
+}
+
+// GetMatchPhrase returns the MatchPhrase field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QueryFilter) GetMatchPhrase() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.MatchPhrase
+}
+
+// GetMatchPhraseOk returns a tuple with the MatchPhrase field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QueryFilter) GetMatchPhraseOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.MatchPhrase) {
+		return nil, false
+	}
+	return &o.MatchPhrase, true
+}
+
+// HasMatchPhrase returns a boolean if a field has been set.
+func (o *QueryFilter) HasMatchPhrase() bool {
+	if o != nil && !IsNil(o.MatchPhrase) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatchPhrase gets a reference to the given interface{} and assigns it to the MatchPhrase field.
+func (o *QueryFilter) SetMatchPhrase(v interface{}) {
+	o.MatchPhrase = v
+}
+
+// GetMatchAll returns the MatchAll field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QueryFilter) GetMatchAll() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.MatchAll
+}
+
+// GetMatchAllOk returns a tuple with the MatchAll field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QueryFilter) GetMatchAllOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.MatchAll) {
+		return nil, false
+	}
+	return &o.MatchAll, true
+}
+
+// HasMatchAll returns a boolean if a field has been set.
+func (o *QueryFilter) HasMatchAll() bool {
+	if o != nil && !IsNil(o.MatchAll) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatchAll gets a reference to the given interface{} and assigns it to the MatchAll field.
+func (o *QueryFilter) SetMatchAll(v interface{}) {
+	o.MatchAll = v
+}
+
+// GetBool returns the Bool field value if set, zero value otherwise.
+func (o *QueryFilter) GetBool() BoolFilter {
+	if o == nil || IsNil(o.Bool) {
+		var ret BoolFilter
+		return ret
+	}
+	return *o.Bool
+}
+
+// GetBoolOk returns a tuple with the Bool field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryFilter) GetBoolOk() (*BoolFilter, bool) {
+	if o == nil || IsNil(o.Bool) {
+		return nil, false
+	}
+	return o.Bool, true
+}
+
+// HasBool returns a boolean if a field has been set.
+func (o *QueryFilter) HasBool() bool {
+	if o != nil && !IsNil(o.Bool) {
+		return true
+	}
+
+	return false
+}
+
+// SetBool gets a reference to the given BoolFilter and assigns it to the Bool field.
+func (o *QueryFilter) SetBool(v BoolFilter) {
+	o.Bool = &v
+}
+
+// GetEquals returns the Equals field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QueryFilter) GetEquals() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Equals
+}
+
+// GetEqualsOk returns a tuple with the Equals field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QueryFilter) GetEqualsOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Equals) {
+		return nil, false
+	}
+	return &o.Equals, true
+}
+
+// HasEquals returns a boolean if a field has been set.
+func (o *QueryFilter) HasEquals() bool {
+	if o != nil && !IsNil(o.Equals) {
+		return true
+	}
+
+	return false
+}
+
+// SetEquals gets a reference to the given interface{} and assigns it to the Equals field.
+func (o *QueryFilter) SetEquals(v interface{}) {
+	o.Equals = v
+}
+
+// GetIn returns the In field value if set, zero value otherwise.
+func (o *QueryFilter) GetIn() map[string]interface{} {
+	if o == nil || IsNil(o.In) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.In
+}
+
+// GetInOk returns a tuple with the In field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryFilter) GetInOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.In) {
+		return map[string]interface{}{}, false
+	}
+	return o.In, true
+}
+
+// HasIn returns a boolean if a field has been set.
+func (o *QueryFilter) HasIn() bool {
+	if o != nil && !IsNil(o.In) {
+		return true
+	}
+
+	return false
+}
+
+// SetIn gets a reference to the given map[string]interface{} and assigns it to the In field.
+func (o *QueryFilter) SetIn(v map[string]interface{}) {
+	o.In = v
+}
+
+// GetRange returns the Range field value if set, zero value otherwise.
+func (o *QueryFilter) GetRange() map[string]interface{} {
+	if o == nil || IsNil(o.Range) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Range
+}
+
+// GetRangeOk returns a tuple with the Range field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryFilter) GetRangeOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Range) {
+		return map[string]interface{}{}, false
+	}
+	return o.Range, true
+}
+
+// HasRange returns a boolean if a field has been set.
+func (o *QueryFilter) HasRange() bool {
+	if o != nil && !IsNil(o.Range) {
+		return true
+	}
+
+	return false
+}
+
+// SetRange gets a reference to the given map[string]interface{} and assigns it to the Range field.
+func (o *QueryFilter) SetRange(v map[string]interface{}) {
+	o.Range = v
+}
+
+// GetGeoDistance returns the GeoDistance field value if set, zero value otherwise.
+func (o *QueryFilter) GetGeoDistance() GeoDistance {
+	if o == nil || IsNil(o.GeoDistance) {
+		var ret GeoDistance
+		return ret
+	}
+	return *o.GeoDistance
+}
+
+// GetGeoDistanceOk returns a tuple with the GeoDistance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryFilter) GetGeoDistanceOk() (*GeoDistance, bool) {
+	if o == nil || IsNil(o.GeoDistance) {
+		return nil, false
+	}
+	return o.GeoDistance, true
+}
+
+// HasGeoDistance returns a boolean if a field has been set.
+func (o *QueryFilter) HasGeoDistance() bool {
+	if o != nil && !IsNil(o.GeoDistance) {
+		return true
+	}
+
+	return false
+}
+
+// SetGeoDistance gets a reference to the given GeoDistance and assigns it to the GeoDistance field.
+func (o *QueryFilter) SetGeoDistance(v GeoDistance) {
+	o.GeoDistance = &v
 }
 
 func (o QueryFilter) MarshalJSON() ([]byte, error) {
@@ -79,45 +357,34 @@ func (o QueryFilter) MarshalJSON() ([]byte, error) {
 
 func (o QueryFilter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["query_string"] = o.QueryString
+	if o.QueryString != nil {
+		toSerialize["query_string"] = o.QueryString
+	}
+	if o.Match != nil {
+		toSerialize["match"] = o.Match
+	}
+	if o.MatchPhrase != nil {
+		toSerialize["match_phrase"] = o.MatchPhrase
+	}
+	if o.MatchAll != nil {
+		toSerialize["match_all"] = o.MatchAll
+	}
+	if !IsNil(o.Bool) {
+		toSerialize["bool"] = o.Bool
+	}
+	if o.Equals != nil {
+		toSerialize["equals"] = o.Equals
+	}
+	if !IsNil(o.In) {
+		toSerialize["in"] = o.In
+	}
+	if !IsNil(o.Range) {
+		toSerialize["range"] = o.Range
+	}
+	if !IsNil(o.GeoDistance) {
+		toSerialize["geo_distance"] = o.GeoDistance
+	}
 	return toSerialize, nil
-}
-
-func (o *QueryFilter) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"query_string",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varQueryFilter := _QueryFilter{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varQueryFilter)
-
-	if err != nil {
-		return err
-	}
-
-	*o = QueryFilter(varQueryFilter)
-
-	return err
 }
 
 type NullableQueryFilter struct {

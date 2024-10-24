@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -13,17 +13,18 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
+	_"bytes"
+	_"fmt"
 )
 
 // checks if the ErrorResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ErrorResponse{}
 
-// ErrorResponse Error response
+// ErrorResponse Error response object containing information about the error and a status code
 type ErrorResponse struct {
-	Error map[string]interface{} `json:"error"`
-	Status *int32 `json:"status,omitempty"`
+	Error ResponseError
+	// HTTP status code of the error response
+	Status *int32
 }
 
 type _ErrorResponse ErrorResponse
@@ -32,9 +33,11 @@ type _ErrorResponse ErrorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewErrorResponse(error_ map[string]interface{}) *ErrorResponse {
+func NewErrorResponse(error_ ResponseError) *ErrorResponse {
 	this := ErrorResponse{}
 	this.Error = error_
+	var status int32 = 500
+	this.Status = &status
 	return &this
 }
 
@@ -43,13 +46,15 @@ func NewErrorResponse(error_ map[string]interface{}) *ErrorResponse {
 // but it doesn't guarantee that properties required by API are set
 func NewErrorResponseWithDefaults() *ErrorResponse {
 	this := ErrorResponse{}
+	var status int32 = 500
+	this.Status = &status
 	return &this
 }
 
 // GetError returns the Error field value
-func (o *ErrorResponse) GetError() map[string]interface{} {
+func (o *ErrorResponse) GetError() ResponseError {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret ResponseError
 		return ret
 	}
 
@@ -58,15 +63,15 @@ func (o *ErrorResponse) GetError() map[string]interface{} {
 
 // GetErrorOk returns a tuple with the Error field value
 // and a boolean to check if the value has been set.
-func (o *ErrorResponse) GetErrorOk() (map[string]interface{}, bool) {
+func (o *ErrorResponse) GetErrorOk() (*ResponseError, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Error, true
+	return &o.Error, true
 }
 
 // SetError sets field value
-func (o *ErrorResponse) SetError(v map[string]interface{}) {
+func (o *ErrorResponse) SetError(v ResponseError) {
 	o.Error = v
 }
 
@@ -117,43 +122,6 @@ func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["status"] = o.Status
 	}
 	return toSerialize, nil
-}
-
-func (o *ErrorResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"error",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varErrorResponse := _ErrorResponse{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varErrorResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ErrorResponse(varErrorResponse)
-
-	return err
 }
 
 type NullableErrorResponse struct {

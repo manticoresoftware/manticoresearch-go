@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -13,23 +13,23 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
+	_"bytes"
+	_"fmt"
 )
 
 // checks if the InsertDocumentRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InsertDocumentRequest{}
 
-// InsertDocumentRequest Object with document data. 
+// InsertDocumentRequest Object containing data for inserting a new document into the index 
 type InsertDocumentRequest struct {
-	// Name of the index
-	Index string `json:"index"`
-	// cluster name
-	Cluster *string `json:"cluster,omitempty"`
-	// Document ID. 
-	Id *int64 `json:"id,omitempty"`
-	// Object with document data 
-	Doc map[string]interface{} `json:"doc"`
+	// Name of the index to insert the document into
+	Index string
+	// Name of the cluster to insert the document into
+	Cluster *string
+	// Document ID. If not provided, an ID will be auto-generated 
+	Id *int64
+	// Object containing document data 
+	Doc map[string]interface{}
 }
 
 type _InsertDocumentRequest InsertDocumentRequest
@@ -184,44 +184,6 @@ func (o InsertDocumentRequest) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["doc"] = o.Doc
 	return toSerialize, nil
-}
-
-func (o *InsertDocumentRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"index",
-		"doc",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varInsertDocumentRequest := _InsertDocumentRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInsertDocumentRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = InsertDocumentRequest(varInsertDocumentRequest)
-
-	return err
 }
 
 type NullableInsertDocumentRequest struct {

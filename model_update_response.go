@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -18,12 +18,16 @@ import (
 // checks if the UpdateResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateResponse{}
 
-// UpdateResponse Success response
+// UpdateResponse Success response returned after updating one or more documents
 type UpdateResponse struct {
-	Index *string `json:"_index,omitempty"`
-	Updated *int32 `json:"updated,omitempty"`
-	Id *int64 `json:"_id,omitempty"`
-	Result *string `json:"result,omitempty"`
+	// Name of the document index
+	Index *string
+	// Number of documents updated
+	Updated *int32
+	// Document ID
+	Id *int64
+	// Result of the update operation, typically 'updated'
+	Result *string
 }
 
 // NewUpdateResponse instantiates a new UpdateResponse object

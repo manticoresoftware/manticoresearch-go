@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
+	_"bytes"
+	_"fmt"
 )
 
 // checks if the DeleteDocumentRequest type satisfies the MappedNullable interface at compile time
@@ -23,13 +23,13 @@ var _ MappedNullable = &DeleteDocumentRequest{}
 // DeleteDocumentRequest Payload for delete request. Documents can be deleted either one by one by specifying the document id or by providing a query object. For more information see  [Delete API](https://manual.manticoresearch.com/Deleting_documents) 
 type DeleteDocumentRequest struct {
 	// Index name
-	Index string `json:"index"`
-	// cluster name
-	Cluster *string `json:"cluster,omitempty"`
-	// Document ID
-	Id *int64 `json:"id,omitempty"`
-	// Query tree object
-	Query map[string]interface{} `json:"query,omitempty"`
+	Index string
+	// Cluster name
+	Cluster *string
+	// The ID of document for deletion
+	Id *int64
+	// Defines the criteria to match documents for deletion
+	Query map[string]interface{}
 }
 
 type _DeleteDocumentRequest DeleteDocumentRequest
@@ -193,43 +193,6 @@ func (o DeleteDocumentRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["query"] = o.Query
 	}
 	return toSerialize, nil
-}
-
-func (o *DeleteDocumentRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"index",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varDeleteDocumentRequest := _DeleteDocumentRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeleteDocumentRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = DeleteDocumentRequest(varDeleteDocumentRequest)
-
-	return err
 }
 
 type NullableDeleteDocumentRequest struct {

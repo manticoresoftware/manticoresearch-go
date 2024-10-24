@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -12,8 +12,6 @@ Contact: info@manticoresearch.com
 package openapi
 
 import (
-	//"fmt"
-	"strings"
 	"bytes"
 	"context"
 	"io"
@@ -38,13 +36,13 @@ func (r ApiSqlRequest) Body(body string) ApiSqlRequest {
 	return r
 }
 
-// Optional parameter, defines a format of response. Can be set to &#x60;False&#x60; for Select only queries and set to &#x60;True&#x60; or omitted for any type of queries: 
+// Optional parameter, defines a format of response. Can be set to &#x60;False&#x60; for Select only queries and set to &#x60;True&#x60; for any type of queries. Default value is &#39;True&#39;. 
 func (r ApiSqlRequest) RawResponse(rawResponse bool) ApiSqlRequest {
 	r.rawResponse = &rawResponse
 	return r
 }
 
-func (r ApiSqlRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
+func (r ApiSqlRequest) Execute() (*SqlResponse, *http.Response, error) {
 	return r.ApiService.SqlExecute(r)
 }
 
@@ -69,13 +67,13 @@ func (a *UtilsAPIService) Sql(ctx context.Context) ApiSqlRequest {
 }
 
 // Execute executes the request
-//  @return []map[string]interface{}
-func (a *UtilsAPIService) SqlExecute(r ApiSqlRequest) ([]map[string]interface{}, *http.Response, error) {
+//  @return SqlResponse
+func (a *UtilsAPIService) SqlExecute(r ApiSqlRequest) (*SqlResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []map[string]interface{}
+		localVarReturnValue  *SqlResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UtilsAPIService.Sql")
@@ -93,18 +91,11 @@ func (a *UtilsAPIService) SqlExecute(r ApiSqlRequest) ([]map[string]interface{},
 	}
 
 	if r.rawResponse != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "raw_response", r.rawResponse, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "raw_response", r.rawResponse, "form", "")
 	} else {
 		var defaultValue bool = true
 		r.rawResponse = &defaultValue
 	}
-	var bodyValue string
-	if  (*r.rawResponse == false) {
-		bodyValue = "query=" + strings.Replace(url.QueryEscape(*r.body),"+", "%20", -1)// HttpUtility.UrlEncode( body.ToString() ).Replace("+", "%20");
-	} else {
-		bodyValue = "mode=raw&query=" + strings.Replace(url.QueryEscape(*r.body),"+", "%20", -1) //HttpUtility.UrlEncode( body.ToString() ).Replace("+", "%20");
-	}
-	r.body = &bodyValue
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"text/plain"}
 
@@ -146,26 +137,17 @@ func (a *UtilsAPIService) SqlExecute(r ApiSqlRequest) ([]map[string]interface{},
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v SqlDefaultResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			res,err := v.MarshalJSON()
-			if err != nil { 
-				//fmt.Printf("test6: %+v\n", myString)
-				newErr.error = formatErrorMessage(string(res[:]), &v)
-			} else {
-				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	if  (*r.rawResponse == false) {
-		localVarBody = append(append([]byte("["), localVarBody...), []byte("]")...) 
-	}
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{

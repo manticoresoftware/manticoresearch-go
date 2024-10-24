@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -18,11 +18,14 @@ import (
 // checks if the BoolFilter type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BoolFilter{}
 
-// BoolFilter Boolean attribute filter
+// BoolFilter struct for BoolFilter
 type BoolFilter struct {
-	Should []map[string]interface{} `json:"should,omitempty"`
-	Must []map[string]interface{} `json:"must,omitempty"`
-	MustNot []map[string]interface{} `json:"must_not,omitempty"`
+	// Query clauses that must match for the document to be included
+	Must []QueryFilter
+	// Query clauses that must not match for the document to be included
+	MustNot []*QueryFilter
+	// Query clauses that should be matched, but are not required
+	Should []*QueryFilter
 }
 
 // NewBoolFilter instantiates a new BoolFilter object
@@ -42,42 +45,10 @@ func NewBoolFilterWithDefaults() *BoolFilter {
 	return &this
 }
 
-// GetShould returns the Should field value if set, zero value otherwise.
-func (o *BoolFilter) GetShould() []map[string]interface{} {
-	if o == nil || IsNil(o.Should) {
-		var ret []map[string]interface{}
-		return ret
-	}
-	return o.Should
-}
-
-// GetShouldOk returns a tuple with the Should field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *BoolFilter) GetShouldOk() ([]map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Should) {
-		return nil, false
-	}
-	return o.Should, true
-}
-
-// HasShould returns a boolean if a field has been set.
-func (o *BoolFilter) HasShould() bool {
-	if o != nil && !IsNil(o.Should) {
-		return true
-	}
-
-	return false
-}
-
-// SetShould gets a reference to the given []map[string]interface{} and assigns it to the Should field.
-func (o *BoolFilter) SetShould(v []map[string]interface{}) {
-	o.Should = v
-}
-
 // GetMust returns the Must field value if set, zero value otherwise.
-func (o *BoolFilter) GetMust() []map[string]interface{} {
+func (o *BoolFilter) GetMust() []QueryFilter {
 	if o == nil || IsNil(o.Must) {
-		var ret []map[string]interface{}
+		var ret []QueryFilter
 		return ret
 	}
 	return o.Must
@@ -85,7 +56,7 @@ func (o *BoolFilter) GetMust() []map[string]interface{} {
 
 // GetMustOk returns a tuple with the Must field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BoolFilter) GetMustOk() ([]map[string]interface{}, bool) {
+func (o *BoolFilter) GetMustOk() ([]QueryFilter, bool) {
 	if o == nil || IsNil(o.Must) {
 		return nil, false
 	}
@@ -101,15 +72,15 @@ func (o *BoolFilter) HasMust() bool {
 	return false
 }
 
-// SetMust gets a reference to the given []map[string]interface{} and assigns it to the Must field.
-func (o *BoolFilter) SetMust(v []map[string]interface{}) {
+// SetMust gets a reference to the given []QueryFilter and assigns it to the Must field.
+func (o *BoolFilter) SetMust(v []QueryFilter) {
 	o.Must = v
 }
 
 // GetMustNot returns the MustNot field value if set, zero value otherwise.
-func (o *BoolFilter) GetMustNot() []map[string]interface{} {
+func (o *BoolFilter) GetMustNot() []*QueryFilter {
 	if o == nil || IsNil(o.MustNot) {
-		var ret []map[string]interface{}
+		var ret []*QueryFilter
 		return ret
 	}
 	return o.MustNot
@@ -117,7 +88,7 @@ func (o *BoolFilter) GetMustNot() []map[string]interface{} {
 
 // GetMustNotOk returns a tuple with the MustNot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BoolFilter) GetMustNotOk() ([]map[string]interface{}, bool) {
+func (o *BoolFilter) GetMustNotOk() ([]*QueryFilter, bool) {
 	if o == nil || IsNil(o.MustNot) {
 		return nil, false
 	}
@@ -133,9 +104,41 @@ func (o *BoolFilter) HasMustNot() bool {
 	return false
 }
 
-// SetMustNot gets a reference to the given []map[string]interface{} and assigns it to the MustNot field.
-func (o *BoolFilter) SetMustNot(v []map[string]interface{}) {
+// SetMustNot gets a reference to the given []*QueryFilter and assigns it to the MustNot field.
+func (o *BoolFilter) SetMustNot(v []*QueryFilter) {
 	o.MustNot = v
+}
+
+// GetShould returns the Should field value if set, zero value otherwise.
+func (o *BoolFilter) GetShould() []*QueryFilter {
+	if o == nil || IsNil(o.Should) {
+		var ret []*QueryFilter
+		return ret
+	}
+	return o.Should
+}
+
+// GetShouldOk returns a tuple with the Should field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BoolFilter) GetShouldOk() ([]*QueryFilter, bool) {
+	if o == nil || IsNil(o.Should) {
+		return nil, false
+	}
+	return o.Should, true
+}
+
+// HasShould returns a boolean if a field has been set.
+func (o *BoolFilter) HasShould() bool {
+	if o != nil && !IsNil(o.Should) {
+		return true
+	}
+
+	return false
+}
+
+// SetShould gets a reference to the given []*QueryFilter and assigns it to the Should field.
+func (o *BoolFilter) SetShould(v []*QueryFilter) {
+	o.Should = v
 }
 
 func (o BoolFilter) MarshalJSON() ([]byte, error) {
@@ -148,14 +151,14 @@ func (o BoolFilter) MarshalJSON() ([]byte, error) {
 
 func (o BoolFilter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Should) {
-		toSerialize["should"] = o.Should
-	}
 	if !IsNil(o.Must) {
 		toSerialize["must"] = o.Must
 	}
 	if !IsNil(o.MustNot) {
 		toSerialize["must_not"] = o.MustNot
+	}
+	if !IsNil(o.Should) {
+		toSerialize["should"] = o.Should
 	}
 	return toSerialize, nil
 }

@@ -1,19 +1,16 @@
 # EqualsFilter
 
-Equals attribute filter
-
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Field** | **string** |  | 
-**Value** | **map[string]interface{}** |  | 
+**Equals** | Pointer to [**EqualsFilterEquals**](EqualsFilterEquals.md) |  | [optional] 
 
 ## Methods
 
 ### NewEqualsFilter
 
-`func NewEqualsFilter(field string, value map[string]interface{}, ) *EqualsFilter`
+`func NewEqualsFilter() *EqualsFilter`
 
 NewEqualsFilter instantiates a new EqualsFilter object
 This constructor will assign default values to properties that have it defined,
@@ -28,45 +25,30 @@ NewEqualsFilterWithDefaults instantiates a new EqualsFilter object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetField
+### GetEquals
 
-`func (o *EqualsFilter) GetField() string`
+`func (o *EqualsFilter) GetEquals() EqualsFilterEquals`
 
-GetField returns the Field field if non-nil, zero value otherwise.
+GetEquals returns the Equals field if non-nil, zero value otherwise.
 
-### GetFieldOk
+### GetEqualsOk
 
-`func (o *EqualsFilter) GetFieldOk() (*string, bool)`
+`func (o *EqualsFilter) GetEqualsOk() (*EqualsFilterEquals, bool)`
 
-GetFieldOk returns a tuple with the Field field if it's non-nil, zero value otherwise
+GetEqualsOk returns a tuple with the Equals field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetField
+### SetEquals
 
-`func (o *EqualsFilter) SetField(v string)`
+`func (o *EqualsFilter) SetEquals(v EqualsFilterEquals)`
 
-SetField sets Field field to given value.
+SetEquals sets Equals field to given value.
 
+### HasEquals
 
-### GetValue
+`func (o *EqualsFilter) HasEquals() bool`
 
-`func (o *EqualsFilter) GetValue() map[string]interface{}`
-
-GetValue returns the Value field if non-nil, zero value otherwise.
-
-### GetValueOk
-
-`func (o *EqualsFilter) GetValueOk() (*map[string]interface{}, bool)`
-
-GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetValue
-
-`func (o *EqualsFilter) SetValue(v map[string]interface{})`
-
-SetValue sets Value field to given value.
-
+HasEquals returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

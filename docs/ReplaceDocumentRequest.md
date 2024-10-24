@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Doc** | **map[string]interface{}** | Object with document data  | 
+**Doc** | **map[string]interface{}** | Object containing the new document data to replace the existing one. | 
 
 ## Methods
 

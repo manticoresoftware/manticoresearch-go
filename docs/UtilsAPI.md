@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## Sql
 
-> []map[string]interface{} Sql(ctx).Body(body).RawResponse(rawResponse).Execute()
+> SqlResponse Sql(ctx).Body(body).RawResponse(rawResponse).Execute()
 
 Perform SQL requests
 
@@ -30,7 +30,7 @@ import (
 
 func main() {
 	body := "SHOW TABLES" // string | A query parameter string. 
-	rawResponse := true // bool | Optional parameter, defines a format of response. Can be set to `False` for Select only queries and set to `True` or omitted for any type of queries:  (optional) (default to true)
+	rawResponse := true // bool | Optional parameter, defines a format of response. Can be set to `False` for Select only queries and set to `True` for any type of queries. Default value is 'True'.  (optional) (default to true)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -39,7 +39,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UtilsAPI.Sql``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `Sql`: []map[string]interface{}
+	// response from `Sql`: SqlResponse
 	fmt.Fprintf(os.Stdout, "Response from `UtilsAPI.Sql`: %v\n", resp)
 }
 ```
@@ -56,11 +56,11 @@ Other parameters are passed through a pointer to a apiSqlRequest struct via the 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **string** | A query parameter string.  | 
- **rawResponse** | **bool** | Optional parameter, defines a format of response. Can be set to &#x60;False&#x60; for Select only queries and set to &#x60;True&#x60; or omitted for any type of queries:  | [default to true]
+ **rawResponse** | **bool** | Optional parameter, defines a format of response. Can be set to &#x60;False&#x60; for Select only queries and set to &#x60;True&#x60; for any type of queries. Default value is &#39;True&#39;.  | [default to true]
 
 ### Return type
 
-**[]map[string]interface{}**
+[**SqlResponse**](SqlResponse.md)
 
 ### Authorization
 

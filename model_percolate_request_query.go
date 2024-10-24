@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -13,7 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
+	_"bytes"
+	_"fmt"
 )
 
 // checks if the PercolateRequestQuery type satisfies the MappedNullable interface at compile time
@@ -21,8 +22,8 @@ var _ MappedNullable = &PercolateRequestQuery{}
 
 // PercolateRequestQuery struct for PercolateRequestQuery
 type PercolateRequestQuery struct {
-	Percolate map[string]interface{} `json:"percolate"`
-	AdditionalProperties map[string]interface{}
+	// Object representing the document to percolate
+	Percolate map[string]interface{}
 }
 
 type _PercolateRequestQuery PercolateRequestQuery
@@ -80,54 +81,7 @@ func (o PercolateRequestQuery) MarshalJSON() ([]byte, error) {
 func (o PercolateRequestQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["percolate"] = o.Percolate
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *PercolateRequestQuery) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"percolate",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varPercolateRequestQuery := _PercolateRequestQuery{}
-
-	err = json.Unmarshal(data, &varPercolateRequestQuery)
-
-	if err != nil {
-		return err
-	}
-
-	*o = PercolateRequestQuery(varPercolateRequestQuery)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "percolate")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullablePercolateRequestQuery struct {

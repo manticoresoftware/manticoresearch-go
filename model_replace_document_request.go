@@ -3,7 +3,7 @@ Manticore Search Client
 
 Сlient for Manticore Search. 
 
-API version: 3.3.1
+API version: 5.0.0
 Contact: info@manticoresearch.com
 */
 
@@ -13,17 +13,17 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
+	_"bytes"
+	_"fmt"
 )
 
 // checks if the ReplaceDocumentRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ReplaceDocumentRequest{}
 
-// ReplaceDocumentRequest Object with document data. 
+// ReplaceDocumentRequest Object containing the document data for replacing an existing document in an index.
 type ReplaceDocumentRequest struct {
-	// Object with document data 
-	Doc map[string]interface{} `json:"doc"`
+	// Object containing the new document data to replace the existing one.
+	Doc map[string]interface{}
 }
 
 type _ReplaceDocumentRequest ReplaceDocumentRequest
@@ -82,43 +82,6 @@ func (o ReplaceDocumentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["doc"] = o.Doc
 	return toSerialize, nil
-}
-
-func (o *ReplaceDocumentRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"doc",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varReplaceDocumentRequest := _ReplaceDocumentRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReplaceDocumentRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReplaceDocumentRequest(varReplaceDocumentRequest)
-
-	return err
 }
 
 type NullableReplaceDocumentRequest struct {
