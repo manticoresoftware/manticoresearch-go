@@ -31,27 +31,27 @@ package main
 
 import (
 	"context"
-	manticoreclient "github.com/manticoresoftware/manticoresearch-go"
+	Manticoresearch "github.com/manticoresoftware/manticoresearch-go"
 )
 
 # Create instance of API client
-configuration := manticoreclient.NewConfiguration()
+configuration := Manticoresearch.NewConfiguration()
 configuration.Servers[0].URL = "http://localhost:9308"
-apiClient := manticoreclient.NewAPIClient(configuration)
+apiClient := Manticoresearch.NewAPIClient(configuration)
 
 # Perform insert and search operations
 tableName := "products"
 indexDoc := map[string]interface{} {"title": "Crossbody Bag with Tassel"}
-indexReq := manticoreclient.NewInsertDocumentRequest(tableName, indexDoc)
+indexReq := Manticoresearch.NewInsertDocumentRequest(tableName, indexDoc)
 indexReq.SetId(1)
 
 apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute();
 
-searchRequest := manticoreclient.NewSearchRequest(tableName)
-searchQuery := manticoreclient.NewSearchQuery()
-searchQuery.QueryString = "@title Trek 4"
+searchRequest := Manticoresearch.NewSearchRequest(tableName)
+searchQuery := Manticoresearch.NewSearchQuery()
+searchQuery.QueryString = "@title Bag"
 searchRequest.Query = searchQuery
-queryHighlight := manticoreclient.NewHighlight()
+queryHighlight := Manticoresearch.NewHighlight()
 queryHighlight.Fields =  map[string]interface{} {"title": map[string]interface{} {}}
 searchRequest.Highlight = queryHighlight      
 

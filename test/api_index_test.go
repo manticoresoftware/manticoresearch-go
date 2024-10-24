@@ -10,91 +10,38 @@ Testing IndexAPIService
 package openapi
 
 import (
+	"fmt"
 	"context"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/manticoresoftware/manticoresearch-go"
+	Manticoresearch "github.com/manticoresoftware/manticoresearch-go"
 )
 
 func Test_openapi_IndexAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-
-	t.Run("Test IndexAPIService Bulk", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.IndexAPI.Bulk(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test IndexAPIService Delete", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.IndexAPI.Delete(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
+	configuration := Manticoresearch.NewConfiguration()
+	configuration.Servers[0].URL = "http://localhost:9408"
+	apiClient := Manticoresearch.NewAPIClient(configuration)
 
 	t.Run("Test IndexAPIService Insert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.IndexAPI.Insert(context.Background()).Execute()
-
+		sql := "DROP TABLE IF EXISTS test"
+		apiClient.UtilsAPI.Sql(context.Background()).Body(sql).RawResponse(true).Execute()
+		sql = "CREATE TABLE IF NOT EXISTS test(title text)"
+		apiClient.UtilsAPI.Sql(context.Background()).Body(sql).RawResponse(true).Execute()
+		
+		indexDoc := map[string]interface{} {"title": "Test title"}
+		indexReq := Manticoresearch.NewInsertDocumentRequest("test", indexDoc)
+		indexReq.SetId(1)
+		resp, httpRes, err := apiClient.IndexAPI.Insert(context.Background()).InsertDocumentRequest(*indexReq).Execute();
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
+		sql = "DROP TABLE IF EXISTS test"
+		apiClient.UtilsAPI.Sql(context.Background()).Body(sql).RawResponse(true).Execute()
+
+		fmt.Println("Index tests finished");
 	})
-
-	t.Run("Test IndexAPIService PartialReplace", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var index string
-		var id float32
-
-		resp, httpRes, err := apiClient.IndexAPI.PartialReplace(context.Background(), index, id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test IndexAPIService Replace", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.IndexAPI.Replace(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test IndexAPIService Update", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.IndexAPI.Update(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 }
