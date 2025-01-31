@@ -26,5 +26,5 @@ jobs:
     - name: Publish
       run: |
         go mod tidy
-        GOPROXY=proxy.golang.org go list -m github.com/manticoresoftware/manticoresearch-go@v6.0.0
+        GOPROXY=proxy.golang.org go list -m github.com/manticoresoftware/manticoresearch-go@v1.6.0
 
