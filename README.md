@@ -8,14 +8,14 @@
 
 ```shell
 
-go get github.com/manticoresoftware/manticoresearch-go@v6.0.0
+go get github.com/manticoresoftware/manticoresearch-go@v1.6.0
 
 ```
 
 ## Getting Started
 
 go mod init main
-go get github.com/manticoresoftware/manticoresearch-go@v6.0.0
+go get github.com/manticoresoftware/manticoresearch-go@v1.6.0
 
 ```go
 
@@ -23,18 +23,18 @@ package main
 
 import (
 	"context"
-	"fmt:
+	"fmt"
 	Manticoresearch "github.com/manticoresoftware/manticoresearch-go"
 )
 
 func main() {
 
-	# Create an instance of API client
+	// Create an instance of API client
 	configuration := Manticoresearch.NewConfiguration()
 	configuration.Servers[0].URL = "http://localhost:9308"
 	apiClient := Manticoresearch.NewAPIClient(configuration)
 	
-	# Perform insert and search operations
+	// Perform insert and search operations
 	tableName := "products"
 	indexDoc := map[string]interface{} {"title": "Crossbody Bag with Tassel"}
 	indexReq := Manticoresearch.NewInsertDocumentRequest(tableName, indexDoc)
