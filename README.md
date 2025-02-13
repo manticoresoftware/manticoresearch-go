@@ -2,7 +2,6 @@
 
 Сlient for Manticore Search.
 
-
 ## Installation
 
 ```shell
