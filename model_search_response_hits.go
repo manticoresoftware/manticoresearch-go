@@ -27,7 +27,7 @@ type SearchResponseHits struct {
 	// Indicates whether the total number of hits is accurate or an estimate
 	TotalRelation *string
 	// Array of hit objects, each representing a matched document
-	Hits []map[string]interface{}
+	Hits []SearchResponseHitsHitsInner
 }
 
 // NewSearchResponseHits instantiates a new SearchResponseHits object
@@ -144,9 +144,9 @@ func (o *SearchResponseHits) SetTotalRelation(v string) {
 }
 
 // GetHits returns the Hits field value if set, zero value otherwise.
-func (o *SearchResponseHits) GetHits() []map[string]interface{} {
+func (o *SearchResponseHits) GetHits() []SearchResponseHitsHitsInner {
 	if o == nil || IsNil(o.Hits) {
-		var ret []map[string]interface{}
+		var ret []SearchResponseHitsHitsInner
 		return ret
 	}
 	return o.Hits
@@ -154,7 +154,7 @@ func (o *SearchResponseHits) GetHits() []map[string]interface{} {
 
 // GetHitsOk returns a tuple with the Hits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchResponseHits) GetHitsOk() ([]map[string]interface{}, bool) {
+func (o *SearchResponseHits) GetHitsOk() ([]SearchResponseHitsHitsInner, bool) {
 	if o == nil || IsNil(o.Hits) {
 		return nil, false
 	}
@@ -170,8 +170,8 @@ func (o *SearchResponseHits) HasHits() bool {
 	return false
 }
 
-// SetHits gets a reference to the given []map[string]interface{} and assigns it to the Hits field.
-func (o *SearchResponseHits) SetHits(v []map[string]interface{}) {
+// SetHits gets a reference to the given []SearchResponseHitsHitsInner and assigns it to the Hits field.
+func (o *SearchResponseHits) SetHits(v []SearchResponseHitsHitsInner) {
 	o.Hits = v
 }
 

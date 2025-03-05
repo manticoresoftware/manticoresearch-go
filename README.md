@@ -154,6 +154,7 @@ Class | Method | HTTP request | Description
  - [SearchRequest](docs/SearchRequest.md)
  - [SearchResponse](docs/SearchResponse.md)
  - [SearchResponseHits](docs/SearchResponseHits.md)
+ - [SearchResponseHitsHitsInner](docs/SearchResponseHitsHitsInner.md)
  - [SourceRules](docs/SourceRules.md)
  - [SqlResponse](docs/SqlResponse.md)
  - [SuccessResponse](docs/SuccessResponse.md)

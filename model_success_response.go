@@ -257,7 +257,7 @@ func (o SuccessResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["table"] = o.Table
 	}
 	if !IsNil(o.Id) {
-		toSerialize["_id"] = o.Id
+		toSerialize["id"] = o.Id
 	}
 	if !IsNil(o.Created) {
 		toSerialize["created"] = o.Created

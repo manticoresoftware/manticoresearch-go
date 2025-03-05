@@ -44,6 +44,7 @@ docs/SearchQuery.md
 docs/SearchRequest.md
 docs/SearchResponse.md
 docs/SearchResponseHits.md
+docs/SearchResponseHitsHitsInner.md
 docs/SourceRules.md
 docs/SqlResponse.md
 docs/SuccessResponse.md
@@ -87,6 +88,7 @@ model_search_query.go
 model_search_request.go
 model_search_response.go
 model_search_response_hits.go
+model_search_response_hits_hits_inner.go
 model_source_rules.go
 model_sql_response.go
 model_success_response.go

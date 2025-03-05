@@ -226,7 +226,7 @@ func (o DeleteResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["deleted"] = o.Deleted
 	}
 	if !IsNil(o.Id) {
-		toSerialize["_id"] = o.Id
+		toSerialize["id"] = o.Id
 	}
 	if !IsNil(o.Found) {
 		toSerialize["found"] = o.Found

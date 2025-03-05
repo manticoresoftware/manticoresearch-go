@@ -145,8 +145,8 @@ paths:
         \ \\n\n  {\"delete\": {\"table\": \"movies\",\"id\":700}}\n  ```\n  \n  Responds\
         \ with an object telling whenever any errors occured and an array with status\
         \ for each operation:\n  \n  ```\n  {\n    'items':\n    [\n      {\n    \
-        \    'update':{'table':'products','_id':1,'result':'updated'}\n      },\n\
-        \      {\n        'update':{'table':'products','_id':2,'result':'updated'}\n\
+        \    'update':{'table':'products','id':1,'result':'updated'}\n      },\n \
+        \     {\n        'update':{'table':'products','id':2,'result':'updated'}\n\
         \      }\n    ],\n    'errors':false\n  }\n  ```\n"
       externalDocs:
         url: https://manual.manticoresearch.com/Updating_documents/UPDATE
@@ -230,7 +230,7 @@ paths:
         \      'lon':51.99,\n      'advise':'PG-13',\n      'meta':'{\"keywords\"\
         :{\"travel\",\"ice\"},\"genre\":{\"adventure\"}}',\n      'language':[2,3]\n\
         \    }\n  }\n  ```\n \nIt responds with an object in format:\n  \n  ```\n\
-        \  {'table':'products','_id':701,'created':true,'result':'created','status':201}\n\
+        \  {'table':'products','id':701,'created':true,'result':'created','status':201}\n\
         \  ```\n"
       externalDocs:
         url: https://manual.manticoresearch.com/Adding_documents_to_a_table/Adding_documents_to_a_real-time_table#Adding-documents-to-a-real-time-table
@@ -361,7 +361,7 @@ paths:
         Responds with an object in format:
 
           ```
-          {'table':'products','_id':1,'created':false,'result':'updated','status':200}
+          {'table':'products','id':1,'created':false,'result':'updated','status':200}
           ```
       externalDocs:
         url: https://manual.manticoresearch.com/Adding_documents_to_a_table/Adding_documents_to_a_real-time_table#Adding-documents-to-a-real-time-table
@@ -831,7 +831,7 @@ components:
         deleted:
           description: Number of documents deleted
           type: integer
-        _id:
+        id:
           description: "The ID of the deleted document. If multiple documents are\
             \ deleted, the ID of the first deleted document is returned"
           format: int64
@@ -1141,7 +1141,7 @@ components:
         \ inserting or updating a document"
       example:
         table: test
-        _id: 1
+        id: 1
         result: created
         created: true
         status: 201
@@ -1149,7 +1149,7 @@ components:
         table:
           description: Name of the document table
           type: string
-        _id:
+        id:
           description: ID of the document affected by the request operation
           format: int64
           type: integer
@@ -1264,13 +1264,13 @@ components:
     sqlObjResponse:
       type: object
     sqlResponse:
-      anyOf:
-      - $ref: '#/components/schemas/sqlRawResponse'
-      - $ref: '#/components/schemas/sqlObjResponse'
       description: List of responses from executed SQL queries
       example:
       - total: 0
         error: null
+      oneOf:
+      - $ref: '#/components/schemas/sqlRawResponse'
+      - $ref: '#/components/schemas/sqlObjResponse'
     updateDocumentRequest:
       description: Payload for updating a document or multiple documents in a table
       properties:
@@ -1307,7 +1307,7 @@ components:
         updated:
           description: Number of documents updated
           type: integer
-        _id:
+        id:
           description: Document ID
           format: int64
           type: integer
@@ -1334,6 +1334,18 @@ components:
           type: object
       required:
       - percolate
+    searchResponse_hits_hits_inner:
+      properties:
+        _id:
+          description: The ID of the matched document
+          format: int64
+          type: integer
+        _score:
+          description: The score of the matched document
+          type: integer
+        _source:
+          description: The source data of the matched document
+          type: object
     searchResponse_hits:
       description: "Object containing the search hits, which represent the documents\
         \ that matched the query."
@@ -1362,5 +1374,5 @@ components:
         hits:
           description: "Array of hit objects, each representing a matched document"
           items:
-            type: object
+            $ref: '#/components/schemas/searchResponse_hits_hits_inner'
           type: array

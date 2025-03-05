@@ -192,7 +192,7 @@ func (o UpdateResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["updated"] = o.Updated
 	}
 	if !IsNil(o.Id) {
-		toSerialize["_id"] = o.Id
+		toSerialize["id"] = o.Id
 	}
 	if !IsNil(o.Result) {
 		toSerialize["result"] = o.Result
