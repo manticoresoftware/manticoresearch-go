@@ -23,14 +23,14 @@ var _ MappedNullable = &UpdateDocumentRequest{}
 // UpdateDocumentRequest Payload for updating a document or multiple documents in a table
 type UpdateDocumentRequest struct {
 	// Name of the document table
-	Table string
+	Table string `json:"table"` 
 	// Name of the document cluster
-	Cluster *string
+	Cluster *string `json:"cluster"` 
 	// Object containing the document fields to update
-	Doc map[string]interface{}
+	Doc map[string]interface{} `json:"doc"` 
 	// Document ID
-	Id *int64
-	Query NullableQueryFilter
+	Id *int64 `json:"id"` 
+	Query NullableQueryFilter `json:"query"` 
 }
 
 type _UpdateDocumentRequest UpdateDocumentRequest

@@ -20,13 +20,13 @@ var _ MappedNullable = &GeoDistance{}
 
 // GeoDistance Object to perform geo-distance based filtering on queries
 type GeoDistance struct {
-	LocationAnchor *GeoDistanceLocationAnchor
+	LocationAnchor *GeoDistanceLocationAnchor `json:"location_anchor"` 
 	// Field name in the document that contains location data
-	LocationSource interface{}
+	LocationSource interface{} `json:"location_source"` 
 	// Algorithm used to calculate the distance
-	DistanceType interface{}
+	DistanceType interface{} `json:"distance_type"` 
 	// The distance from the anchor point to filter results by
-	Distance interface{}
+	Distance interface{} `json:"distance"` 
 	AdditionalProperties map[string]interface{}
 }
 

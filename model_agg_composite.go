@@ -21,8 +21,8 @@ var _ MappedNullable = &AggComposite{}
 // AggComposite Object to perform composite aggregation, i.e., grouping search results by multiple fields
 type AggComposite struct {
 	// Maximum number of composite buckets in the result
-	Size *int32
-	Sources []map[string]AggCompositeSource
+	Size *int32 `json:"size"` 
+	Sources []map[string]AggCompositeSource `json:"sources"` 
 }
 
 // NewAggComposite instantiates a new AggComposite object

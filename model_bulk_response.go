@@ -21,15 +21,15 @@ var _ MappedNullable = &BulkResponse{}
 // BulkResponse Success response for bulk search requests
 type BulkResponse struct {
 	// List of results
-	Items []map[string]interface{}
+	Items []map[string]interface{} `json:"items"` 
 	// Errors occurred during the bulk operation
-	Errors *bool
+	Errors *bool `json:"errors"` 
 	// Error message describing an error if such occurred
-	Error *string
+	Error *string `json:"error"` 
 	// Number of the row returned in the response
-	CurrentLine *int32
+	CurrentLine *int32 `json:"current_line"` 
 	// Number of rows skipped in the response
-	SkippedLines *int32
+	SkippedLines *int32 `json:"skipped_lines"` 
 }
 
 // NewBulkResponse instantiates a new BulkResponse object

@@ -23,13 +23,13 @@ var _ MappedNullable = &InsertDocumentRequest{}
 // InsertDocumentRequest Object containing data for inserting a new document into the table 
 type InsertDocumentRequest struct {
 	// Name of the table to insert the document into
-	Table string
+	Table string `json:"table"` 
 	// Name of the cluster to insert the document into
-	Cluster *string
+	Cluster *string `json:"cluster"` 
 	// Document ID. If not provided, an ID will be auto-generated 
-	Id *int64
+	Id *int64 `json:"id"` 
 	// Object containing document data 
-	Doc map[string]interface{}
+	Doc map[string]interface{} `json:"doc"` 
 }
 
 type _InsertDocumentRequest InsertDocumentRequest

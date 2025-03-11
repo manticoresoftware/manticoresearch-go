@@ -21,15 +21,15 @@ var _ MappedNullable = &DeleteResponse{}
 // DeleteResponse Response object for successful delete request
 type DeleteResponse struct {
 	// The name of the table from which the document was deleted
-	Table *string
+	Table *string `json:"table"` 
 	// Number of documents deleted
-	Deleted *int32
+	Deleted *int32 `json:"deleted"` 
 	// The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned
-	Id *int64
+	Id *int64 `json:"id"` 
 	// Indicates whether any documents to be deleted were found
-	Found *bool
+	Found *bool `json:"found"` 
 	// Result of the delete operation, typically 'deleted'
-	Result *string
+	Result *string `json:"result"` 
 }
 
 // NewDeleteResponse instantiates a new DeleteResponse object

@@ -21,21 +21,21 @@ var _ MappedNullable = &SearchQuery{}
 // SearchQuery Defines a query structure for performing search operations
 type SearchQuery struct {
 	// Filter object defining a query string
-	QueryString interface{}
+	QueryString interface{} `json:"query_string"` 
 	// Filter object defining a match keyword passed as a string or in a Match object
-	Match interface{}
+	Match interface{} `json:"match"` 
 	// Filter object defining a match phrase
-	MatchPhrase interface{}
+	MatchPhrase interface{} `json:"match_phrase"` 
 	// Filter object to select all documents
-	MatchAll interface{}
-	Bool *BoolFilter
-	Equals interface{}
+	MatchAll interface{} `json:"match_all"` 
+	Bool *BoolFilter `json:"bool"` 
+	Equals interface{} `json:"equals"` 
 	// Filter to match a given set of attribute values.
-	In interface{}
+	In interface{} `json:"in"` 
 	// Filter to match a given range of attribute values passed in Range objects
-	Range interface{}
-	GeoDistance *GeoDistance
-	Highlight *Highlight
+	Range interface{} `json:"range"` 
+	GeoDistance *GeoDistance `json:"geo_distance"` 
+	Highlight *Highlight `json:"highlight"` 
 }
 
 // NewSearchQuery instantiates a new SearchQuery object

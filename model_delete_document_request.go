@@ -23,13 +23,13 @@ var _ MappedNullable = &DeleteDocumentRequest{}
 // DeleteDocumentRequest Payload for delete request. Documents can be deleted either one by one by specifying the document id or by providing a query object. For more information see  [Delete API](https://manual.manticoresearch.com/Deleting_documents) 
 type DeleteDocumentRequest struct {
 	// Table name
-	Table string
+	Table string `json:"table"` 
 	// Cluster name
-	Cluster *string
+	Cluster *string `json:"cluster"` 
 	// The ID of document for deletion
-	Id *int64
+	Id *int64 `json:"id"` 
 	// Defines the criteria to match documents for deletion
-	Query map[string]interface{}
+	Query map[string]interface{} `json:"query"` 
 }
 
 type _DeleteDocumentRequest DeleteDocumentRequest

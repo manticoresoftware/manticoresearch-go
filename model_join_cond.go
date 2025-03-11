@@ -23,10 +23,10 @@ var _ MappedNullable = &JoinCond{}
 // JoinCond Object representing the conditions used to perform the join operation
 type JoinCond struct {
 	// Field to join on
-	Field string
+	Field string `json:"field"` 
 	// Joined table
-	Table string
-	Type interface{}
+	Table string `json:"table"` 
+	Type interface{} `json:"type"` 
 }
 
 type _JoinCond JoinCond

@@ -22,7 +22,7 @@ var _ MappedNullable = &MatchAll{}
 
 // MatchAll Filter helper object defining the 'match all'' condition
 type MatchAll struct {
-	All string
+	All string `json:"_all"` 
 }
 
 type _MatchAll MatchAll

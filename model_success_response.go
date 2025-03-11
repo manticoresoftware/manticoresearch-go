@@ -21,17 +21,17 @@ var _ MappedNullable = &SuccessResponse{}
 // SuccessResponse Response object indicating the success of an operation, such as inserting or updating a document
 type SuccessResponse struct {
 	// Name of the document table
-	Table *string
+	Table *string `json:"table"` 
 	// ID of the document affected by the request operation
-	Id *int64
+	Id *int64 `json:"id"` 
 	// Indicates whether the document was created as a result of the operation
-	Created *bool
+	Created *bool `json:"created"` 
 	// Result of the operation, typically 'created', 'updated', or 'deleted'
-	Result *string
+	Result *string `json:"result"` 
 	// Indicates whether the document was found in the table
-	Found *bool
+	Found *bool `json:"found"` 
 	// HTTP status code representing the result of the operation
-	Status *int32
+	Status *int32 `json:"status"` 
 }
 
 // NewSuccessResponse instantiates a new SuccessResponse object

@@ -21,13 +21,13 @@ var _ MappedNullable = &UpdateResponse{}
 // UpdateResponse Success response returned after updating one or more documents
 type UpdateResponse struct {
 	// Name of the document table
-	Table *string
+	Table *string `json:"table"` 
 	// Number of documents updated
-	Updated *int32
+	Updated *int32 `json:"updated"` 
 	// Document ID
-	Id *int64
+	Id *int64 `json:"id"` 
 	// Result of the update operation, typically 'updated'
-	Result *string
+	Result *string `json:"result"` 
 }
 
 // NewUpdateResponse instantiates a new UpdateResponse object

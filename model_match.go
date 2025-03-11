@@ -22,9 +22,9 @@ var _ MappedNullable = &Match{}
 
 // Match Filter helper object defining a match keyword and match options
 type Match struct {
-	Query string
-	Operator *string
-	Boost *float32
+	Query string `json:"query"` 
+	Operator *string `json:"operator"` 
+	Boost *float32 `json:"boost"` 
 }
 
 type _Match Match

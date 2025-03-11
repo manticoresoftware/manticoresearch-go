@@ -23,7 +23,7 @@ var _ MappedNullable = &PercolateRequestQuery{}
 // PercolateRequestQuery struct for PercolateRequestQuery
 type PercolateRequestQuery struct {
 	// Object representing the document to percolate
-	Percolate map[string]interface{}
+	Percolate map[string]interface{} `json:"percolate"` 
 }
 
 type _PercolateRequestQuery PercolateRequestQuery

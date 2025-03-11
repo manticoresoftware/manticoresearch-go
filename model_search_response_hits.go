@@ -21,13 +21,13 @@ var _ MappedNullable = &SearchResponseHits{}
 // SearchResponseHits Object containing the search hits, which represent the documents that matched the query.
 type SearchResponseHits struct {
 	// Maximum score among the matched documents
-	MaxScore *int32
+	MaxScore *int32 `json:"max_score"` 
 	// Total number of matched documents
-	Total *int32
+	Total *int32 `json:"total"` 
 	// Indicates whether the total number of hits is accurate or an estimate
-	TotalRelation *string
+	TotalRelation *string `json:"total_relation"` 
 	// Array of hit objects, each representing a matched document
-	Hits []SearchResponseHitsHitsInner
+	Hits []HitsHits `json:"hits"` 
 }
 
 // NewSearchResponseHits instantiates a new SearchResponseHits object
@@ -144,9 +144,9 @@ func (o *SearchResponseHits) SetTotalRelation(v string) {
 }
 
 // GetHits returns the Hits field value if set, zero value otherwise.
-func (o *SearchResponseHits) GetHits() []SearchResponseHitsHitsInner {
+func (o *SearchResponseHits) GetHits() []HitsHits {
 	if o == nil || IsNil(o.Hits) {
-		var ret []SearchResponseHitsHitsInner
+		var ret []HitsHits
 		return ret
 	}
 	return o.Hits
@@ -154,7 +154,7 @@ func (o *SearchResponseHits) GetHits() []SearchResponseHitsHitsInner {
 
 // GetHitsOk returns a tuple with the Hits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchResponseHits) GetHitsOk() ([]SearchResponseHitsHitsInner, bool) {
+func (o *SearchResponseHits) GetHitsOk() ([]HitsHits, bool) {
 	if o == nil || IsNil(o.Hits) {
 		return nil, false
 	}
@@ -170,8 +170,8 @@ func (o *SearchResponseHits) HasHits() bool {
 	return false
 }
 
-// SetHits gets a reference to the given []SearchResponseHitsHitsInner and assigns it to the Hits field.
-func (o *SearchResponseHits) SetHits(v []SearchResponseHitsHitsInner) {
+// SetHits gets a reference to the given []HitsHits and assigns it to the Hits field.
+func (o *SearchResponseHits) SetHits(v []HitsHits) {
 	o.Hits = v
 }
 

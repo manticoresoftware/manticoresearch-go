@@ -22,9 +22,9 @@ var _ MappedNullable = &ErrorResponse{}
 
 // ErrorResponse Error response object containing information about the error and a status code
 type ErrorResponse struct {
-	Error ResponseError
+	Error ResponseError `json:"error"` 
 	// HTTP status code of the error response
-	Status *int32
+	Status *int32 `json:"status"` 
 }
 
 type _ErrorResponse ErrorResponse

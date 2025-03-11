@@ -21,11 +21,11 @@ var _ MappedNullable = &BoolFilter{}
 // BoolFilter struct for BoolFilter
 type BoolFilter struct {
 	// Query clauses that must match for the document to be included
-	Must []QueryFilter
+	Must []QueryFilter `json:"must"` 
 	// Query clauses that must not match for the document to be included
-	MustNot []*QueryFilter
+	MustNot []*QueryFilter `json:"must_not"` 
 	// Query clauses that should be matched, but are not required
-	Should []*QueryFilter
+	Should []*QueryFilter `json:"should"` 
 }
 
 // NewBoolFilter instantiates a new BoolFilter object

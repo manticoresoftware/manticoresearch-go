@@ -23,16 +23,16 @@ var _ MappedNullable = &KnnQuery{}
 // KnnQuery Object representing a k-nearest neighbor search query
 type KnnQuery struct {
 	// Field to perform the k-nearest neighbor search on
-	Field string
+	Field string `json:"field"` 
 	// The number of nearest neighbors to return
-	K int32
+	K int32 `json:"k"` 
 	// The vector used as input for the KNN search
-	QueryVector []float32
+	QueryVector []float32 `json:"query_vector"` 
 	// The docuemnt ID used as input for the KNN search
-	DocId *int64
+	DocId *int64 `json:"doc_id"` 
 	// Optional parameter controlling the accuracy of the search
-	Ef *int32
-	Filter *QueryFilter
+	Ef *int32 `json:"ef"` 
+	Filter *QueryFilter `json:"filter"` 
 }
 
 type _KnnQuery KnnQuery

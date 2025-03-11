@@ -21,9 +21,9 @@ var _ MappedNullable = &GeoDistanceLocationAnchor{}
 // GeoDistanceLocationAnchor Specifies the location of the pin point used for search
 type GeoDistanceLocationAnchor struct {
 	// Latitude of the anchor point
-	Lat interface{}
+	Lat interface{} `json:"lat"` 
 	// Longitude of the anchor point
-	Lon interface{}
+	Lon interface{} `json:"lon"` 
 }
 
 // NewGeoDistanceLocationAnchor instantiates a new GeoDistanceLocationAnchor object

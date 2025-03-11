@@ -21,9 +21,9 @@ var _ MappedNullable = &SourceRules{}
 // SourceRules Defines which fields to include or exclude in the response for a search query
 type SourceRules struct {
 	// List of fields to include in the response
-	Includes interface{}
+	Includes interface{} `json:"includes"` 
 	// List of fields to exclude from the response
-	Excludes interface{}
+	Excludes interface{} `json:"excludes"` 
 	AdditionalProperties map[string]interface{}
 }
 

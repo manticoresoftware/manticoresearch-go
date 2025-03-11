@@ -23,12 +23,12 @@ var _ MappedNullable = &Join{}
 // Join struct for Join
 type Join struct {
 	// Type of the join operation
-	Type string
+	Type string `json:"type"` 
 	// List of objects defining joined tables
-	On []JoinOn
-	Query *FulltextFilter
+	On []JoinOn `json:"on"` 
+	Query *FulltextFilter `json:"query"` 
 	// Basic table of the join operation
-	Table string
+	Table string `json:"table"` 
 }
 
 type _Join Join

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **MaxScore** | Pointer to **int32** | Maximum score among the matched documents | [optional] 
 **Total** | Pointer to **int32** | Total number of matched documents | [optional] 
 **TotalRelation** | Pointer to **string** | Indicates whether the total number of hits is accurate or an estimate | [optional] 
-**Hits** | Pointer to [**[]SearchResponseHitsHitsInner**](SearchResponseHitsHitsInner.md) | Array of hit objects, each representing a matched document | [optional] 
+**Hits** | Pointer to [**[]HitsHits**](HitsHits.md) | Array of hit objects, each representing a matched document | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasTotalRelation returns a boolean if a field has been set.
 
 ### GetHits
 
-`func (o *SearchResponseHits) GetHits() []SearchResponseHitsHitsInner`
+`func (o *SearchResponseHits) GetHits() []HitsHits`
 
 GetHits returns the Hits field if non-nil, zero value otherwise.
 
 ### GetHitsOk
 
-`func (o *SearchResponseHits) GetHitsOk() (*[]SearchResponseHitsHitsInner, bool)`
+`func (o *SearchResponseHits) GetHitsOk() (*[]HitsHits, bool)`
 
 GetHitsOk returns a tuple with the Hits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHits
 
-`func (o *SearchResponseHits) SetHits(v []SearchResponseHitsHitsInner)`
+`func (o *SearchResponseHits) SetHits(v []HitsHits)`
 
 SetHits sets Hits field to given value.
 

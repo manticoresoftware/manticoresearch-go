@@ -20,9 +20,9 @@ var _ MappedNullable = &JoinOn{}
 
 // JoinOn struct for JoinOn
 type JoinOn struct {
-	Right *JoinCond
-	Left *JoinCond
-	Operator *string
+	Right *JoinCond `json:"right"` 
+	Left *JoinCond `json:"left"` 
+	Operator *string `json:"operator"` 
 }
 
 // NewJoinOn instantiates a new JoinOn object

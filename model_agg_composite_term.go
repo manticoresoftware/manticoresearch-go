@@ -23,7 +23,7 @@ var _ MappedNullable = &AggCompositeTerm{}
 // AggCompositeTerm Object representing a term to be used in composite aggregation.
 type AggCompositeTerm struct {
 	// Name of field to operate with
-	Field string
+	Field string `json:"field"` 
 }
 
 type _AggCompositeTerm AggCompositeTerm

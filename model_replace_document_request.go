@@ -23,7 +23,7 @@ var _ MappedNullable = &ReplaceDocumentRequest{}
 // ReplaceDocumentRequest Object containing the document data for replacing an existing document in a table.
 type ReplaceDocumentRequest struct {
 	// Object containing the new document data to replace the existing one.
-	Doc map[string]interface{}
+	Doc map[string]interface{} `json:"doc"` 
 }
 
 type _ReplaceDocumentRequest ReplaceDocumentRequest

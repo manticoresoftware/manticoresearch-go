@@ -21,18 +21,18 @@ var _ MappedNullable = &SearchResponse{}
 // SearchResponse Response object containing the results of a search request
 type SearchResponse struct {
 	// Time taken to execute the search
-	Took *int32
+	Took *int32 `json:"took"` 
 	// Indicates whether the search operation timed out
-	TimedOut *bool
+	TimedOut *bool `json:"timed_out"` 
 	// Aggregated search results grouped by the specified criteria
-	Aggregations map[string]interface{}
-	Hits *SearchResponseHits
+	Aggregations map[string]interface{} `json:"aggregations"` 
+	Hits *SearchResponseHits `json:"hits"` 
 	// Profile information about the search execution, if profiling is enabled
-	Profile map[string]interface{}
+	Profile map[string]interface{} `json:"profile"` 
 	// Scroll token to be used fo pagination
-	Scroll *string
+	Scroll *string `json:"scroll"` 
 	// Warnings encountered during the search operation
-	Warning map[string]interface{}
+	Warning map[string]interface{} `json:"warning"` 
 }
 
 // NewSearchResponse instantiates a new SearchResponse object

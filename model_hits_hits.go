@@ -15,38 +15,38 @@ import (
 	"encoding/json"
 )
 
-// checks if the SearchResponseHitsHitsInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &SearchResponseHitsHitsInner{}
+// checks if the HitsHits type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HitsHits{}
 
-// SearchResponseHitsHitsInner struct for SearchResponseHitsHitsInner
-type SearchResponseHitsHitsInner struct {
+// HitsHits Search hit representing a matched document
+type HitsHits struct {
 	// The ID of the matched document
-	Id *int64
+	Id *int64 `json:"_id"` 
 	// The score of the matched document
-	Score *int32
+	Score *int32 `json:"_score"` 
 	// The source data of the matched document
-	Source map[string]interface{}
+	Source map[string]interface{} `json:"_source"` 
 }
 
-// NewSearchResponseHitsHitsInner instantiates a new SearchResponseHitsHitsInner object
+// NewHitsHits instantiates a new HitsHits object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSearchResponseHitsHitsInner() *SearchResponseHitsHitsInner {
-	this := SearchResponseHitsHitsInner{}
+func NewHitsHits() *HitsHits {
+	this := HitsHits{}
 	return &this
 }
 
-// NewSearchResponseHitsHitsInnerWithDefaults instantiates a new SearchResponseHitsHitsInner object
+// NewHitsHitsWithDefaults instantiates a new HitsHits object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSearchResponseHitsHitsInnerWithDefaults() *SearchResponseHitsHitsInner {
-	this := SearchResponseHitsHitsInner{}
+func NewHitsHitsWithDefaults() *HitsHits {
+	this := HitsHits{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *SearchResponseHitsHitsInner) GetId() int64 {
+func (o *HitsHits) GetId() int64 {
 	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
@@ -56,7 +56,7 @@ func (o *SearchResponseHitsHitsInner) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchResponseHitsHitsInner) GetIdOk() (*int64, bool) {
+func (o *HitsHits) GetIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *SearchResponseHitsHitsInner) GetIdOk() (*int64, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *SearchResponseHitsHitsInner) HasId() bool {
+func (o *HitsHits) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -73,12 +73,12 @@ func (o *SearchResponseHitsHitsInner) HasId() bool {
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *SearchResponseHitsHitsInner) SetId(v int64) {
+func (o *HitsHits) SetId(v int64) {
 	o.Id = &v
 }
 
 // GetScore returns the Score field value if set, zero value otherwise.
-func (o *SearchResponseHitsHitsInner) GetScore() int32 {
+func (o *HitsHits) GetScore() int32 {
 	if o == nil || IsNil(o.Score) {
 		var ret int32
 		return ret
@@ -88,7 +88,7 @@ func (o *SearchResponseHitsHitsInner) GetScore() int32 {
 
 // GetScoreOk returns a tuple with the Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchResponseHitsHitsInner) GetScoreOk() (*int32, bool) {
+func (o *HitsHits) GetScoreOk() (*int32, bool) {
 	if o == nil || IsNil(o.Score) {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *SearchResponseHitsHitsInner) GetScoreOk() (*int32, bool) {
 }
 
 // HasScore returns a boolean if a field has been set.
-func (o *SearchResponseHitsHitsInner) HasScore() bool {
+func (o *HitsHits) HasScore() bool {
 	if o != nil && !IsNil(o.Score) {
 		return true
 	}
@@ -105,12 +105,12 @@ func (o *SearchResponseHitsHitsInner) HasScore() bool {
 }
 
 // SetScore gets a reference to the given int32 and assigns it to the Score field.
-func (o *SearchResponseHitsHitsInner) SetScore(v int32) {
+func (o *HitsHits) SetScore(v int32) {
 	o.Score = &v
 }
 
 // GetSource returns the Source field value if set, zero value otherwise.
-func (o *SearchResponseHitsHitsInner) GetSource() map[string]interface{} {
+func (o *HitsHits) GetSource() map[string]interface{} {
 	if o == nil || IsNil(o.Source) {
 		var ret map[string]interface{}
 		return ret
@@ -120,7 +120,7 @@ func (o *SearchResponseHitsHitsInner) GetSource() map[string]interface{} {
 
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchResponseHitsHitsInner) GetSourceOk() (map[string]interface{}, bool) {
+func (o *HitsHits) GetSourceOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Source) {
 		return map[string]interface{}{}, false
 	}
@@ -128,7 +128,7 @@ func (o *SearchResponseHitsHitsInner) GetSourceOk() (map[string]interface{}, boo
 }
 
 // HasSource returns a boolean if a field has been set.
-func (o *SearchResponseHitsHitsInner) HasSource() bool {
+func (o *HitsHits) HasSource() bool {
 	if o != nil && !IsNil(o.Source) {
 		return true
 	}
@@ -137,11 +137,11 @@ func (o *SearchResponseHitsHitsInner) HasSource() bool {
 }
 
 // SetSource gets a reference to the given map[string]interface{} and assigns it to the Source field.
-func (o *SearchResponseHitsHitsInner) SetSource(v map[string]interface{}) {
+func (o *HitsHits) SetSource(v map[string]interface{}) {
 	o.Source = v
 }
 
-func (o SearchResponseHitsHitsInner) MarshalJSON() ([]byte, error) {
+func (o HitsHits) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -149,7 +149,7 @@ func (o SearchResponseHitsHitsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o SearchResponseHitsHitsInner) ToMap() (map[string]interface{}, error) {
+func (o HitsHits) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Id) {
 		toSerialize["_id"] = o.Id
@@ -163,38 +163,38 @@ func (o SearchResponseHitsHitsInner) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableSearchResponseHitsHitsInner struct {
-	value *SearchResponseHitsHitsInner
+type NullableHitsHits struct {
+	value *HitsHits
 	isSet bool
 }
 
-func (v NullableSearchResponseHitsHitsInner) Get() *SearchResponseHitsHitsInner {
+func (v NullableHitsHits) Get() *HitsHits {
 	return v.value
 }
 
-func (v *NullableSearchResponseHitsHitsInner) Set(val *SearchResponseHitsHitsInner) {
+func (v *NullableHitsHits) Set(val *HitsHits) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSearchResponseHitsHitsInner) IsSet() bool {
+func (v NullableHitsHits) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSearchResponseHitsHitsInner) Unset() {
+func (v *NullableHitsHits) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSearchResponseHitsHitsInner(val *SearchResponseHitsHitsInner) *NullableSearchResponseHitsHitsInner {
-	return &NullableSearchResponseHitsHitsInner{value: val, isSet: true}
+func NewNullableHitsHits(val *HitsHits) *NullableHitsHits {
+	return &NullableHitsHits{value: val, isSet: true}
 }
 
-func (v NullableSearchResponseHitsHitsInner) MarshalJSON() ([]byte, error) {
+func (v NullableHitsHits) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSearchResponseHitsHitsInner) UnmarshalJSON(src []byte) error {
+func (v *NullableHitsHits) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

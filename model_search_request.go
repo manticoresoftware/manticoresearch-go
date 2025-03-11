@@ -23,30 +23,30 @@ var _ MappedNullable = &SearchRequest{}
 // SearchRequest Request object for search operation
 type SearchRequest struct {
 	// The table to perform the search on
-	Table string
-	Query *SearchQuery
+	Table string `json:"table"` 
+	Query *SearchQuery `json:"query"` 
 	// Join clause to combine search data from multiple tables
-	Join []Join
-	Highlight *Highlight
+	Join []Join `json:"join"` 
+	Highlight *Highlight `json:"highlight"` 
 	// Maximum number of results to return
-	Limit *int32
-	Knn *KnnQuery
+	Limit *int32 `json:"limit"` 
+	Knn *KnnQuery `json:"knn"` 
 	// Defines aggregation settings for grouping results
-	Aggs map[string]Aggregation
+	Aggs map[string]Aggregation `json:"aggs"` 
 	// Expressions to calculate additional values for the result
-	Expressions map[string]string
+	Expressions map[string]string `json:"expressions"` 
 	// Maximum number of matches allowed in the result
-	MaxMatches *int32
+	MaxMatches *int32 `json:"max_matches"` 
 	// Starting point for pagination of the result
-	Offset *int32
+	Offset *int32 `json:"offset"` 
 	// Additional search options
-	Options map[string]interface{}
+	Options map[string]interface{} `json:"options"` 
 	// Enable or disable profiling of the search request
-	Profile *bool
-	Sort interface{}
-	Source interface{}
+	Profile *bool `json:"profile"` 
+	Sort interface{} `json:"sort"` 
+	Source interface{} `json:"_source"` 
 	// Enable or disable result weight calculation used for sorting
-	TrackScores *bool
+	TrackScores *bool `json:"track_scores"` 
 }
 
 type _SearchRequest SearchRequest

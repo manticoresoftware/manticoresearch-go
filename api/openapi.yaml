@@ -948,6 +948,20 @@ components:
         number_of_fragments:
           description: Total number of highlighted fragments per field
           type: integer
+    hitsHits:
+      additionalProperties: false
+      description: Search hit representing a matched document
+      properties:
+        _id:
+          description: The ID of the matched document
+          format: int64
+          type: integer
+        _score:
+          description: The score of the matched document
+          type: integer
+        _source:
+          description: The source data of the matched document
+          type: object
     insertDocumentRequest:
       description: |
         Object containing data for inserting a new document into the table
@@ -1334,18 +1348,6 @@ components:
           type: object
       required:
       - percolate
-    searchResponse_hits_hits_inner:
-      properties:
-        _id:
-          description: The ID of the matched document
-          format: int64
-          type: integer
-        _score:
-          description: The score of the matched document
-          type: integer
-        _source:
-          description: The source data of the matched document
-          type: object
     searchResponse_hits:
       description: "Object containing the search hits, which represent the documents\
         \ that matched the query."
@@ -1374,5 +1376,5 @@ components:
         hits:
           description: "Array of hit objects, each representing a matched document"
           items:
-            $ref: '#/components/schemas/searchResponse_hits_hits_inner'
+            $ref: '#/components/schemas/hitsHits'
           type: array

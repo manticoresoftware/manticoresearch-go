@@ -23,11 +23,11 @@ var _ MappedNullable = &ResponseErrorDetails{}
 // ResponseErrorDetails Detailed error information returned in case of an error response
 type ResponseErrorDetails struct {
 	// Type or category of the error
-	Type string
+	Type string `json:"type"` 
 	// Detailed explanation of why the error occurred
-	Reason NullableString
+	Reason NullableString `json:"reason"` 
 	// The table related to the error, if applicable
-	Table NullableString
+	Table NullableString `json:"table"` 
 }
 
 type _ResponseErrorDetails ResponseErrorDetails

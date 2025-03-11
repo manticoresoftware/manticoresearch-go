@@ -23,9 +23,9 @@ var _ MappedNullable = &AggTerms{}
 // AggTerms Object containing term fields to aggregate on
 type AggTerms struct {
 	// Name of attribute to aggregate by
-	Field string
+	Field string `json:"field"` 
 	// Maximum number of buckets in the result
-	Size *int32
+	Size *int32 `json:"size"` 
 }
 
 type _AggTerms AggTerms

@@ -20,10 +20,10 @@ var _ MappedNullable = &ModelRange{}
 
 // ModelRange Filter helper object defining the 'range' condition
 type ModelRange struct {
-	Lt interface{}
-	Lte interface{}
-	Gt interface{}
-	Gte interface{}
+	Lt interface{} `json:"lt"` 
+	Lte interface{} `json:"lte"` 
+	Gt interface{} `json:"gt"` 
+	Gte interface{} `json:"gte"` 
 }
 
 // NewModelRange instantiates a new ModelRange object

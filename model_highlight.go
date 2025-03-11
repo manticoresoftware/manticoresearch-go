@@ -21,49 +21,49 @@ var _ MappedNullable = &Highlight{}
 // Highlight struct for Highlight
 type Highlight struct {
 	// Maximum size of the text fragments in highlighted snippets per field
-	FragmentSize interface{}
+	FragmentSize interface{} `json:"fragment_size"` 
 	// Maximum size of snippets per field
-	Limit interface{}
+	Limit interface{} `json:"limit"` 
 	// Maximum number of snippets per field
-	LimitSnippets interface{}
+	LimitSnippets interface{} `json:"limit_snippets"` 
 	// Maximum number of words per field
-	LimitWords interface{}
+	LimitWords interface{} `json:"limit_words"` 
 	// Total number of highlighted fragments per field
-	NumberOfFragments interface{}
+	NumberOfFragments interface{} `json:"number_of_fragments"` 
 	// Text inserted after the matched term, typically used for HTML formatting
-	AfterMatch *string
+	AfterMatch *string `json:"after_match"` 
 	// Permits an empty string to be returned as the highlighting result. Otherwise, the beginning of the original text would be returned
-	AllowEmpty *bool
+	AllowEmpty *bool `json:"allow_empty"` 
 	// Number of words around the match to include in the highlight
-	Around *int32
+	Around *int32 `json:"around"` 
 	// Text inserted before the match, typically used for HTML formatting
-	BeforeMatch *string
+	BeforeMatch *string `json:"before_match"` 
 	// Emits an HTML tag with the enclosing zone name before each highlighted snippet
-	EmitZones *bool
+	EmitZones *bool `json:"emit_zones"` 
 	// If set to 'html', retains HTML markup when highlighting
-	Encoder *string
-	Fields map[string]interface{}
+	Encoder *string `json:"encoder"` 
+	Fields map[string]interface{} `json:"fields"` 
 	// Ignores the length limit until the result includes all keywords
-	ForceAllWords *bool
+	ForceAllWords *bool `json:"force_all_words"` 
 	// Forces snippet generation even if limits allow highlighting the entire text
-	ForceSnippets *bool
-	HighlightQuery NullableQueryFilter
+	ForceSnippets *bool `json:"force_snippets"` 
+	HighlightQuery NullableQueryFilter `json:"highlight_query"` 
 	// Defines the mode for handling HTML markup in the highlight
-	HtmlStripMode *string
+	HtmlStripMode *string `json:"html_strip_mode"` 
 	// Determines whether the 'limit', 'limit_words', and 'limit_snippets' options operate as individual limits in each field of the document
-	LimitsPerField *bool
+	LimitsPerField *bool `json:"limits_per_field"` 
 	// If set to 1, allows an empty string to be returned as a highlighting result
-	NoMatchSize *int32
+	NoMatchSize *int32 `json:"no_match_size"` 
 	// Sets the sorting order of highlighted snippets
-	Order *string
+	Order *string `json:"order"` 
 	// Text inserted before each highlighted snippet
-	PreTags *string
+	PreTags *string `json:"pre_tags"` 
 	// Text inserted after each highlighted snippet
-	PostTags *string
+	PostTags *string `json:"post_tags"` 
 	// Sets the starting value of the %SNIPPET_ID% macro
-	StartSnippetId *int32
+	StartSnippetId *int32 `json:"start_snippet_id"` 
 	// Defines whether to additionally break snippets by phrase boundary characters
-	UseBoundaries *bool
+	UseBoundaries *bool `json:"use_boundaries"` 
 }
 
 // NewHighlight instantiates a new Highlight object

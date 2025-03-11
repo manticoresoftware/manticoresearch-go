@@ -22,7 +22,7 @@ var _ MappedNullable = &PercolateRequest{}
 
 // PercolateRequest Object containing the query for percolating documents against stored queries in a percolate table
 type PercolateRequest struct {
-	Query PercolateRequestQuery
+	Query PercolateRequestQuery `json:"query"` 
 }
 
 type _PercolateRequest PercolateRequest
