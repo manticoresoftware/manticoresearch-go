@@ -46,6 +46,7 @@ docs/SearchRequest.md
 docs/SearchResponse.md
 docs/SearchResponseHits.md
 docs/SourceRules.md
+docs/SqlObjResponse.md
 docs/SqlResponse.md
 docs/SuccessResponse.md
 docs/UpdateDocumentRequest.md
@@ -90,6 +91,7 @@ model_search_request.go
 model_search_response.go
 model_search_response_hits.go
 model_source_rules.go
+model_sql_obj_response.go
 model_sql_response.go
 model_success_response.go
 model_update_document_request.go

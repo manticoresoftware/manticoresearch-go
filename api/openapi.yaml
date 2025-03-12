@@ -962,6 +962,23 @@ components:
         _source:
           description: The source data of the matched document
           type: object
+        _knn_dist:
+          description: The knn distance of the matched document returned for knn queries
+          type: number
+        highlight:
+          description: The highlighting-related data of the matched document
+          type: object
+        table:
+          description: The table name of the matched document returned for percolate
+            queries
+          type: string
+        '_type:':
+          description: The type of the matched document returned for percolate queries
+          type: string
+        fields:
+          description: The percolate-related fields of the matched document returned
+            for percolate queries
+          type: object
     insertDocumentRequest:
       description: |
         Object containing data for inserting a new document into the table
@@ -1276,7 +1293,11 @@ components:
         type: object
       type: array
     sqlObjResponse:
-      type: object
+      properties:
+        hits:
+          type: object
+      required:
+      - hits
     sqlResponse:
       description: List of responses from executed SQL queries
       example:

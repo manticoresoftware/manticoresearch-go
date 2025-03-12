@@ -1,60 +1,50 @@
-# SqlResponse
+# SqlObjResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hits** | **interface{}** |  | 
+**Hits** | **map[string]interface{}** |  | 
 
 ## Methods
 
-### NewSqlResponse
+### NewSqlObjResponse
 
-`func NewSqlResponse(hits interface{}, ) *SqlResponse`
+`func NewSqlObjResponse(hits map[string]interface{}, ) *SqlObjResponse`
 
-NewSqlResponse instantiates a new SqlResponse object
+NewSqlObjResponse instantiates a new SqlObjResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSqlResponseWithDefaults
+### NewSqlObjResponseWithDefaults
 
-`func NewSqlResponseWithDefaults() *SqlResponse`
+`func NewSqlObjResponseWithDefaults() *SqlObjResponse`
 
-NewSqlResponseWithDefaults instantiates a new SqlResponse object
+NewSqlObjResponseWithDefaults instantiates a new SqlObjResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetHits
 
-`func (o *SqlResponse) GetHits() interface{}`
+`func (o *SqlObjResponse) GetHits() map[string]interface{}`
 
 GetHits returns the Hits field if non-nil, zero value otherwise.
 
 ### GetHitsOk
 
-`func (o *SqlResponse) GetHitsOk() (*interface{}, bool)`
+`func (o *SqlObjResponse) GetHitsOk() (*map[string]interface{}, bool)`
 
 GetHitsOk returns a tuple with the Hits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHits
 
-`func (o *SqlResponse) SetHits(v interface{})`
+`func (o *SqlObjResponse) SetHits(v map[string]interface{})`
 
 SetHits sets Hits field to given value.
 
 
-### SetHitsNil
-
-`func (o *SqlResponse) SetHitsNil(b bool)`
-
- SetHitsNil sets the value for Hits to be an explicit nil
-
-### UnsetHits
-`func (o *SqlResponse) UnsetHits()`
-
-UnsetHits ensures that no value is present for Hits, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
