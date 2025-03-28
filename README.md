@@ -9,8 +9,10 @@
 | **manticoresearch-go**    | **Manticore Search**                | **Go**           | **Compatibility**       |
 | --------------------------| ----------------------------------- | -----------------| ------------------------|
 | `dev`                     | `dev` (latest development version)  | 1.17.0 or newer  | ✅ Fully Compatible     |
-| v1.6.0 or newer           | 7.0.0 or newer                      | 1.17.0 or newer  | ✅ Fully Compatible     |
-| v1.6.0 or newer           | 6.2.12 to 7.0.0                     | 1.17.0 or newer  | ⚠️ Partially Compatible |
+| v1.7.0 or newer           | 9.2.14 or newer                     | 1.17.0 or newer  | ✅ Fully Compatible     |
+| v1.6.0 to v1.7.0          | 9.2.14 or newer                     | 1.17.0 or newer  | ⚠️ Partially Compatible |
+| v1.6.0 to v1.7.0          | 7.0.0 to 9.2.14                     | 1.17.0 or newer  | ✅ Fully Compatible     |
+| v1.6.0 to v1.7.0          | 6.2.12 to 7.0.0                     | 1.17.0 or newer  | ⚠️ Partially Compatible |
 | v1.0.0 to v1.6.0          | 6.3.6  to 7.0.0                     | 1.17.0 or newer  | ✅ Fully Compatible     |
 | v1.0.0 to v1.6.0          | 6.2.12 to 6.3.6                     | 1.17.0 or newer  | ⚠️ Partially Compatible |
 
