@@ -1063,7 +1063,7 @@ components:
       required:
       - field
       - table
-    match:
+    _match:
       description: Filter helper object defining a match keyword and match options
       properties:
         query:

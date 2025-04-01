@@ -55,6 +55,7 @@ docs/UtilsAPI.md
 git_push.sh
 go.mod
 go.sum
+model__match.go
 model_agg_composite.go
 model_agg_composite_source.go
 model_agg_composite_term.go
@@ -77,7 +78,6 @@ model_join.go
 model_join_cond.go
 model_join_on.go
 model_knn_query.go
-model_match.go
 model_match_all.go
 model_percolate_request.go
 model_percolate_request_query.go
