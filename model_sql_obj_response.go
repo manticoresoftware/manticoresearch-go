@@ -23,6 +23,8 @@ var _ MappedNullable = &SqlObjResponse{}
 // SqlObjResponse struct for SqlObjResponse
 type SqlObjResponse struct {
 	Hits map[string]interface{} `json:"hits"` 
+	Took *float32 `json:"took"` 
+	TimedOut *bool `json:"timed_out"` 
 }
 
 type _SqlObjResponse SqlObjResponse
@@ -69,6 +71,70 @@ func (o *SqlObjResponse) SetHits(v map[string]interface{}) {
 	o.Hits = v
 }
 
+// GetTook returns the Took field value if set, zero value otherwise.
+func (o *SqlObjResponse) GetTook() float32 {
+	if o == nil || IsNil(o.Took) {
+		var ret float32
+		return ret
+	}
+	return *o.Took
+}
+
+// GetTookOk returns a tuple with the Took field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SqlObjResponse) GetTookOk() (*float32, bool) {
+	if o == nil || IsNil(o.Took) {
+		return nil, false
+	}
+	return o.Took, true
+}
+
+// HasTook returns a boolean if a field has been set.
+func (o *SqlObjResponse) HasTook() bool {
+	if o != nil && !IsNil(o.Took) {
+		return true
+	}
+
+	return false
+}
+
+// SetTook gets a reference to the given float32 and assigns it to the Took field.
+func (o *SqlObjResponse) SetTook(v float32) {
+	o.Took = &v
+}
+
+// GetTimedOut returns the TimedOut field value if set, zero value otherwise.
+func (o *SqlObjResponse) GetTimedOut() bool {
+	if o == nil || IsNil(o.TimedOut) {
+		var ret bool
+		return ret
+	}
+	return *o.TimedOut
+}
+
+// GetTimedOutOk returns a tuple with the TimedOut field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SqlObjResponse) GetTimedOutOk() (*bool, bool) {
+	if o == nil || IsNil(o.TimedOut) {
+		return nil, false
+	}
+	return o.TimedOut, true
+}
+
+// HasTimedOut returns a boolean if a field has been set.
+func (o *SqlObjResponse) HasTimedOut() bool {
+	if o != nil && !IsNil(o.TimedOut) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimedOut gets a reference to the given bool and assigns it to the TimedOut field.
+func (o *SqlObjResponse) SetTimedOut(v bool) {
+	o.TimedOut = &v
+}
+
 func (o SqlObjResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -80,6 +146,12 @@ func (o SqlObjResponse) MarshalJSON() ([]byte, error) {
 func (o SqlObjResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["hits"] = o.Hits
+	if !IsNil(o.Took) {
+		toSerialize["took"] = o.Took
+	}
+	if !IsNil(o.TimedOut) {
+		toSerialize["timed_out"] = o.TimedOut
+	}
 	return toSerialize, nil
 }
 

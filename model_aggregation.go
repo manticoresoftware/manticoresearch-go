@@ -23,6 +23,7 @@ type Aggregation struct {
 	Terms *AggTerms `json:"terms"` 
 	Sort []interface{} `json:"sort"` 
 	Composite *AggComposite `json:"composite"` 
+	Histogram *AggHistogram `json:"histogram"` 
 }
 
 // NewAggregation instantiates a new Aggregation object
@@ -138,6 +139,38 @@ func (o *Aggregation) SetComposite(v AggComposite) {
 	o.Composite = &v
 }
 
+// GetHistogram returns the Histogram field value if set, zero value otherwise.
+func (o *Aggregation) GetHistogram() AggHistogram {
+	if o == nil || IsNil(o.Histogram) {
+		var ret AggHistogram
+		return ret
+	}
+	return *o.Histogram
+}
+
+// GetHistogramOk returns a tuple with the Histogram field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetHistogramOk() (*AggHistogram, bool) {
+	if o == nil || IsNil(o.Histogram) {
+		return nil, false
+	}
+	return o.Histogram, true
+}
+
+// HasHistogram returns a boolean if a field has been set.
+func (o *Aggregation) HasHistogram() bool {
+	if o != nil && !IsNil(o.Histogram) {
+		return true
+	}
+
+	return false
+}
+
+// SetHistogram gets a reference to the given AggHistogram and assigns it to the Histogram field.
+func (o *Aggregation) SetHistogram(v AggHistogram) {
+	o.Histogram = &v
+}
+
 func (o Aggregation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -156,6 +189,9 @@ func (o Aggregation) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Composite) {
 		toSerialize["composite"] = o.Composite
+	}
+	if !IsNil(o.Histogram) {
+		toSerialize["histogram"] = o.Histogram
 	}
 	return toSerialize, nil
 }

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Terms** | Pointer to [**AggTerms**](AggTerms.md) |  | [optional] 
 **Sort** | Pointer to **[]interface{}** |  | [optional] 
 **Composite** | Pointer to [**AggComposite**](AggComposite.md) |  | [optional] 
+**Histogram** | Pointer to [**AggHistogram**](AggHistogram.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetComposite sets Composite field to given value.
 `func (o *Aggregation) HasComposite() bool`
 
 HasComposite returns a boolean if a field has been set.
+
+### GetHistogram
+
+`func (o *Aggregation) GetHistogram() AggHistogram`
+
+GetHistogram returns the Histogram field if non-nil, zero value otherwise.
+
+### GetHistogramOk
+
+`func (o *Aggregation) GetHistogramOk() (*AggHistogram, bool)`
+
+GetHistogramOk returns a tuple with the Histogram field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHistogram
+
+`func (o *Aggregation) SetHistogram(v AggHistogram)`
+
+SetHistogram sets Histogram field to given value.
+
+### HasHistogram
+
+`func (o *Aggregation) HasHistogram() bool`
+
+HasHistogram returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
