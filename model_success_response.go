@@ -1,7 +1,7 @@
 /*
 Manticore Search Client
 
-Сlient for Manticore Search. 
+Сlient for Manticore Search.
 
 API version: 5.0.0
 Contact: info@manticoresearch.com
@@ -21,17 +21,17 @@ var _ MappedNullable = &SuccessResponse{}
 // SuccessResponse Response object indicating the success of an operation, such as inserting or updating a document
 type SuccessResponse struct {
 	// Name of the document table
-	Table *string `json:"table"` 
+	Table *string `json:"table"`
 	// ID of the document affected by the request operation
-	Id *int64 `json:"id"` 
+	Id *uint64 `json:"id"`
 	// Indicates whether the document was created as a result of the operation
-	Created *bool `json:"created"` 
+	Created *bool `json:"created"`
 	// Result of the operation, typically 'created', 'updated', or 'deleted'
-	Result *string `json:"result"` 
+	Result *string `json:"result"`
 	// Indicates whether the document was found in the table
-	Found *bool `json:"found"` 
+	Found *bool `json:"found"`
 	// HTTP status code representing the result of the operation
-	Status *int32 `json:"status"` 
+	Status *int32 `json:"status"`
 }
 
 // NewSuccessResponse instantiates a new SuccessResponse object
@@ -84,9 +84,9 @@ func (o *SuccessResponse) SetTable(v string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *SuccessResponse) GetId() int64 {
+func (o *SuccessResponse) GetId() uint64 {
 	if o == nil || IsNil(o.Id) {
-		var ret int64
+		var ret uint64
 		return ret
 	}
 	return *o.Id
@@ -94,7 +94,7 @@ func (o *SuccessResponse) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuccessResponse) GetIdOk() (*int64, bool) {
+func (o *SuccessResponse) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -110,8 +110,8 @@ func (o *SuccessResponse) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *SuccessResponse) SetId(v int64) {
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *SuccessResponse) SetId(v uint64) {
 	o.Id = &v
 }
 
@@ -244,7 +244,7 @@ func (o *SuccessResponse) SetStatus(v int32) {
 }
 
 func (o SuccessResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -309,5 +309,3 @@ func (v *NullableSuccessResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

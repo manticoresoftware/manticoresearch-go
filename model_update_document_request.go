@@ -1,7 +1,7 @@
 /*
 Manticore Search Client
 
-Сlient for Manticore Search. 
+Сlient for Manticore Search.
 
 API version: 5.0.0
 Contact: info@manticoresearch.com
@@ -12,9 +12,9 @@ Contact: info@manticoresearch.com
 package openapi
 
 import (
+	_ "bytes"
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	_ "fmt"
 )
 
 // checks if the UpdateDocumentRequest type satisfies the MappedNullable interface at compile time
@@ -23,14 +23,14 @@ var _ MappedNullable = &UpdateDocumentRequest{}
 // UpdateDocumentRequest Payload for updating a document or multiple documents in a table
 type UpdateDocumentRequest struct {
 	// Name of the document table
-	Table string `json:"table"` 
+	Table string `json:"table"`
 	// Name of the document cluster
-	Cluster *string `json:"cluster"` 
+	Cluster *string `json:"cluster"`
 	// Object containing the document fields to update
-	Doc map[string]interface{} `json:"doc"` 
+	Doc map[string]interface{} `json:"doc"`
 	// Document ID
-	Id *int64 `json:"id"` 
-	Query NullableQueryFilter `json:"query"` 
+	Id    *uint64             `json:"id"`
+	Query NullableQueryFilter `json:"query"`
 }
 
 type _UpdateDocumentRequest UpdateDocumentRequest
@@ -135,9 +135,9 @@ func (o *UpdateDocumentRequest) SetDoc(v map[string]interface{}) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *UpdateDocumentRequest) GetId() int64 {
+func (o *UpdateDocumentRequest) GetId() uint64 {
 	if o == nil || IsNil(o.Id) {
-		var ret int64
+		var ret uint64
 		return ret
 	}
 	return *o.Id
@@ -145,7 +145,7 @@ func (o *UpdateDocumentRequest) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDocumentRequest) GetIdOk() (*int64, bool) {
+func (o *UpdateDocumentRequest) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -161,8 +161,8 @@ func (o *UpdateDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *UpdateDocumentRequest) SetId(v int64) {
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *UpdateDocumentRequest) SetId(v uint64) {
 	o.Id = &v
 }
 
@@ -198,6 +198,7 @@ func (o *UpdateDocumentRequest) HasQuery() bool {
 func (o *UpdateDocumentRequest) SetQuery(v QueryFilter) {
 	o.Query.Set(&v)
 }
+
 // SetQueryNil sets the value for Query to be an explicit nil
 func (o *UpdateDocumentRequest) SetQueryNil() {
 	o.Query.Set(nil)
@@ -209,7 +210,7 @@ func (o *UpdateDocumentRequest) UnsetQuery() {
 }
 
 func (o UpdateDocumentRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -267,5 +268,3 @@ func (v *NullableUpdateDocumentRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Manticore Search Client
 
-Сlient for Manticore Search. 
+Сlient for Manticore Search.
 
 API version: 5.0.0
 Contact: info@manticoresearch.com
@@ -12,24 +12,24 @@ Contact: info@manticoresearch.com
 package openapi
 
 import (
+	_ "bytes"
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	_ "fmt"
 )
 
 // checks if the InsertDocumentRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InsertDocumentRequest{}
 
-// InsertDocumentRequest Object containing data for inserting a new document into the table 
+// InsertDocumentRequest Object containing data for inserting a new document into the table
 type InsertDocumentRequest struct {
 	// Name of the table to insert the document into
-	Table string `json:"table"` 
+	Table string `json:"table"`
 	// Name of the cluster to insert the document into
-	Cluster *string `json:"cluster"` 
-	// Document ID. If not provided, an ID will be auto-generated 
-	Id *int64 `json:"id"` 
-	// Object containing document data 
-	Doc map[string]interface{} `json:"doc"` 
+	Cluster *string `json:"cluster"`
+	// Document ID. If not provided, an ID will be auto-generated
+	Id *uint64 `json:"id"`
+	// Object containing document data
+	Doc map[string]interface{} `json:"doc"`
 }
 
 type _InsertDocumentRequest InsertDocumentRequest
@@ -110,9 +110,9 @@ func (o *InsertDocumentRequest) SetCluster(v string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *InsertDocumentRequest) GetId() int64 {
+func (o *InsertDocumentRequest) GetId() uint64 {
 	if o == nil || IsNil(o.Id) {
-		var ret int64
+		var ret uint64
 		return ret
 	}
 	return *o.Id
@@ -120,10 +120,11 @@ func (o *InsertDocumentRequest) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InsertDocumentRequest) GetIdOk() (*int64, bool) {
+func (o *InsertDocumentRequest) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
+
 	return o.Id, true
 }
 
@@ -136,8 +137,8 @@ func (o *InsertDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *InsertDocumentRequest) SetId(v int64) {
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *InsertDocumentRequest) SetId(v uint64) {
 	o.Id = &v
 }
 
@@ -166,7 +167,7 @@ func (o *InsertDocumentRequest) SetDoc(v map[string]interface{}) {
 }
 
 func (o InsertDocumentRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -221,5 +222,3 @@ func (v *NullableInsertDocumentRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
