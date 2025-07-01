@@ -20,13 +20,13 @@ var _ MappedNullable = &GeoDistance{}
 
 // GeoDistance Object to perform geo-distance based filtering on queries
 type GeoDistance struct {
-	LocationAnchor *GeoDistanceLocationAnchor `json:"location_anchor"` 
+	LocationAnchor *GeoDistanceLocationAnchor `json:"location_anchor,omitempty"`
 	// Field name in the document that contains location data
-	LocationSource interface{} `json:"location_source"` 
+	LocationSource *string `json:"location_source,omitempty"`
 	// Algorithm used to calculate the distance
-	DistanceType interface{} `json:"distance_type"` 
+	DistanceType *string `json:"distance_type,omitempty"`
 	// The distance from the anchor point to filter results by
-	Distance interface{} `json:"distance"` 
+	Distance *string `json:"distance,omitempty" validate:"regexp=^\\\\.+(km|m|cm|mm|mi|yd|ft|in|NM|nmi|kilometers|meters|centimeters|millimeters|miles|yards|foots|inches|nauticalmiles|)$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -81,23 +81,22 @@ func (o *GeoDistance) SetLocationAnchor(v GeoDistanceLocationAnchor) {
 	o.LocationAnchor = &v
 }
 
-// GetLocationSource returns the LocationSource field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GeoDistance) GetLocationSource() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetLocationSource returns the LocationSource field value if set, zero value otherwise.
+func (o *GeoDistance) GetLocationSource() string {
+	if o == nil || IsNil(o.LocationSource) {
+		var ret string
 		return ret
 	}
-	return o.LocationSource
+	return *o.LocationSource
 }
 
 // GetLocationSourceOk returns a tuple with the LocationSource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GeoDistance) GetLocationSourceOk() (*interface{}, bool) {
+func (o *GeoDistance) GetLocationSourceOk() (*string, bool) {
 	if o == nil || IsNil(o.LocationSource) {
 		return nil, false
 	}
-	return &o.LocationSource, true
+	return o.LocationSource, true
 }
 
 // HasLocationSource returns a boolean if a field has been set.
@@ -109,28 +108,27 @@ func (o *GeoDistance) HasLocationSource() bool {
 	return false
 }
 
-// SetLocationSource gets a reference to the given interface{} and assigns it to the LocationSource field.
-func (o *GeoDistance) SetLocationSource(v interface{}) {
-	o.LocationSource = v
+// SetLocationSource gets a reference to the given string and assigns it to the LocationSource field.
+func (o *GeoDistance) SetLocationSource(v string) {
+	o.LocationSource = &v
 }
 
-// GetDistanceType returns the DistanceType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GeoDistance) GetDistanceType() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetDistanceType returns the DistanceType field value if set, zero value otherwise.
+func (o *GeoDistance) GetDistanceType() string {
+	if o == nil || IsNil(o.DistanceType) {
+		var ret string
 		return ret
 	}
-	return o.DistanceType
+	return *o.DistanceType
 }
 
 // GetDistanceTypeOk returns a tuple with the DistanceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GeoDistance) GetDistanceTypeOk() (*interface{}, bool) {
+func (o *GeoDistance) GetDistanceTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.DistanceType) {
 		return nil, false
 	}
-	return &o.DistanceType, true
+	return o.DistanceType, true
 }
 
 // HasDistanceType returns a boolean if a field has been set.
@@ -142,28 +140,27 @@ func (o *GeoDistance) HasDistanceType() bool {
 	return false
 }
 
-// SetDistanceType gets a reference to the given interface{} and assigns it to the DistanceType field.
-func (o *GeoDistance) SetDistanceType(v interface{}) {
-	o.DistanceType = v
+// SetDistanceType gets a reference to the given string and assigns it to the DistanceType field.
+func (o *GeoDistance) SetDistanceType(v string) {
+	o.DistanceType = &v
 }
 
-// GetDistance returns the Distance field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GeoDistance) GetDistance() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetDistance returns the Distance field value if set, zero value otherwise.
+func (o *GeoDistance) GetDistance() string {
+	if o == nil || IsNil(o.Distance) {
+		var ret string
 		return ret
 	}
-	return o.Distance
+	return *o.Distance
 }
 
 // GetDistanceOk returns a tuple with the Distance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GeoDistance) GetDistanceOk() (*interface{}, bool) {
+func (o *GeoDistance) GetDistanceOk() (*string, bool) {
 	if o == nil || IsNil(o.Distance) {
 		return nil, false
 	}
-	return &o.Distance, true
+	return o.Distance, true
 }
 
 // HasDistance returns a boolean if a field has been set.
@@ -175,9 +172,9 @@ func (o *GeoDistance) HasDistance() bool {
 	return false
 }
 
-// SetDistance gets a reference to the given interface{} and assigns it to the Distance field.
-func (o *GeoDistance) SetDistance(v interface{}) {
-	o.Distance = v
+// SetDistance gets a reference to the given string and assigns it to the Distance field.
+func (o *GeoDistance) SetDistance(v string) {
+	o.Distance = &v
 }
 
 func (o GeoDistance) MarshalJSON() ([]byte, error) {
@@ -193,13 +190,13 @@ func (o GeoDistance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LocationAnchor) {
 		toSerialize["location_anchor"] = o.LocationAnchor
 	}
-	if o.LocationSource != nil {
+	if !IsNil(o.LocationSource) {
 		toSerialize["location_source"] = o.LocationSource
 	}
-	if o.DistanceType != nil {
+	if !IsNil(o.DistanceType) {
 		toSerialize["distance_type"] = o.DistanceType
 	}
-	if o.Distance != nil {
+	if !IsNil(o.Distance) {
 		toSerialize["distance"] = o.Distance
 	}
 
@@ -208,6 +205,30 @@ func (o GeoDistance) ToMap() (map[string]interface{}, error) {
 	}
 
 	return toSerialize, nil
+}
+
+func (o *GeoDistance) UnmarshalJSON(data []byte) (err error) {
+	varGeoDistance := _GeoDistance{}
+
+	err = json.Unmarshal(data, &varGeoDistance)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GeoDistance(varGeoDistance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "location_anchor")
+		delete(additionalProperties, "location_source")
+		delete(additionalProperties, "distance_type")
+		delete(additionalProperties, "distance")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGeoDistance struct {

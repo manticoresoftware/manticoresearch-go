@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the PercolateRequestQuery type satisfies the MappedNullable interface at compile time
@@ -23,7 +23,7 @@ var _ MappedNullable = &PercolateRequestQuery{}
 // PercolateRequestQuery struct for PercolateRequestQuery
 type PercolateRequestQuery struct {
 	// Object representing the document to percolate
-	Percolate interface{} `json:"percolate"` 
+	Percolate map[string]interface{} `json:"percolate"`
 }
 
 type _PercolateRequestQuery PercolateRequestQuery
@@ -32,7 +32,7 @@ type _PercolateRequestQuery PercolateRequestQuery
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPercolateRequestQuery(percolate interface{}) *PercolateRequestQuery {
+func NewPercolateRequestQuery(percolate map[string]interface{}) *PercolateRequestQuery {
 	this := PercolateRequestQuery{}
 	this.Percolate = percolate
 	return &this
@@ -47,10 +47,9 @@ func NewPercolateRequestQueryWithDefaults() *PercolateRequestQuery {
 }
 
 // GetPercolate returns the Percolate field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *PercolateRequestQuery) GetPercolate() interface{} {
+func (o *PercolateRequestQuery) GetPercolate() map[string]interface{} {
 	if o == nil {
-		var ret interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -59,16 +58,15 @@ func (o *PercolateRequestQuery) GetPercolate() interface{} {
 
 // GetPercolateOk returns a tuple with the Percolate field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PercolateRequestQuery) GetPercolateOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Percolate) {
-		return nil, false
+func (o *PercolateRequestQuery) GetPercolateOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
 	}
-	return &o.Percolate, true
+	return o.Percolate, true
 }
 
 // SetPercolate sets field value
-func (o *PercolateRequestQuery) SetPercolate(v interface{}) {
+func (o *PercolateRequestQuery) SetPercolate(v map[string]interface{}) {
 	o.Percolate = v
 }
 
@@ -82,10 +80,45 @@ func (o PercolateRequestQuery) MarshalJSON() ([]byte, error) {
 
 func (o PercolateRequestQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Percolate != nil {
-		toSerialize["percolate"] = o.Percolate
-	}
+	toSerialize["percolate"] = o.Percolate
 	return toSerialize, nil
+}
+
+func (o *PercolateRequestQuery) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"percolate",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPercolateRequestQuery := _PercolateRequestQuery{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPercolateRequestQuery)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PercolateRequestQuery(varPercolateRequestQuery)
+
+	return err
 }
 
 type NullablePercolateRequestQuery struct {

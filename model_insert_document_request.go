@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the InsertDocumentRequest type satisfies the MappedNullable interface at compile time
@@ -23,13 +23,13 @@ var _ MappedNullable = &InsertDocumentRequest{}
 // InsertDocumentRequest Object containing data for inserting a new document into the table 
 type InsertDocumentRequest struct {
 	// Name of the table to insert the document into
-	Table interface{} `json:"table"` 
+	Table string `json:"table"`
 	// Name of the cluster to insert the document into
-	Cluster interface{} `json:"cluster"` 
+	Cluster *string `json:"cluster,omitempty"`
 	// Document ID. If not provided, an ID will be auto-generated 
-	Id interface{} `json:"id"` 
+	Id *uint64 `json:"id,omitempty"`
 	// Object containing document data 
-	Doc interface{} `json:"doc"` 
+	Doc map[string]interface{} `json:"doc"`
 }
 
 type _InsertDocumentRequest InsertDocumentRequest
@@ -38,7 +38,7 @@ type _InsertDocumentRequest InsertDocumentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInsertDocumentRequest(table interface{}, doc interface{}) *InsertDocumentRequest {
+func NewInsertDocumentRequest(table string, doc map[string]interface{}) *InsertDocumentRequest {
 	this := InsertDocumentRequest{}
 	this.Table = table
 	this.Doc = doc
@@ -54,10 +54,9 @@ func NewInsertDocumentRequestWithDefaults() *InsertDocumentRequest {
 }
 
 // GetTable returns the Table field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *InsertDocumentRequest) GetTable() interface{} {
+func (o *InsertDocumentRequest) GetTable() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -66,36 +65,34 @@ func (o *InsertDocumentRequest) GetTable() interface{} {
 
 // GetTableOk returns a tuple with the Table field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InsertDocumentRequest) GetTableOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Table) {
+func (o *InsertDocumentRequest) GetTableOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Table, true
 }
 
 // SetTable sets field value
-func (o *InsertDocumentRequest) SetTable(v interface{}) {
+func (o *InsertDocumentRequest) SetTable(v string) {
 	o.Table = v
 }
 
-// GetCluster returns the Cluster field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InsertDocumentRequest) GetCluster() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetCluster returns the Cluster field value if set, zero value otherwise.
+func (o *InsertDocumentRequest) GetCluster() string {
+	if o == nil || IsNil(o.Cluster) {
+		var ret string
 		return ret
 	}
-	return o.Cluster
+	return *o.Cluster
 }
 
 // GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InsertDocumentRequest) GetClusterOk() (*interface{}, bool) {
+func (o *InsertDocumentRequest) GetClusterOk() (*string, bool) {
 	if o == nil || IsNil(o.Cluster) {
 		return nil, false
 	}
-	return &o.Cluster, true
+	return o.Cluster, true
 }
 
 // HasCluster returns a boolean if a field has been set.
@@ -107,28 +104,27 @@ func (o *InsertDocumentRequest) HasCluster() bool {
 	return false
 }
 
-// SetCluster gets a reference to the given interface{} and assigns it to the Cluster field.
-func (o *InsertDocumentRequest) SetCluster(v interface{}) {
-	o.Cluster = v
+// SetCluster gets a reference to the given string and assigns it to the Cluster field.
+func (o *InsertDocumentRequest) SetCluster(v string) {
+	o.Cluster = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InsertDocumentRequest) GetId() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *InsertDocumentRequest) GetId() uint64 {
+	if o == nil || IsNil(o.Id) {
+		var ret uint64
 		return ret
 	}
-	return o.Id
+	return *o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InsertDocumentRequest) GetIdOk() (*interface{}, bool) {
+func (o *InsertDocumentRequest) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -140,16 +136,15 @@ func (o *InsertDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given interface{} and assigns it to the Id field.
-func (o *InsertDocumentRequest) SetId(v interface{}) {
-	o.Id = v
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *InsertDocumentRequest) SetId(v uint64) {
+	o.Id = &v
 }
 
 // GetDoc returns the Doc field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *InsertDocumentRequest) GetDoc() interface{} {
+func (o *InsertDocumentRequest) GetDoc() map[string]interface{} {
 	if o == nil {
-		var ret interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -158,16 +153,15 @@ func (o *InsertDocumentRequest) GetDoc() interface{} {
 
 // GetDocOk returns a tuple with the Doc field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InsertDocumentRequest) GetDocOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Doc) {
-		return nil, false
+func (o *InsertDocumentRequest) GetDocOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
 	}
-	return &o.Doc, true
+	return o.Doc, true
 }
 
 // SetDoc sets field value
-func (o *InsertDocumentRequest) SetDoc(v interface{}) {
+func (o *InsertDocumentRequest) SetDoc(v map[string]interface{}) {
 	o.Doc = v
 }
 
@@ -181,19 +175,53 @@ func (o InsertDocumentRequest) MarshalJSON() ([]byte, error) {
 
 func (o InsertDocumentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Table != nil {
-		toSerialize["table"] = o.Table
-	}
-	if o.Cluster != nil {
+	toSerialize["table"] = o.Table
+	if !IsNil(o.Cluster) {
 		toSerialize["cluster"] = o.Cluster
 	}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Doc != nil {
-		toSerialize["doc"] = o.Doc
-	}
+	toSerialize["doc"] = o.Doc
 	return toSerialize, nil
+}
+
+func (o *InsertDocumentRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"table",
+		"doc",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInsertDocumentRequest := _InsertDocumentRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInsertDocumentRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InsertDocumentRequest(varInsertDocumentRequest)
+
+	return err
 }
 
 type NullableInsertDocumentRequest struct {

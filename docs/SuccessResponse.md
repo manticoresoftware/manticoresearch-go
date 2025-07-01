@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Table** | Pointer to **interface{}** | Name of the document table | [optional] 
-**Id** | Pointer to **interface{}** | ID of the document affected by the request operation | [optional] 
-**Created** | Pointer to **interface{}** | Indicates whether the document was created as a result of the operation | [optional] 
-**Result** | Pointer to **interface{}** | Result of the operation, typically &#39;created&#39;, &#39;updated&#39;, or &#39;deleted&#39; | [optional] 
-**Found** | Pointer to **interface{}** | Indicates whether the document was found in the table | [optional] 
-**Status** | Pointer to **interface{}** | HTTP status code representing the result of the operation | [optional] 
+**Table** | Pointer to **string** | Name of the document table | [optional] 
+**Id** | Pointer to **uint64** | ID of the document affected by the request operation | [optional]
+**Created** | Pointer to **bool** | Indicates whether the document was created as a result of the operation | [optional] 
+**Result** | Pointer to **string** | Result of the operation, typically &#39;created&#39;, &#39;updated&#39;, or &#39;deleted&#39; | [optional] 
+**Found** | Pointer to **bool** | Indicates whether the document was found in the table | [optional] 
+**Status** | Pointer to **int32** | HTTP status code representing the result of the operation | [optional] 
 
 ## Methods
 
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTable
 
-`func (o *SuccessResponse) GetTable() interface{}`
+`func (o *SuccessResponse) GetTable() string`
 
 GetTable returns the Table field if non-nil, zero value otherwise.
 
 ### GetTableOk
 
-`func (o *SuccessResponse) GetTableOk() (*interface{}, bool)`
+`func (o *SuccessResponse) GetTableOk() (*string, bool)`
 
 GetTableOk returns a tuple with the Table field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTable
 
-`func (o *SuccessResponse) SetTable(v interface{})`
+`func (o *SuccessResponse) SetTable(v string)`
 
 SetTable sets Table field to given value.
 
@@ -55,32 +55,22 @@ SetTable sets Table field to given value.
 
 HasTable returns a boolean if a field has been set.
 
-### SetTableNil
-
-`func (o *SuccessResponse) SetTableNil(b bool)`
-
- SetTableNil sets the value for Table to be an explicit nil
-
-### UnsetTable
-`func (o *SuccessResponse) UnsetTable()`
-
-UnsetTable ensures that no value is present for Table, not even an explicit nil
 ### GetId
 
-`func (o *SuccessResponse) GetId() interface{}`
+`func (o *SuccessResponse) GetId() uint64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SuccessResponse) GetIdOk() (*interface{}, bool)`
+`func (o *SuccessResponse) GetIdOk() (*uint64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SuccessResponse) SetId(v interface{})`
+`func (o *SuccessResponse) SetId(v uint64)`
 
 SetId sets Id field to given value.
 
@@ -90,32 +80,22 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *SuccessResponse) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *SuccessResponse) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetCreated
 
-`func (o *SuccessResponse) GetCreated() interface{}`
+`func (o *SuccessResponse) GetCreated() bool`
 
 GetCreated returns the Created field if non-nil, zero value otherwise.
 
 ### GetCreatedOk
 
-`func (o *SuccessResponse) GetCreatedOk() (*interface{}, bool)`
+`func (o *SuccessResponse) GetCreatedOk() (*bool, bool)`
 
 GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreated
 
-`func (o *SuccessResponse) SetCreated(v interface{})`
+`func (o *SuccessResponse) SetCreated(v bool)`
 
 SetCreated sets Created field to given value.
 
@@ -125,32 +105,22 @@ SetCreated sets Created field to given value.
 
 HasCreated returns a boolean if a field has been set.
 
-### SetCreatedNil
-
-`func (o *SuccessResponse) SetCreatedNil(b bool)`
-
- SetCreatedNil sets the value for Created to be an explicit nil
-
-### UnsetCreated
-`func (o *SuccessResponse) UnsetCreated()`
-
-UnsetCreated ensures that no value is present for Created, not even an explicit nil
 ### GetResult
 
-`func (o *SuccessResponse) GetResult() interface{}`
+`func (o *SuccessResponse) GetResult() string`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *SuccessResponse) GetResultOk() (*interface{}, bool)`
+`func (o *SuccessResponse) GetResultOk() (*string, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *SuccessResponse) SetResult(v interface{})`
+`func (o *SuccessResponse) SetResult(v string)`
 
 SetResult sets Result field to given value.
 
@@ -160,32 +130,22 @@ SetResult sets Result field to given value.
 
 HasResult returns a boolean if a field has been set.
 
-### SetResultNil
-
-`func (o *SuccessResponse) SetResultNil(b bool)`
-
- SetResultNil sets the value for Result to be an explicit nil
-
-### UnsetResult
-`func (o *SuccessResponse) UnsetResult()`
-
-UnsetResult ensures that no value is present for Result, not even an explicit nil
 ### GetFound
 
-`func (o *SuccessResponse) GetFound() interface{}`
+`func (o *SuccessResponse) GetFound() bool`
 
 GetFound returns the Found field if non-nil, zero value otherwise.
 
 ### GetFoundOk
 
-`func (o *SuccessResponse) GetFoundOk() (*interface{}, bool)`
+`func (o *SuccessResponse) GetFoundOk() (*bool, bool)`
 
 GetFoundOk returns a tuple with the Found field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFound
 
-`func (o *SuccessResponse) SetFound(v interface{})`
+`func (o *SuccessResponse) SetFound(v bool)`
 
 SetFound sets Found field to given value.
 
@@ -195,32 +155,22 @@ SetFound sets Found field to given value.
 
 HasFound returns a boolean if a field has been set.
 
-### SetFoundNil
-
-`func (o *SuccessResponse) SetFoundNil(b bool)`
-
- SetFoundNil sets the value for Found to be an explicit nil
-
-### UnsetFound
-`func (o *SuccessResponse) UnsetFound()`
-
-UnsetFound ensures that no value is present for Found, not even an explicit nil
 ### GetStatus
 
-`func (o *SuccessResponse) GetStatus() interface{}`
+`func (o *SuccessResponse) GetStatus() int32`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *SuccessResponse) GetStatusOk() (*interface{}, bool)`
+`func (o *SuccessResponse) GetStatusOk() (*int32, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *SuccessResponse) SetStatus(v interface{})`
+`func (o *SuccessResponse) SetStatus(v int32)`
 
 SetStatus sets Status field to given value.
 
@@ -230,16 +180,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *SuccessResponse) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *SuccessResponse) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

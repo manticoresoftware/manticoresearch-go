@@ -13,16 +13,14 @@ package openapi
 
 import (
 	"encoding/json"
-	_"fmt"
-	_"bytes"
-	"gopkg.in/validator.v2"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // ResponseError - struct for ResponseError
 type ResponseError struct {
 	ResponseErrorDetails *ResponseErrorDetails
-	Interface{} *interface{}
+	String *string
 }
 
 // ResponseErrorDetailsAsResponseError is a convenience function that returns ResponseErrorDetails wrapped in ResponseError
@@ -32,10 +30,10 @@ func ResponseErrorDetailsAsResponseError(v *ResponseErrorDetails) ResponseError 
 	}
 }
 
-// interface{}AsResponseError is a convenience function that returns interface{} wrapped in ResponseError
-func Interface{}AsResponseError(v *interface{}) ResponseError {
+// stringAsResponseError is a convenience function that returns string wrapped in ResponseError
+func StringAsResponseError(v *string) ResponseError {
 	return ResponseError{
-		Interface{}: v,
+		String: v,
 	}
 }
 
@@ -61,27 +59,27 @@ func (dst *ResponseError) UnmarshalJSON(data []byte) error {
 		dst.ResponseErrorDetails = nil
 	}
 
-	// try to unmarshal data into Interface{}
-	err = newStrictDecoder(data).Decode(&dst.Interface{})
+	// try to unmarshal data into String
+	err = newStrictDecoder(data).Decode(&dst.String)
 	if err == nil {
-		jsonInterface{}, _ := json.Marshal(dst.Interface{})
-		if string(jsonInterface{}) == "{}" { // empty struct
-			dst.Interface{} = nil
+		jsonString, _ := json.Marshal(dst.String)
+		if string(jsonString) == "{}" { // empty struct
+			dst.String = nil
 		} else {
-			if err = validator.Validate(dst.Interface{}); err != nil {
-				dst.Interface{} = nil
+			if err = validator.Validate(dst.String); err != nil {
+				dst.String = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.Interface{} = nil
+		dst.String = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.ResponseErrorDetails = nil
-		dst.Interface{} = nil
+		dst.String = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ResponseError)")
 	} else if match == 1 {
@@ -97,8 +95,8 @@ func (src ResponseError) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ResponseErrorDetails)
 	}
 
-	if src.Interface{} != nil {
-		return json.Marshal(&src.Interface{})
+	if src.String != nil {
+		return json.Marshal(&src.String)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -113,8 +111,22 @@ func (obj *ResponseError) GetActualInstance() (interface{}) {
 		return obj.ResponseErrorDetails
 	}
 
-	if obj.Interface{} != nil {
-		return obj.Interface{}
+	if obj.String != nil {
+		return obj.String
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj ResponseError) GetActualInstanceValue() (interface{}) {
+	if obj.ResponseErrorDetails != nil {
+		return *obj.ResponseErrorDetails
+	}
+
+	if obj.String != nil {
+		return *obj.String
 	}
 
 	// all schemas are nil

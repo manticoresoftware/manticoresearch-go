@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **interface{}** | The ID of the matched document | [optional] 
-**Score** | Pointer to **interface{}** | The score of the matched document | [optional] 
-**Source** | Pointer to **interface{}** | The source data of the matched document | [optional] 
-**KnnDist** | Pointer to **interface{}** | The knn distance of the matched document returned for knn queries | [optional] 
-**Highlight** | Pointer to **interface{}** | The highlighting-related data of the matched document | [optional] 
-**Table** | Pointer to **interface{}** | The table name of the matched document returned for percolate queries | [optional] 
-**Type** | Pointer to **interface{}** | The type of the matched document returned for percolate queries | [optional] 
-**Fields** | Pointer to **interface{}** | The percolate-related fields of the matched document returned for percolate queries | [optional] 
+**Id** | Pointer to **uint64** | The ID of the matched document | [optional]
+**Score** | Pointer to **int32** | The score of the matched document | [optional] 
+**Source** | Pointer to **map[string]interface{}** | The source data of the matched document | [optional] 
+**KnnDist** | Pointer to **float32** | The knn distance of the matched document returned for knn queries | [optional] 
+**Highlight** | Pointer to **map[string]interface{}** | The highlighting-related data of the matched document | [optional] 
+**Table** | Pointer to **string** | The table name of the matched document returned for percolate queries | [optional] 
+**Type** | Pointer to **string** | The type of the matched document returned for percolate queries | [optional] 
+**Fields** | Pointer to **map[string]interface{}** | The percolate-related fields of the matched document returned for percolate queries | [optional] 
 
 ## Methods
 
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *HitsHits) GetId() interface{}`
+`func (o *HitsHits) GetId() uint64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *HitsHits) GetIdOk() (*interface{}, bool)`
+`func (o *HitsHits) GetIdOk() (*uint64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *HitsHits) SetId(v interface{})`
+`func (o *HitsHits) SetId(v uint64)`
 
 SetId sets Id field to given value.
 
@@ -57,32 +57,22 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *HitsHits) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *HitsHits) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetScore
 
-`func (o *HitsHits) GetScore() interface{}`
+`func (o *HitsHits) GetScore() int32`
 
 GetScore returns the Score field if non-nil, zero value otherwise.
 
 ### GetScoreOk
 
-`func (o *HitsHits) GetScoreOk() (*interface{}, bool)`
+`func (o *HitsHits) GetScoreOk() (*int32, bool)`
 
 GetScoreOk returns a tuple with the Score field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetScore
 
-`func (o *HitsHits) SetScore(v interface{})`
+`func (o *HitsHits) SetScore(v int32)`
 
 SetScore sets Score field to given value.
 
@@ -92,32 +82,22 @@ SetScore sets Score field to given value.
 
 HasScore returns a boolean if a field has been set.
 
-### SetScoreNil
-
-`func (o *HitsHits) SetScoreNil(b bool)`
-
- SetScoreNil sets the value for Score to be an explicit nil
-
-### UnsetScore
-`func (o *HitsHits) UnsetScore()`
-
-UnsetScore ensures that no value is present for Score, not even an explicit nil
 ### GetSource
 
-`func (o *HitsHits) GetSource() interface{}`
+`func (o *HitsHits) GetSource() map[string]interface{}`
 
 GetSource returns the Source field if non-nil, zero value otherwise.
 
 ### GetSourceOk
 
-`func (o *HitsHits) GetSourceOk() (*interface{}, bool)`
+`func (o *HitsHits) GetSourceOk() (*map[string]interface{}, bool)`
 
 GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSource
 
-`func (o *HitsHits) SetSource(v interface{})`
+`func (o *HitsHits) SetSource(v map[string]interface{})`
 
 SetSource sets Source field to given value.
 
@@ -127,32 +107,22 @@ SetSource sets Source field to given value.
 
 HasSource returns a boolean if a field has been set.
 
-### SetSourceNil
-
-`func (o *HitsHits) SetSourceNil(b bool)`
-
- SetSourceNil sets the value for Source to be an explicit nil
-
-### UnsetSource
-`func (o *HitsHits) UnsetSource()`
-
-UnsetSource ensures that no value is present for Source, not even an explicit nil
 ### GetKnnDist
 
-`func (o *HitsHits) GetKnnDist() interface{}`
+`func (o *HitsHits) GetKnnDist() float32`
 
 GetKnnDist returns the KnnDist field if non-nil, zero value otherwise.
 
 ### GetKnnDistOk
 
-`func (o *HitsHits) GetKnnDistOk() (*interface{}, bool)`
+`func (o *HitsHits) GetKnnDistOk() (*float32, bool)`
 
 GetKnnDistOk returns a tuple with the KnnDist field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKnnDist
 
-`func (o *HitsHits) SetKnnDist(v interface{})`
+`func (o *HitsHits) SetKnnDist(v float32)`
 
 SetKnnDist sets KnnDist field to given value.
 
@@ -162,32 +132,22 @@ SetKnnDist sets KnnDist field to given value.
 
 HasKnnDist returns a boolean if a field has been set.
 
-### SetKnnDistNil
-
-`func (o *HitsHits) SetKnnDistNil(b bool)`
-
- SetKnnDistNil sets the value for KnnDist to be an explicit nil
-
-### UnsetKnnDist
-`func (o *HitsHits) UnsetKnnDist()`
-
-UnsetKnnDist ensures that no value is present for KnnDist, not even an explicit nil
 ### GetHighlight
 
-`func (o *HitsHits) GetHighlight() interface{}`
+`func (o *HitsHits) GetHighlight() map[string]interface{}`
 
 GetHighlight returns the Highlight field if non-nil, zero value otherwise.
 
 ### GetHighlightOk
 
-`func (o *HitsHits) GetHighlightOk() (*interface{}, bool)`
+`func (o *HitsHits) GetHighlightOk() (*map[string]interface{}, bool)`
 
 GetHighlightOk returns a tuple with the Highlight field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHighlight
 
-`func (o *HitsHits) SetHighlight(v interface{})`
+`func (o *HitsHits) SetHighlight(v map[string]interface{})`
 
 SetHighlight sets Highlight field to given value.
 
@@ -197,32 +157,22 @@ SetHighlight sets Highlight field to given value.
 
 HasHighlight returns a boolean if a field has been set.
 
-### SetHighlightNil
-
-`func (o *HitsHits) SetHighlightNil(b bool)`
-
- SetHighlightNil sets the value for Highlight to be an explicit nil
-
-### UnsetHighlight
-`func (o *HitsHits) UnsetHighlight()`
-
-UnsetHighlight ensures that no value is present for Highlight, not even an explicit nil
 ### GetTable
 
-`func (o *HitsHits) GetTable() interface{}`
+`func (o *HitsHits) GetTable() string`
 
 GetTable returns the Table field if non-nil, zero value otherwise.
 
 ### GetTableOk
 
-`func (o *HitsHits) GetTableOk() (*interface{}, bool)`
+`func (o *HitsHits) GetTableOk() (*string, bool)`
 
 GetTableOk returns a tuple with the Table field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTable
 
-`func (o *HitsHits) SetTable(v interface{})`
+`func (o *HitsHits) SetTable(v string)`
 
 SetTable sets Table field to given value.
 
@@ -232,32 +182,22 @@ SetTable sets Table field to given value.
 
 HasTable returns a boolean if a field has been set.
 
-### SetTableNil
-
-`func (o *HitsHits) SetTableNil(b bool)`
-
- SetTableNil sets the value for Table to be an explicit nil
-
-### UnsetTable
-`func (o *HitsHits) UnsetTable()`
-
-UnsetTable ensures that no value is present for Table, not even an explicit nil
 ### GetType
 
-`func (o *HitsHits) GetType() interface{}`
+`func (o *HitsHits) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *HitsHits) GetTypeOk() (*interface{}, bool)`
+`func (o *HitsHits) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *HitsHits) SetType(v interface{})`
+`func (o *HitsHits) SetType(v string)`
 
 SetType sets Type field to given value.
 
@@ -267,32 +207,22 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-### SetTypeNil
-
-`func (o *HitsHits) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *HitsHits) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetFields
 
-`func (o *HitsHits) GetFields() interface{}`
+`func (o *HitsHits) GetFields() map[string]interface{}`
 
 GetFields returns the Fields field if non-nil, zero value otherwise.
 
 ### GetFieldsOk
 
-`func (o *HitsHits) GetFieldsOk() (*interface{}, bool)`
+`func (o *HitsHits) GetFieldsOk() (*map[string]interface{}, bool)`
 
 GetFieldsOk returns a tuple with the Fields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFields
 
-`func (o *HitsHits) SetFields(v interface{})`
+`func (o *HitsHits) SetFields(v map[string]interface{})`
 
 SetFields sets Fields field to given value.
 
@@ -302,16 +232,6 @@ SetFields sets Fields field to given value.
 
 HasFields returns a boolean if a field has been set.
 
-### SetFieldsNil
-
-`func (o *HitsHits) SetFieldsNil(b bool)`
-
- SetFieldsNil sets the value for Fields to be an explicit nil
-
-### UnsetFields
-`func (o *HitsHits) UnsetFields()`
-
-UnsetFields ensures that no value is present for Fields, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

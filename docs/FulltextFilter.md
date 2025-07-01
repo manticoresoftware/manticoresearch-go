@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**QueryString** | Pointer to **interface{}** | Filter object defining a query string | [optional] 
-**Match** | Pointer to **interface{}** | Filter object defining a match keyword passed as a string or in a Match object | [optional] 
-**MatchPhrase** | Pointer to **interface{}** | Filter object defining a match phrase | [optional] 
-**MatchAll** | Pointer to **interface{}** | Filter object to select all documents | [optional] 
+**QueryString** | Pointer to **string** | Filter object defining a query string | [optional] 
+**Match** | Pointer to **map[string]interface{}** | Filter object defining a match keyword passed as a string or in a Match object | [optional] 
+**MatchPhrase** | Pointer to **map[string]interface{}** | Filter object defining a match phrase | [optional] 
+**MatchAll** | Pointer to **map[string]interface{}** | Filter object to select all documents | [optional] 
 
 ## Methods
 
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetQueryString
 
-`func (o *FulltextFilter) GetQueryString() interface{}`
+`func (o *FulltextFilter) GetQueryString() string`
 
 GetQueryString returns the QueryString field if non-nil, zero value otherwise.
 
 ### GetQueryStringOk
 
-`func (o *FulltextFilter) GetQueryStringOk() (*interface{}, bool)`
+`func (o *FulltextFilter) GetQueryStringOk() (*string, bool)`
 
 GetQueryStringOk returns a tuple with the QueryString field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQueryString
 
-`func (o *FulltextFilter) SetQueryString(v interface{})`
+`func (o *FulltextFilter) SetQueryString(v string)`
 
 SetQueryString sets QueryString field to given value.
 
@@ -53,32 +53,22 @@ SetQueryString sets QueryString field to given value.
 
 HasQueryString returns a boolean if a field has been set.
 
-### SetQueryStringNil
-
-`func (o *FulltextFilter) SetQueryStringNil(b bool)`
-
- SetQueryStringNil sets the value for QueryString to be an explicit nil
-
-### UnsetQueryString
-`func (o *FulltextFilter) UnsetQueryString()`
-
-UnsetQueryString ensures that no value is present for QueryString, not even an explicit nil
 ### GetMatch
 
-`func (o *FulltextFilter) GetMatch() interface{}`
+`func (o *FulltextFilter) GetMatch() map[string]interface{}`
 
 GetMatch returns the Match field if non-nil, zero value otherwise.
 
 ### GetMatchOk
 
-`func (o *FulltextFilter) GetMatchOk() (*interface{}, bool)`
+`func (o *FulltextFilter) GetMatchOk() (*map[string]interface{}, bool)`
 
 GetMatchOk returns a tuple with the Match field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatch
 
-`func (o *FulltextFilter) SetMatch(v interface{})`
+`func (o *FulltextFilter) SetMatch(v map[string]interface{})`
 
 SetMatch sets Match field to given value.
 
@@ -88,32 +78,22 @@ SetMatch sets Match field to given value.
 
 HasMatch returns a boolean if a field has been set.
 
-### SetMatchNil
-
-`func (o *FulltextFilter) SetMatchNil(b bool)`
-
- SetMatchNil sets the value for Match to be an explicit nil
-
-### UnsetMatch
-`func (o *FulltextFilter) UnsetMatch()`
-
-UnsetMatch ensures that no value is present for Match, not even an explicit nil
 ### GetMatchPhrase
 
-`func (o *FulltextFilter) GetMatchPhrase() interface{}`
+`func (o *FulltextFilter) GetMatchPhrase() map[string]interface{}`
 
 GetMatchPhrase returns the MatchPhrase field if non-nil, zero value otherwise.
 
 ### GetMatchPhraseOk
 
-`func (o *FulltextFilter) GetMatchPhraseOk() (*interface{}, bool)`
+`func (o *FulltextFilter) GetMatchPhraseOk() (*map[string]interface{}, bool)`
 
 GetMatchPhraseOk returns a tuple with the MatchPhrase field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatchPhrase
 
-`func (o *FulltextFilter) SetMatchPhrase(v interface{})`
+`func (o *FulltextFilter) SetMatchPhrase(v map[string]interface{})`
 
 SetMatchPhrase sets MatchPhrase field to given value.
 
@@ -123,32 +103,22 @@ SetMatchPhrase sets MatchPhrase field to given value.
 
 HasMatchPhrase returns a boolean if a field has been set.
 
-### SetMatchPhraseNil
-
-`func (o *FulltextFilter) SetMatchPhraseNil(b bool)`
-
- SetMatchPhraseNil sets the value for MatchPhrase to be an explicit nil
-
-### UnsetMatchPhrase
-`func (o *FulltextFilter) UnsetMatchPhrase()`
-
-UnsetMatchPhrase ensures that no value is present for MatchPhrase, not even an explicit nil
 ### GetMatchAll
 
-`func (o *FulltextFilter) GetMatchAll() interface{}`
+`func (o *FulltextFilter) GetMatchAll() map[string]interface{}`
 
 GetMatchAll returns the MatchAll field if non-nil, zero value otherwise.
 
 ### GetMatchAllOk
 
-`func (o *FulltextFilter) GetMatchAllOk() (*interface{}, bool)`
+`func (o *FulltextFilter) GetMatchAllOk() (*map[string]interface{}, bool)`
 
 GetMatchAllOk returns a tuple with the MatchAll field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatchAll
 
-`func (o *FulltextFilter) SetMatchAll(v interface{})`
+`func (o *FulltextFilter) SetMatchAll(v map[string]interface{})`
 
 SetMatchAll sets MatchAll field to given value.
 
@@ -158,16 +128,6 @@ SetMatchAll sets MatchAll field to given value.
 
 HasMatchAll returns a boolean if a field has been set.
 
-### SetMatchAllNil
-
-`func (o *FulltextFilter) SetMatchAllNil(b bool)`
-
- SetMatchAllNil sets the value for MatchAll to be an explicit nil
-
-### UnsetMatchAll
-`func (o *FulltextFilter) UnsetMatchAll()`
-
-UnsetMatchAll ensures that no value is present for MatchAll, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

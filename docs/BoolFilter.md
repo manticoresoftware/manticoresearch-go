@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Must** | Pointer to **interface{}** | Query clauses that must match for the document to be included | [optional] 
-**MustNot** | Pointer to **interface{}** | Query clauses that must not match for the document to be included | [optional] 
-**Should** | Pointer to **interface{}** | Query clauses that should be matched, but are not required | [optional] 
+**Must** | Pointer to [**[]QueryFilter**](QueryFilter.md) | Query clauses that must match for the document to be included | [optional] 
+**MustNot** | Pointer to [**[]QueryFilter**](QueryFilter.md) | Query clauses that must not match for the document to be included | [optional] 
+**Should** | Pointer to [**[]QueryFilter**](QueryFilter.md) | Query clauses that should be matched, but are not required | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMust
 
-`func (o *BoolFilter) GetMust() interface{}`
+`func (o *BoolFilter) GetMust() []QueryFilter`
 
 GetMust returns the Must field if non-nil, zero value otherwise.
 
 ### GetMustOk
 
-`func (o *BoolFilter) GetMustOk() (*interface{}, bool)`
+`func (o *BoolFilter) GetMustOk() (*[]QueryFilter, bool)`
 
 GetMustOk returns a tuple with the Must field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMust
 
-`func (o *BoolFilter) SetMust(v interface{})`
+`func (o *BoolFilter) SetMust(v []QueryFilter)`
 
 SetMust sets Must field to given value.
 
@@ -52,32 +52,22 @@ SetMust sets Must field to given value.
 
 HasMust returns a boolean if a field has been set.
 
-### SetMustNil
-
-`func (o *BoolFilter) SetMustNil(b bool)`
-
- SetMustNil sets the value for Must to be an explicit nil
-
-### UnsetMust
-`func (o *BoolFilter) UnsetMust()`
-
-UnsetMust ensures that no value is present for Must, not even an explicit nil
 ### GetMustNot
 
-`func (o *BoolFilter) GetMustNot() interface{}`
+`func (o *BoolFilter) GetMustNot() []*QueryFilter`
 
 GetMustNot returns the MustNot field if non-nil, zero value otherwise.
 
 ### GetMustNotOk
 
-`func (o *BoolFilter) GetMustNotOk() (*interface{}, bool)`
+`func (o *BoolFilter) GetMustNotOk() (*[]*QueryFilter, bool)`
 
 GetMustNotOk returns a tuple with the MustNot field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMustNot
 
-`func (o *BoolFilter) SetMustNot(v interface{})`
+`func (o *BoolFilter) SetMustNot(v []*QueryFilter)`
 
 SetMustNot sets MustNot field to given value.
 
@@ -87,32 +77,22 @@ SetMustNot sets MustNot field to given value.
 
 HasMustNot returns a boolean if a field has been set.
 
-### SetMustNotNil
-
-`func (o *BoolFilter) SetMustNotNil(b bool)`
-
- SetMustNotNil sets the value for MustNot to be an explicit nil
-
-### UnsetMustNot
-`func (o *BoolFilter) UnsetMustNot()`
-
-UnsetMustNot ensures that no value is present for MustNot, not even an explicit nil
 ### GetShould
 
-`func (o *BoolFilter) GetShould() interface{}`
+`func (o *BoolFilter) GetShould() []*QueryFilter`
 
 GetShould returns the Should field if non-nil, zero value otherwise.
 
 ### GetShouldOk
 
-`func (o *BoolFilter) GetShouldOk() (*interface{}, bool)`
+`func (o *BoolFilter) GetShouldOk() (*[]*QueryFilter, bool)`
 
 GetShouldOk returns a tuple with the Should field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShould
 
-`func (o *BoolFilter) SetShould(v interface{})`
+`func (o *BoolFilter) SetShould(v []*QueryFilter)`
 
 SetShould sets Should field to given value.
 
@@ -122,16 +102,6 @@ SetShould sets Should field to given value.
 
 HasShould returns a boolean if a field has been set.
 
-### SetShouldNil
-
-`func (o *BoolFilter) SetShouldNil(b bool)`
-
- SetShouldNil sets the value for Should to be an explicit nil
-
-### UnsetShould
-`func (o *BoolFilter) UnsetShould()`
-
-UnsetShould ensures that no value is present for Should, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

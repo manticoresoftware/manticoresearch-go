@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AggTerms type satisfies the MappedNullable interface at compile time
@@ -23,9 +23,9 @@ var _ MappedNullable = &AggTerms{}
 // AggTerms Object containing term fields to aggregate on
 type AggTerms struct {
 	// Name of attribute to aggregate by
-	Field interface{} `json:"field"` 
+	Field string `json:"field"`
 	// Maximum number of buckets in the result
-	Size interface{} `json:"size"` 
+	Size *int32 `json:"size,omitempty"`
 }
 
 type _AggTerms AggTerms
@@ -34,7 +34,7 @@ type _AggTerms AggTerms
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAggTerms(field interface{}) *AggTerms {
+func NewAggTerms(field string) *AggTerms {
 	this := AggTerms{}
 	this.Field = field
 	return &this
@@ -49,10 +49,9 @@ func NewAggTermsWithDefaults() *AggTerms {
 }
 
 // GetField returns the Field field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *AggTerms) GetField() interface{} {
+func (o *AggTerms) GetField() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -61,36 +60,34 @@ func (o *AggTerms) GetField() interface{} {
 
 // GetFieldOk returns a tuple with the Field field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggTerms) GetFieldOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Field) {
+func (o *AggTerms) GetFieldOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Field, true
 }
 
 // SetField sets field value
-func (o *AggTerms) SetField(v interface{}) {
+func (o *AggTerms) SetField(v string) {
 	o.Field = v
 }
 
-// GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggTerms) GetSize() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetSize returns the Size field value if set, zero value otherwise.
+func (o *AggTerms) GetSize() int32 {
+	if o == nil || IsNil(o.Size) {
+		var ret int32
 		return ret
 	}
-	return o.Size
+	return *o.Size
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggTerms) GetSizeOk() (*interface{}, bool) {
+func (o *AggTerms) GetSizeOk() (*int32, bool) {
 	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
-	return &o.Size, true
+	return o.Size, true
 }
 
 // HasSize returns a boolean if a field has been set.
@@ -102,9 +99,9 @@ func (o *AggTerms) HasSize() bool {
 	return false
 }
 
-// SetSize gets a reference to the given interface{} and assigns it to the Size field.
-func (o *AggTerms) SetSize(v interface{}) {
-	o.Size = v
+// SetSize gets a reference to the given int32 and assigns it to the Size field.
+func (o *AggTerms) SetSize(v int32) {
+	o.Size = &v
 }
 
 func (o AggTerms) MarshalJSON() ([]byte, error) {
@@ -117,13 +114,48 @@ func (o AggTerms) MarshalJSON() ([]byte, error) {
 
 func (o AggTerms) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Field != nil {
-		toSerialize["field"] = o.Field
-	}
-	if o.Size != nil {
+	toSerialize["field"] = o.Field
+	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
 	return toSerialize, nil
+}
+
+func (o *AggTerms) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"field",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAggTerms := _AggTerms{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAggTerms)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AggTerms(varAggTerms)
+
+	return err
 }
 
 type NullableAggTerms struct {

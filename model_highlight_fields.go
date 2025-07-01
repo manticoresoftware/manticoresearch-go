@@ -13,38 +13,56 @@ package openapi
 
 import (
 	"encoding/json"
-	_"fmt"
+	"fmt"
 )
 
 
 // HighlightFields List of fields available for highlighting
 type HighlightFields struct {
-	Interface{} *interface{}
+	ArrayOfString *[]string
+	MapmapOfStringAny *map[string]interface{}
 }
 
 // Unmarshal JSON data into any of the pointers in the struct
 func (dst *HighlightFields) UnmarshalJSON(data []byte) error {
 	var err error
-	// try to unmarshal JSON data into Interface{}
-	err = json.Unmarshal(data, &dst.Interface{});
+	// try to unmarshal JSON data into ArrayOfString
+	err = json.Unmarshal(data, &dst.ArrayOfString);
 	if err == nil {
-		jsonInterface{}, _ := json.Marshal(dst.Interface{})
-		if string(jsonInterface{}) == "{}" { // empty struct
-			dst.Interface{} = nil
+		jsonArrayOfString, _ := json.Marshal(dst.ArrayOfString)
+		if string(jsonArrayOfString) == "{}" { // empty struct
+			dst.ArrayOfString = nil
 		} else {
-			return nil // data stored in dst.Interface{}, return on the first match
+			return nil // data stored in dst.ArrayOfString, return on the first match
 		}
 	} else {
-		dst.Interface{} = nil
+		dst.ArrayOfString = nil
+	}
+
+	// try to unmarshal JSON data into MapmapOfStringAny
+	err = json.Unmarshal(data, &dst.MapmapOfStringAny);
+	if err == nil {
+		jsonMapmapOfStringAny, _ := json.Marshal(dst.MapmapOfStringAny)
+		if string(jsonMapmapOfStringAny) == "{}" { // empty struct
+			dst.MapmapOfStringAny = nil
+		} else {
+			return nil // data stored in dst.MapmapOfStringAny, return on the first match
+		}
+	} else {
+		dst.MapmapOfStringAny = nil
 	}
 
 	return fmt.Errorf("data failed to match schemas in anyOf(HighlightFields)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *HighlightFields) MarshalJSON() ([]byte, error) {
-	if src.Interface{} != nil {
-		return json.Marshal(&src.Interface{})
+func (src HighlightFields) MarshalJSON() ([]byte, error) {
+	if src.ArrayOfString != nil {
+		return json.Marshal(&src.ArrayOfString)
+	}
+
+	if src.MapmapOfStringAny != nil {
+		return json.Marshal(&src.MapmapOfStringAny)
 	}
 
 	return nil, nil // no data in anyOf schemas

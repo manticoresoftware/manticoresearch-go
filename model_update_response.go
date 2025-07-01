@@ -21,13 +21,13 @@ var _ MappedNullable = &UpdateResponse{}
 // UpdateResponse Success response returned after updating one or more documents
 type UpdateResponse struct {
 	// Name of the document table
-	Table interface{} `json:"table"` 
+	Table *string `json:"table,omitempty"`
 	// Number of documents updated
-	Updated interface{} `json:"updated"` 
+	Updated *int32 `json:"updated,omitempty"`
 	// Document ID
-	Id interface{} `json:"id"` 
+	Id *uint64 `json:"id,omitempty"`
 	// Result of the update operation, typically 'updated'
-	Result interface{} `json:"result"` 
+	Result *string `json:"result,omitempty"`
 }
 
 // NewUpdateResponse instantiates a new UpdateResponse object
@@ -47,23 +47,22 @@ func NewUpdateResponseWithDefaults() *UpdateResponse {
 	return &this
 }
 
-// GetTable returns the Table field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateResponse) GetTable() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetTable returns the Table field value if set, zero value otherwise.
+func (o *UpdateResponse) GetTable() string {
+	if o == nil || IsNil(o.Table) {
+		var ret string
 		return ret
 	}
-	return o.Table
+	return *o.Table
 }
 
 // GetTableOk returns a tuple with the Table field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateResponse) GetTableOk() (*interface{}, bool) {
+func (o *UpdateResponse) GetTableOk() (*string, bool) {
 	if o == nil || IsNil(o.Table) {
 		return nil, false
 	}
-	return &o.Table, true
+	return o.Table, true
 }
 
 // HasTable returns a boolean if a field has been set.
@@ -75,28 +74,27 @@ func (o *UpdateResponse) HasTable() bool {
 	return false
 }
 
-// SetTable gets a reference to the given interface{} and assigns it to the Table field.
-func (o *UpdateResponse) SetTable(v interface{}) {
-	o.Table = v
+// SetTable gets a reference to the given string and assigns it to the Table field.
+func (o *UpdateResponse) SetTable(v string) {
+	o.Table = &v
 }
 
-// GetUpdated returns the Updated field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateResponse) GetUpdated() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetUpdated returns the Updated field value if set, zero value otherwise.
+func (o *UpdateResponse) GetUpdated() int32 {
+	if o == nil || IsNil(o.Updated) {
+		var ret int32
 		return ret
 	}
-	return o.Updated
+	return *o.Updated
 }
 
 // GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateResponse) GetUpdatedOk() (*interface{}, bool) {
+func (o *UpdateResponse) GetUpdatedOk() (*int32, bool) {
 	if o == nil || IsNil(o.Updated) {
 		return nil, false
 	}
-	return &o.Updated, true
+	return o.Updated, true
 }
 
 // HasUpdated returns a boolean if a field has been set.
@@ -108,28 +106,27 @@ func (o *UpdateResponse) HasUpdated() bool {
 	return false
 }
 
-// SetUpdated gets a reference to the given interface{} and assigns it to the Updated field.
-func (o *UpdateResponse) SetUpdated(v interface{}) {
-	o.Updated = v
+// SetUpdated gets a reference to the given int32 and assigns it to the Updated field.
+func (o *UpdateResponse) SetUpdated(v int32) {
+	o.Updated = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateResponse) GetId() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *UpdateResponse) GetId() uint64 {
+	if o == nil || IsNil(o.Id) {
+		var ret uint64
 		return ret
 	}
-	return o.Id
+	return *o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateResponse) GetIdOk() (*interface{}, bool) {
+func (o *UpdateResponse) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -141,28 +138,27 @@ func (o *UpdateResponse) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given interface{} and assigns it to the Id field.
-func (o *UpdateResponse) SetId(v interface{}) {
-	o.Id = v
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *UpdateResponse) SetId(v uint64) {
+	o.Id = &v
 }
 
-// GetResult returns the Result field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateResponse) GetResult() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetResult returns the Result field value if set, zero value otherwise.
+func (o *UpdateResponse) GetResult() string {
+	if o == nil || IsNil(o.Result) {
+		var ret string
 		return ret
 	}
-	return o.Result
+	return *o.Result
 }
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateResponse) GetResultOk() (*interface{}, bool) {
+func (o *UpdateResponse) GetResultOk() (*string, bool) {
 	if o == nil || IsNil(o.Result) {
 		return nil, false
 	}
-	return &o.Result, true
+	return o.Result, true
 }
 
 // HasResult returns a boolean if a field has been set.
@@ -174,9 +170,9 @@ func (o *UpdateResponse) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given interface{} and assigns it to the Result field.
-func (o *UpdateResponse) SetResult(v interface{}) {
-	o.Result = v
+// SetResult gets a reference to the given string and assigns it to the Result field.
+func (o *UpdateResponse) SetResult(v string) {
+	o.Result = &v
 }
 
 func (o UpdateResponse) MarshalJSON() ([]byte, error) {
@@ -189,16 +185,16 @@ func (o UpdateResponse) MarshalJSON() ([]byte, error) {
 
 func (o UpdateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Table != nil {
+	if !IsNil(o.Table) {
 		toSerialize["table"] = o.Table
 	}
-	if o.Updated != nil {
+	if !IsNil(o.Updated) {
 		toSerialize["updated"] = o.Updated
 	}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Result != nil {
+	if !IsNil(o.Result) {
 		toSerialize["result"] = o.Result
 	}
 	return toSerialize, nil

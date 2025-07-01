@@ -13,27 +13,27 @@ package openapi
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // SqlResponse - List of responses from executed SQL queries
 type SqlResponse struct {
-	ArrayOfMapmapOfStringinterface *[]map[string]interface{}
-	MapmapOfStringinterface *map[string]interface{}
+	SqlObjResponse *SqlObjResponse
+	ArrayOfMapmapOfStringAny *[]map[string]interface{}
 }
 
-// []map[string]interface{}AsSqlResponse is a convenience function that returns []map[string]interface{} wrapped in SqlResponse
-func ArrayOfMapmapOfStringinterfaceAsSqlResponse(v *[]map[string]interface{}) SqlResponse {
+// SqlObjResponseAsSqlResponse is a convenience function that returns SqlObjResponse wrapped in SqlResponse
+func SqlObjResponseAsSqlResponse(v *SqlObjResponse) SqlResponse {
 	return SqlResponse{
-		ArrayOfMapmapOfStringinterface: v,
+		SqlObjResponse: v,
 	}
 }
 
-// map[string]interface{}AsSqlResponse is a convenience function that returns map[string]interface{} wrapped in SqlResponse
-func MapmapOfStringinterfaceAsSqlResponse(v *map[string]interface{}) SqlResponse {
+// []map[string]interface{}AsSqlResponse is a convenience function that returns []map[string]interface{} wrapped in SqlResponse
+func ArrayOfMapmapOfStringAnyAsSqlResponse(v *[]map[string]interface{}) SqlResponse {
 	return SqlResponse{
-		MapmapOfStringinterface: v,
+		ArrayOfMapmapOfStringAny: v,
 	}
 }
 
@@ -42,44 +42,44 @@ func MapmapOfStringinterfaceAsSqlResponse(v *map[string]interface{}) SqlResponse
 func (dst *SqlResponse) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into ArrayOfMapmapOfStringinterface{}
-	err = newStrictDecoder(data).Decode(&dst.ArrayOfMapmapOfStringinterface)
+	// try to unmarshal data into SqlObjResponse
+	err = newStrictDecoder(data).Decode(&dst.SqlObjResponse)
 	if err == nil {
-		jsonArrayOfMapmapOfStringinterface, _ := json.Marshal(dst.ArrayOfMapmapOfStringinterface)
-		if string(jsonArrayOfMapmapOfStringinterface) == "{}" { // empty struct
-			dst.ArrayOfMapmapOfStringinterface = nil
+		jsonSqlObjResponse, _ := json.Marshal(dst.SqlObjResponse)
+		if string(jsonSqlObjResponse) == "{}" { // empty struct
+			dst.SqlObjResponse = nil
 		} else {
-			if err = validator.Validate(dst.ArrayOfMapmapOfStringinterface); err != nil {
-				dst.ArrayOfMapmapOfStringinterface = nil
+			if err = validator.Validate(dst.SqlObjResponse); err != nil {
+				dst.SqlObjResponse = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ArrayOfMapmapOfStringinterface = nil
+		dst.SqlObjResponse = nil
 	}
 
-	// try to unmarshal data into MapmapOfStringinterface{}
-	err = newStrictDecoder(data).Decode(&dst.MapmapOfStringinterface)
+	// try to unmarshal data into ArrayOfMapmapOfStringAny
+	err = newStrictDecoder(data).Decode(&dst.ArrayOfMapmapOfStringAny)
 	if err == nil {
-		jsonMapmapOfStringinterface, _ := json.Marshal(dst.MapmapOfStringinterface)
-		if string(jsonMapmapOfStringinterface) == "{}" { // empty struct
-			dst.MapmapOfStringinterface = nil
+		jsonArrayOfMapmapOfStringAny, _ := json.Marshal(dst.ArrayOfMapmapOfStringAny)
+		if string(jsonArrayOfMapmapOfStringAny) == "{}" { // empty struct
+			dst.ArrayOfMapmapOfStringAny = nil
 		} else {
-			if err = validator.Validate(dst.MapmapOfStringinterface); err != nil {
-				dst.MapmapOfStringinterface = nil
+			if err = validator.Validate(dst.ArrayOfMapmapOfStringAny); err != nil {
+				dst.ArrayOfMapmapOfStringAny = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.MapmapOfStringinterface = nil
+		dst.ArrayOfMapmapOfStringAny = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.ArrayOfMapmapOfStringinterface = nil
-		dst.MapmapOfStringinterface = nil
+		dst.SqlObjResponse = nil
+		dst.ArrayOfMapmapOfStringAny = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(SqlResponse)")
 	} else if match == 1 {
@@ -91,12 +91,12 @@ func (dst *SqlResponse) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src SqlResponse) MarshalJSON() ([]byte, error) {
-	if src.ArrayOfMapmapOfStringinterface != nil {
-		return json.Marshal(&src.ArrayOfMapmapOfStringinterface)
+	if src.SqlObjResponse != nil {
+		return json.Marshal(&src.SqlObjResponse)
 	}
 
-	if src.MapmapOfStringinterface != nil {
-		return json.Marshal(&src.MapmapOfStringinterface)
+	if src.ArrayOfMapmapOfStringAny != nil {
+		return json.Marshal(&src.ArrayOfMapmapOfStringAny)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -107,12 +107,26 @@ func (obj *SqlResponse) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.ArrayOfMapmapOfStringinterface != nil {
-		return obj.ArrayOfMapmapOfStringinterface
+	if obj.SqlObjResponse != nil {
+		return obj.SqlObjResponse
 	}
 
-	if obj.MapmapOfStringinterface != nil {
-		return obj.MapmapOfStringinterface
+	if obj.ArrayOfMapmapOfStringAny != nil {
+		return obj.ArrayOfMapmapOfStringAny
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj SqlResponse) GetActualInstanceValue() (interface{}) {
+	if obj.SqlObjResponse != nil {
+		return *obj.SqlObjResponse
+	}
+
+	if obj.ArrayOfMapmapOfStringAny != nil {
+		return *obj.ArrayOfMapmapOfStringAny
 	}
 
 	// all schemas are nil

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Lat** | Pointer to **interface{}** | Latitude of the anchor point | [optional] 
-**Lon** | Pointer to **interface{}** | Longitude of the anchor point | [optional] 
+**Lat** | Pointer to **float32** | Latitude of the anchor point | [optional] 
+**Lon** | Pointer to **float32** | Longitude of the anchor point | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLat
 
-`func (o *GeoDistanceLocationAnchor) GetLat() interface{}`
+`func (o *GeoDistanceLocationAnchor) GetLat() float32`
 
 GetLat returns the Lat field if non-nil, zero value otherwise.
 
 ### GetLatOk
 
-`func (o *GeoDistanceLocationAnchor) GetLatOk() (*interface{}, bool)`
+`func (o *GeoDistanceLocationAnchor) GetLatOk() (*float32, bool)`
 
 GetLatOk returns a tuple with the Lat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLat
 
-`func (o *GeoDistanceLocationAnchor) SetLat(v interface{})`
+`func (o *GeoDistanceLocationAnchor) SetLat(v float32)`
 
 SetLat sets Lat field to given value.
 
@@ -51,32 +51,22 @@ SetLat sets Lat field to given value.
 
 HasLat returns a boolean if a field has been set.
 
-### SetLatNil
-
-`func (o *GeoDistanceLocationAnchor) SetLatNil(b bool)`
-
- SetLatNil sets the value for Lat to be an explicit nil
-
-### UnsetLat
-`func (o *GeoDistanceLocationAnchor) UnsetLat()`
-
-UnsetLat ensures that no value is present for Lat, not even an explicit nil
 ### GetLon
 
-`func (o *GeoDistanceLocationAnchor) GetLon() interface{}`
+`func (o *GeoDistanceLocationAnchor) GetLon() float32`
 
 GetLon returns the Lon field if non-nil, zero value otherwise.
 
 ### GetLonOk
 
-`func (o *GeoDistanceLocationAnchor) GetLonOk() (*interface{}, bool)`
+`func (o *GeoDistanceLocationAnchor) GetLonOk() (*float32, bool)`
 
 GetLonOk returns a tuple with the Lon field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLon
 
-`func (o *GeoDistanceLocationAnchor) SetLon(v interface{})`
+`func (o *GeoDistanceLocationAnchor) SetLon(v float32)`
 
 SetLon sets Lon field to given value.
 
@@ -86,16 +76,6 @@ SetLon sets Lon field to given value.
 
 HasLon returns a boolean if a field has been set.
 
-### SetLonNil
-
-`func (o *GeoDistanceLocationAnchor) SetLonNil(b bool)`
-
- SetLonNil sets the value for Lon to be an explicit nil
-
-### UnsetLon
-`func (o *GeoDistanceLocationAnchor) UnsetLon()`
-
-UnsetLon ensures that no value is present for Lon, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

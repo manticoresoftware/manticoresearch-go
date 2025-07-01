@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Match type satisfies the MappedNullable interface at compile time
@@ -22,9 +22,9 @@ var _ MappedNullable = &Match{}
 
 // Match Filter helper object defining a match keyword and match options
 type Match struct {
-	Query string `json:"query"` 
-	Operator interface{} `json:"operator"` 
-	Boost interface{} `json:"boost"` 
+	Query string `json:"query"`
+	Operator *string `json:"operator,omitempty"`
+	Boost *float32 `json:"boost,omitempty"`
 }
 
 type _Match Match
@@ -71,23 +71,22 @@ func (o *Match) SetQuery(v string) {
 	o.Query = v
 }
 
-// GetOperator returns the Operator field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Match) GetOperator() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetOperator returns the Operator field value if set, zero value otherwise.
+func (o *Match) GetOperator() string {
+	if o == nil || IsNil(o.Operator) {
+		var ret string
 		return ret
 	}
-	return o.Operator
+	return *o.Operator
 }
 
 // GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Match) GetOperatorOk() (*interface{}, bool) {
+func (o *Match) GetOperatorOk() (*string, bool) {
 	if o == nil || IsNil(o.Operator) {
 		return nil, false
 	}
-	return &o.Operator, true
+	return o.Operator, true
 }
 
 // HasOperator returns a boolean if a field has been set.
@@ -99,28 +98,27 @@ func (o *Match) HasOperator() bool {
 	return false
 }
 
-// SetOperator gets a reference to the given interface{} and assigns it to the Operator field.
-func (o *Match) SetOperator(v interface{}) {
-	o.Operator = v
+// SetOperator gets a reference to the given string and assigns it to the Operator field.
+func (o *Match) SetOperator(v string) {
+	o.Operator = &v
 }
 
-// GetBoost returns the Boost field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Match) GetBoost() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetBoost returns the Boost field value if set, zero value otherwise.
+func (o *Match) GetBoost() float32 {
+	if o == nil || IsNil(o.Boost) {
+		var ret float32
 		return ret
 	}
-	return o.Boost
+	return *o.Boost
 }
 
 // GetBoostOk returns a tuple with the Boost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Match) GetBoostOk() (*interface{}, bool) {
+func (o *Match) GetBoostOk() (*float32, bool) {
 	if o == nil || IsNil(o.Boost) {
 		return nil, false
 	}
-	return &o.Boost, true
+	return o.Boost, true
 }
 
 // HasBoost returns a boolean if a field has been set.
@@ -132,9 +130,9 @@ func (o *Match) HasBoost() bool {
 	return false
 }
 
-// SetBoost gets a reference to the given interface{} and assigns it to the Boost field.
-func (o *Match) SetBoost(v interface{}) {
-	o.Boost = v
+// SetBoost gets a reference to the given float32 and assigns it to the Boost field.
+func (o *Match) SetBoost(v float32) {
+	o.Boost = &v
 }
 
 func (o Match) MarshalJSON() ([]byte, error) {
@@ -148,13 +146,50 @@ func (o Match) MarshalJSON() ([]byte, error) {
 func (o Match) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["query"] = o.Query
-	if o.Operator != nil {
+	if !IsNil(o.Operator) {
 		toSerialize["operator"] = o.Operator
 	}
-	if o.Boost != nil {
+	if !IsNil(o.Boost) {
 		toSerialize["boost"] = o.Boost
 	}
 	return toSerialize, nil
+}
+
+func (o *Match) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"query",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMatch := _Match{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMatch)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Match(varMatch)
+
+	return err
 }
 
 type NullableMatch struct {

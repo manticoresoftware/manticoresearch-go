@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Field** | **interface{}** | Field to join on | 
-**Table** | **interface{}** | Joined table | 
+**Field** | **string** | Field to join on | 
+**Table** | **string** | Joined table | 
 **Type** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
 
 ### NewJoinCond
 
-`func NewJoinCond(field interface{}, table interface{}, ) *JoinCond`
+`func NewJoinCond(field string, table string, ) *JoinCond`
 
 NewJoinCond instantiates a new JoinCond object
 This constructor will assign default values to properties that have it defined,
@@ -29,64 +29,44 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetField
 
-`func (o *JoinCond) GetField() interface{}`
+`func (o *JoinCond) GetField() string`
 
 GetField returns the Field field if non-nil, zero value otherwise.
 
 ### GetFieldOk
 
-`func (o *JoinCond) GetFieldOk() (*interface{}, bool)`
+`func (o *JoinCond) GetFieldOk() (*string, bool)`
 
 GetFieldOk returns a tuple with the Field field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetField
 
-`func (o *JoinCond) SetField(v interface{})`
+`func (o *JoinCond) SetField(v string)`
 
 SetField sets Field field to given value.
 
 
-### SetFieldNil
-
-`func (o *JoinCond) SetFieldNil(b bool)`
-
- SetFieldNil sets the value for Field to be an explicit nil
-
-### UnsetField
-`func (o *JoinCond) UnsetField()`
-
-UnsetField ensures that no value is present for Field, not even an explicit nil
 ### GetTable
 
-`func (o *JoinCond) GetTable() interface{}`
+`func (o *JoinCond) GetTable() string`
 
 GetTable returns the Table field if non-nil, zero value otherwise.
 
 ### GetTableOk
 
-`func (o *JoinCond) GetTableOk() (*interface{}, bool)`
+`func (o *JoinCond) GetTableOk() (*string, bool)`
 
 GetTableOk returns a tuple with the Table field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTable
 
-`func (o *JoinCond) SetTable(v interface{})`
+`func (o *JoinCond) SetTable(v string)`
 
 SetTable sets Table field to given value.
 
 
-### SetTableNil
-
-`func (o *JoinCond) SetTableNil(b bool)`
-
- SetTableNil sets the value for Table to be an explicit nil
-
-### UnsetTable
-`func (o *JoinCond) UnsetTable()`
-
-UnsetTable ensures that no value is present for Table, not even an explicit nil
 ### GetType
 
 `func (o *JoinCond) GetType() interface{}`

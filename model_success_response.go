@@ -21,17 +21,17 @@ var _ MappedNullable = &SuccessResponse{}
 // SuccessResponse Response object indicating the success of an operation, such as inserting or updating a document
 type SuccessResponse struct {
 	// Name of the document table
-	Table interface{} `json:"table"` 
+	Table *string `json:"table,omitempty"`
 	// ID of the document affected by the request operation
-	Id interface{} `json:"id"` 
+	Id *uint64 `json:"id,omitempty"`
 	// Indicates whether the document was created as a result of the operation
-	Created interface{} `json:"created"` 
+	Created *bool `json:"created,omitempty"`
 	// Result of the operation, typically 'created', 'updated', or 'deleted'
-	Result interface{} `json:"result"` 
+	Result *string `json:"result,omitempty"`
 	// Indicates whether the document was found in the table
-	Found interface{} `json:"found"` 
+	Found *bool `json:"found,omitempty"`
 	// HTTP status code representing the result of the operation
-	Status interface{} `json:"status"` 
+	Status *int32 `json:"status,omitempty"`
 }
 
 // NewSuccessResponse instantiates a new SuccessResponse object
@@ -51,23 +51,22 @@ func NewSuccessResponseWithDefaults() *SuccessResponse {
 	return &this
 }
 
-// GetTable returns the Table field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SuccessResponse) GetTable() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetTable returns the Table field value if set, zero value otherwise.
+func (o *SuccessResponse) GetTable() string {
+	if o == nil || IsNil(o.Table) {
+		var ret string
 		return ret
 	}
-	return o.Table
+	return *o.Table
 }
 
 // GetTableOk returns a tuple with the Table field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SuccessResponse) GetTableOk() (*interface{}, bool) {
+func (o *SuccessResponse) GetTableOk() (*string, bool) {
 	if o == nil || IsNil(o.Table) {
 		return nil, false
 	}
-	return &o.Table, true
+	return o.Table, true
 }
 
 // HasTable returns a boolean if a field has been set.
@@ -79,28 +78,27 @@ func (o *SuccessResponse) HasTable() bool {
 	return false
 }
 
-// SetTable gets a reference to the given interface{} and assigns it to the Table field.
-func (o *SuccessResponse) SetTable(v interface{}) {
-	o.Table = v
+// SetTable gets a reference to the given string and assigns it to the Table field.
+func (o *SuccessResponse) SetTable(v string) {
+	o.Table = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SuccessResponse) GetId() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SuccessResponse) GetId() uint64 {
+	if o == nil || IsNil(o.Id) {
+		var ret uint64
 		return ret
 	}
-	return o.Id
+	return *o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SuccessResponse) GetIdOk() (*interface{}, bool) {
+func (o *SuccessResponse) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -112,28 +110,27 @@ func (o *SuccessResponse) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given interface{} and assigns it to the Id field.
-func (o *SuccessResponse) SetId(v interface{}) {
-	o.Id = v
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *SuccessResponse) SetId(v uint64) {
+	o.Id = &v
 }
 
-// GetCreated returns the Created field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SuccessResponse) GetCreated() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetCreated returns the Created field value if set, zero value otherwise.
+func (o *SuccessResponse) GetCreated() bool {
+	if o == nil || IsNil(o.Created) {
+		var ret bool
 		return ret
 	}
-	return o.Created
+	return *o.Created
 }
 
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SuccessResponse) GetCreatedOk() (*interface{}, bool) {
+func (o *SuccessResponse) GetCreatedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
-	return &o.Created, true
+	return o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
@@ -145,28 +142,27 @@ func (o *SuccessResponse) HasCreated() bool {
 	return false
 }
 
-// SetCreated gets a reference to the given interface{} and assigns it to the Created field.
-func (o *SuccessResponse) SetCreated(v interface{}) {
-	o.Created = v
+// SetCreated gets a reference to the given bool and assigns it to the Created field.
+func (o *SuccessResponse) SetCreated(v bool) {
+	o.Created = &v
 }
 
-// GetResult returns the Result field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SuccessResponse) GetResult() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetResult returns the Result field value if set, zero value otherwise.
+func (o *SuccessResponse) GetResult() string {
+	if o == nil || IsNil(o.Result) {
+		var ret string
 		return ret
 	}
-	return o.Result
+	return *o.Result
 }
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SuccessResponse) GetResultOk() (*interface{}, bool) {
+func (o *SuccessResponse) GetResultOk() (*string, bool) {
 	if o == nil || IsNil(o.Result) {
 		return nil, false
 	}
-	return &o.Result, true
+	return o.Result, true
 }
 
 // HasResult returns a boolean if a field has been set.
@@ -178,28 +174,27 @@ func (o *SuccessResponse) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given interface{} and assigns it to the Result field.
-func (o *SuccessResponse) SetResult(v interface{}) {
-	o.Result = v
+// SetResult gets a reference to the given string and assigns it to the Result field.
+func (o *SuccessResponse) SetResult(v string) {
+	o.Result = &v
 }
 
-// GetFound returns the Found field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SuccessResponse) GetFound() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetFound returns the Found field value if set, zero value otherwise.
+func (o *SuccessResponse) GetFound() bool {
+	if o == nil || IsNil(o.Found) {
+		var ret bool
 		return ret
 	}
-	return o.Found
+	return *o.Found
 }
 
 // GetFoundOk returns a tuple with the Found field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SuccessResponse) GetFoundOk() (*interface{}, bool) {
+func (o *SuccessResponse) GetFoundOk() (*bool, bool) {
 	if o == nil || IsNil(o.Found) {
 		return nil, false
 	}
-	return &o.Found, true
+	return o.Found, true
 }
 
 // HasFound returns a boolean if a field has been set.
@@ -211,28 +206,27 @@ func (o *SuccessResponse) HasFound() bool {
 	return false
 }
 
-// SetFound gets a reference to the given interface{} and assigns it to the Found field.
-func (o *SuccessResponse) SetFound(v interface{}) {
-	o.Found = v
+// SetFound gets a reference to the given bool and assigns it to the Found field.
+func (o *SuccessResponse) SetFound(v bool) {
+	o.Found = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SuccessResponse) GetStatus() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *SuccessResponse) GetStatus() int32 {
+	if o == nil || IsNil(o.Status) {
+		var ret int32
 		return ret
 	}
-	return o.Status
+	return *o.Status
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SuccessResponse) GetStatusOk() (*interface{}, bool) {
+func (o *SuccessResponse) GetStatusOk() (*int32, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -244,9 +238,9 @@ func (o *SuccessResponse) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given interface{} and assigns it to the Status field.
-func (o *SuccessResponse) SetStatus(v interface{}) {
-	o.Status = v
+// SetStatus gets a reference to the given int32 and assigns it to the Status field.
+func (o *SuccessResponse) SetStatus(v int32) {
+	o.Status = &v
 }
 
 func (o SuccessResponse) MarshalJSON() ([]byte, error) {
@@ -259,22 +253,22 @@ func (o SuccessResponse) MarshalJSON() ([]byte, error) {
 
 func (o SuccessResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Table != nil {
+	if !IsNil(o.Table) {
 		toSerialize["table"] = o.Table
 	}
-	if o.Id != nil {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Created != nil {
+	if !IsNil(o.Created) {
 		toSerialize["created"] = o.Created
 	}
-	if o.Result != nil {
+	if !IsNil(o.Result) {
 		toSerialize["result"] = o.Result
 	}
-	if o.Found != nil {
+	if !IsNil(o.Found) {
 		toSerialize["found"] = o.Found
 	}
-	if o.Status != nil {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
 	return toSerialize, nil

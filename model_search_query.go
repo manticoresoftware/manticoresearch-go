@@ -21,22 +21,21 @@ var _ MappedNullable = &SearchQuery{}
 // SearchQuery Defines a query structure for performing search operations
 type SearchQuery struct {
 	// Filter object defining a query string
-	QueryString interface{} `json:"query_string"` 
+	QueryString *string `json:"query_string,omitempty"`
 	// Filter object defining a match keyword passed as a string or in a Match object
-	Match interface{} `json:"match"` 
+	Match map[string]interface{} `json:"match,omitempty"`
 	// Filter object defining a match phrase
-	MatchPhrase interface{} `json:"match_phrase"` 
+	MatchPhrase map[string]interface{} `json:"match_phrase,omitempty"`
 	// Filter object to select all documents
-	MatchAll interface{} `json:"match_all"` 
-	Bool *BoolFilter `json:"bool"` 
-	// Filter to match exact attribute values.
-	Equals interface{} `json:"equals"` 
+	MatchAll map[string]interface{} `json:"match_all,omitempty"`
+	Bool *BoolFilter `json:"bool,omitempty"`
+	Equals interface{} `json:"equals,omitempty"`
 	// Filter to match a given set of attribute values.
-	In interface{} `json:"in"` 
+	In map[string]interface{} `json:"in,omitempty"`
 	// Filter to match a given range of attribute values passed in Range objects
-	Range interface{} `json:"range"` 
-	GeoDistance *GeoDistance `json:"geo_distance"` 
-	Highlight *Highlight `json:"highlight"` 
+	Range map[string]interface{} `json:"range,omitempty"`
+	GeoDistance *GeoDistance `json:"geo_distance,omitempty"`
+	Highlight *Highlight `json:"highlight,omitempty"`
 }
 
 // NewSearchQuery instantiates a new SearchQuery object
@@ -56,23 +55,22 @@ func NewSearchQueryWithDefaults() *SearchQuery {
 	return &this
 }
 
-// GetQueryString returns the QueryString field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchQuery) GetQueryString() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetQueryString returns the QueryString field value if set, zero value otherwise.
+func (o *SearchQuery) GetQueryString() string {
+	if o == nil || IsNil(o.QueryString) {
+		var ret string
 		return ret
 	}
-	return o.QueryString
+	return *o.QueryString
 }
 
 // GetQueryStringOk returns a tuple with the QueryString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchQuery) GetQueryStringOk() (*interface{}, bool) {
+func (o *SearchQuery) GetQueryStringOk() (*string, bool) {
 	if o == nil || IsNil(o.QueryString) {
 		return nil, false
 	}
-	return &o.QueryString, true
+	return o.QueryString, true
 }
 
 // HasQueryString returns a boolean if a field has been set.
@@ -84,15 +82,15 @@ func (o *SearchQuery) HasQueryString() bool {
 	return false
 }
 
-// SetQueryString gets a reference to the given interface{} and assigns it to the QueryString field.
-func (o *SearchQuery) SetQueryString(v interface{}) {
-	o.QueryString = v
+// SetQueryString gets a reference to the given string and assigns it to the QueryString field.
+func (o *SearchQuery) SetQueryString(v string) {
+	o.QueryString = &v
 }
 
-// GetMatch returns the Match field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchQuery) GetMatch() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMatch returns the Match field value if set, zero value otherwise.
+func (o *SearchQuery) GetMatch() map[string]interface{} {
+	if o == nil || IsNil(o.Match) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Match
@@ -100,12 +98,11 @@ func (o *SearchQuery) GetMatch() interface{} {
 
 // GetMatchOk returns a tuple with the Match field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchQuery) GetMatchOk() (*interface{}, bool) {
+func (o *SearchQuery) GetMatchOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Match) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Match, true
+	return o.Match, true
 }
 
 // HasMatch returns a boolean if a field has been set.
@@ -117,15 +114,15 @@ func (o *SearchQuery) HasMatch() bool {
 	return false
 }
 
-// SetMatch gets a reference to the given interface{} and assigns it to the Match field.
-func (o *SearchQuery) SetMatch(v interface{}) {
+// SetMatch gets a reference to the given map[string]interface{} and assigns it to the Match field.
+func (o *SearchQuery) SetMatch(v map[string]interface{}) {
 	o.Match = v
 }
 
-// GetMatchPhrase returns the MatchPhrase field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchQuery) GetMatchPhrase() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMatchPhrase returns the MatchPhrase field value if set, zero value otherwise.
+func (o *SearchQuery) GetMatchPhrase() map[string]interface{} {
+	if o == nil || IsNil(o.MatchPhrase) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.MatchPhrase
@@ -133,12 +130,11 @@ func (o *SearchQuery) GetMatchPhrase() interface{} {
 
 // GetMatchPhraseOk returns a tuple with the MatchPhrase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchQuery) GetMatchPhraseOk() (*interface{}, bool) {
+func (o *SearchQuery) GetMatchPhraseOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.MatchPhrase) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.MatchPhrase, true
+	return o.MatchPhrase, true
 }
 
 // HasMatchPhrase returns a boolean if a field has been set.
@@ -150,15 +146,15 @@ func (o *SearchQuery) HasMatchPhrase() bool {
 	return false
 }
 
-// SetMatchPhrase gets a reference to the given interface{} and assigns it to the MatchPhrase field.
-func (o *SearchQuery) SetMatchPhrase(v interface{}) {
+// SetMatchPhrase gets a reference to the given map[string]interface{} and assigns it to the MatchPhrase field.
+func (o *SearchQuery) SetMatchPhrase(v map[string]interface{}) {
 	o.MatchPhrase = v
 }
 
-// GetMatchAll returns the MatchAll field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchQuery) GetMatchAll() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMatchAll returns the MatchAll field value if set, zero value otherwise.
+func (o *SearchQuery) GetMatchAll() map[string]interface{} {
+	if o == nil || IsNil(o.MatchAll) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.MatchAll
@@ -166,12 +162,11 @@ func (o *SearchQuery) GetMatchAll() interface{} {
 
 // GetMatchAllOk returns a tuple with the MatchAll field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchQuery) GetMatchAllOk() (*interface{}, bool) {
+func (o *SearchQuery) GetMatchAllOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.MatchAll) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.MatchAll, true
+	return o.MatchAll, true
 }
 
 // HasMatchAll returns a boolean if a field has been set.
@@ -183,8 +178,8 @@ func (o *SearchQuery) HasMatchAll() bool {
 	return false
 }
 
-// SetMatchAll gets a reference to the given interface{} and assigns it to the MatchAll field.
-func (o *SearchQuery) SetMatchAll(v interface{}) {
+// SetMatchAll gets a reference to the given map[string]interface{} and assigns it to the MatchAll field.
+func (o *SearchQuery) SetMatchAll(v map[string]interface{}) {
 	o.MatchAll = v
 }
 
@@ -253,10 +248,10 @@ func (o *SearchQuery) SetEquals(v interface{}) {
 	o.Equals = v
 }
 
-// GetIn returns the In field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchQuery) GetIn() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetIn returns the In field value if set, zero value otherwise.
+func (o *SearchQuery) GetIn() map[string]interface{} {
+	if o == nil || IsNil(o.In) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.In
@@ -264,12 +259,11 @@ func (o *SearchQuery) GetIn() interface{} {
 
 // GetInOk returns a tuple with the In field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchQuery) GetInOk() (*interface{}, bool) {
+func (o *SearchQuery) GetInOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.In) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.In, true
+	return o.In, true
 }
 
 // HasIn returns a boolean if a field has been set.
@@ -281,15 +275,15 @@ func (o *SearchQuery) HasIn() bool {
 	return false
 }
 
-// SetIn gets a reference to the given interface{} and assigns it to the In field.
-func (o *SearchQuery) SetIn(v interface{}) {
+// SetIn gets a reference to the given map[string]interface{} and assigns it to the In field.
+func (o *SearchQuery) SetIn(v map[string]interface{}) {
 	o.In = v
 }
 
-// GetRange returns the Range field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchQuery) GetRange() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetRange returns the Range field value if set, zero value otherwise.
+func (o *SearchQuery) GetRange() map[string]interface{} {
+	if o == nil || IsNil(o.Range) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Range
@@ -297,12 +291,11 @@ func (o *SearchQuery) GetRange() interface{} {
 
 // GetRangeOk returns a tuple with the Range field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchQuery) GetRangeOk() (*interface{}, bool) {
+func (o *SearchQuery) GetRangeOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Range) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Range, true
+	return o.Range, true
 }
 
 // HasRange returns a boolean if a field has been set.
@@ -314,8 +307,8 @@ func (o *SearchQuery) HasRange() bool {
 	return false
 }
 
-// SetRange gets a reference to the given interface{} and assigns it to the Range field.
-func (o *SearchQuery) SetRange(v interface{}) {
+// SetRange gets a reference to the given map[string]interface{} and assigns it to the Range field.
+func (o *SearchQuery) SetRange(v map[string]interface{}) {
 	o.Range = v
 }
 
@@ -393,16 +386,16 @@ func (o SearchQuery) MarshalJSON() ([]byte, error) {
 
 func (o SearchQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.QueryString != nil {
+	if !IsNil(o.QueryString) {
 		toSerialize["query_string"] = o.QueryString
 	}
-	if o.Match != nil {
+	if !IsNil(o.Match) {
 		toSerialize["match"] = o.Match
 	}
-	if o.MatchPhrase != nil {
+	if !IsNil(o.MatchPhrase) {
 		toSerialize["match_phrase"] = o.MatchPhrase
 	}
-	if o.MatchAll != nil {
+	if !IsNil(o.MatchAll) {
 		toSerialize["match_all"] = o.MatchAll
 	}
 	if !IsNil(o.Bool) {
@@ -411,10 +404,10 @@ func (o SearchQuery) ToMap() (map[string]interface{}, error) {
 	if o.Equals != nil {
 		toSerialize["equals"] = o.Equals
 	}
-	if o.In != nil {
+	if !IsNil(o.In) {
 		toSerialize["in"] = o.In
 	}
-	if o.Range != nil {
+	if !IsNil(o.Range) {
 		toSerialize["range"] = o.Range
 	}
 	if !IsNil(o.GeoDistance) {

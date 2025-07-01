@@ -21,9 +21,9 @@ var _ MappedNullable = &GeoDistanceLocationAnchor{}
 // GeoDistanceLocationAnchor Specifies the location of the pin point used for search
 type GeoDistanceLocationAnchor struct {
 	// Latitude of the anchor point
-	Lat interface{} `json:"lat"` 
+	Lat *float32 `json:"lat,omitempty"`
 	// Longitude of the anchor point
-	Lon interface{} `json:"lon"` 
+	Lon *float32 `json:"lon,omitempty"`
 }
 
 // NewGeoDistanceLocationAnchor instantiates a new GeoDistanceLocationAnchor object
@@ -43,23 +43,22 @@ func NewGeoDistanceLocationAnchorWithDefaults() *GeoDistanceLocationAnchor {
 	return &this
 }
 
-// GetLat returns the Lat field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GeoDistanceLocationAnchor) GetLat() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetLat returns the Lat field value if set, zero value otherwise.
+func (o *GeoDistanceLocationAnchor) GetLat() float32 {
+	if o == nil || IsNil(o.Lat) {
+		var ret float32
 		return ret
 	}
-	return o.Lat
+	return *o.Lat
 }
 
 // GetLatOk returns a tuple with the Lat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GeoDistanceLocationAnchor) GetLatOk() (*interface{}, bool) {
+func (o *GeoDistanceLocationAnchor) GetLatOk() (*float32, bool) {
 	if o == nil || IsNil(o.Lat) {
 		return nil, false
 	}
-	return &o.Lat, true
+	return o.Lat, true
 }
 
 // HasLat returns a boolean if a field has been set.
@@ -71,28 +70,27 @@ func (o *GeoDistanceLocationAnchor) HasLat() bool {
 	return false
 }
 
-// SetLat gets a reference to the given interface{} and assigns it to the Lat field.
-func (o *GeoDistanceLocationAnchor) SetLat(v interface{}) {
-	o.Lat = v
+// SetLat gets a reference to the given float32 and assigns it to the Lat field.
+func (o *GeoDistanceLocationAnchor) SetLat(v float32) {
+	o.Lat = &v
 }
 
-// GetLon returns the Lon field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GeoDistanceLocationAnchor) GetLon() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetLon returns the Lon field value if set, zero value otherwise.
+func (o *GeoDistanceLocationAnchor) GetLon() float32 {
+	if o == nil || IsNil(o.Lon) {
+		var ret float32
 		return ret
 	}
-	return o.Lon
+	return *o.Lon
 }
 
 // GetLonOk returns a tuple with the Lon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GeoDistanceLocationAnchor) GetLonOk() (*interface{}, bool) {
+func (o *GeoDistanceLocationAnchor) GetLonOk() (*float32, bool) {
 	if o == nil || IsNil(o.Lon) {
 		return nil, false
 	}
-	return &o.Lon, true
+	return o.Lon, true
 }
 
 // HasLon returns a boolean if a field has been set.
@@ -104,9 +102,9 @@ func (o *GeoDistanceLocationAnchor) HasLon() bool {
 	return false
 }
 
-// SetLon gets a reference to the given interface{} and assigns it to the Lon field.
-func (o *GeoDistanceLocationAnchor) SetLon(v interface{}) {
-	o.Lon = v
+// SetLon gets a reference to the given float32 and assigns it to the Lon field.
+func (o *GeoDistanceLocationAnchor) SetLon(v float32) {
+	o.Lon = &v
 }
 
 func (o GeoDistanceLocationAnchor) MarshalJSON() ([]byte, error) {
@@ -119,10 +117,10 @@ func (o GeoDistanceLocationAnchor) MarshalJSON() ([]byte, error) {
 
 func (o GeoDistanceLocationAnchor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Lat != nil {
+	if !IsNil(o.Lat) {
 		toSerialize["lat"] = o.Lat
 	}
-	if o.Lon != nil {
+	if !IsNil(o.Lon) {
 		toSerialize["lon"] = o.Lon
 	}
 	return toSerialize, nil

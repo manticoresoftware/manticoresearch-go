@@ -21,9 +21,9 @@ var _ MappedNullable = &SourceRules{}
 // SourceRules Defines which fields to include or exclude in the response for a search query
 type SourceRules struct {
 	// List of fields to include in the response
-	Includes interface{} `json:"includes"` 
+	Includes []string `json:"includes,omitempty"`
 	// List of fields to exclude from the response
-	Excludes interface{} `json:"excludes"` 
+	Excludes []string `json:"excludes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,10 +46,10 @@ func NewSourceRulesWithDefaults() *SourceRules {
 	return &this
 }
 
-// GetIncludes returns the Includes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SourceRules) GetIncludes() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetIncludes returns the Includes field value if set, zero value otherwise.
+func (o *SourceRules) GetIncludes() []string {
+	if o == nil || IsNil(o.Includes) {
+		var ret []string
 		return ret
 	}
 	return o.Includes
@@ -57,12 +57,11 @@ func (o *SourceRules) GetIncludes() interface{} {
 
 // GetIncludesOk returns a tuple with the Includes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SourceRules) GetIncludesOk() (*interface{}, bool) {
+func (o *SourceRules) GetIncludesOk() ([]string, bool) {
 	if o == nil || IsNil(o.Includes) {
 		return nil, false
 	}
-	return &o.Includes, true
+	return o.Includes, true
 }
 
 // HasIncludes returns a boolean if a field has been set.
@@ -74,15 +73,15 @@ func (o *SourceRules) HasIncludes() bool {
 	return false
 }
 
-// SetIncludes gets a reference to the given interface{} and assigns it to the Includes field.
-func (o *SourceRules) SetIncludes(v interface{}) {
+// SetIncludes gets a reference to the given []string and assigns it to the Includes field.
+func (o *SourceRules) SetIncludes(v []string) {
 	o.Includes = v
 }
 
-// GetExcludes returns the Excludes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SourceRules) GetExcludes() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetExcludes returns the Excludes field value if set, zero value otherwise.
+func (o *SourceRules) GetExcludes() []string {
+	if o == nil || IsNil(o.Excludes) {
+		var ret []string
 		return ret
 	}
 	return o.Excludes
@@ -90,12 +89,11 @@ func (o *SourceRules) GetExcludes() interface{} {
 
 // GetExcludesOk returns a tuple with the Excludes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SourceRules) GetExcludesOk() (*interface{}, bool) {
+func (o *SourceRules) GetExcludesOk() ([]string, bool) {
 	if o == nil || IsNil(o.Excludes) {
 		return nil, false
 	}
-	return &o.Excludes, true
+	return o.Excludes, true
 }
 
 // HasExcludes returns a boolean if a field has been set.
@@ -107,8 +105,8 @@ func (o *SourceRules) HasExcludes() bool {
 	return false
 }
 
-// SetExcludes gets a reference to the given interface{} and assigns it to the Excludes field.
-func (o *SourceRules) SetExcludes(v interface{}) {
+// SetExcludes gets a reference to the given []string and assigns it to the Excludes field.
+func (o *SourceRules) SetExcludes(v []string) {
 	o.Excludes = v
 }
 
@@ -122,10 +120,10 @@ func (o SourceRules) MarshalJSON() ([]byte, error) {
 
 func (o SourceRules) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Includes != nil {
+	if !IsNil(o.Includes) {
 		toSerialize["includes"] = o.Includes
 	}
-	if o.Excludes != nil {
+	if !IsNil(o.Excludes) {
 		toSerialize["excludes"] = o.Excludes
 	}
 
@@ -134,6 +132,28 @@ func (o SourceRules) ToMap() (map[string]interface{}, error) {
 	}
 
 	return toSerialize, nil
+}
+
+func (o *SourceRules) UnmarshalJSON(data []byte) (err error) {
+	varSourceRules := _SourceRules{}
+
+	err = json.Unmarshal(data, &varSourceRules)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SourceRules(varSourceRules)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "includes")
+		delete(additionalProperties, "excludes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSourceRules struct {

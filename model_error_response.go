@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ErrorResponse type satisfies the MappedNullable interface at compile time
@@ -22,9 +22,9 @@ var _ MappedNullable = &ErrorResponse{}
 
 // ErrorResponse Error response object containing information about the error and a status code
 type ErrorResponse struct {
-	Error ResponseError `json:"error"` 
+	Error ResponseError `json:"error"`
 	// HTTP status code of the error response
-	Status interface{} `json:"status"` 
+	Status *int32 `json:"status,omitempty"`
 }
 
 type _ErrorResponse ErrorResponse
@@ -36,6 +36,8 @@ type _ErrorResponse ErrorResponse
 func NewErrorResponse(error_ ResponseError) *ErrorResponse {
 	this := ErrorResponse{}
 	this.Error = error_
+	var status int32 = 500
+	this.Status = &status
 	return &this
 }
 
@@ -44,6 +46,8 @@ func NewErrorResponse(error_ ResponseError) *ErrorResponse {
 // but it doesn't guarantee that properties required by API are set
 func NewErrorResponseWithDefaults() *ErrorResponse {
 	this := ErrorResponse{}
+	var status int32 = 500
+	this.Status = &status
 	return &this
 }
 
@@ -71,23 +75,22 @@ func (o *ErrorResponse) SetError(v ResponseError) {
 	o.Error = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorResponse) GetStatus() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *ErrorResponse) GetStatus() int32 {
+	if o == nil || IsNil(o.Status) {
+		var ret int32
 		return ret
 	}
-	return o.Status
+	return *o.Status
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorResponse) GetStatusOk() (*interface{}, bool) {
+func (o *ErrorResponse) GetStatusOk() (*int32, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -99,9 +102,9 @@ func (o *ErrorResponse) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given interface{} and assigns it to the Status field.
-func (o *ErrorResponse) SetStatus(v interface{}) {
-	o.Status = v
+// SetStatus gets a reference to the given int32 and assigns it to the Status field.
+func (o *ErrorResponse) SetStatus(v int32) {
+	o.Status = &v
 }
 
 func (o ErrorResponse) MarshalJSON() ([]byte, error) {
@@ -115,10 +118,47 @@ func (o ErrorResponse) MarshalJSON() ([]byte, error) {
 func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["error"] = o.Error
-	if o.Status != nil {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
 	return toSerialize, nil
+}
+
+func (o *ErrorResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"error",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varErrorResponse := _ErrorResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varErrorResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ErrorResponse(varErrorResponse)
+
+	return err
 }
 
 type NullableErrorResponse struct {

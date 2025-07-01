@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Lt** | Pointer to **interface{}** | &lt;Less than&gt; condition value | [optional] 
-**Lte** | Pointer to **interface{}** | &lt;Less than or equal&gt; condition value | [optional] 
-**Gt** | Pointer to **interface{}** | &lt;Greater than&gt; condition value | [optional] 
-**Gte** | Pointer to **interface{}** | &lt;Greater than or equal&gt; condition value | [optional] 
+**Lt** | Pointer to **interface{}** |  | [optional] 
+**Lte** | Pointer to **interface{}** |  | [optional] 
+**Gt** | Pointer to **interface{}** |  | [optional] 
+**Gte** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
 

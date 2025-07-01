@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LocationAnchor** | Pointer to [**GeoDistanceLocationAnchor**](GeoDistanceLocationAnchor.md) |  | [optional] 
-**LocationSource** | Pointer to **interface{}** | Field name in the document that contains location data | [optional] 
-**DistanceType** | Pointer to **interface{}** | Algorithm used to calculate the distance | [optional] 
-**Distance** | Pointer to **interface{}** | The distance from the anchor point to filter results by | [optional] 
+**LocationSource** | Pointer to **string** | Field name in the document that contains location data | [optional] 
+**DistanceType** | Pointer to **string** | Algorithm used to calculate the distance | [optional] 
+**Distance** | Pointer to **string** | The distance from the anchor point to filter results by | [optional] 
 
 ## Methods
 
@@ -55,20 +55,20 @@ HasLocationAnchor returns a boolean if a field has been set.
 
 ### GetLocationSource
 
-`func (o *GeoDistance) GetLocationSource() interface{}`
+`func (o *GeoDistance) GetLocationSource() string`
 
 GetLocationSource returns the LocationSource field if non-nil, zero value otherwise.
 
 ### GetLocationSourceOk
 
-`func (o *GeoDistance) GetLocationSourceOk() (*interface{}, bool)`
+`func (o *GeoDistance) GetLocationSourceOk() (*string, bool)`
 
 GetLocationSourceOk returns a tuple with the LocationSource field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocationSource
 
-`func (o *GeoDistance) SetLocationSource(v interface{})`
+`func (o *GeoDistance) SetLocationSource(v string)`
 
 SetLocationSource sets LocationSource field to given value.
 
@@ -78,32 +78,22 @@ SetLocationSource sets LocationSource field to given value.
 
 HasLocationSource returns a boolean if a field has been set.
 
-### SetLocationSourceNil
-
-`func (o *GeoDistance) SetLocationSourceNil(b bool)`
-
- SetLocationSourceNil sets the value for LocationSource to be an explicit nil
-
-### UnsetLocationSource
-`func (o *GeoDistance) UnsetLocationSource()`
-
-UnsetLocationSource ensures that no value is present for LocationSource, not even an explicit nil
 ### GetDistanceType
 
-`func (o *GeoDistance) GetDistanceType() interface{}`
+`func (o *GeoDistance) GetDistanceType() string`
 
 GetDistanceType returns the DistanceType field if non-nil, zero value otherwise.
 
 ### GetDistanceTypeOk
 
-`func (o *GeoDistance) GetDistanceTypeOk() (*interface{}, bool)`
+`func (o *GeoDistance) GetDistanceTypeOk() (*string, bool)`
 
 GetDistanceTypeOk returns a tuple with the DistanceType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDistanceType
 
-`func (o *GeoDistance) SetDistanceType(v interface{})`
+`func (o *GeoDistance) SetDistanceType(v string)`
 
 SetDistanceType sets DistanceType field to given value.
 
@@ -113,32 +103,22 @@ SetDistanceType sets DistanceType field to given value.
 
 HasDistanceType returns a boolean if a field has been set.
 
-### SetDistanceTypeNil
-
-`func (o *GeoDistance) SetDistanceTypeNil(b bool)`
-
- SetDistanceTypeNil sets the value for DistanceType to be an explicit nil
-
-### UnsetDistanceType
-`func (o *GeoDistance) UnsetDistanceType()`
-
-UnsetDistanceType ensures that no value is present for DistanceType, not even an explicit nil
 ### GetDistance
 
-`func (o *GeoDistance) GetDistance() interface{}`
+`func (o *GeoDistance) GetDistance() string`
 
 GetDistance returns the Distance field if non-nil, zero value otherwise.
 
 ### GetDistanceOk
 
-`func (o *GeoDistance) GetDistanceOk() (*interface{}, bool)`
+`func (o *GeoDistance) GetDistanceOk() (*string, bool)`
 
 GetDistanceOk returns a tuple with the Distance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDistance
 
-`func (o *GeoDistance) SetDistance(v interface{})`
+`func (o *GeoDistance) SetDistance(v string)`
 
 SetDistance sets Distance field to given value.
 
@@ -148,16 +128,6 @@ SetDistance sets Distance field to given value.
 
 HasDistance returns a boolean if a field has been set.
 
-### SetDistanceNil
-
-`func (o *GeoDistance) SetDistanceNil(b bool)`
-
- SetDistanceNil sets the value for Distance to be an explicit nil
-
-### UnsetDistance
-`func (o *GeoDistance) UnsetDistance()`
-
-UnsetDistance ensures that no value is present for Distance, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

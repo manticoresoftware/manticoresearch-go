@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**QueryString** | Pointer to **interface{}** | Filter object defining a query string | [optional] 
-**Match** | Pointer to **interface{}** | Filter object defining a match keyword passed as a string or in a Match object | [optional] 
-**MatchPhrase** | Pointer to **interface{}** | Filter object defining a match phrase | [optional] 
-**MatchAll** | Pointer to **interface{}** | Filter object to select all documents | [optional] 
+**QueryString** | Pointer to **string** | Filter object defining a query string | [optional] 
+**Match** | Pointer to **map[string]interface{}** | Filter object defining a match keyword passed as a string or in a Match object | [optional] 
+**MatchPhrase** | Pointer to **map[string]interface{}** | Filter object defining a match phrase | [optional] 
+**MatchAll** | Pointer to **map[string]interface{}** | Filter object to select all documents | [optional] 
 **Bool** | Pointer to [**BoolFilter**](BoolFilter.md) |  | [optional] 
-**Equals** | Pointer to **interface{}** | Filter to match exact attribute values. | [optional] 
-**In** | Pointer to **interface{}** | Filter to match a given set of attribute values. | [optional] 
-**Range** | Pointer to **interface{}** | Filter to match a given range of attribute values passed in Range objects | [optional] 
+**Equals** | Pointer to **interface{}** |  | [optional] 
+**In** | Pointer to **map[string]interface{}** | Filter to match a given set of attribute values. | [optional] 
+**Range** | Pointer to **map[string]interface{}** | Filter to match a given range of attribute values passed in Range objects | [optional] 
 **GeoDistance** | Pointer to [**GeoDistance**](GeoDistance.md) |  | [optional] 
 **Highlight** | Pointer to [**Highlight**](Highlight.md) |  | [optional] 
 
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetQueryString
 
-`func (o *SearchQuery) GetQueryString() interface{}`
+`func (o *SearchQuery) GetQueryString() string`
 
 GetQueryString returns the QueryString field if non-nil, zero value otherwise.
 
 ### GetQueryStringOk
 
-`func (o *SearchQuery) GetQueryStringOk() (*interface{}, bool)`
+`func (o *SearchQuery) GetQueryStringOk() (*string, bool)`
 
 GetQueryStringOk returns a tuple with the QueryString field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQueryString
 
-`func (o *SearchQuery) SetQueryString(v interface{})`
+`func (o *SearchQuery) SetQueryString(v string)`
 
 SetQueryString sets QueryString field to given value.
 
@@ -59,32 +59,22 @@ SetQueryString sets QueryString field to given value.
 
 HasQueryString returns a boolean if a field has been set.
 
-### SetQueryStringNil
-
-`func (o *SearchQuery) SetQueryStringNil(b bool)`
-
- SetQueryStringNil sets the value for QueryString to be an explicit nil
-
-### UnsetQueryString
-`func (o *SearchQuery) UnsetQueryString()`
-
-UnsetQueryString ensures that no value is present for QueryString, not even an explicit nil
 ### GetMatch
 
-`func (o *SearchQuery) GetMatch() interface{}`
+`func (o *SearchQuery) GetMatch() map[string]interface{}`
 
 GetMatch returns the Match field if non-nil, zero value otherwise.
 
 ### GetMatchOk
 
-`func (o *SearchQuery) GetMatchOk() (*interface{}, bool)`
+`func (o *SearchQuery) GetMatchOk() (*map[string]interface{}, bool)`
 
 GetMatchOk returns a tuple with the Match field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatch
 
-`func (o *SearchQuery) SetMatch(v interface{})`
+`func (o *SearchQuery) SetMatch(v map[string]interface{})`
 
 SetMatch sets Match field to given value.
 
@@ -94,32 +84,22 @@ SetMatch sets Match field to given value.
 
 HasMatch returns a boolean if a field has been set.
 
-### SetMatchNil
-
-`func (o *SearchQuery) SetMatchNil(b bool)`
-
- SetMatchNil sets the value for Match to be an explicit nil
-
-### UnsetMatch
-`func (o *SearchQuery) UnsetMatch()`
-
-UnsetMatch ensures that no value is present for Match, not even an explicit nil
 ### GetMatchPhrase
 
-`func (o *SearchQuery) GetMatchPhrase() interface{}`
+`func (o *SearchQuery) GetMatchPhrase() map[string]interface{}`
 
 GetMatchPhrase returns the MatchPhrase field if non-nil, zero value otherwise.
 
 ### GetMatchPhraseOk
 
-`func (o *SearchQuery) GetMatchPhraseOk() (*interface{}, bool)`
+`func (o *SearchQuery) GetMatchPhraseOk() (*map[string]interface{}, bool)`
 
 GetMatchPhraseOk returns a tuple with the MatchPhrase field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatchPhrase
 
-`func (o *SearchQuery) SetMatchPhrase(v interface{})`
+`func (o *SearchQuery) SetMatchPhrase(v map[string]interface{})`
 
 SetMatchPhrase sets MatchPhrase field to given value.
 
@@ -129,32 +109,22 @@ SetMatchPhrase sets MatchPhrase field to given value.
 
 HasMatchPhrase returns a boolean if a field has been set.
 
-### SetMatchPhraseNil
-
-`func (o *SearchQuery) SetMatchPhraseNil(b bool)`
-
- SetMatchPhraseNil sets the value for MatchPhrase to be an explicit nil
-
-### UnsetMatchPhrase
-`func (o *SearchQuery) UnsetMatchPhrase()`
-
-UnsetMatchPhrase ensures that no value is present for MatchPhrase, not even an explicit nil
 ### GetMatchAll
 
-`func (o *SearchQuery) GetMatchAll() interface{}`
+`func (o *SearchQuery) GetMatchAll() map[string]interface{}`
 
 GetMatchAll returns the MatchAll field if non-nil, zero value otherwise.
 
 ### GetMatchAllOk
 
-`func (o *SearchQuery) GetMatchAllOk() (*interface{}, bool)`
+`func (o *SearchQuery) GetMatchAllOk() (*map[string]interface{}, bool)`
 
 GetMatchAllOk returns a tuple with the MatchAll field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatchAll
 
-`func (o *SearchQuery) SetMatchAll(v interface{})`
+`func (o *SearchQuery) SetMatchAll(v map[string]interface{})`
 
 SetMatchAll sets MatchAll field to given value.
 
@@ -164,16 +134,6 @@ SetMatchAll sets MatchAll field to given value.
 
 HasMatchAll returns a boolean if a field has been set.
 
-### SetMatchAllNil
-
-`func (o *SearchQuery) SetMatchAllNil(b bool)`
-
- SetMatchAllNil sets the value for MatchAll to be an explicit nil
-
-### UnsetMatchAll
-`func (o *SearchQuery) UnsetMatchAll()`
-
-UnsetMatchAll ensures that no value is present for MatchAll, not even an explicit nil
 ### GetBool
 
 `func (o *SearchQuery) GetBool() BoolFilter`
@@ -236,20 +196,20 @@ HasEquals returns a boolean if a field has been set.
 UnsetEquals ensures that no value is present for Equals, not even an explicit nil
 ### GetIn
 
-`func (o *SearchQuery) GetIn() interface{}`
+`func (o *SearchQuery) GetIn() map[string]interface{}`
 
 GetIn returns the In field if non-nil, zero value otherwise.
 
 ### GetInOk
 
-`func (o *SearchQuery) GetInOk() (*interface{}, bool)`
+`func (o *SearchQuery) GetInOk() (*map[string]interface{}, bool)`
 
 GetInOk returns a tuple with the In field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIn
 
-`func (o *SearchQuery) SetIn(v interface{})`
+`func (o *SearchQuery) SetIn(v map[string]interface{})`
 
 SetIn sets In field to given value.
 
@@ -259,32 +219,22 @@ SetIn sets In field to given value.
 
 HasIn returns a boolean if a field has been set.
 
-### SetInNil
-
-`func (o *SearchQuery) SetInNil(b bool)`
-
- SetInNil sets the value for In to be an explicit nil
-
-### UnsetIn
-`func (o *SearchQuery) UnsetIn()`
-
-UnsetIn ensures that no value is present for In, not even an explicit nil
 ### GetRange
 
-`func (o *SearchQuery) GetRange() interface{}`
+`func (o *SearchQuery) GetRange() map[string]interface{}`
 
 GetRange returns the Range field if non-nil, zero value otherwise.
 
 ### GetRangeOk
 
-`func (o *SearchQuery) GetRangeOk() (*interface{}, bool)`
+`func (o *SearchQuery) GetRangeOk() (*map[string]interface{}, bool)`
 
 GetRangeOk returns a tuple with the Range field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRange
 
-`func (o *SearchQuery) SetRange(v interface{})`
+`func (o *SearchQuery) SetRange(v map[string]interface{})`
 
 SetRange sets Range field to given value.
 
@@ -294,16 +244,6 @@ SetRange sets Range field to given value.
 
 HasRange returns a boolean if a field has been set.
 
-### SetRangeNil
-
-`func (o *SearchQuery) SetRangeNil(b bool)`
-
- SetRangeNil sets the value for Range to be an explicit nil
-
-### UnsetRange
-`func (o *SearchQuery) UnsetRange()`
-
-UnsetRange ensures that no value is present for Range, not even an explicit nil
 ### GetGeoDistance
 
 `func (o *SearchQuery) GetGeoDistance() GeoDistance`

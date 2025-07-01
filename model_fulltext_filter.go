@@ -21,13 +21,13 @@ var _ MappedNullable = &FulltextFilter{}
 // FulltextFilter Defines a type of filter for full-text search queries
 type FulltextFilter struct {
 	// Filter object defining a query string
-	QueryString interface{} `json:"query_string"` 
+	QueryString *string `json:"query_string,omitempty"`
 	// Filter object defining a match keyword passed as a string or in a Match object
-	Match interface{} `json:"match"` 
+	Match map[string]interface{} `json:"match,omitempty"`
 	// Filter object defining a match phrase
-	MatchPhrase interface{} `json:"match_phrase"` 
+	MatchPhrase map[string]interface{} `json:"match_phrase,omitempty"`
 	// Filter object to select all documents
-	MatchAll interface{} `json:"match_all"` 
+	MatchAll map[string]interface{} `json:"match_all,omitempty"`
 }
 
 // NewFulltextFilter instantiates a new FulltextFilter object
@@ -47,23 +47,22 @@ func NewFulltextFilterWithDefaults() *FulltextFilter {
 	return &this
 }
 
-// GetQueryString returns the QueryString field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FulltextFilter) GetQueryString() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetQueryString returns the QueryString field value if set, zero value otherwise.
+func (o *FulltextFilter) GetQueryString() string {
+	if o == nil || IsNil(o.QueryString) {
+		var ret string
 		return ret
 	}
-	return o.QueryString
+	return *o.QueryString
 }
 
 // GetQueryStringOk returns a tuple with the QueryString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FulltextFilter) GetQueryStringOk() (*interface{}, bool) {
+func (o *FulltextFilter) GetQueryStringOk() (*string, bool) {
 	if o == nil || IsNil(o.QueryString) {
 		return nil, false
 	}
-	return &o.QueryString, true
+	return o.QueryString, true
 }
 
 // HasQueryString returns a boolean if a field has been set.
@@ -75,15 +74,15 @@ func (o *FulltextFilter) HasQueryString() bool {
 	return false
 }
 
-// SetQueryString gets a reference to the given interface{} and assigns it to the QueryString field.
-func (o *FulltextFilter) SetQueryString(v interface{}) {
-	o.QueryString = v
+// SetQueryString gets a reference to the given string and assigns it to the QueryString field.
+func (o *FulltextFilter) SetQueryString(v string) {
+	o.QueryString = &v
 }
 
-// GetMatch returns the Match field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FulltextFilter) GetMatch() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMatch returns the Match field value if set, zero value otherwise.
+func (o *FulltextFilter) GetMatch() map[string]interface{} {
+	if o == nil || IsNil(o.Match) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Match
@@ -91,12 +90,11 @@ func (o *FulltextFilter) GetMatch() interface{} {
 
 // GetMatchOk returns a tuple with the Match field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FulltextFilter) GetMatchOk() (*interface{}, bool) {
+func (o *FulltextFilter) GetMatchOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Match) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Match, true
+	return o.Match, true
 }
 
 // HasMatch returns a boolean if a field has been set.
@@ -108,15 +106,15 @@ func (o *FulltextFilter) HasMatch() bool {
 	return false
 }
 
-// SetMatch gets a reference to the given interface{} and assigns it to the Match field.
-func (o *FulltextFilter) SetMatch(v interface{}) {
+// SetMatch gets a reference to the given map[string]interface{} and assigns it to the Match field.
+func (o *FulltextFilter) SetMatch(v map[string]interface{}) {
 	o.Match = v
 }
 
-// GetMatchPhrase returns the MatchPhrase field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FulltextFilter) GetMatchPhrase() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMatchPhrase returns the MatchPhrase field value if set, zero value otherwise.
+func (o *FulltextFilter) GetMatchPhrase() map[string]interface{} {
+	if o == nil || IsNil(o.MatchPhrase) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.MatchPhrase
@@ -124,12 +122,11 @@ func (o *FulltextFilter) GetMatchPhrase() interface{} {
 
 // GetMatchPhraseOk returns a tuple with the MatchPhrase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FulltextFilter) GetMatchPhraseOk() (*interface{}, bool) {
+func (o *FulltextFilter) GetMatchPhraseOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.MatchPhrase) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.MatchPhrase, true
+	return o.MatchPhrase, true
 }
 
 // HasMatchPhrase returns a boolean if a field has been set.
@@ -141,15 +138,15 @@ func (o *FulltextFilter) HasMatchPhrase() bool {
 	return false
 }
 
-// SetMatchPhrase gets a reference to the given interface{} and assigns it to the MatchPhrase field.
-func (o *FulltextFilter) SetMatchPhrase(v interface{}) {
+// SetMatchPhrase gets a reference to the given map[string]interface{} and assigns it to the MatchPhrase field.
+func (o *FulltextFilter) SetMatchPhrase(v map[string]interface{}) {
 	o.MatchPhrase = v
 }
 
-// GetMatchAll returns the MatchAll field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FulltextFilter) GetMatchAll() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMatchAll returns the MatchAll field value if set, zero value otherwise.
+func (o *FulltextFilter) GetMatchAll() map[string]interface{} {
+	if o == nil || IsNil(o.MatchAll) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.MatchAll
@@ -157,12 +154,11 @@ func (o *FulltextFilter) GetMatchAll() interface{} {
 
 // GetMatchAllOk returns a tuple with the MatchAll field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FulltextFilter) GetMatchAllOk() (*interface{}, bool) {
+func (o *FulltextFilter) GetMatchAllOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.MatchAll) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.MatchAll, true
+	return o.MatchAll, true
 }
 
 // HasMatchAll returns a boolean if a field has been set.
@@ -174,8 +170,8 @@ func (o *FulltextFilter) HasMatchAll() bool {
 	return false
 }
 
-// SetMatchAll gets a reference to the given interface{} and assigns it to the MatchAll field.
-func (o *FulltextFilter) SetMatchAll(v interface{}) {
+// SetMatchAll gets a reference to the given map[string]interface{} and assigns it to the MatchAll field.
+func (o *FulltextFilter) SetMatchAll(v map[string]interface{}) {
 	o.MatchAll = v
 }
 
@@ -189,16 +185,16 @@ func (o FulltextFilter) MarshalJSON() ([]byte, error) {
 
 func (o FulltextFilter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.QueryString != nil {
+	if !IsNil(o.QueryString) {
 		toSerialize["query_string"] = o.QueryString
 	}
-	if o.Match != nil {
+	if !IsNil(o.Match) {
 		toSerialize["match"] = o.Match
 	}
-	if o.MatchPhrase != nil {
+	if !IsNil(o.MatchPhrase) {
 		toSerialize["match_phrase"] = o.MatchPhrase
 	}
-	if o.MatchAll != nil {
+	if !IsNil(o.MatchAll) {
 		toSerialize["match_all"] = o.MatchAll
 	}
 	return toSerialize, nil

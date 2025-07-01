@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SearchRequest type satisfies the MappedNullable interface at compile time
@@ -23,32 +23,30 @@ var _ MappedNullable = &SearchRequest{}
 // SearchRequest Request object for search operation
 type SearchRequest struct {
 	// The table to perform the search on
-	Table interface{} `json:"table"` 
-	Query *SearchQuery `json:"query"` 
+	Table string `json:"table"`
+	Query *SearchQuery `json:"query,omitempty"`
 	// Join clause to combine search data from multiple tables
-	Join interface{} `json:"join"` 
-	Highlight *Highlight `json:"highlight"` 
+	Join []Join `json:"join,omitempty"`
+	Highlight *Highlight `json:"highlight,omitempty"`
 	// Maximum number of results to return
-	Limit interface{} `json:"limit"` 
-	Knn *KnnQuery `json:"knn"` 
+	Limit *int32 `json:"limit,omitempty"`
+	Knn *KnnQuery `json:"knn,omitempty"`
 	// Defines aggregation settings for grouping results
-	Aggs map[string]Aggregation `json:"aggs"` 
+	Aggs map[string]Aggregation `json:"aggs,omitempty"`
 	// Expressions to calculate additional values for the result
-	Expressions map[string]string `json:"expressions"` 
+	Expressions map[string]string `json:"expressions,omitempty"`
 	// Maximum number of matches allowed in the result
-	MaxMatches interface{} `json:"max_matches"` 
+	MaxMatches *int32 `json:"max_matches,omitempty"`
 	// Starting point for pagination of the result
-	Offset interface{} `json:"offset"` 
+	Offset *int32 `json:"offset,omitempty"`
 	// Additional search options
-	Options interface{} `json:"options"` 
+	Options map[string]interface{} `json:"options,omitempty"`
 	// Enable or disable profiling of the search request
-	Profile interface{} `json:"profile"` 
-	// Sorting criteria for the search results
-	Sort interface{} `json:"sort"` 
-	// Specify which fields to include or exclude in the response
-	Source interface{} `json:"_source"` 
+	Profile *bool `json:"profile,omitempty"`
+	Sort interface{} `json:"sort,omitempty"`
+	Source interface{} `json:"_source,omitempty"`
 	// Enable or disable result weight calculation used for sorting
-	TrackScores interface{} `json:"track_scores"` 
+	TrackScores *bool `json:"track_scores,omitempty"`
 }
 
 type _SearchRequest SearchRequest
@@ -57,7 +55,7 @@ type _SearchRequest SearchRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSearchRequest(table interface{}) *SearchRequest {
+func NewSearchRequest(table string) *SearchRequest {
 	this := SearchRequest{}
 	this.Table = table
 	return &this
@@ -72,10 +70,9 @@ func NewSearchRequestWithDefaults() *SearchRequest {
 }
 
 // GetTable returns the Table field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *SearchRequest) GetTable() interface{} {
+func (o *SearchRequest) GetTable() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -84,16 +81,15 @@ func (o *SearchRequest) GetTable() interface{} {
 
 // GetTableOk returns a tuple with the Table field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchRequest) GetTableOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Table) {
+func (o *SearchRequest) GetTableOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Table, true
 }
 
 // SetTable sets field value
-func (o *SearchRequest) SetTable(v interface{}) {
+func (o *SearchRequest) SetTable(v string) {
 	o.Table = v
 }
 
@@ -129,10 +125,10 @@ func (o *SearchRequest) SetQuery(v SearchQuery) {
 	o.Query = &v
 }
 
-// GetJoin returns the Join field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchRequest) GetJoin() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetJoin returns the Join field value if set, zero value otherwise.
+func (o *SearchRequest) GetJoin() []Join {
+	if o == nil || IsNil(o.Join) {
+		var ret []Join
 		return ret
 	}
 	return o.Join
@@ -140,12 +136,11 @@ func (o *SearchRequest) GetJoin() interface{} {
 
 // GetJoinOk returns a tuple with the Join field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchRequest) GetJoinOk() (*interface{}, bool) {
+func (o *SearchRequest) GetJoinOk() ([]Join, bool) {
 	if o == nil || IsNil(o.Join) {
 		return nil, false
 	}
-	return &o.Join, true
+	return o.Join, true
 }
 
 // HasJoin returns a boolean if a field has been set.
@@ -157,8 +152,8 @@ func (o *SearchRequest) HasJoin() bool {
 	return false
 }
 
-// SetJoin gets a reference to the given interface{} and assigns it to the Join field.
-func (o *SearchRequest) SetJoin(v interface{}) {
+// SetJoin gets a reference to the given []Join and assigns it to the Join field.
+func (o *SearchRequest) SetJoin(v []Join) {
 	o.Join = v
 }
 
@@ -194,23 +189,22 @@ func (o *SearchRequest) SetHighlight(v Highlight) {
 	o.Highlight = &v
 }
 
-// GetLimit returns the Limit field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchRequest) GetLimit() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetLimit returns the Limit field value if set, zero value otherwise.
+func (o *SearchRequest) GetLimit() int32 {
+	if o == nil || IsNil(o.Limit) {
+		var ret int32
 		return ret
 	}
-	return o.Limit
+	return *o.Limit
 }
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchRequest) GetLimitOk() (*interface{}, bool) {
+func (o *SearchRequest) GetLimitOk() (*int32, bool) {
 	if o == nil || IsNil(o.Limit) {
 		return nil, false
 	}
-	return &o.Limit, true
+	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
@@ -222,9 +216,9 @@ func (o *SearchRequest) HasLimit() bool {
 	return false
 }
 
-// SetLimit gets a reference to the given interface{} and assigns it to the Limit field.
-func (o *SearchRequest) SetLimit(v interface{}) {
-	o.Limit = v
+// SetLimit gets a reference to the given int32 and assigns it to the Limit field.
+func (o *SearchRequest) SetLimit(v int32) {
+	o.Limit = &v
 }
 
 // GetKnn returns the Knn field value if set, zero value otherwise.
@@ -259,9 +253,9 @@ func (o *SearchRequest) SetKnn(v KnnQuery) {
 	o.Knn = &v
 }
 
-// GetAggs returns the Aggs field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAggs returns the Aggs field value if set, zero value otherwise.
 func (o *SearchRequest) GetAggs() map[string]Aggregation {
-	if o == nil {
+	if o == nil || IsNil(o.Aggs) {
 		var ret map[string]Aggregation
 		return ret
 	}
@@ -270,12 +264,11 @@ func (o *SearchRequest) GetAggs() map[string]Aggregation {
 
 // GetAggsOk returns a tuple with the Aggs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchRequest) GetAggsOk() (*map[string]Aggregation, bool) {
+func (o *SearchRequest) GetAggsOk() (map[string]Aggregation, bool) {
 	if o == nil || IsNil(o.Aggs) {
-		return nil, false
+		return map[string]Aggregation{}, false
 	}
-	return &o.Aggs, true
+	return o.Aggs, true
 }
 
 // HasAggs returns a boolean if a field has been set.
@@ -292,9 +285,9 @@ func (o *SearchRequest) SetAggs(v map[string]Aggregation) {
 	o.Aggs = v
 }
 
-// GetExpressions returns the Expressions field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetExpressions returns the Expressions field value if set, zero value otherwise.
 func (o *SearchRequest) GetExpressions() map[string]string {
-	if o == nil {
+	if o == nil || IsNil(o.Expressions) {
 		var ret map[string]string
 		return ret
 	}
@@ -303,12 +296,11 @@ func (o *SearchRequest) GetExpressions() map[string]string {
 
 // GetExpressionsOk returns a tuple with the Expressions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchRequest) GetExpressionsOk() (*map[string]string, bool) {
+func (o *SearchRequest) GetExpressionsOk() (map[string]string, bool) {
 	if o == nil || IsNil(o.Expressions) {
-		return nil, false
+		return map[string]string{}, false
 	}
-	return &o.Expressions, true
+	return o.Expressions, true
 }
 
 // HasExpressions returns a boolean if a field has been set.
@@ -325,23 +317,22 @@ func (o *SearchRequest) SetExpressions(v map[string]string) {
 	o.Expressions = v
 }
 
-// GetMaxMatches returns the MaxMatches field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchRequest) GetMaxMatches() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMaxMatches returns the MaxMatches field value if set, zero value otherwise.
+func (o *SearchRequest) GetMaxMatches() int32 {
+	if o == nil || IsNil(o.MaxMatches) {
+		var ret int32
 		return ret
 	}
-	return o.MaxMatches
+	return *o.MaxMatches
 }
 
 // GetMaxMatchesOk returns a tuple with the MaxMatches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchRequest) GetMaxMatchesOk() (*interface{}, bool) {
+func (o *SearchRequest) GetMaxMatchesOk() (*int32, bool) {
 	if o == nil || IsNil(o.MaxMatches) {
 		return nil, false
 	}
-	return &o.MaxMatches, true
+	return o.MaxMatches, true
 }
 
 // HasMaxMatches returns a boolean if a field has been set.
@@ -353,28 +344,27 @@ func (o *SearchRequest) HasMaxMatches() bool {
 	return false
 }
 
-// SetMaxMatches gets a reference to the given interface{} and assigns it to the MaxMatches field.
-func (o *SearchRequest) SetMaxMatches(v interface{}) {
-	o.MaxMatches = v
+// SetMaxMatches gets a reference to the given int32 and assigns it to the MaxMatches field.
+func (o *SearchRequest) SetMaxMatches(v int32) {
+	o.MaxMatches = &v
 }
 
-// GetOffset returns the Offset field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchRequest) GetOffset() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetOffset returns the Offset field value if set, zero value otherwise.
+func (o *SearchRequest) GetOffset() int32 {
+	if o == nil || IsNil(o.Offset) {
+		var ret int32
 		return ret
 	}
-	return o.Offset
+	return *o.Offset
 }
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchRequest) GetOffsetOk() (*interface{}, bool) {
+func (o *SearchRequest) GetOffsetOk() (*int32, bool) {
 	if o == nil || IsNil(o.Offset) {
 		return nil, false
 	}
-	return &o.Offset, true
+	return o.Offset, true
 }
 
 // HasOffset returns a boolean if a field has been set.
@@ -386,15 +376,15 @@ func (o *SearchRequest) HasOffset() bool {
 	return false
 }
 
-// SetOffset gets a reference to the given interface{} and assigns it to the Offset field.
-func (o *SearchRequest) SetOffset(v interface{}) {
-	o.Offset = v
+// SetOffset gets a reference to the given int32 and assigns it to the Offset field.
+func (o *SearchRequest) SetOffset(v int32) {
+	o.Offset = &v
 }
 
-// GetOptions returns the Options field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchRequest) GetOptions() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *SearchRequest) GetOptions() map[string]interface{} {
+	if o == nil || IsNil(o.Options) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Options
@@ -402,12 +392,11 @@ func (o *SearchRequest) GetOptions() interface{} {
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchRequest) GetOptionsOk() (*interface{}, bool) {
+func (o *SearchRequest) GetOptionsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Options) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Options, true
+	return o.Options, true
 }
 
 // HasOptions returns a boolean if a field has been set.
@@ -419,28 +408,27 @@ func (o *SearchRequest) HasOptions() bool {
 	return false
 }
 
-// SetOptions gets a reference to the given interface{} and assigns it to the Options field.
-func (o *SearchRequest) SetOptions(v interface{}) {
+// SetOptions gets a reference to the given map[string]interface{} and assigns it to the Options field.
+func (o *SearchRequest) SetOptions(v map[string]interface{}) {
 	o.Options = v
 }
 
-// GetProfile returns the Profile field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchRequest) GetProfile() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetProfile returns the Profile field value if set, zero value otherwise.
+func (o *SearchRequest) GetProfile() bool {
+	if o == nil || IsNil(o.Profile) {
+		var ret bool
 		return ret
 	}
-	return o.Profile
+	return *o.Profile
 }
 
 // GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchRequest) GetProfileOk() (*interface{}, bool) {
+func (o *SearchRequest) GetProfileOk() (*bool, bool) {
 	if o == nil || IsNil(o.Profile) {
 		return nil, false
 	}
-	return &o.Profile, true
+	return o.Profile, true
 }
 
 // HasProfile returns a boolean if a field has been set.
@@ -452,9 +440,9 @@ func (o *SearchRequest) HasProfile() bool {
 	return false
 }
 
-// SetProfile gets a reference to the given interface{} and assigns it to the Profile field.
-func (o *SearchRequest) SetProfile(v interface{}) {
-	o.Profile = v
+// SetProfile gets a reference to the given bool and assigns it to the Profile field.
+func (o *SearchRequest) SetProfile(v bool) {
+	o.Profile = &v
 }
 
 // GetSort returns the Sort field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -523,23 +511,22 @@ func (o *SearchRequest) SetSource(v interface{}) {
 	o.Source = v
 }
 
-// GetTrackScores returns the TrackScores field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchRequest) GetTrackScores() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetTrackScores returns the TrackScores field value if set, zero value otherwise.
+func (o *SearchRequest) GetTrackScores() bool {
+	if o == nil || IsNil(o.TrackScores) {
+		var ret bool
 		return ret
 	}
-	return o.TrackScores
+	return *o.TrackScores
 }
 
 // GetTrackScoresOk returns a tuple with the TrackScores field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchRequest) GetTrackScoresOk() (*interface{}, bool) {
+func (o *SearchRequest) GetTrackScoresOk() (*bool, bool) {
 	if o == nil || IsNil(o.TrackScores) {
 		return nil, false
 	}
-	return &o.TrackScores, true
+	return o.TrackScores, true
 }
 
 // HasTrackScores returns a boolean if a field has been set.
@@ -551,9 +538,9 @@ func (o *SearchRequest) HasTrackScores() bool {
 	return false
 }
 
-// SetTrackScores gets a reference to the given interface{} and assigns it to the TrackScores field.
-func (o *SearchRequest) SetTrackScores(v interface{}) {
-	o.TrackScores = v
+// SetTrackScores gets a reference to the given bool and assigns it to the TrackScores field.
+func (o *SearchRequest) SetTrackScores(v bool) {
+	o.TrackScores = &v
 }
 
 func (o SearchRequest) MarshalJSON() ([]byte, error) {
@@ -566,40 +553,38 @@ func (o SearchRequest) MarshalJSON() ([]byte, error) {
 
 func (o SearchRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Table != nil {
-		toSerialize["table"] = o.Table
-	}
+	toSerialize["table"] = o.Table
 	if !IsNil(o.Query) {
 		toSerialize["query"] = o.Query
 	}
-	if o.Join != nil {
+	if !IsNil(o.Join) {
 		toSerialize["join"] = o.Join
 	}
 	if !IsNil(o.Highlight) {
 		toSerialize["highlight"] = o.Highlight
 	}
-	if o.Limit != nil {
+	if !IsNil(o.Limit) {
 		toSerialize["limit"] = o.Limit
 	}
 	if !IsNil(o.Knn) {
 		toSerialize["knn"] = o.Knn
 	}
-	if o.Aggs != nil {
+	if !IsNil(o.Aggs) {
 		toSerialize["aggs"] = o.Aggs
 	}
-	if o.Expressions != nil {
+	if !IsNil(o.Expressions) {
 		toSerialize["expressions"] = o.Expressions
 	}
-	if o.MaxMatches != nil {
+	if !IsNil(o.MaxMatches) {
 		toSerialize["max_matches"] = o.MaxMatches
 	}
-	if o.Offset != nil {
+	if !IsNil(o.Offset) {
 		toSerialize["offset"] = o.Offset
 	}
-	if o.Options != nil {
+	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
-	if o.Profile != nil {
+	if !IsNil(o.Profile) {
 		toSerialize["profile"] = o.Profile
 	}
 	if o.Sort != nil {
@@ -608,10 +593,47 @@ func (o SearchRequest) ToMap() (map[string]interface{}, error) {
 	if o.Source != nil {
 		toSerialize["_source"] = o.Source
 	}
-	if o.TrackScores != nil {
+	if !IsNil(o.TrackScores) {
 		toSerialize["track_scores"] = o.TrackScores
 	}
 	return toSerialize, nil
+}
+
+func (o *SearchRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"table",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSearchRequest := _SearchRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSearchRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SearchRequest(varSearchRequest)
+
+	return err
 }
 
 type NullableSearchRequest struct {

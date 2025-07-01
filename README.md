@@ -2,7 +2,7 @@
 
 Сlient for Manticore Search.
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-go/tree/v1.8.0
+❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-go/tree/v2.0.0
 
 ## Compatibility Table
 
@@ -137,7 +137,6 @@ Class | Method | HTTP request | Description
  - [GeoDistance](docs/GeoDistance.md)
  - [GeoDistanceLocationAnchor](docs/GeoDistanceLocationAnchor.md)
  - [Highlight](docs/Highlight.md)
- - [HighlightAllOfHighlightQuery](docs/HighlightAllOfHighlightQuery.md)
  - [HighlightFieldOption](docs/HighlightFieldOption.md)
  - [HighlightFields](docs/HighlightFields.md)
  - [HitsHits](docs/HitsHits.md)
@@ -164,7 +163,6 @@ Class | Method | HTTP request | Description
  - [SqlResponse](docs/SqlResponse.md)
  - [SuccessResponse](docs/SuccessResponse.md)
  - [UpdateDocumentRequest](docs/UpdateDocumentRequest.md)
- - [UpdateDocumentRequestQuery](docs/UpdateDocumentRequestQuery.md)
  - [UpdateResponse](docs/UpdateResponse.md)
 
 

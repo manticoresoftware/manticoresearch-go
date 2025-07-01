@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AggCompositeTerm type satisfies the MappedNullable interface at compile time
@@ -23,7 +23,7 @@ var _ MappedNullable = &AggCompositeTerm{}
 // AggCompositeTerm Object representing a term to be used in composite aggregation.
 type AggCompositeTerm struct {
 	// Name of field to operate with
-	Field string `json:"field"` 
+	Field string `json:"field"`
 }
 
 type _AggCompositeTerm AggCompositeTerm
@@ -82,6 +82,43 @@ func (o AggCompositeTerm) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["field"] = o.Field
 	return toSerialize, nil
+}
+
+func (o *AggCompositeTerm) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"field",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAggCompositeTerm := _AggCompositeTerm{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAggCompositeTerm)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AggCompositeTerm(varAggCompositeTerm)
+
+	return err
 }
 
 type NullableAggCompositeTerm struct {

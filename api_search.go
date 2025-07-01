@@ -35,7 +35,7 @@ func (r ApiAutocompleteRequest) AutocompleteRequest(autocompleteRequest Autocomp
 	return r
 }
 
-func (r ApiAutocompleteRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiAutocompleteRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
 	return r.ApiService.AutocompleteExecute(r)
 }
 
@@ -95,13 +95,13 @@ func (a *SearchAPIService) Autocomplete(ctx context.Context) ApiAutocompleteRequ
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *SearchAPIService) AutocompleteExecute(r ApiAutocompleteRequest) (interface{}, *http.Response, error) {
+//  @return []map[string]interface{}
+func (a *SearchAPIService) AutocompleteExecute(r ApiAutocompleteRequest) ([]map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  []map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchAPIService.Autocomplete")

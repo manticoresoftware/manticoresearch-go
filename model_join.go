@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Join type satisfies the MappedNullable interface at compile time
@@ -23,12 +23,12 @@ var _ MappedNullable = &Join{}
 // Join struct for Join
 type Join struct {
 	// Type of the join operation
-	Type interface{} `json:"type"` 
+	Type string `json:"type"`
 	// List of objects defining joined tables
-	On interface{} `json:"on"` 
-	Query *FulltextFilter `json:"query"` 
+	On []JoinOn `json:"on"`
+	Query *FulltextFilter `json:"query,omitempty"`
 	// Basic table of the join operation
-	Table interface{} `json:"table"` 
+	Table string `json:"table"`
 }
 
 type _Join Join
@@ -37,7 +37,7 @@ type _Join Join
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJoin(type_ interface{}, on interface{}, table interface{}) *Join {
+func NewJoin(type_ string, on []JoinOn, table string) *Join {
 	this := Join{}
 	this.Type = type_
 	this.On = on
@@ -54,10 +54,9 @@ func NewJoinWithDefaults() *Join {
 }
 
 // GetType returns the Type field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *Join) GetType() interface{} {
+func (o *Join) GetType() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -66,24 +65,22 @@ func (o *Join) GetType() interface{} {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Join) GetTypeOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Type) {
+func (o *Join) GetTypeOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Type, true
 }
 
 // SetType sets field value
-func (o *Join) SetType(v interface{}) {
+func (o *Join) SetType(v string) {
 	o.Type = v
 }
 
 // GetOn returns the On field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *Join) GetOn() interface{} {
+func (o *Join) GetOn() []JoinOn {
 	if o == nil {
-		var ret interface{}
+		var ret []JoinOn
 		return ret
 	}
 
@@ -92,16 +89,15 @@ func (o *Join) GetOn() interface{} {
 
 // GetOnOk returns a tuple with the On field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Join) GetOnOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.On) {
+func (o *Join) GetOnOk() ([]JoinOn, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.On, true
+	return o.On, true
 }
 
 // SetOn sets field value
-func (o *Join) SetOn(v interface{}) {
+func (o *Join) SetOn(v []JoinOn) {
 	o.On = v
 }
 
@@ -138,10 +134,9 @@ func (o *Join) SetQuery(v FulltextFilter) {
 }
 
 // GetTable returns the Table field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *Join) GetTable() interface{} {
+func (o *Join) GetTable() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -150,16 +145,15 @@ func (o *Join) GetTable() interface{} {
 
 // GetTableOk returns a tuple with the Table field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Join) GetTableOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Table) {
+func (o *Join) GetTableOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Table, true
 }
 
 // SetTable sets field value
-func (o *Join) SetTable(v interface{}) {
+func (o *Join) SetTable(v string) {
 	o.Table = v
 }
 
@@ -173,19 +167,52 @@ func (o Join) MarshalJSON() ([]byte, error) {
 
 func (o Join) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.On != nil {
-		toSerialize["on"] = o.On
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["on"] = o.On
 	if !IsNil(o.Query) {
 		toSerialize["query"] = o.Query
 	}
-	if o.Table != nil {
-		toSerialize["table"] = o.Table
-	}
+	toSerialize["table"] = o.Table
 	return toSerialize, nil
+}
+
+func (o *Join) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+		"on",
+		"table",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varJoin := _Join{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varJoin)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Join(varJoin)
+
+	return err
 }
 
 type NullableJoin struct {

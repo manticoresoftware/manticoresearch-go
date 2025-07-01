@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Percolate** | **interface{}** | Object representing the document to percolate | 
+**Percolate** | **map[string]interface{}** | Object representing the document to percolate | 
 
 ## Methods
 
 ### NewPercolateRequestQuery
 
-`func NewPercolateRequestQuery(percolate interface{}, ) *PercolateRequestQuery`
+`func NewPercolateRequestQuery(percolate map[string]interface{}, ) *PercolateRequestQuery`
 
 NewPercolateRequestQuery instantiates a new PercolateRequestQuery object
 This constructor will assign default values to properties that have it defined,
@@ -27,34 +27,24 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPercolate
 
-`func (o *PercolateRequestQuery) GetPercolate() interface{}`
+`func (o *PercolateRequestQuery) GetPercolate() map[string]interface{}`
 
 GetPercolate returns the Percolate field if non-nil, zero value otherwise.
 
 ### GetPercolateOk
 
-`func (o *PercolateRequestQuery) GetPercolateOk() (*interface{}, bool)`
+`func (o *PercolateRequestQuery) GetPercolateOk() (*map[string]interface{}, bool)`
 
 GetPercolateOk returns a tuple with the Percolate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPercolate
 
-`func (o *PercolateRequestQuery) SetPercolate(v interface{})`
+`func (o *PercolateRequestQuery) SetPercolate(v map[string]interface{})`
 
 SetPercolate sets Percolate field to given value.
 
 
-### SetPercolateNil
-
-`func (o *PercolateRequestQuery) SetPercolateNil(b bool)`
-
- SetPercolateNil sets the value for Percolate to be an explicit nil
-
-### UnsetPercolate
-`func (o *PercolateRequestQuery) UnsetPercolate()`
-
-UnsetPercolate ensures that no value is present for Percolate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

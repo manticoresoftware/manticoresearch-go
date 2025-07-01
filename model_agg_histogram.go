@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AggHistogram type satisfies the MappedNullable interface at compile time
@@ -23,13 +23,13 @@ var _ MappedNullable = &AggHistogram{}
 // AggHistogram Object to use histograms in aggregation, i.e., grouping search results by histogram values
 type AggHistogram struct {
 	// Field to group by
-	Field string `json:"field"` 
+	Field string `json:"field"`
 	// Interval of the histogram values
-	Interval int32 `json:"interval"` 
+	Interval int32 `json:"interval"`
 	// Offset of the histogram values. Default value is 0.
-	Offset *int32 `json:"offset"` 
+	Offset *int32 `json:"offset,omitempty"`
 	// Flag that defines if a search response will be a dictionary with the bucket keys. Default value is false.
-	Keyed *bool `json:"keyed"` 
+	Keyed *bool `json:"keyed,omitempty"`
 }
 
 type _AggHistogram AggHistogram
@@ -184,6 +184,44 @@ func (o AggHistogram) ToMap() (map[string]interface{}, error) {
 		toSerialize["keyed"] = o.Keyed
 	}
 	return toSerialize, nil
+}
+
+func (o *AggHistogram) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"field",
+		"interval",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAggHistogram := _AggHistogram{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAggHistogram)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AggHistogram(varAggHistogram)
+
+	return err
 }
 
 type NullableAggHistogram struct {

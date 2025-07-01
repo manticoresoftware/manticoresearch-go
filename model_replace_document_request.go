@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ReplaceDocumentRequest type satisfies the MappedNullable interface at compile time
@@ -23,7 +23,7 @@ var _ MappedNullable = &ReplaceDocumentRequest{}
 // ReplaceDocumentRequest Object containing the document data for replacing an existing document in a table.
 type ReplaceDocumentRequest struct {
 	// Object containing the new document data to replace the existing one.
-	Doc interface{} `json:"doc"` 
+	Doc map[string]interface{} `json:"doc"`
 }
 
 type _ReplaceDocumentRequest ReplaceDocumentRequest
@@ -32,7 +32,7 @@ type _ReplaceDocumentRequest ReplaceDocumentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReplaceDocumentRequest(doc interface{}) *ReplaceDocumentRequest {
+func NewReplaceDocumentRequest(doc map[string]interface{}) *ReplaceDocumentRequest {
 	this := ReplaceDocumentRequest{}
 	this.Doc = doc
 	return &this
@@ -47,10 +47,9 @@ func NewReplaceDocumentRequestWithDefaults() *ReplaceDocumentRequest {
 }
 
 // GetDoc returns the Doc field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *ReplaceDocumentRequest) GetDoc() interface{} {
+func (o *ReplaceDocumentRequest) GetDoc() map[string]interface{} {
 	if o == nil {
-		var ret interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -59,16 +58,15 @@ func (o *ReplaceDocumentRequest) GetDoc() interface{} {
 
 // GetDocOk returns a tuple with the Doc field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ReplaceDocumentRequest) GetDocOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Doc) {
-		return nil, false
+func (o *ReplaceDocumentRequest) GetDocOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
 	}
-	return &o.Doc, true
+	return o.Doc, true
 }
 
 // SetDoc sets field value
-func (o *ReplaceDocumentRequest) SetDoc(v interface{}) {
+func (o *ReplaceDocumentRequest) SetDoc(v map[string]interface{}) {
 	o.Doc = v
 }
 
@@ -82,10 +80,45 @@ func (o ReplaceDocumentRequest) MarshalJSON() ([]byte, error) {
 
 func (o ReplaceDocumentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Doc != nil {
-		toSerialize["doc"] = o.Doc
-	}
+	toSerialize["doc"] = o.Doc
 	return toSerialize, nil
+}
+
+func (o *ReplaceDocumentRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"doc",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varReplaceDocumentRequest := _ReplaceDocumentRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varReplaceDocumentRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ReplaceDocumentRequest(varReplaceDocumentRequest)
+
+	return err
 }
 
 type NullableReplaceDocumentRequest struct {

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **interface{}** | Type or category of the error | 
-**Reason** | Pointer to **interface{}** | Detailed explanation of why the error occurred | [optional] 
-**Table** | Pointer to **interface{}** | The table related to the error, if applicable | [optional] 
+**Type** | **string** | Type or category of the error | 
+**Reason** | Pointer to **NullableString** | Detailed explanation of why the error occurred | [optional] 
+**Table** | Pointer to **NullableString** | The table related to the error, if applicable | [optional] 
 
 ## Methods
 
 ### NewResponseErrorDetails
 
-`func NewResponseErrorDetails(type_ interface{}, ) *ResponseErrorDetails`
+`func NewResponseErrorDetails(type_ string, ) *ResponseErrorDetails`
 
 NewResponseErrorDetails instantiates a new ResponseErrorDetails object
 This constructor will assign default values to properties that have it defined,
@@ -29,50 +29,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
-`func (o *ResponseErrorDetails) GetType() interface{}`
+`func (o *ResponseErrorDetails) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ResponseErrorDetails) GetTypeOk() (*interface{}, bool)`
+`func (o *ResponseErrorDetails) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *ResponseErrorDetails) SetType(v interface{})`
+`func (o *ResponseErrorDetails) SetType(v string)`
 
 SetType sets Type field to given value.
 
 
-### SetTypeNil
-
-`func (o *ResponseErrorDetails) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *ResponseErrorDetails) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetReason
 
-`func (o *ResponseErrorDetails) GetReason() interface{}`
+`func (o *ResponseErrorDetails) GetReason() string`
 
 GetReason returns the Reason field if non-nil, zero value otherwise.
 
 ### GetReasonOk
 
-`func (o *ResponseErrorDetails) GetReasonOk() (*interface{}, bool)`
+`func (o *ResponseErrorDetails) GetReasonOk() (*string, bool)`
 
 GetReasonOk returns a tuple with the Reason field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReason
 
-`func (o *ResponseErrorDetails) SetReason(v interface{})`
+`func (o *ResponseErrorDetails) SetReason(v string)`
 
 SetReason sets Reason field to given value.
 
@@ -94,20 +84,20 @@ HasReason returns a boolean if a field has been set.
 UnsetReason ensures that no value is present for Reason, not even an explicit nil
 ### GetTable
 
-`func (o *ResponseErrorDetails) GetTable() interface{}`
+`func (o *ResponseErrorDetails) GetTable() string`
 
 GetTable returns the Table field if non-nil, zero value otherwise.
 
 ### GetTableOk
 
-`func (o *ResponseErrorDetails) GetTableOk() (*interface{}, bool)`
+`func (o *ResponseErrorDetails) GetTableOk() (*string, bool)`
 
 GetTableOk returns a tuple with the Table field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTable
 
-`func (o *ResponseErrorDetails) SetTable(v interface{})`
+`func (o *ResponseErrorDetails) SetTable(v string)`
 
 SetTable sets Table field to given value.
 

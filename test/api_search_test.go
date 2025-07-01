@@ -46,11 +46,17 @@ func Test_openapi_SearchAPIService(t *testing.T) {
 		fmt.Printf("%+v\n\n", string(outRes[:]))
     	assert.Equal(t, 200, bulkHttpRes.StatusCode)
 
-		queryHighlight := Manticoresearch.NewHighlight()
- 		queryHighlight.Fields =  map[string]interface{} {"title": map[string]interface{} {}}
+				queryHighlight := Manticoresearch.NewHighlight()
+		highlightFields := Manticoresearch.HighlightFields{
+			MapmapOfStringAny: &map[string]interface{}{
+				"title": map[string]interface{}{},
+			},
+		}
+		queryHighlight.SetFields(highlightFields)
+
 
 		searchQuery := Manticoresearch.NewSearchQuery()
-		searchQuery.QueryString = "@title Trek 4"
+		searchQuery.SetQueryString("@title Trek 4")	
 		searchRequest := Manticoresearch.NewSearchRequest("movies")
 		searchRequest.Highlight = queryHighlight
 		searchRequest.Query = searchQuery

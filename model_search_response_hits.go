@@ -21,13 +21,13 @@ var _ MappedNullable = &SearchResponseHits{}
 // SearchResponseHits Object containing the search hits, which represent the documents that matched the query.
 type SearchResponseHits struct {
 	// Maximum score among the matched documents
-	MaxScore interface{} `json:"max_score"` 
+	MaxScore *int32 `json:"max_score,omitempty"`
 	// Total number of matched documents
-	Total interface{} `json:"total"` 
+	Total *int32 `json:"total,omitempty"`
 	// Indicates whether the total number of hits is accurate or an estimate
-	TotalRelation interface{} `json:"total_relation"` 
+	TotalRelation *string `json:"total_relation,omitempty"`
 	// Array of hit objects, each representing a matched document
-	Hits interface{} `json:"hits"` 
+	Hits []HitsHits `json:"hits,omitempty"`
 }
 
 // NewSearchResponseHits instantiates a new SearchResponseHits object
@@ -47,23 +47,22 @@ func NewSearchResponseHitsWithDefaults() *SearchResponseHits {
 	return &this
 }
 
-// GetMaxScore returns the MaxScore field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchResponseHits) GetMaxScore() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMaxScore returns the MaxScore field value if set, zero value otherwise.
+func (o *SearchResponseHits) GetMaxScore() int32 {
+	if o == nil || IsNil(o.MaxScore) {
+		var ret int32
 		return ret
 	}
-	return o.MaxScore
+	return *o.MaxScore
 }
 
 // GetMaxScoreOk returns a tuple with the MaxScore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchResponseHits) GetMaxScoreOk() (*interface{}, bool) {
+func (o *SearchResponseHits) GetMaxScoreOk() (*int32, bool) {
 	if o == nil || IsNil(o.MaxScore) {
 		return nil, false
 	}
-	return &o.MaxScore, true
+	return o.MaxScore, true
 }
 
 // HasMaxScore returns a boolean if a field has been set.
@@ -75,28 +74,27 @@ func (o *SearchResponseHits) HasMaxScore() bool {
 	return false
 }
 
-// SetMaxScore gets a reference to the given interface{} and assigns it to the MaxScore field.
-func (o *SearchResponseHits) SetMaxScore(v interface{}) {
-	o.MaxScore = v
+// SetMaxScore gets a reference to the given int32 and assigns it to the MaxScore field.
+func (o *SearchResponseHits) SetMaxScore(v int32) {
+	o.MaxScore = &v
 }
 
-// GetTotal returns the Total field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchResponseHits) GetTotal() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetTotal returns the Total field value if set, zero value otherwise.
+func (o *SearchResponseHits) GetTotal() int32 {
+	if o == nil || IsNil(o.Total) {
+		var ret int32
 		return ret
 	}
-	return o.Total
+	return *o.Total
 }
 
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchResponseHits) GetTotalOk() (*interface{}, bool) {
+func (o *SearchResponseHits) GetTotalOk() (*int32, bool) {
 	if o == nil || IsNil(o.Total) {
 		return nil, false
 	}
-	return &o.Total, true
+	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
@@ -108,28 +106,27 @@ func (o *SearchResponseHits) HasTotal() bool {
 	return false
 }
 
-// SetTotal gets a reference to the given interface{} and assigns it to the Total field.
-func (o *SearchResponseHits) SetTotal(v interface{}) {
-	o.Total = v
+// SetTotal gets a reference to the given int32 and assigns it to the Total field.
+func (o *SearchResponseHits) SetTotal(v int32) {
+	o.Total = &v
 }
 
-// GetTotalRelation returns the TotalRelation field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchResponseHits) GetTotalRelation() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetTotalRelation returns the TotalRelation field value if set, zero value otherwise.
+func (o *SearchResponseHits) GetTotalRelation() string {
+	if o == nil || IsNil(o.TotalRelation) {
+		var ret string
 		return ret
 	}
-	return o.TotalRelation
+	return *o.TotalRelation
 }
 
 // GetTotalRelationOk returns a tuple with the TotalRelation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchResponseHits) GetTotalRelationOk() (*interface{}, bool) {
+func (o *SearchResponseHits) GetTotalRelationOk() (*string, bool) {
 	if o == nil || IsNil(o.TotalRelation) {
 		return nil, false
 	}
-	return &o.TotalRelation, true
+	return o.TotalRelation, true
 }
 
 // HasTotalRelation returns a boolean if a field has been set.
@@ -141,15 +138,15 @@ func (o *SearchResponseHits) HasTotalRelation() bool {
 	return false
 }
 
-// SetTotalRelation gets a reference to the given interface{} and assigns it to the TotalRelation field.
-func (o *SearchResponseHits) SetTotalRelation(v interface{}) {
-	o.TotalRelation = v
+// SetTotalRelation gets a reference to the given string and assigns it to the TotalRelation field.
+func (o *SearchResponseHits) SetTotalRelation(v string) {
+	o.TotalRelation = &v
 }
 
-// GetHits returns the Hits field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchResponseHits) GetHits() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetHits returns the Hits field value if set, zero value otherwise.
+func (o *SearchResponseHits) GetHits() []HitsHits {
+	if o == nil || IsNil(o.Hits) {
+		var ret []HitsHits
 		return ret
 	}
 	return o.Hits
@@ -157,12 +154,11 @@ func (o *SearchResponseHits) GetHits() interface{} {
 
 // GetHitsOk returns a tuple with the Hits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchResponseHits) GetHitsOk() (*interface{}, bool) {
+func (o *SearchResponseHits) GetHitsOk() ([]HitsHits, bool) {
 	if o == nil || IsNil(o.Hits) {
 		return nil, false
 	}
-	return &o.Hits, true
+	return o.Hits, true
 }
 
 // HasHits returns a boolean if a field has been set.
@@ -174,8 +170,8 @@ func (o *SearchResponseHits) HasHits() bool {
 	return false
 }
 
-// SetHits gets a reference to the given interface{} and assigns it to the Hits field.
-func (o *SearchResponseHits) SetHits(v interface{}) {
+// SetHits gets a reference to the given []HitsHits and assigns it to the Hits field.
+func (o *SearchResponseHits) SetHits(v []HitsHits) {
 	o.Hits = v
 }
 
@@ -189,16 +185,16 @@ func (o SearchResponseHits) MarshalJSON() ([]byte, error) {
 
 func (o SearchResponseHits) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.MaxScore != nil {
+	if !IsNil(o.MaxScore) {
 		toSerialize["max_score"] = o.MaxScore
 	}
-	if o.Total != nil {
+	if !IsNil(o.Total) {
 		toSerialize["total"] = o.Total
 	}
-	if o.TotalRelation != nil {
+	if !IsNil(o.TotalRelation) {
 		toSerialize["total_relation"] = o.TotalRelation
 	}
-	if o.Hits != nil {
+	if !IsNil(o.Hits) {
 		toSerialize["hits"] = o.Hits
 	}
 	return toSerialize, nil

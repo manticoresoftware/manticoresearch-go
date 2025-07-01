@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	deleteDocumentRequest := *openapiclient.NewDeleteDocumentRequest(interface{}(123)) // DeleteDocumentRequest | 
+	deleteDocumentRequest := *openapiclient.NewDeleteDocumentRequest("Table_example") // DeleteDocumentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -166,7 +166,7 @@ import (
 )
 
 func main() {
-	insertDocumentRequest := *openapiclient.NewInsertDocumentRequest(interface{}(123), interface{}(123)) // InsertDocumentRequest | 
+	insertDocumentRequest := *openapiclient.NewInsertDocumentRequest("Table_example", map[string]interface{}(123)) // InsertDocumentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -233,8 +233,8 @@ import (
 
 func main() {
 	table := "table_example" // string | Name of the percolate table
-	id := int32(56) // int32 | Id of the document to replace
-	replaceDocumentRequest := *openapiclient.NewReplaceDocumentRequest(interface{}(123)) // ReplaceDocumentRequest | 
+	id := uint64(56) // uint64 | Id of the document to replace
+	replaceDocumentRequest := *openapiclient.NewReplaceDocumentRequest(map[string]interface{}(123)) // ReplaceDocumentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -255,7 +255,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **table** | **string** | Name of the percolate table | 
-**id** | **int32** | Id of the document to replace | 
+**id** | **uint64** | Id of the document to replace |
 
 ### Other Parameters
 
@@ -307,7 +307,7 @@ import (
 )
 
 func main() {
-	insertDocumentRequest := *openapiclient.NewInsertDocumentRequest(interface{}(123), interface{}(123)) // InsertDocumentRequest | 
+	insertDocumentRequest := *openapiclient.NewInsertDocumentRequest("Table_example", map[string]interface{}(123)) // InsertDocumentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -373,7 +373,7 @@ import (
 )
 
 func main() {
-	updateDocumentRequest := *openapiclient.NewUpdateDocumentRequest(interface{}(123), interface{}({gid=10})) // UpdateDocumentRequest | 
+	updateDocumentRequest := *openapiclient.NewUpdateDocumentRequest("Table_example", map[string]interface{}({gid=10})) // UpdateDocumentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

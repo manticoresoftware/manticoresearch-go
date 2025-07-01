@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the JoinCond type satisfies the MappedNullable interface at compile time
@@ -23,10 +23,10 @@ var _ MappedNullable = &JoinCond{}
 // JoinCond Object representing the conditions used to perform the join operation
 type JoinCond struct {
 	// Field to join on
-	Field interface{} `json:"field"` 
+	Field string `json:"field"`
 	// Joined table
-	Table interface{} `json:"table"` 
-	Type interface{} `json:"type"` 
+	Table string `json:"table"`
+	Type interface{} `json:"type,omitempty"`
 }
 
 type _JoinCond JoinCond
@@ -35,7 +35,7 @@ type _JoinCond JoinCond
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJoinCond(field interface{}, table interface{}) *JoinCond {
+func NewJoinCond(field string, table string) *JoinCond {
 	this := JoinCond{}
 	this.Field = field
 	this.Table = table
@@ -51,10 +51,9 @@ func NewJoinCondWithDefaults() *JoinCond {
 }
 
 // GetField returns the Field field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *JoinCond) GetField() interface{} {
+func (o *JoinCond) GetField() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -63,24 +62,22 @@ func (o *JoinCond) GetField() interface{} {
 
 // GetFieldOk returns a tuple with the Field field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JoinCond) GetFieldOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Field) {
+func (o *JoinCond) GetFieldOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Field, true
 }
 
 // SetField sets field value
-func (o *JoinCond) SetField(v interface{}) {
+func (o *JoinCond) SetField(v string) {
 	o.Field = v
 }
 
 // GetTable returns the Table field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *JoinCond) GetTable() interface{} {
+func (o *JoinCond) GetTable() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -89,16 +86,15 @@ func (o *JoinCond) GetTable() interface{} {
 
 // GetTableOk returns a tuple with the Table field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JoinCond) GetTableOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Table) {
+func (o *JoinCond) GetTableOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Table, true
 }
 
 // SetTable sets field value
-func (o *JoinCond) SetTable(v interface{}) {
+func (o *JoinCond) SetTable(v string) {
 	o.Table = v
 }
 
@@ -145,16 +141,50 @@ func (o JoinCond) MarshalJSON() ([]byte, error) {
 
 func (o JoinCond) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Field != nil {
-		toSerialize["field"] = o.Field
-	}
-	if o.Table != nil {
-		toSerialize["table"] = o.Table
-	}
+	toSerialize["field"] = o.Field
+	toSerialize["table"] = o.Table
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
+}
+
+func (o *JoinCond) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"field",
+		"table",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varJoinCond := _JoinCond{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varJoinCond)
+
+	if err != nil {
+		return err
+	}
+
+	*o = JoinCond(varJoinCond)
+
+	return err
 }
 
 type NullableJoinCond struct {

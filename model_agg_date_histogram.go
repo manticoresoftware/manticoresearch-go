@@ -13,7 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AggDateHistogram type satisfies the MappedNullable interface at compile time
@@ -22,14 +23,13 @@ var _ MappedNullable = &AggDateHistogram{}
 // AggDateHistogram Object to use histograms in aggregation, i.e., grouping search results by histogram values
 type AggDateHistogram struct {
 	// Field to group by
-	Field interface{} `json:"field"` 
+	Field string `json:"field"`
 	// Interval of the histogram values
-	Interval interface{} `json:"interval"` 
+	Interval int32 `json:"interval"`
 	// Offset of the histogram values. Default value is 0.
-	Offset interface{} `json:"offset"` 
+	Offset *int32 `json:"offset,omitempty"`
 	// Flag that defines if a search response will be a dictionary with the bucket keys. Default value is false.
-	Keyed interface{} `json:"keyed"` 
-	AdditionalProperties map[string]interface{}
+	Keyed *bool `json:"keyed,omitempty"`
 }
 
 type _AggDateHistogram AggDateHistogram
@@ -38,7 +38,7 @@ type _AggDateHistogram AggDateHistogram
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAggDateHistogram(field interface{}, interval interface{}) *AggDateHistogram {
+func NewAggDateHistogram(field string, interval int32) *AggDateHistogram {
 	this := AggDateHistogram{}
 	this.Field = field
 	this.Interval = interval
@@ -54,10 +54,9 @@ func NewAggDateHistogramWithDefaults() *AggDateHistogram {
 }
 
 // GetField returns the Field field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *AggDateHistogram) GetField() interface{} {
+func (o *AggDateHistogram) GetField() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -66,24 +65,22 @@ func (o *AggDateHistogram) GetField() interface{} {
 
 // GetFieldOk returns a tuple with the Field field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggDateHistogram) GetFieldOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Field) {
+func (o *AggDateHistogram) GetFieldOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Field, true
 }
 
 // SetField sets field value
-func (o *AggDateHistogram) SetField(v interface{}) {
+func (o *AggDateHistogram) SetField(v string) {
 	o.Field = v
 }
 
 // GetInterval returns the Interval field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *AggDateHistogram) GetInterval() interface{} {
+func (o *AggDateHistogram) GetInterval() int32 {
 	if o == nil {
-		var ret interface{}
+		var ret int32
 		return ret
 	}
 
@@ -92,36 +89,34 @@ func (o *AggDateHistogram) GetInterval() interface{} {
 
 // GetIntervalOk returns a tuple with the Interval field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggDateHistogram) GetIntervalOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Interval) {
+func (o *AggDateHistogram) GetIntervalOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Interval, true
 }
 
 // SetInterval sets field value
-func (o *AggDateHistogram) SetInterval(v interface{}) {
+func (o *AggDateHistogram) SetInterval(v int32) {
 	o.Interval = v
 }
 
-// GetOffset returns the Offset field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggDateHistogram) GetOffset() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetOffset returns the Offset field value if set, zero value otherwise.
+func (o *AggDateHistogram) GetOffset() int32 {
+	if o == nil || IsNil(o.Offset) {
+		var ret int32
 		return ret
 	}
-	return o.Offset
+	return *o.Offset
 }
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggDateHistogram) GetOffsetOk() (*interface{}, bool) {
+func (o *AggDateHistogram) GetOffsetOk() (*int32, bool) {
 	if o == nil || IsNil(o.Offset) {
 		return nil, false
 	}
-	return &o.Offset, true
+	return o.Offset, true
 }
 
 // HasOffset returns a boolean if a field has been set.
@@ -133,28 +128,27 @@ func (o *AggDateHistogram) HasOffset() bool {
 	return false
 }
 
-// SetOffset gets a reference to the given interface{} and assigns it to the Offset field.
-func (o *AggDateHistogram) SetOffset(v interface{}) {
-	o.Offset = v
+// SetOffset gets a reference to the given int32 and assigns it to the Offset field.
+func (o *AggDateHistogram) SetOffset(v int32) {
+	o.Offset = &v
 }
 
-// GetKeyed returns the Keyed field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggDateHistogram) GetKeyed() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetKeyed returns the Keyed field value if set, zero value otherwise.
+func (o *AggDateHistogram) GetKeyed() bool {
+	if o == nil || IsNil(o.Keyed) {
+		var ret bool
 		return ret
 	}
-	return o.Keyed
+	return *o.Keyed
 }
 
 // GetKeyedOk returns a tuple with the Keyed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggDateHistogram) GetKeyedOk() (*interface{}, bool) {
+func (o *AggDateHistogram) GetKeyedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Keyed) {
 		return nil, false
 	}
-	return &o.Keyed, true
+	return o.Keyed, true
 }
 
 // HasKeyed returns a boolean if a field has been set.
@@ -166,9 +160,9 @@ func (o *AggDateHistogram) HasKeyed() bool {
 	return false
 }
 
-// SetKeyed gets a reference to the given interface{} and assigns it to the Keyed field.
-func (o *AggDateHistogram) SetKeyed(v interface{}) {
-	o.Keyed = v
+// SetKeyed gets a reference to the given bool and assigns it to the Keyed field.
+func (o *AggDateHistogram) SetKeyed(v bool) {
+	o.Keyed = &v
 }
 
 func (o AggDateHistogram) MarshalJSON() ([]byte, error) {
@@ -181,24 +175,53 @@ func (o AggDateHistogram) MarshalJSON() ([]byte, error) {
 
 func (o AggDateHistogram) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Field != nil {
-		toSerialize["field"] = o.Field
-	}
-	if o.Interval != nil {
-		toSerialize["interval"] = o.Interval
-	}
-	if o.Offset != nil {
+	toSerialize["field"] = o.Field
+	toSerialize["interval"] = o.Interval
+	if !IsNil(o.Offset) {
 		toSerialize["offset"] = o.Offset
 	}
-	if o.Keyed != nil {
+	if !IsNil(o.Keyed) {
 		toSerialize["keyed"] = o.Keyed
 	}
+	return toSerialize, nil
+}
 
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+func (o *AggDateHistogram) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"field",
+		"interval",
 	}
 
-	return toSerialize, nil
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAggDateHistogram := _AggDateHistogram{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAggDateHistogram)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AggDateHistogram(varAggDateHistogram)
+
+	return err
 }
 
 type NullableAggDateHistogram struct {

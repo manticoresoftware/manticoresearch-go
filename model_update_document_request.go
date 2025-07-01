@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	_"bytes"
-	_"fmt"
+	"bytes"
+	"fmt"
 )
 
 // checks if the UpdateDocumentRequest type satisfies the MappedNullable interface at compile time
@@ -23,14 +23,14 @@ var _ MappedNullable = &UpdateDocumentRequest{}
 // UpdateDocumentRequest Payload for updating a document or multiple documents in a table
 type UpdateDocumentRequest struct {
 	// Name of the document table
-	Table interface{} `json:"table"` 
+	Table string `json:"table"`
 	// Name of the document cluster
-	Cluster interface{} `json:"cluster"` 
+	Cluster *string `json:"cluster,omitempty"`
 	// Object containing the document fields to update
-	Doc interface{} `json:"doc"` 
+	Doc map[string]interface{} `json:"doc"`
 	// Document ID
-	Id interface{} `json:"id"` 
-	Query *UpdateDocumentRequestQuery `json:"query"` 
+	Id *uint64 `json:"id,omitempty"`
+	Query NullableQueryFilter `json:"query,omitempty"`
 }
 
 type _UpdateDocumentRequest UpdateDocumentRequest
@@ -39,7 +39,7 @@ type _UpdateDocumentRequest UpdateDocumentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateDocumentRequest(table interface{}, doc interface{}) *UpdateDocumentRequest {
+func NewUpdateDocumentRequest(table string, doc map[string]interface{}) *UpdateDocumentRequest {
 	this := UpdateDocumentRequest{}
 	this.Table = table
 	this.Doc = doc
@@ -55,10 +55,9 @@ func NewUpdateDocumentRequestWithDefaults() *UpdateDocumentRequest {
 }
 
 // GetTable returns the Table field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *UpdateDocumentRequest) GetTable() interface{} {
+func (o *UpdateDocumentRequest) GetTable() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -67,36 +66,34 @@ func (o *UpdateDocumentRequest) GetTable() interface{} {
 
 // GetTableOk returns a tuple with the Table field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateDocumentRequest) GetTableOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Table) {
+func (o *UpdateDocumentRequest) GetTableOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Table, true
 }
 
 // SetTable sets field value
-func (o *UpdateDocumentRequest) SetTable(v interface{}) {
+func (o *UpdateDocumentRequest) SetTable(v string) {
 	o.Table = v
 }
 
-// GetCluster returns the Cluster field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateDocumentRequest) GetCluster() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetCluster returns the Cluster field value if set, zero value otherwise.
+func (o *UpdateDocumentRequest) GetCluster() string {
+	if o == nil || IsNil(o.Cluster) {
+		var ret string
 		return ret
 	}
-	return o.Cluster
+	return *o.Cluster
 }
 
 // GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateDocumentRequest) GetClusterOk() (*interface{}, bool) {
+func (o *UpdateDocumentRequest) GetClusterOk() (*string, bool) {
 	if o == nil || IsNil(o.Cluster) {
 		return nil, false
 	}
-	return &o.Cluster, true
+	return o.Cluster, true
 }
 
 // HasCluster returns a boolean if a field has been set.
@@ -108,16 +105,15 @@ func (o *UpdateDocumentRequest) HasCluster() bool {
 	return false
 }
 
-// SetCluster gets a reference to the given interface{} and assigns it to the Cluster field.
-func (o *UpdateDocumentRequest) SetCluster(v interface{}) {
-	o.Cluster = v
+// SetCluster gets a reference to the given string and assigns it to the Cluster field.
+func (o *UpdateDocumentRequest) SetCluster(v string) {
+	o.Cluster = &v
 }
 
 // GetDoc returns the Doc field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *UpdateDocumentRequest) GetDoc() interface{} {
+func (o *UpdateDocumentRequest) GetDoc() map[string]interface{} {
 	if o == nil {
-		var ret interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -126,36 +122,34 @@ func (o *UpdateDocumentRequest) GetDoc() interface{} {
 
 // GetDocOk returns a tuple with the Doc field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateDocumentRequest) GetDocOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Doc) {
-		return nil, false
+func (o *UpdateDocumentRequest) GetDocOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
 	}
-	return &o.Doc, true
+	return o.Doc, true
 }
 
 // SetDoc sets field value
-func (o *UpdateDocumentRequest) SetDoc(v interface{}) {
+func (o *UpdateDocumentRequest) SetDoc(v map[string]interface{}) {
 	o.Doc = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateDocumentRequest) GetId() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *UpdateDocumentRequest) GetId() uint64 {
+	if o == nil || IsNil(o.Id) {
+		var ret uint64
 		return ret
 	}
-	return o.Id
+	return *o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateDocumentRequest) GetIdOk() (*interface{}, bool) {
+func (o *UpdateDocumentRequest) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -167,41 +161,51 @@ func (o *UpdateDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given interface{} and assigns it to the Id field.
-func (o *UpdateDocumentRequest) SetId(v interface{}) {
-	o.Id = v
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *UpdateDocumentRequest) SetId(v uint64) {
+	o.Id = &v
 }
 
-// GetQuery returns the Query field value if set, zero value otherwise.
-func (o *UpdateDocumentRequest) GetQuery() UpdateDocumentRequestQuery {
-	if o == nil || IsNil(o.Query) {
-		var ret UpdateDocumentRequestQuery
+// GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateDocumentRequest) GetQuery() QueryFilter {
+	if o == nil || IsNil(o.Query.Get()) {
+		var ret QueryFilter
 		return ret
 	}
-	return *o.Query
+	return *o.Query.Get()
 }
 
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDocumentRequest) GetQueryOk() (*UpdateDocumentRequestQuery, bool) {
-	if o == nil || IsNil(o.Query) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateDocumentRequest) GetQueryOk() (*QueryFilter, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Query, true
+	return o.Query.Get(), o.Query.IsSet()
 }
 
 // HasQuery returns a boolean if a field has been set.
 func (o *UpdateDocumentRequest) HasQuery() bool {
-	if o != nil && !IsNil(o.Query) {
+	if o != nil && o.Query.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetQuery gets a reference to the given UpdateDocumentRequestQuery and assigns it to the Query field.
-func (o *UpdateDocumentRequest) SetQuery(v UpdateDocumentRequestQuery) {
-	o.Query = &v
+// SetQuery gets a reference to the given NullableQueryFilter and assigns it to the Query field.
+func (o *UpdateDocumentRequest) SetQuery(v QueryFilter) {
+	o.Query.Set(&v)
+}
+// SetQueryNil sets the value for Query to be an explicit nil
+func (o *UpdateDocumentRequest) SetQueryNil() {
+	o.Query.Set(nil)
+}
+
+// UnsetQuery ensures that no value is present for Query, not even an explicit nil
+func (o *UpdateDocumentRequest) UnsetQuery() {
+	o.Query.Unset()
 }
 
 func (o UpdateDocumentRequest) MarshalJSON() ([]byte, error) {
@@ -214,22 +218,56 @@ func (o UpdateDocumentRequest) MarshalJSON() ([]byte, error) {
 
 func (o UpdateDocumentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Table != nil {
-		toSerialize["table"] = o.Table
-	}
-	if o.Cluster != nil {
+	toSerialize["table"] = o.Table
+	if !IsNil(o.Cluster) {
 		toSerialize["cluster"] = o.Cluster
 	}
-	if o.Doc != nil {
-		toSerialize["doc"] = o.Doc
-	}
-	if o.Id != nil {
+	toSerialize["doc"] = o.Doc
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !IsNil(o.Query) {
-		toSerialize["query"] = o.Query
+	if o.Query.IsSet() {
+		toSerialize["query"] = o.Query.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *UpdateDocumentRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"table",
+		"doc",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateDocumentRequest := _UpdateDocumentRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateDocumentRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateDocumentRequest(varUpdateDocumentRequest)
+
+	return err
 }
 
 type NullableUpdateDocumentRequest struct {

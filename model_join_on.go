@@ -20,9 +20,9 @@ var _ MappedNullable = &JoinOn{}
 
 // JoinOn struct for JoinOn
 type JoinOn struct {
-	Right *JoinCond `json:"right"` 
-	Left *JoinCond `json:"left"` 
-	Operator interface{} `json:"operator"` 
+	Right *JoinCond `json:"right,omitempty"`
+	Left *JoinCond `json:"left,omitempty"`
+	Operator *string `json:"operator,omitempty"`
 }
 
 // NewJoinOn instantiates a new JoinOn object
@@ -106,23 +106,22 @@ func (o *JoinOn) SetLeft(v JoinCond) {
 	o.Left = &v
 }
 
-// GetOperator returns the Operator field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JoinOn) GetOperator() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetOperator returns the Operator field value if set, zero value otherwise.
+func (o *JoinOn) GetOperator() string {
+	if o == nil || IsNil(o.Operator) {
+		var ret string
 		return ret
 	}
-	return o.Operator
+	return *o.Operator
 }
 
 // GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JoinOn) GetOperatorOk() (*interface{}, bool) {
+func (o *JoinOn) GetOperatorOk() (*string, bool) {
 	if o == nil || IsNil(o.Operator) {
 		return nil, false
 	}
-	return &o.Operator, true
+	return o.Operator, true
 }
 
 // HasOperator returns a boolean if a field has been set.
@@ -134,9 +133,9 @@ func (o *JoinOn) HasOperator() bool {
 	return false
 }
 
-// SetOperator gets a reference to the given interface{} and assigns it to the Operator field.
-func (o *JoinOn) SetOperator(v interface{}) {
-	o.Operator = v
+// SetOperator gets a reference to the given string and assigns it to the Operator field.
+func (o *JoinOn) SetOperator(v string) {
+	o.Operator = &v
 }
 
 func (o JoinOn) MarshalJSON() ([]byte, error) {
@@ -155,7 +154,7 @@ func (o JoinOn) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Left) {
 		toSerialize["left"] = o.Left
 	}
-	if o.Operator != nil {
+	if !IsNil(o.Operator) {
 		toSerialize["operator"] = o.Operator
 	}
 	return toSerialize, nil

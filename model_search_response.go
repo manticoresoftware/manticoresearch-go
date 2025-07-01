@@ -21,18 +21,18 @@ var _ MappedNullable = &SearchResponse{}
 // SearchResponse Response object containing the results of a search request
 type SearchResponse struct {
 	// Time taken to execute the search
-	Took interface{} `json:"took"` 
+	Took *int32 `json:"took,omitempty"`
 	// Indicates whether the search operation timed out
-	TimedOut interface{} `json:"timed_out"` 
+	TimedOut *bool `json:"timed_out,omitempty"`
 	// Aggregated search results grouped by the specified criteria
-	Aggregations interface{} `json:"aggregations"` 
-	Hits *SearchResponseHits `json:"hits"` 
+	Aggregations map[string]interface{} `json:"aggregations,omitempty"`
+	Hits *SearchResponseHits `json:"hits,omitempty"`
 	// Profile information about the search execution, if profiling is enabled
-	Profile interface{} `json:"profile"` 
+	Profile map[string]interface{} `json:"profile,omitempty"`
 	// Scroll token to be used fo pagination
-	Scroll interface{} `json:"scroll"` 
+	Scroll *string `json:"scroll,omitempty"`
 	// Warnings encountered during the search operation
-	Warning interface{} `json:"warning"` 
+	Warning map[string]interface{} `json:"warning,omitempty"`
 }
 
 // NewSearchResponse instantiates a new SearchResponse object
@@ -52,23 +52,22 @@ func NewSearchResponseWithDefaults() *SearchResponse {
 	return &this
 }
 
-// GetTook returns the Took field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchResponse) GetTook() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetTook returns the Took field value if set, zero value otherwise.
+func (o *SearchResponse) GetTook() int32 {
+	if o == nil || IsNil(o.Took) {
+		var ret int32
 		return ret
 	}
-	return o.Took
+	return *o.Took
 }
 
 // GetTookOk returns a tuple with the Took field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchResponse) GetTookOk() (*interface{}, bool) {
+func (o *SearchResponse) GetTookOk() (*int32, bool) {
 	if o == nil || IsNil(o.Took) {
 		return nil, false
 	}
-	return &o.Took, true
+	return o.Took, true
 }
 
 // HasTook returns a boolean if a field has been set.
@@ -80,28 +79,27 @@ func (o *SearchResponse) HasTook() bool {
 	return false
 }
 
-// SetTook gets a reference to the given interface{} and assigns it to the Took field.
-func (o *SearchResponse) SetTook(v interface{}) {
-	o.Took = v
+// SetTook gets a reference to the given int32 and assigns it to the Took field.
+func (o *SearchResponse) SetTook(v int32) {
+	o.Took = &v
 }
 
-// GetTimedOut returns the TimedOut field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchResponse) GetTimedOut() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetTimedOut returns the TimedOut field value if set, zero value otherwise.
+func (o *SearchResponse) GetTimedOut() bool {
+	if o == nil || IsNil(o.TimedOut) {
+		var ret bool
 		return ret
 	}
-	return o.TimedOut
+	return *o.TimedOut
 }
 
 // GetTimedOutOk returns a tuple with the TimedOut field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchResponse) GetTimedOutOk() (*interface{}, bool) {
+func (o *SearchResponse) GetTimedOutOk() (*bool, bool) {
 	if o == nil || IsNil(o.TimedOut) {
 		return nil, false
 	}
-	return &o.TimedOut, true
+	return o.TimedOut, true
 }
 
 // HasTimedOut returns a boolean if a field has been set.
@@ -113,15 +111,15 @@ func (o *SearchResponse) HasTimedOut() bool {
 	return false
 }
 
-// SetTimedOut gets a reference to the given interface{} and assigns it to the TimedOut field.
-func (o *SearchResponse) SetTimedOut(v interface{}) {
-	o.TimedOut = v
+// SetTimedOut gets a reference to the given bool and assigns it to the TimedOut field.
+func (o *SearchResponse) SetTimedOut(v bool) {
+	o.TimedOut = &v
 }
 
-// GetAggregations returns the Aggregations field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchResponse) GetAggregations() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetAggregations returns the Aggregations field value if set, zero value otherwise.
+func (o *SearchResponse) GetAggregations() map[string]interface{} {
+	if o == nil || IsNil(o.Aggregations) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Aggregations
@@ -129,12 +127,11 @@ func (o *SearchResponse) GetAggregations() interface{} {
 
 // GetAggregationsOk returns a tuple with the Aggregations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchResponse) GetAggregationsOk() (*interface{}, bool) {
+func (o *SearchResponse) GetAggregationsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Aggregations) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Aggregations, true
+	return o.Aggregations, true
 }
 
 // HasAggregations returns a boolean if a field has been set.
@@ -146,8 +143,8 @@ func (o *SearchResponse) HasAggregations() bool {
 	return false
 }
 
-// SetAggregations gets a reference to the given interface{} and assigns it to the Aggregations field.
-func (o *SearchResponse) SetAggregations(v interface{}) {
+// SetAggregations gets a reference to the given map[string]interface{} and assigns it to the Aggregations field.
+func (o *SearchResponse) SetAggregations(v map[string]interface{}) {
 	o.Aggregations = v
 }
 
@@ -183,10 +180,10 @@ func (o *SearchResponse) SetHits(v SearchResponseHits) {
 	o.Hits = &v
 }
 
-// GetProfile returns the Profile field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchResponse) GetProfile() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetProfile returns the Profile field value if set, zero value otherwise.
+func (o *SearchResponse) GetProfile() map[string]interface{} {
+	if o == nil || IsNil(o.Profile) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Profile
@@ -194,12 +191,11 @@ func (o *SearchResponse) GetProfile() interface{} {
 
 // GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchResponse) GetProfileOk() (*interface{}, bool) {
+func (o *SearchResponse) GetProfileOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Profile) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Profile, true
+	return o.Profile, true
 }
 
 // HasProfile returns a boolean if a field has been set.
@@ -211,28 +207,27 @@ func (o *SearchResponse) HasProfile() bool {
 	return false
 }
 
-// SetProfile gets a reference to the given interface{} and assigns it to the Profile field.
-func (o *SearchResponse) SetProfile(v interface{}) {
+// SetProfile gets a reference to the given map[string]interface{} and assigns it to the Profile field.
+func (o *SearchResponse) SetProfile(v map[string]interface{}) {
 	o.Profile = v
 }
 
-// GetScroll returns the Scroll field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchResponse) GetScroll() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetScroll returns the Scroll field value if set, zero value otherwise.
+func (o *SearchResponse) GetScroll() string {
+	if o == nil || IsNil(o.Scroll) {
+		var ret string
 		return ret
 	}
-	return o.Scroll
+	return *o.Scroll
 }
 
 // GetScrollOk returns a tuple with the Scroll field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchResponse) GetScrollOk() (*interface{}, bool) {
+func (o *SearchResponse) GetScrollOk() (*string, bool) {
 	if o == nil || IsNil(o.Scroll) {
 		return nil, false
 	}
-	return &o.Scroll, true
+	return o.Scroll, true
 }
 
 // HasScroll returns a boolean if a field has been set.
@@ -244,15 +239,15 @@ func (o *SearchResponse) HasScroll() bool {
 	return false
 }
 
-// SetScroll gets a reference to the given interface{} and assigns it to the Scroll field.
-func (o *SearchResponse) SetScroll(v interface{}) {
-	o.Scroll = v
+// SetScroll gets a reference to the given string and assigns it to the Scroll field.
+func (o *SearchResponse) SetScroll(v string) {
+	o.Scroll = &v
 }
 
-// GetWarning returns the Warning field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SearchResponse) GetWarning() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetWarning returns the Warning field value if set, zero value otherwise.
+func (o *SearchResponse) GetWarning() map[string]interface{} {
+	if o == nil || IsNil(o.Warning) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Warning
@@ -260,12 +255,11 @@ func (o *SearchResponse) GetWarning() interface{} {
 
 // GetWarningOk returns a tuple with the Warning field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SearchResponse) GetWarningOk() (*interface{}, bool) {
+func (o *SearchResponse) GetWarningOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Warning) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Warning, true
+	return o.Warning, true
 }
 
 // HasWarning returns a boolean if a field has been set.
@@ -277,8 +271,8 @@ func (o *SearchResponse) HasWarning() bool {
 	return false
 }
 
-// SetWarning gets a reference to the given interface{} and assigns it to the Warning field.
-func (o *SearchResponse) SetWarning(v interface{}) {
+// SetWarning gets a reference to the given map[string]interface{} and assigns it to the Warning field.
+func (o *SearchResponse) SetWarning(v map[string]interface{}) {
 	o.Warning = v
 }
 
@@ -292,25 +286,25 @@ func (o SearchResponse) MarshalJSON() ([]byte, error) {
 
 func (o SearchResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Took != nil {
+	if !IsNil(o.Took) {
 		toSerialize["took"] = o.Took
 	}
-	if o.TimedOut != nil {
+	if !IsNil(o.TimedOut) {
 		toSerialize["timed_out"] = o.TimedOut
 	}
-	if o.Aggregations != nil {
+	if !IsNil(o.Aggregations) {
 		toSerialize["aggregations"] = o.Aggregations
 	}
 	if !IsNil(o.Hits) {
 		toSerialize["hits"] = o.Hits
 	}
-	if o.Profile != nil {
+	if !IsNil(o.Profile) {
 		toSerialize["profile"] = o.Profile
 	}
-	if o.Scroll != nil {
+	if !IsNil(o.Scroll) {
 		toSerialize["scroll"] = o.Scroll
 	}
-	if o.Warning != nil {
+	if !IsNil(o.Warning) {
 		toSerialize["warning"] = o.Warning
 	}
 	return toSerialize, nil
