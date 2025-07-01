@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Right** | Pointer to [**JoinCond**](JoinCond.md) |  | [optional] 
 **Left** | Pointer to [**JoinCond**](JoinCond.md) |  | [optional] 
-**Operator** | Pointer to **string** |  | [optional] 
+**Operator** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasLeft returns a boolean if a field has been set.
 
 ### GetOperator
 
-`func (o *JoinOn) GetOperator() string`
+`func (o *JoinOn) GetOperator() interface{}`
 
 GetOperator returns the Operator field if non-nil, zero value otherwise.
 
 ### GetOperatorOk
 
-`func (o *JoinOn) GetOperatorOk() (*string, bool)`
+`func (o *JoinOn) GetOperatorOk() (*interface{}, bool)`
 
 GetOperatorOk returns a tuple with the Operator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOperator
 
-`func (o *JoinOn) SetOperator(v string)`
+`func (o *JoinOn) SetOperator(v interface{})`
 
 SetOperator sets Operator field to given value.
 
@@ -102,6 +102,16 @@ SetOperator sets Operator field to given value.
 
 HasOperator returns a boolean if a field has been set.
 
+### SetOperatorNil
+
+`func (o *JoinOn) SetOperatorNil(b bool)`
+
+ SetOperatorNil sets the value for Operator to be an explicit nil
+
+### UnsetOperator
+`func (o *JoinOn) UnsetOperator()`
+
+UnsetOperator ensures that no value is present for Operator, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

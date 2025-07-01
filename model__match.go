@@ -23,8 +23,8 @@ var _ MappedNullable = &Match{}
 // Match Filter helper object defining a match keyword and match options
 type Match struct {
 	Query string `json:"query"` 
-	Operator *string `json:"operator"` 
-	Boost *float32 `json:"boost"` 
+	Operator interface{} `json:"operator"` 
+	Boost interface{} `json:"boost"` 
 }
 
 type _Match Match
@@ -71,22 +71,23 @@ func (o *Match) SetQuery(v string) {
 	o.Query = v
 }
 
-// GetOperator returns the Operator field value if set, zero value otherwise.
-func (o *Match) GetOperator() string {
-	if o == nil || IsNil(o.Operator) {
-		var ret string
+// GetOperator returns the Operator field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Match) GetOperator() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Operator
+	return o.Operator
 }
 
 // GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Match) GetOperatorOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Match) GetOperatorOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Operator) {
 		return nil, false
 	}
-	return o.Operator, true
+	return &o.Operator, true
 }
 
 // HasOperator returns a boolean if a field has been set.
@@ -98,27 +99,28 @@ func (o *Match) HasOperator() bool {
 	return false
 }
 
-// SetOperator gets a reference to the given string and assigns it to the Operator field.
-func (o *Match) SetOperator(v string) {
-	o.Operator = &v
+// SetOperator gets a reference to the given interface{} and assigns it to the Operator field.
+func (o *Match) SetOperator(v interface{}) {
+	o.Operator = v
 }
 
-// GetBoost returns the Boost field value if set, zero value otherwise.
-func (o *Match) GetBoost() float32 {
-	if o == nil || IsNil(o.Boost) {
-		var ret float32
+// GetBoost returns the Boost field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Match) GetBoost() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Boost
+	return o.Boost
 }
 
 // GetBoostOk returns a tuple with the Boost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Match) GetBoostOk() (*float32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Match) GetBoostOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Boost) {
 		return nil, false
 	}
-	return o.Boost, true
+	return &o.Boost, true
 }
 
 // HasBoost returns a boolean if a field has been set.
@@ -130,9 +132,9 @@ func (o *Match) HasBoost() bool {
 	return false
 }
 
-// SetBoost gets a reference to the given float32 and assigns it to the Boost field.
-func (o *Match) SetBoost(v float32) {
-	o.Boost = &v
+// SetBoost gets a reference to the given interface{} and assigns it to the Boost field.
+func (o *Match) SetBoost(v interface{}) {
+	o.Boost = v
 }
 
 func (o Match) MarshalJSON() ([]byte, error) {
@@ -146,10 +148,10 @@ func (o Match) MarshalJSON() ([]byte, error) {
 func (o Match) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["query"] = o.Query
-	if !IsNil(o.Operator) {
+	if o.Operator != nil {
 		toSerialize["operator"] = o.Operator
 	}
-	if !IsNil(o.Boost) {
+	if o.Boost != nil {
 		toSerialize["boost"] = o.Boost
 	}
 	return toSerialize, nil

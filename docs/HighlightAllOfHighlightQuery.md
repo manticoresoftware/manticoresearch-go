@@ -1,4 +1,4 @@
-# QueryFilter
+# HighlightAllOfHighlightQuery
 
 ## Properties
 
@@ -16,315 +16,315 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewQueryFilter
+### NewHighlightAllOfHighlightQuery
 
-`func NewQueryFilter() *QueryFilter`
+`func NewHighlightAllOfHighlightQuery() *HighlightAllOfHighlightQuery`
 
-NewQueryFilter instantiates a new QueryFilter object
+NewHighlightAllOfHighlightQuery instantiates a new HighlightAllOfHighlightQuery object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewQueryFilterWithDefaults
+### NewHighlightAllOfHighlightQueryWithDefaults
 
-`func NewQueryFilterWithDefaults() *QueryFilter`
+`func NewHighlightAllOfHighlightQueryWithDefaults() *HighlightAllOfHighlightQuery`
 
-NewQueryFilterWithDefaults instantiates a new QueryFilter object
+NewHighlightAllOfHighlightQueryWithDefaults instantiates a new HighlightAllOfHighlightQuery object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetQueryString
 
-`func (o *QueryFilter) GetQueryString() interface{}`
+`func (o *HighlightAllOfHighlightQuery) GetQueryString() interface{}`
 
 GetQueryString returns the QueryString field if non-nil, zero value otherwise.
 
 ### GetQueryStringOk
 
-`func (o *QueryFilter) GetQueryStringOk() (*interface{}, bool)`
+`func (o *HighlightAllOfHighlightQuery) GetQueryStringOk() (*interface{}, bool)`
 
 GetQueryStringOk returns a tuple with the QueryString field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQueryString
 
-`func (o *QueryFilter) SetQueryString(v interface{})`
+`func (o *HighlightAllOfHighlightQuery) SetQueryString(v interface{})`
 
 SetQueryString sets QueryString field to given value.
 
 ### HasQueryString
 
-`func (o *QueryFilter) HasQueryString() bool`
+`func (o *HighlightAllOfHighlightQuery) HasQueryString() bool`
 
 HasQueryString returns a boolean if a field has been set.
 
 ### SetQueryStringNil
 
-`func (o *QueryFilter) SetQueryStringNil(b bool)`
+`func (o *HighlightAllOfHighlightQuery) SetQueryStringNil(b bool)`
 
  SetQueryStringNil sets the value for QueryString to be an explicit nil
 
 ### UnsetQueryString
-`func (o *QueryFilter) UnsetQueryString()`
+`func (o *HighlightAllOfHighlightQuery) UnsetQueryString()`
 
 UnsetQueryString ensures that no value is present for QueryString, not even an explicit nil
 ### GetMatch
 
-`func (o *QueryFilter) GetMatch() interface{}`
+`func (o *HighlightAllOfHighlightQuery) GetMatch() interface{}`
 
 GetMatch returns the Match field if non-nil, zero value otherwise.
 
 ### GetMatchOk
 
-`func (o *QueryFilter) GetMatchOk() (*interface{}, bool)`
+`func (o *HighlightAllOfHighlightQuery) GetMatchOk() (*interface{}, bool)`
 
 GetMatchOk returns a tuple with the Match field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatch
 
-`func (o *QueryFilter) SetMatch(v interface{})`
+`func (o *HighlightAllOfHighlightQuery) SetMatch(v interface{})`
 
 SetMatch sets Match field to given value.
 
 ### HasMatch
 
-`func (o *QueryFilter) HasMatch() bool`
+`func (o *HighlightAllOfHighlightQuery) HasMatch() bool`
 
 HasMatch returns a boolean if a field has been set.
 
 ### SetMatchNil
 
-`func (o *QueryFilter) SetMatchNil(b bool)`
+`func (o *HighlightAllOfHighlightQuery) SetMatchNil(b bool)`
 
  SetMatchNil sets the value for Match to be an explicit nil
 
 ### UnsetMatch
-`func (o *QueryFilter) UnsetMatch()`
+`func (o *HighlightAllOfHighlightQuery) UnsetMatch()`
 
 UnsetMatch ensures that no value is present for Match, not even an explicit nil
 ### GetMatchPhrase
 
-`func (o *QueryFilter) GetMatchPhrase() interface{}`
+`func (o *HighlightAllOfHighlightQuery) GetMatchPhrase() interface{}`
 
 GetMatchPhrase returns the MatchPhrase field if non-nil, zero value otherwise.
 
 ### GetMatchPhraseOk
 
-`func (o *QueryFilter) GetMatchPhraseOk() (*interface{}, bool)`
+`func (o *HighlightAllOfHighlightQuery) GetMatchPhraseOk() (*interface{}, bool)`
 
 GetMatchPhraseOk returns a tuple with the MatchPhrase field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatchPhrase
 
-`func (o *QueryFilter) SetMatchPhrase(v interface{})`
+`func (o *HighlightAllOfHighlightQuery) SetMatchPhrase(v interface{})`
 
 SetMatchPhrase sets MatchPhrase field to given value.
 
 ### HasMatchPhrase
 
-`func (o *QueryFilter) HasMatchPhrase() bool`
+`func (o *HighlightAllOfHighlightQuery) HasMatchPhrase() bool`
 
 HasMatchPhrase returns a boolean if a field has been set.
 
 ### SetMatchPhraseNil
 
-`func (o *QueryFilter) SetMatchPhraseNil(b bool)`
+`func (o *HighlightAllOfHighlightQuery) SetMatchPhraseNil(b bool)`
 
  SetMatchPhraseNil sets the value for MatchPhrase to be an explicit nil
 
 ### UnsetMatchPhrase
-`func (o *QueryFilter) UnsetMatchPhrase()`
+`func (o *HighlightAllOfHighlightQuery) UnsetMatchPhrase()`
 
 UnsetMatchPhrase ensures that no value is present for MatchPhrase, not even an explicit nil
 ### GetMatchAll
 
-`func (o *QueryFilter) GetMatchAll() interface{}`
+`func (o *HighlightAllOfHighlightQuery) GetMatchAll() interface{}`
 
 GetMatchAll returns the MatchAll field if non-nil, zero value otherwise.
 
 ### GetMatchAllOk
 
-`func (o *QueryFilter) GetMatchAllOk() (*interface{}, bool)`
+`func (o *HighlightAllOfHighlightQuery) GetMatchAllOk() (*interface{}, bool)`
 
 GetMatchAllOk returns a tuple with the MatchAll field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatchAll
 
-`func (o *QueryFilter) SetMatchAll(v interface{})`
+`func (o *HighlightAllOfHighlightQuery) SetMatchAll(v interface{})`
 
 SetMatchAll sets MatchAll field to given value.
 
 ### HasMatchAll
 
-`func (o *QueryFilter) HasMatchAll() bool`
+`func (o *HighlightAllOfHighlightQuery) HasMatchAll() bool`
 
 HasMatchAll returns a boolean if a field has been set.
 
 ### SetMatchAllNil
 
-`func (o *QueryFilter) SetMatchAllNil(b bool)`
+`func (o *HighlightAllOfHighlightQuery) SetMatchAllNil(b bool)`
 
  SetMatchAllNil sets the value for MatchAll to be an explicit nil
 
 ### UnsetMatchAll
-`func (o *QueryFilter) UnsetMatchAll()`
+`func (o *HighlightAllOfHighlightQuery) UnsetMatchAll()`
 
 UnsetMatchAll ensures that no value is present for MatchAll, not even an explicit nil
 ### GetBool
 
-`func (o *QueryFilter) GetBool() BoolFilter`
+`func (o *HighlightAllOfHighlightQuery) GetBool() BoolFilter`
 
 GetBool returns the Bool field if non-nil, zero value otherwise.
 
 ### GetBoolOk
 
-`func (o *QueryFilter) GetBoolOk() (*BoolFilter, bool)`
+`func (o *HighlightAllOfHighlightQuery) GetBoolOk() (*BoolFilter, bool)`
 
 GetBoolOk returns a tuple with the Bool field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBool
 
-`func (o *QueryFilter) SetBool(v BoolFilter)`
+`func (o *HighlightAllOfHighlightQuery) SetBool(v BoolFilter)`
 
 SetBool sets Bool field to given value.
 
 ### HasBool
 
-`func (o *QueryFilter) HasBool() bool`
+`func (o *HighlightAllOfHighlightQuery) HasBool() bool`
 
 HasBool returns a boolean if a field has been set.
 
 ### GetEquals
 
-`func (o *QueryFilter) GetEquals() interface{}`
+`func (o *HighlightAllOfHighlightQuery) GetEquals() interface{}`
 
 GetEquals returns the Equals field if non-nil, zero value otherwise.
 
 ### GetEqualsOk
 
-`func (o *QueryFilter) GetEqualsOk() (*interface{}, bool)`
+`func (o *HighlightAllOfHighlightQuery) GetEqualsOk() (*interface{}, bool)`
 
 GetEqualsOk returns a tuple with the Equals field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEquals
 
-`func (o *QueryFilter) SetEquals(v interface{})`
+`func (o *HighlightAllOfHighlightQuery) SetEquals(v interface{})`
 
 SetEquals sets Equals field to given value.
 
 ### HasEquals
 
-`func (o *QueryFilter) HasEquals() bool`
+`func (o *HighlightAllOfHighlightQuery) HasEquals() bool`
 
 HasEquals returns a boolean if a field has been set.
 
 ### SetEqualsNil
 
-`func (o *QueryFilter) SetEqualsNil(b bool)`
+`func (o *HighlightAllOfHighlightQuery) SetEqualsNil(b bool)`
 
  SetEqualsNil sets the value for Equals to be an explicit nil
 
 ### UnsetEquals
-`func (o *QueryFilter) UnsetEquals()`
+`func (o *HighlightAllOfHighlightQuery) UnsetEquals()`
 
 UnsetEquals ensures that no value is present for Equals, not even an explicit nil
 ### GetIn
 
-`func (o *QueryFilter) GetIn() interface{}`
+`func (o *HighlightAllOfHighlightQuery) GetIn() interface{}`
 
 GetIn returns the In field if non-nil, zero value otherwise.
 
 ### GetInOk
 
-`func (o *QueryFilter) GetInOk() (*interface{}, bool)`
+`func (o *HighlightAllOfHighlightQuery) GetInOk() (*interface{}, bool)`
 
 GetInOk returns a tuple with the In field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIn
 
-`func (o *QueryFilter) SetIn(v interface{})`
+`func (o *HighlightAllOfHighlightQuery) SetIn(v interface{})`
 
 SetIn sets In field to given value.
 
 ### HasIn
 
-`func (o *QueryFilter) HasIn() bool`
+`func (o *HighlightAllOfHighlightQuery) HasIn() bool`
 
 HasIn returns a boolean if a field has been set.
 
 ### SetInNil
 
-`func (o *QueryFilter) SetInNil(b bool)`
+`func (o *HighlightAllOfHighlightQuery) SetInNil(b bool)`
 
  SetInNil sets the value for In to be an explicit nil
 
 ### UnsetIn
-`func (o *QueryFilter) UnsetIn()`
+`func (o *HighlightAllOfHighlightQuery) UnsetIn()`
 
 UnsetIn ensures that no value is present for In, not even an explicit nil
 ### GetRange
 
-`func (o *QueryFilter) GetRange() interface{}`
+`func (o *HighlightAllOfHighlightQuery) GetRange() interface{}`
 
 GetRange returns the Range field if non-nil, zero value otherwise.
 
 ### GetRangeOk
 
-`func (o *QueryFilter) GetRangeOk() (*interface{}, bool)`
+`func (o *HighlightAllOfHighlightQuery) GetRangeOk() (*interface{}, bool)`
 
 GetRangeOk returns a tuple with the Range field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRange
 
-`func (o *QueryFilter) SetRange(v interface{})`
+`func (o *HighlightAllOfHighlightQuery) SetRange(v interface{})`
 
 SetRange sets Range field to given value.
 
 ### HasRange
 
-`func (o *QueryFilter) HasRange() bool`
+`func (o *HighlightAllOfHighlightQuery) HasRange() bool`
 
 HasRange returns a boolean if a field has been set.
 
 ### SetRangeNil
 
-`func (o *QueryFilter) SetRangeNil(b bool)`
+`func (o *HighlightAllOfHighlightQuery) SetRangeNil(b bool)`
 
  SetRangeNil sets the value for Range to be an explicit nil
 
 ### UnsetRange
-`func (o *QueryFilter) UnsetRange()`
+`func (o *HighlightAllOfHighlightQuery) UnsetRange()`
 
 UnsetRange ensures that no value is present for Range, not even an explicit nil
 ### GetGeoDistance
 
-`func (o *QueryFilter) GetGeoDistance() GeoDistance`
+`func (o *HighlightAllOfHighlightQuery) GetGeoDistance() GeoDistance`
 
 GetGeoDistance returns the GeoDistance field if non-nil, zero value otherwise.
 
 ### GetGeoDistanceOk
 
-`func (o *QueryFilter) GetGeoDistanceOk() (*GeoDistance, bool)`
+`func (o *HighlightAllOfHighlightQuery) GetGeoDistanceOk() (*GeoDistance, bool)`
 
 GetGeoDistanceOk returns a tuple with the GeoDistance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGeoDistance
 
-`func (o *QueryFilter) SetGeoDistance(v GeoDistance)`
+`func (o *HighlightAllOfHighlightQuery) SetGeoDistance(v GeoDistance)`
 
 SetGeoDistance sets GeoDistance field to given value.
 
 ### HasGeoDistance
 
-`func (o *QueryFilter) HasGeoDistance() bool`
+`func (o *HighlightAllOfHighlightQuery) HasGeoDistance() bool`
 
 HasGeoDistance returns a boolean if a field has been set.
 

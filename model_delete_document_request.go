@@ -23,13 +23,13 @@ var _ MappedNullable = &DeleteDocumentRequest{}
 // DeleteDocumentRequest Payload for delete request. Documents can be deleted either one by one by specifying the document id or by providing a query object. For more information see  [Delete API](https://manual.manticoresearch.com/Deleting_documents) 
 type DeleteDocumentRequest struct {
 	// Table name
-	Table string `json:"table"` 
+	Table interface{} `json:"table"` 
 	// Cluster name
-	Cluster *string `json:"cluster"` 
+	Cluster interface{} `json:"cluster"` 
 	// The ID of document for deletion
-	Id *int64 `json:"id"` 
+	Id interface{} `json:"id"` 
 	// Defines the criteria to match documents for deletion
-	Query map[string]interface{} `json:"query"` 
+	Query interface{} `json:"query"` 
 }
 
 type _DeleteDocumentRequest DeleteDocumentRequest
@@ -38,7 +38,7 @@ type _DeleteDocumentRequest DeleteDocumentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeleteDocumentRequest(table string) *DeleteDocumentRequest {
+func NewDeleteDocumentRequest(table interface{}) *DeleteDocumentRequest {
 	this := DeleteDocumentRequest{}
 	this.Table = table
 	return &this
@@ -53,9 +53,10 @@ func NewDeleteDocumentRequestWithDefaults() *DeleteDocumentRequest {
 }
 
 // GetTable returns the Table field value
-func (o *DeleteDocumentRequest) GetTable() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *DeleteDocumentRequest) GetTable() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -64,34 +65,36 @@ func (o *DeleteDocumentRequest) GetTable() string {
 
 // GetTableOk returns a tuple with the Table field value
 // and a boolean to check if the value has been set.
-func (o *DeleteDocumentRequest) GetTableOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeleteDocumentRequest) GetTableOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Table) {
 		return nil, false
 	}
 	return &o.Table, true
 }
 
 // SetTable sets field value
-func (o *DeleteDocumentRequest) SetTable(v string) {
+func (o *DeleteDocumentRequest) SetTable(v interface{}) {
 	o.Table = v
 }
 
-// GetCluster returns the Cluster field value if set, zero value otherwise.
-func (o *DeleteDocumentRequest) GetCluster() string {
-	if o == nil || IsNil(o.Cluster) {
-		var ret string
+// GetCluster returns the Cluster field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeleteDocumentRequest) GetCluster() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Cluster
+	return o.Cluster
 }
 
 // GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteDocumentRequest) GetClusterOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeleteDocumentRequest) GetClusterOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Cluster) {
 		return nil, false
 	}
-	return o.Cluster, true
+	return &o.Cluster, true
 }
 
 // HasCluster returns a boolean if a field has been set.
@@ -103,27 +106,28 @@ func (o *DeleteDocumentRequest) HasCluster() bool {
 	return false
 }
 
-// SetCluster gets a reference to the given string and assigns it to the Cluster field.
-func (o *DeleteDocumentRequest) SetCluster(v string) {
-	o.Cluster = &v
+// SetCluster gets a reference to the given interface{} and assigns it to the Cluster field.
+func (o *DeleteDocumentRequest) SetCluster(v interface{}) {
+	o.Cluster = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *DeleteDocumentRequest) GetId() int64 {
-	if o == nil || IsNil(o.Id) {
-		var ret int64
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeleteDocumentRequest) GetId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteDocumentRequest) GetIdOk() (*int64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeleteDocumentRequest) GetIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -135,15 +139,15 @@ func (o *DeleteDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *DeleteDocumentRequest) SetId(v int64) {
-	o.Id = &v
+// SetId gets a reference to the given interface{} and assigns it to the Id field.
+func (o *DeleteDocumentRequest) SetId(v interface{}) {
+	o.Id = v
 }
 
-// GetQuery returns the Query field value if set, zero value otherwise.
-func (o *DeleteDocumentRequest) GetQuery() map[string]interface{} {
-	if o == nil || IsNil(o.Query) {
-		var ret map[string]interface{}
+// GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeleteDocumentRequest) GetQuery() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Query
@@ -151,11 +155,12 @@ func (o *DeleteDocumentRequest) GetQuery() map[string]interface{} {
 
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteDocumentRequest) GetQueryOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeleteDocumentRequest) GetQueryOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Query) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Query, true
+	return &o.Query, true
 }
 
 // HasQuery returns a boolean if a field has been set.
@@ -167,8 +172,8 @@ func (o *DeleteDocumentRequest) HasQuery() bool {
 	return false
 }
 
-// SetQuery gets a reference to the given map[string]interface{} and assigns it to the Query field.
-func (o *DeleteDocumentRequest) SetQuery(v map[string]interface{}) {
+// SetQuery gets a reference to the given interface{} and assigns it to the Query field.
+func (o *DeleteDocumentRequest) SetQuery(v interface{}) {
 	o.Query = v
 }
 
@@ -182,14 +187,16 @@ func (o DeleteDocumentRequest) MarshalJSON() ([]byte, error) {
 
 func (o DeleteDocumentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["table"] = o.Table
-	if !IsNil(o.Cluster) {
+	if o.Table != nil {
+		toSerialize["table"] = o.Table
+	}
+	if o.Cluster != nil {
 		toSerialize["cluster"] = o.Cluster
 	}
-	if !IsNil(o.Id) {
+	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if !IsNil(o.Query) {
+	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
 	return toSerialize, nil

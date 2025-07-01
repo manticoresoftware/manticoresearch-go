@@ -23,7 +23,7 @@ var _ MappedNullable = &ReplaceDocumentRequest{}
 // ReplaceDocumentRequest Object containing the document data for replacing an existing document in a table.
 type ReplaceDocumentRequest struct {
 	// Object containing the new document data to replace the existing one.
-	Doc map[string]interface{} `json:"doc"` 
+	Doc interface{} `json:"doc"` 
 }
 
 type _ReplaceDocumentRequest ReplaceDocumentRequest
@@ -32,7 +32,7 @@ type _ReplaceDocumentRequest ReplaceDocumentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReplaceDocumentRequest(doc map[string]interface{}) *ReplaceDocumentRequest {
+func NewReplaceDocumentRequest(doc interface{}) *ReplaceDocumentRequest {
 	this := ReplaceDocumentRequest{}
 	this.Doc = doc
 	return &this
@@ -47,9 +47,10 @@ func NewReplaceDocumentRequestWithDefaults() *ReplaceDocumentRequest {
 }
 
 // GetDoc returns the Doc field value
-func (o *ReplaceDocumentRequest) GetDoc() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ReplaceDocumentRequest) GetDoc() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -58,15 +59,16 @@ func (o *ReplaceDocumentRequest) GetDoc() map[string]interface{} {
 
 // GetDocOk returns a tuple with the Doc field value
 // and a boolean to check if the value has been set.
-func (o *ReplaceDocumentRequest) GetDocOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ReplaceDocumentRequest) GetDocOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Doc) {
+		return nil, false
 	}
-	return o.Doc, true
+	return &o.Doc, true
 }
 
 // SetDoc sets field value
-func (o *ReplaceDocumentRequest) SetDoc(v map[string]interface{}) {
+func (o *ReplaceDocumentRequest) SetDoc(v interface{}) {
 	o.Doc = v
 }
 
@@ -80,7 +82,9 @@ func (o ReplaceDocumentRequest) MarshalJSON() ([]byte, error) {
 
 func (o ReplaceDocumentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["doc"] = o.Doc
+	if o.Doc != nil {
+		toSerialize["doc"] = o.Doc
+	}
 	return toSerialize, nil
 }
 

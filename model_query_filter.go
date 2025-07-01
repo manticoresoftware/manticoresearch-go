@@ -29,11 +29,12 @@ type QueryFilter struct {
 	// Filter object to select all documents
 	MatchAll interface{} `json:"match_all"` 
 	Bool *BoolFilter `json:"bool"` 
+	// Filter to match exact attribute values.
 	Equals interface{} `json:"equals"` 
 	// Filter to match a given set of attribute values.
-	In map[string]interface{} `json:"in"` 
+	In interface{} `json:"in"` 
 	// Filter to match a given range of attribute values passed in Range objects
-	Range map[string]interface{} `json:"range"` 
+	Range interface{} `json:"range"` 
 	GeoDistance *GeoDistance `json:"geo_distance"` 
 }
 
@@ -251,10 +252,10 @@ func (o *QueryFilter) SetEquals(v interface{}) {
 	o.Equals = v
 }
 
-// GetIn returns the In field value if set, zero value otherwise.
-func (o *QueryFilter) GetIn() map[string]interface{} {
-	if o == nil || IsNil(o.In) {
-		var ret map[string]interface{}
+// GetIn returns the In field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QueryFilter) GetIn() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.In
@@ -262,11 +263,12 @@ func (o *QueryFilter) GetIn() map[string]interface{} {
 
 // GetInOk returns a tuple with the In field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryFilter) GetInOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QueryFilter) GetInOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.In) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.In, true
+	return &o.In, true
 }
 
 // HasIn returns a boolean if a field has been set.
@@ -278,15 +280,15 @@ func (o *QueryFilter) HasIn() bool {
 	return false
 }
 
-// SetIn gets a reference to the given map[string]interface{} and assigns it to the In field.
-func (o *QueryFilter) SetIn(v map[string]interface{}) {
+// SetIn gets a reference to the given interface{} and assigns it to the In field.
+func (o *QueryFilter) SetIn(v interface{}) {
 	o.In = v
 }
 
-// GetRange returns the Range field value if set, zero value otherwise.
-func (o *QueryFilter) GetRange() map[string]interface{} {
-	if o == nil || IsNil(o.Range) {
-		var ret map[string]interface{}
+// GetRange returns the Range field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QueryFilter) GetRange() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Range
@@ -294,11 +296,12 @@ func (o *QueryFilter) GetRange() map[string]interface{} {
 
 // GetRangeOk returns a tuple with the Range field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryFilter) GetRangeOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QueryFilter) GetRangeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Range) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Range, true
+	return &o.Range, true
 }
 
 // HasRange returns a boolean if a field has been set.
@@ -310,8 +313,8 @@ func (o *QueryFilter) HasRange() bool {
 	return false
 }
 
-// SetRange gets a reference to the given map[string]interface{} and assigns it to the Range field.
-func (o *QueryFilter) SetRange(v map[string]interface{}) {
+// SetRange gets a reference to the given interface{} and assigns it to the Range field.
+func (o *QueryFilter) SetRange(v interface{}) {
 	o.Range = v
 }
 
@@ -375,10 +378,10 @@ func (o QueryFilter) ToMap() (map[string]interface{}, error) {
 	if o.Equals != nil {
 		toSerialize["equals"] = o.Equals
 	}
-	if !IsNil(o.In) {
+	if o.In != nil {
 		toSerialize["in"] = o.In
 	}
-	if !IsNil(o.Range) {
+	if o.Range != nil {
 		toSerialize["range"] = o.Range
 	}
 	if !IsNil(o.GeoDistance) {

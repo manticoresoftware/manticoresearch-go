@@ -23,15 +23,15 @@ var _ MappedNullable = &KnnQuery{}
 // KnnQuery Object representing a k-nearest neighbor search query
 type KnnQuery struct {
 	// Field to perform the k-nearest neighbor search on
-	Field string `json:"field"` 
+	Field interface{} `json:"field"` 
 	// The number of nearest neighbors to return
-	K int32 `json:"k"` 
+	K interface{} `json:"k"` 
 	// The vector used as input for the KNN search
-	QueryVector []float32 `json:"query_vector"` 
+	QueryVector interface{} `json:"query_vector"` 
 	// The docuemnt ID used as input for the KNN search
-	DocId *int64 `json:"doc_id"` 
+	DocId interface{} `json:"doc_id"` 
 	// Optional parameter controlling the accuracy of the search
-	Ef *int32 `json:"ef"` 
+	Ef interface{} `json:"ef"` 
 	Filter *QueryFilter `json:"filter"` 
 }
 
@@ -41,7 +41,7 @@ type _KnnQuery KnnQuery
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKnnQuery(field string, k int32) *KnnQuery {
+func NewKnnQuery(field interface{}, k interface{}) *KnnQuery {
 	this := KnnQuery{}
 	this.Field = field
 	this.K = k
@@ -57,9 +57,10 @@ func NewKnnQueryWithDefaults() *KnnQuery {
 }
 
 // GetField returns the Field field value
-func (o *KnnQuery) GetField() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *KnnQuery) GetField() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -68,22 +69,24 @@ func (o *KnnQuery) GetField() string {
 
 // GetFieldOk returns a tuple with the Field field value
 // and a boolean to check if the value has been set.
-func (o *KnnQuery) GetFieldOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *KnnQuery) GetFieldOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Field) {
 		return nil, false
 	}
 	return &o.Field, true
 }
 
 // SetField sets field value
-func (o *KnnQuery) SetField(v string) {
+func (o *KnnQuery) SetField(v interface{}) {
 	o.Field = v
 }
 
 // GetK returns the K field value
-func (o *KnnQuery) GetK() int32 {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *KnnQuery) GetK() interface{} {
 	if o == nil {
-		var ret int32
+		var ret interface{}
 		return ret
 	}
 
@@ -92,22 +95,23 @@ func (o *KnnQuery) GetK() int32 {
 
 // GetKOk returns a tuple with the K field value
 // and a boolean to check if the value has been set.
-func (o *KnnQuery) GetKOk() (*int32, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *KnnQuery) GetKOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.K) {
 		return nil, false
 	}
 	return &o.K, true
 }
 
 // SetK sets field value
-func (o *KnnQuery) SetK(v int32) {
+func (o *KnnQuery) SetK(v interface{}) {
 	o.K = v
 }
 
-// GetQueryVector returns the QueryVector field value if set, zero value otherwise.
-func (o *KnnQuery) GetQueryVector() []float32 {
-	if o == nil || IsNil(o.QueryVector) {
-		var ret []float32
+// GetQueryVector returns the QueryVector field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *KnnQuery) GetQueryVector() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.QueryVector
@@ -115,11 +119,12 @@ func (o *KnnQuery) GetQueryVector() []float32 {
 
 // GetQueryVectorOk returns a tuple with the QueryVector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KnnQuery) GetQueryVectorOk() ([]float32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *KnnQuery) GetQueryVectorOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.QueryVector) {
 		return nil, false
 	}
-	return o.QueryVector, true
+	return &o.QueryVector, true
 }
 
 // HasQueryVector returns a boolean if a field has been set.
@@ -131,27 +136,28 @@ func (o *KnnQuery) HasQueryVector() bool {
 	return false
 }
 
-// SetQueryVector gets a reference to the given []float32 and assigns it to the QueryVector field.
-func (o *KnnQuery) SetQueryVector(v []float32) {
+// SetQueryVector gets a reference to the given interface{} and assigns it to the QueryVector field.
+func (o *KnnQuery) SetQueryVector(v interface{}) {
 	o.QueryVector = v
 }
 
-// GetDocId returns the DocId field value if set, zero value otherwise.
-func (o *KnnQuery) GetDocId() int64 {
-	if o == nil || IsNil(o.DocId) {
-		var ret int64
+// GetDocId returns the DocId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *KnnQuery) GetDocId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.DocId
+	return o.DocId
 }
 
 // GetDocIdOk returns a tuple with the DocId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KnnQuery) GetDocIdOk() (*int64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *KnnQuery) GetDocIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.DocId) {
 		return nil, false
 	}
-	return o.DocId, true
+	return &o.DocId, true
 }
 
 // HasDocId returns a boolean if a field has been set.
@@ -163,27 +169,28 @@ func (o *KnnQuery) HasDocId() bool {
 	return false
 }
 
-// SetDocId gets a reference to the given int64 and assigns it to the DocId field.
-func (o *KnnQuery) SetDocId(v int64) {
-	o.DocId = &v
+// SetDocId gets a reference to the given interface{} and assigns it to the DocId field.
+func (o *KnnQuery) SetDocId(v interface{}) {
+	o.DocId = v
 }
 
-// GetEf returns the Ef field value if set, zero value otherwise.
-func (o *KnnQuery) GetEf() int32 {
-	if o == nil || IsNil(o.Ef) {
-		var ret int32
+// GetEf returns the Ef field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *KnnQuery) GetEf() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Ef
+	return o.Ef
 }
 
 // GetEfOk returns a tuple with the Ef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KnnQuery) GetEfOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *KnnQuery) GetEfOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Ef) {
 		return nil, false
 	}
-	return o.Ef, true
+	return &o.Ef, true
 }
 
 // HasEf returns a boolean if a field has been set.
@@ -195,9 +202,9 @@ func (o *KnnQuery) HasEf() bool {
 	return false
 }
 
-// SetEf gets a reference to the given int32 and assigns it to the Ef field.
-func (o *KnnQuery) SetEf(v int32) {
-	o.Ef = &v
+// SetEf gets a reference to the given interface{} and assigns it to the Ef field.
+func (o *KnnQuery) SetEf(v interface{}) {
+	o.Ef = v
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
@@ -242,15 +249,19 @@ func (o KnnQuery) MarshalJSON() ([]byte, error) {
 
 func (o KnnQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["field"] = o.Field
-	toSerialize["k"] = o.K
-	if !IsNil(o.QueryVector) {
+	if o.Field != nil {
+		toSerialize["field"] = o.Field
+	}
+	if o.K != nil {
+		toSerialize["k"] = o.K
+	}
+	if o.QueryVector != nil {
 		toSerialize["query_vector"] = o.QueryVector
 	}
-	if !IsNil(o.DocId) {
+	if o.DocId != nil {
 		toSerialize["doc_id"] = o.DocId
 	}
-	if !IsNil(o.Ef) {
+	if o.Ef != nil {
 		toSerialize["ef"] = o.Ef
 	}
 	if !IsNil(o.Filter) {

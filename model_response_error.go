@@ -22,7 +22,7 @@ import (
 // ResponseError - struct for ResponseError
 type ResponseError struct {
 	ResponseErrorDetails *ResponseErrorDetails
-	String *string
+	Interface{} *interface{}
 }
 
 // ResponseErrorDetailsAsResponseError is a convenience function that returns ResponseErrorDetails wrapped in ResponseError
@@ -32,10 +32,10 @@ func ResponseErrorDetailsAsResponseError(v *ResponseErrorDetails) ResponseError 
 	}
 }
 
-// stringAsResponseError is a convenience function that returns string wrapped in ResponseError
-func StringAsResponseError(v *string) ResponseError {
+// interface{}AsResponseError is a convenience function that returns interface{} wrapped in ResponseError
+func Interface{}AsResponseError(v *interface{}) ResponseError {
 	return ResponseError{
-		String: v,
+		Interface{}: v,
 	}
 }
 
@@ -61,27 +61,27 @@ func (dst *ResponseError) UnmarshalJSON(data []byte) error {
 		dst.ResponseErrorDetails = nil
 	}
 
-	// try to unmarshal data into String
-	err = newStrictDecoder(data).Decode(&dst.String)
+	// try to unmarshal data into Interface{}
+	err = newStrictDecoder(data).Decode(&dst.Interface{})
 	if err == nil {
-		jsonString, _ := json.Marshal(dst.String)
-		if string(jsonString) == "{}" { // empty struct
-			dst.String = nil
+		jsonInterface{}, _ := json.Marshal(dst.Interface{})
+		if string(jsonInterface{}) == "{}" { // empty struct
+			dst.Interface{} = nil
 		} else {
-			if err = validator.Validate(dst.String); err != nil {
-				dst.String = nil
+			if err = validator.Validate(dst.Interface{}); err != nil {
+				dst.Interface{} = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.String = nil
+		dst.Interface{} = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.ResponseErrorDetails = nil
-		dst.String = nil
+		dst.Interface{} = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ResponseError)")
 	} else if match == 1 {
@@ -97,8 +97,8 @@ func (src ResponseError) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ResponseErrorDetails)
 	}
 
-	if src.String != nil {
-		return json.Marshal(&src.String)
+	if src.Interface{} != nil {
+		return json.Marshal(&src.Interface{})
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -113,8 +113,8 @@ func (obj *ResponseError) GetActualInstance() (interface{}) {
 		return obj.ResponseErrorDetails
 	}
 
-	if obj.String != nil {
-		return obj.String
+	if obj.Interface{} != nil {
+		return obj.Interface{}
 	}
 
 	// all schemas are nil

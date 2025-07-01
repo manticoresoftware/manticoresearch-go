@@ -23,7 +23,7 @@ var _ MappedNullable = &PercolateRequestQuery{}
 // PercolateRequestQuery struct for PercolateRequestQuery
 type PercolateRequestQuery struct {
 	// Object representing the document to percolate
-	Percolate map[string]interface{} `json:"percolate"` 
+	Percolate interface{} `json:"percolate"` 
 }
 
 type _PercolateRequestQuery PercolateRequestQuery
@@ -32,7 +32,7 @@ type _PercolateRequestQuery PercolateRequestQuery
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPercolateRequestQuery(percolate map[string]interface{}) *PercolateRequestQuery {
+func NewPercolateRequestQuery(percolate interface{}) *PercolateRequestQuery {
 	this := PercolateRequestQuery{}
 	this.Percolate = percolate
 	return &this
@@ -47,9 +47,10 @@ func NewPercolateRequestQueryWithDefaults() *PercolateRequestQuery {
 }
 
 // GetPercolate returns the Percolate field value
-func (o *PercolateRequestQuery) GetPercolate() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *PercolateRequestQuery) GetPercolate() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -58,15 +59,16 @@ func (o *PercolateRequestQuery) GetPercolate() map[string]interface{} {
 
 // GetPercolateOk returns a tuple with the Percolate field value
 // and a boolean to check if the value has been set.
-func (o *PercolateRequestQuery) GetPercolateOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PercolateRequestQuery) GetPercolateOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Percolate) {
+		return nil, false
 	}
-	return o.Percolate, true
+	return &o.Percolate, true
 }
 
 // SetPercolate sets field value
-func (o *PercolateRequestQuery) SetPercolate(v map[string]interface{}) {
+func (o *PercolateRequestQuery) SetPercolate(v interface{}) {
 	o.Percolate = v
 }
 
@@ -80,7 +82,9 @@ func (o PercolateRequestQuery) MarshalJSON() ([]byte, error) {
 
 func (o PercolateRequestQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["percolate"] = o.Percolate
+	if o.Percolate != nil {
+		toSerialize["percolate"] = o.Percolate
+	}
 	return toSerialize, nil
 }
 

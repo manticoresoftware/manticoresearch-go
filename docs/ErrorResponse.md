@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Error** | [**ResponseError**](ResponseError.md) |  | 
-**Status** | Pointer to **int32** | HTTP status code of the error response | [optional] [default to 500]
+**Status** | Pointer to **interface{}** | HTTP status code of the error response | [optional] [default to 500]
 
 ## Methods
 
@@ -48,20 +48,20 @@ SetError sets Error field to given value.
 
 ### GetStatus
 
-`func (o *ErrorResponse) GetStatus() int32`
+`func (o *ErrorResponse) GetStatus() interface{}`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *ErrorResponse) GetStatusOk() (*int32, bool)`
+`func (o *ErrorResponse) GetStatusOk() (*interface{}, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *ErrorResponse) SetStatus(v int32)`
+`func (o *ErrorResponse) SetStatus(v interface{})`
 
 SetStatus sets Status field to given value.
 
@@ -71,6 +71,16 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
+### SetStatusNil
+
+`func (o *ErrorResponse) SetStatusNil(b bool)`
+
+ SetStatusNil sets the value for Status to be an explicit nil
+
+### UnsetStatus
+`func (o *ErrorResponse) UnsetStatus()`
+
+UnsetStatus ensures that no value is present for Status, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

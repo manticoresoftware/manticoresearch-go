@@ -23,9 +23,9 @@ var _ MappedNullable = &JoinCond{}
 // JoinCond Object representing the conditions used to perform the join operation
 type JoinCond struct {
 	// Field to join on
-	Field string `json:"field"` 
+	Field interface{} `json:"field"` 
 	// Joined table
-	Table string `json:"table"` 
+	Table interface{} `json:"table"` 
 	Type interface{} `json:"type"` 
 }
 
@@ -35,7 +35,7 @@ type _JoinCond JoinCond
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJoinCond(field string, table string) *JoinCond {
+func NewJoinCond(field interface{}, table interface{}) *JoinCond {
 	this := JoinCond{}
 	this.Field = field
 	this.Table = table
@@ -51,9 +51,10 @@ func NewJoinCondWithDefaults() *JoinCond {
 }
 
 // GetField returns the Field field value
-func (o *JoinCond) GetField() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *JoinCond) GetField() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -62,22 +63,24 @@ func (o *JoinCond) GetField() string {
 
 // GetFieldOk returns a tuple with the Field field value
 // and a boolean to check if the value has been set.
-func (o *JoinCond) GetFieldOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JoinCond) GetFieldOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Field) {
 		return nil, false
 	}
 	return &o.Field, true
 }
 
 // SetField sets field value
-func (o *JoinCond) SetField(v string) {
+func (o *JoinCond) SetField(v interface{}) {
 	o.Field = v
 }
 
 // GetTable returns the Table field value
-func (o *JoinCond) GetTable() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *JoinCond) GetTable() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -86,15 +89,16 @@ func (o *JoinCond) GetTable() string {
 
 // GetTableOk returns a tuple with the Table field value
 // and a boolean to check if the value has been set.
-func (o *JoinCond) GetTableOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JoinCond) GetTableOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Table) {
 		return nil, false
 	}
 	return &o.Table, true
 }
 
 // SetTable sets field value
-func (o *JoinCond) SetTable(v string) {
+func (o *JoinCond) SetTable(v interface{}) {
 	o.Table = v
 }
 
@@ -141,8 +145,12 @@ func (o JoinCond) MarshalJSON() ([]byte, error) {
 
 func (o JoinCond) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["field"] = o.Field
-	toSerialize["table"] = o.Table
+	if o.Field != nil {
+		toSerialize["field"] = o.Field
+	}
+	if o.Table != nil {
+		toSerialize["table"] = o.Table
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}

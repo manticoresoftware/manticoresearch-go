@@ -21,15 +21,15 @@ var _ MappedNullable = &DeleteResponse{}
 // DeleteResponse Response object for successful delete request
 type DeleteResponse struct {
 	// The name of the table from which the document was deleted
-	Table *string `json:"table"` 
+	Table interface{} `json:"table"` 
 	// Number of documents deleted
-	Deleted *int32 `json:"deleted"` 
+	Deleted interface{} `json:"deleted"` 
 	// The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned
-	Id *int64 `json:"id"` 
+	Id interface{} `json:"id"` 
 	// Indicates whether any documents to be deleted were found
-	Found *bool `json:"found"` 
+	Found interface{} `json:"found"` 
 	// Result of the delete operation, typically 'deleted'
-	Result *string `json:"result"` 
+	Result interface{} `json:"result"` 
 }
 
 // NewDeleteResponse instantiates a new DeleteResponse object
@@ -49,22 +49,23 @@ func NewDeleteResponseWithDefaults() *DeleteResponse {
 	return &this
 }
 
-// GetTable returns the Table field value if set, zero value otherwise.
-func (o *DeleteResponse) GetTable() string {
-	if o == nil || IsNil(o.Table) {
-		var ret string
+// GetTable returns the Table field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeleteResponse) GetTable() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Table
+	return o.Table
 }
 
 // GetTableOk returns a tuple with the Table field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteResponse) GetTableOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeleteResponse) GetTableOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Table) {
 		return nil, false
 	}
-	return o.Table, true
+	return &o.Table, true
 }
 
 // HasTable returns a boolean if a field has been set.
@@ -76,27 +77,28 @@ func (o *DeleteResponse) HasTable() bool {
 	return false
 }
 
-// SetTable gets a reference to the given string and assigns it to the Table field.
-func (o *DeleteResponse) SetTable(v string) {
-	o.Table = &v
+// SetTable gets a reference to the given interface{} and assigns it to the Table field.
+func (o *DeleteResponse) SetTable(v interface{}) {
+	o.Table = v
 }
 
-// GetDeleted returns the Deleted field value if set, zero value otherwise.
-func (o *DeleteResponse) GetDeleted() int32 {
-	if o == nil || IsNil(o.Deleted) {
-		var ret int32
+// GetDeleted returns the Deleted field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeleteResponse) GetDeleted() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Deleted
+	return o.Deleted
 }
 
 // GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteResponse) GetDeletedOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeleteResponse) GetDeletedOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Deleted) {
 		return nil, false
 	}
-	return o.Deleted, true
+	return &o.Deleted, true
 }
 
 // HasDeleted returns a boolean if a field has been set.
@@ -108,27 +110,28 @@ func (o *DeleteResponse) HasDeleted() bool {
 	return false
 }
 
-// SetDeleted gets a reference to the given int32 and assigns it to the Deleted field.
-func (o *DeleteResponse) SetDeleted(v int32) {
-	o.Deleted = &v
+// SetDeleted gets a reference to the given interface{} and assigns it to the Deleted field.
+func (o *DeleteResponse) SetDeleted(v interface{}) {
+	o.Deleted = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *DeleteResponse) GetId() int64 {
-	if o == nil || IsNil(o.Id) {
-		var ret int64
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeleteResponse) GetId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteResponse) GetIdOk() (*int64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeleteResponse) GetIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -140,27 +143,28 @@ func (o *DeleteResponse) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *DeleteResponse) SetId(v int64) {
-	o.Id = &v
+// SetId gets a reference to the given interface{} and assigns it to the Id field.
+func (o *DeleteResponse) SetId(v interface{}) {
+	o.Id = v
 }
 
-// GetFound returns the Found field value if set, zero value otherwise.
-func (o *DeleteResponse) GetFound() bool {
-	if o == nil || IsNil(o.Found) {
-		var ret bool
+// GetFound returns the Found field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeleteResponse) GetFound() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Found
+	return o.Found
 }
 
 // GetFoundOk returns a tuple with the Found field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteResponse) GetFoundOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeleteResponse) GetFoundOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Found) {
 		return nil, false
 	}
-	return o.Found, true
+	return &o.Found, true
 }
 
 // HasFound returns a boolean if a field has been set.
@@ -172,27 +176,28 @@ func (o *DeleteResponse) HasFound() bool {
 	return false
 }
 
-// SetFound gets a reference to the given bool and assigns it to the Found field.
-func (o *DeleteResponse) SetFound(v bool) {
-	o.Found = &v
+// SetFound gets a reference to the given interface{} and assigns it to the Found field.
+func (o *DeleteResponse) SetFound(v interface{}) {
+	o.Found = v
 }
 
-// GetResult returns the Result field value if set, zero value otherwise.
-func (o *DeleteResponse) GetResult() string {
-	if o == nil || IsNil(o.Result) {
-		var ret string
+// GetResult returns the Result field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeleteResponse) GetResult() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Result
+	return o.Result
 }
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteResponse) GetResultOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeleteResponse) GetResultOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Result) {
 		return nil, false
 	}
-	return o.Result, true
+	return &o.Result, true
 }
 
 // HasResult returns a boolean if a field has been set.
@@ -204,9 +209,9 @@ func (o *DeleteResponse) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given string and assigns it to the Result field.
-func (o *DeleteResponse) SetResult(v string) {
-	o.Result = &v
+// SetResult gets a reference to the given interface{} and assigns it to the Result field.
+func (o *DeleteResponse) SetResult(v interface{}) {
+	o.Result = v
 }
 
 func (o DeleteResponse) MarshalJSON() ([]byte, error) {
@@ -219,19 +224,19 @@ func (o DeleteResponse) MarshalJSON() ([]byte, error) {
 
 func (o DeleteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Table) {
+	if o.Table != nil {
 		toSerialize["table"] = o.Table
 	}
-	if !IsNil(o.Deleted) {
+	if o.Deleted != nil {
 		toSerialize["deleted"] = o.Deleted
 	}
-	if !IsNil(o.Id) {
+	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if !IsNil(o.Found) {
+	if o.Found != nil {
 		toSerialize["found"] = o.Found
 	}
-	if !IsNil(o.Result) {
+	if o.Result != nil {
 		toSerialize["result"] = o.Result
 	}
 	return toSerialize, nil

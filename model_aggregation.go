@@ -21,7 +21,7 @@ var _ MappedNullable = &Aggregation{}
 // Aggregation struct for Aggregation
 type Aggregation struct {
 	Terms *AggTerms `json:"terms"` 
-	Sort []interface{} `json:"sort"` 
+	Sort interface{} `json:"sort"` 
 	Composite *AggComposite `json:"composite"` 
 	Histogram *AggHistogram `json:"histogram"` 
 }
@@ -75,10 +75,10 @@ func (o *Aggregation) SetTerms(v AggTerms) {
 	o.Terms = &v
 }
 
-// GetSort returns the Sort field value if set, zero value otherwise.
-func (o *Aggregation) GetSort() []interface{} {
-	if o == nil || IsNil(o.Sort) {
-		var ret []interface{}
+// GetSort returns the Sort field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Aggregation) GetSort() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Sort
@@ -86,11 +86,12 @@ func (o *Aggregation) GetSort() []interface{} {
 
 // GetSortOk returns a tuple with the Sort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Aggregation) GetSortOk() ([]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Aggregation) GetSortOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Sort) {
 		return nil, false
 	}
-	return o.Sort, true
+	return &o.Sort, true
 }
 
 // HasSort returns a boolean if a field has been set.
@@ -102,8 +103,8 @@ func (o *Aggregation) HasSort() bool {
 	return false
 }
 
-// SetSort gets a reference to the given []interface{} and assigns it to the Sort field.
-func (o *Aggregation) SetSort(v []interface{}) {
+// SetSort gets a reference to the given interface{} and assigns it to the Sort field.
+func (o *Aggregation) SetSort(v interface{}) {
 	o.Sort = v
 }
 
@@ -184,7 +185,7 @@ func (o Aggregation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Terms) {
 		toSerialize["terms"] = o.Terms
 	}
-	if !IsNil(o.Sort) {
+	if o.Sort != nil {
 		toSerialize["sort"] = o.Sort
 	}
 	if !IsNil(o.Composite) {

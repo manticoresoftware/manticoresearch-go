@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## Autocomplete
 
-> []map[string]interface{} Autocomplete(ctx).AutocompleteRequest(autocompleteRequest).Execute()
+> interface{} Autocomplete(ctx).AutocompleteRequest(autocompleteRequest).Execute()
 
 Performs an autocomplete search on a table
 
@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	autocompleteRequest := *openapiclient.NewAutocompleteRequest("Table_example", "Query_example") // AutocompleteRequest | 
+	autocompleteRequest := *openapiclient.NewAutocompleteRequest(interface{}(123), interface{}(123)) // AutocompleteRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SearchAPI.Autocomplete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `Autocomplete`: []map[string]interface{}
+	// response from `Autocomplete`: interface{}
 	fmt.Fprintf(os.Stdout, "Response from `SearchAPI.Autocomplete`: %v\n", resp)
 }
 ```
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]map[string]interface{}**
+**interface{}**
 
 ### Authorization
 
@@ -98,7 +98,7 @@ import (
 
 func main() {
 	table := "table_example" // string | Name of the percolate table
-	percolateRequest := *openapiclient.NewPercolateRequest(*openapiclient.NewPercolateRequestQuery(map[string]interface{}(123))) // PercolateRequest | 
+	percolateRequest := *openapiclient.NewPercolateRequest(*openapiclient.NewPercolateRequestQuery(interface{}(123))) // PercolateRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -169,7 +169,7 @@ import (
 )
 
 func main() {
-	searchRequest := *openapiclient.NewSearchRequest("Table_example") // SearchRequest | 
+	searchRequest := *openapiclient.NewSearchRequest(interface{}(123)) // SearchRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

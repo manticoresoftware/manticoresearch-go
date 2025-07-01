@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Terms** | Pointer to [**AggTerms**](AggTerms.md) |  | [optional] 
-**Sort** | Pointer to **[]interface{}** |  | [optional] 
+**Sort** | Pointer to **interface{}** |  | [optional] 
 **Composite** | Pointer to [**AggComposite**](AggComposite.md) |  | [optional] 
 **Histogram** | Pointer to [**AggHistogram**](AggHistogram.md) |  | [optional] 
 
@@ -55,20 +55,20 @@ HasTerms returns a boolean if a field has been set.
 
 ### GetSort
 
-`func (o *Aggregation) GetSort() []interface{}`
+`func (o *Aggregation) GetSort() interface{}`
 
 GetSort returns the Sort field if non-nil, zero value otherwise.
 
 ### GetSortOk
 
-`func (o *Aggregation) GetSortOk() (*[]interface{}, bool)`
+`func (o *Aggregation) GetSortOk() (*interface{}, bool)`
 
 GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSort
 
-`func (o *Aggregation) SetSort(v []interface{})`
+`func (o *Aggregation) SetSort(v interface{})`
 
 SetSort sets Sort field to given value.
 
@@ -78,6 +78,16 @@ SetSort sets Sort field to given value.
 
 HasSort returns a boolean if a field has been set.
 
+### SetSortNil
+
+`func (o *Aggregation) SetSortNil(b bool)`
+
+ SetSortNil sets the value for Sort to be an explicit nil
+
+### UnsetSort
+`func (o *Aggregation) UnsetSort()`
+
+UnsetSort ensures that no value is present for Sort, not even an explicit nil
 ### GetComposite
 
 `func (o *Aggregation) GetComposite() AggComposite`

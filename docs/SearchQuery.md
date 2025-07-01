@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **MatchPhrase** | Pointer to **interface{}** | Filter object defining a match phrase | [optional] 
 **MatchAll** | Pointer to **interface{}** | Filter object to select all documents | [optional] 
 **Bool** | Pointer to [**BoolFilter**](BoolFilter.md) |  | [optional] 
-**Equals** | Pointer to **interface{}** |  | [optional] 
+**Equals** | Pointer to **interface{}** | Filter to match exact attribute values. | [optional] 
 **In** | Pointer to **interface{}** | Filter to match a given set of attribute values. | [optional] 
 **Range** | Pointer to **interface{}** | Filter to match a given range of attribute values passed in Range objects | [optional] 
 **GeoDistance** | Pointer to [**GeoDistance**](GeoDistance.md) |  | [optional] 

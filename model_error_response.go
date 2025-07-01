@@ -24,7 +24,7 @@ var _ MappedNullable = &ErrorResponse{}
 type ErrorResponse struct {
 	Error ResponseError `json:"error"` 
 	// HTTP status code of the error response
-	Status *int32 `json:"status"` 
+	Status interface{} `json:"status"` 
 }
 
 type _ErrorResponse ErrorResponse
@@ -36,8 +36,6 @@ type _ErrorResponse ErrorResponse
 func NewErrorResponse(error_ ResponseError) *ErrorResponse {
 	this := ErrorResponse{}
 	this.Error = error_
-	var status int32 = 500
-	this.Status = &status
 	return &this
 }
 
@@ -46,8 +44,6 @@ func NewErrorResponse(error_ ResponseError) *ErrorResponse {
 // but it doesn't guarantee that properties required by API are set
 func NewErrorResponseWithDefaults() *ErrorResponse {
 	this := ErrorResponse{}
-	var status int32 = 500
-	this.Status = &status
 	return &this
 }
 
@@ -75,22 +71,23 @@ func (o *ErrorResponse) SetError(v ResponseError) {
 	o.Error = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ErrorResponse) GetStatus() int32 {
-	if o == nil || IsNil(o.Status) {
-		var ret int32
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ErrorResponse) GetStatus() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Status
+	return o.Status
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorResponse) GetStatusOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ErrorResponse) GetStatusOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -102,9 +99,9 @@ func (o *ErrorResponse) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *ErrorResponse) SetStatus(v int32) {
-	o.Status = &v
+// SetStatus gets a reference to the given interface{} and assigns it to the Status field.
+func (o *ErrorResponse) SetStatus(v interface{}) {
+	o.Status = v
 }
 
 func (o ErrorResponse) MarshalJSON() ([]byte, error) {
@@ -118,7 +115,7 @@ func (o ErrorResponse) MarshalJSON() ([]byte, error) {
 func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["error"] = o.Error
-	if !IsNil(o.Status) {
+	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
 	return toSerialize, nil

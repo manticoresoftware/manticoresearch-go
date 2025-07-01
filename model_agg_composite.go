@@ -21,8 +21,8 @@ var _ MappedNullable = &AggComposite{}
 // AggComposite Object to perform composite aggregation, i.e., grouping search results by multiple fields
 type AggComposite struct {
 	// Maximum number of composite buckets in the result
-	Size *int32 `json:"size"` 
-	Sources []map[string]AggCompositeSource `json:"sources"` 
+	Size interface{} `json:"size"` 
+	Sources interface{} `json:"sources"` 
 }
 
 // NewAggComposite instantiates a new AggComposite object
@@ -42,22 +42,23 @@ func NewAggCompositeWithDefaults() *AggComposite {
 	return &this
 }
 
-// GetSize returns the Size field value if set, zero value otherwise.
-func (o *AggComposite) GetSize() int32 {
-	if o == nil || IsNil(o.Size) {
-		var ret int32
+// GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AggComposite) GetSize() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Size
+	return o.Size
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AggComposite) GetSizeOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AggComposite) GetSizeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
-	return o.Size, true
+	return &o.Size, true
 }
 
 // HasSize returns a boolean if a field has been set.
@@ -69,15 +70,15 @@ func (o *AggComposite) HasSize() bool {
 	return false
 }
 
-// SetSize gets a reference to the given int32 and assigns it to the Size field.
-func (o *AggComposite) SetSize(v int32) {
-	o.Size = &v
+// SetSize gets a reference to the given interface{} and assigns it to the Size field.
+func (o *AggComposite) SetSize(v interface{}) {
+	o.Size = v
 }
 
-// GetSources returns the Sources field value if set, zero value otherwise.
-func (o *AggComposite) GetSources() []map[string]AggCompositeSource {
-	if o == nil || IsNil(o.Sources) {
-		var ret []map[string]AggCompositeSource
+// GetSources returns the Sources field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AggComposite) GetSources() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Sources
@@ -85,11 +86,12 @@ func (o *AggComposite) GetSources() []map[string]AggCompositeSource {
 
 // GetSourcesOk returns a tuple with the Sources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AggComposite) GetSourcesOk() ([]map[string]AggCompositeSource, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AggComposite) GetSourcesOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Sources) {
 		return nil, false
 	}
-	return o.Sources, true
+	return &o.Sources, true
 }
 
 // HasSources returns a boolean if a field has been set.
@@ -101,8 +103,8 @@ func (o *AggComposite) HasSources() bool {
 	return false
 }
 
-// SetSources gets a reference to the given []map[string]AggCompositeSource and assigns it to the Sources field.
-func (o *AggComposite) SetSources(v []map[string]AggCompositeSource) {
+// SetSources gets a reference to the given interface{} and assigns it to the Sources field.
+func (o *AggComposite) SetSources(v interface{}) {
 	o.Sources = v
 }
 
@@ -116,10 +118,10 @@ func (o AggComposite) MarshalJSON() ([]byte, error) {
 
 func (o AggComposite) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Size) {
+	if o.Size != nil {
 		toSerialize["size"] = o.Size
 	}
-	if !IsNil(o.Sources) {
+	if o.Sources != nil {
 		toSerialize["sources"] = o.Sources
 	}
 	return toSerialize, nil

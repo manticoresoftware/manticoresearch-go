@@ -23,13 +23,13 @@ var _ MappedNullable = &InsertDocumentRequest{}
 // InsertDocumentRequest Object containing data for inserting a new document into the table 
 type InsertDocumentRequest struct {
 	// Name of the table to insert the document into
-	Table string `json:"table"` 
+	Table interface{} `json:"table"` 
 	// Name of the cluster to insert the document into
-	Cluster *string `json:"cluster"` 
+	Cluster interface{} `json:"cluster"` 
 	// Document ID. If not provided, an ID will be auto-generated 
-	Id *int64 `json:"id"` 
+	Id interface{} `json:"id"` 
 	// Object containing document data 
-	Doc map[string]interface{} `json:"doc"` 
+	Doc interface{} `json:"doc"` 
 }
 
 type _InsertDocumentRequest InsertDocumentRequest
@@ -38,7 +38,7 @@ type _InsertDocumentRequest InsertDocumentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInsertDocumentRequest(table string, doc map[string]interface{}) *InsertDocumentRequest {
+func NewInsertDocumentRequest(table interface{}, doc interface{}) *InsertDocumentRequest {
 	this := InsertDocumentRequest{}
 	this.Table = table
 	this.Doc = doc
@@ -54,9 +54,10 @@ func NewInsertDocumentRequestWithDefaults() *InsertDocumentRequest {
 }
 
 // GetTable returns the Table field value
-func (o *InsertDocumentRequest) GetTable() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *InsertDocumentRequest) GetTable() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -65,34 +66,36 @@ func (o *InsertDocumentRequest) GetTable() string {
 
 // GetTableOk returns a tuple with the Table field value
 // and a boolean to check if the value has been set.
-func (o *InsertDocumentRequest) GetTableOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InsertDocumentRequest) GetTableOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Table) {
 		return nil, false
 	}
 	return &o.Table, true
 }
 
 // SetTable sets field value
-func (o *InsertDocumentRequest) SetTable(v string) {
+func (o *InsertDocumentRequest) SetTable(v interface{}) {
 	o.Table = v
 }
 
-// GetCluster returns the Cluster field value if set, zero value otherwise.
-func (o *InsertDocumentRequest) GetCluster() string {
-	if o == nil || IsNil(o.Cluster) {
-		var ret string
+// GetCluster returns the Cluster field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *InsertDocumentRequest) GetCluster() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Cluster
+	return o.Cluster
 }
 
 // GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InsertDocumentRequest) GetClusterOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InsertDocumentRequest) GetClusterOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Cluster) {
 		return nil, false
 	}
-	return o.Cluster, true
+	return &o.Cluster, true
 }
 
 // HasCluster returns a boolean if a field has been set.
@@ -104,27 +107,28 @@ func (o *InsertDocumentRequest) HasCluster() bool {
 	return false
 }
 
-// SetCluster gets a reference to the given string and assigns it to the Cluster field.
-func (o *InsertDocumentRequest) SetCluster(v string) {
-	o.Cluster = &v
+// SetCluster gets a reference to the given interface{} and assigns it to the Cluster field.
+func (o *InsertDocumentRequest) SetCluster(v interface{}) {
+	o.Cluster = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *InsertDocumentRequest) GetId() int64 {
-	if o == nil || IsNil(o.Id) {
-		var ret int64
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *InsertDocumentRequest) GetId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InsertDocumentRequest) GetIdOk() (*int64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InsertDocumentRequest) GetIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -136,15 +140,16 @@ func (o *InsertDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *InsertDocumentRequest) SetId(v int64) {
-	o.Id = &v
+// SetId gets a reference to the given interface{} and assigns it to the Id field.
+func (o *InsertDocumentRequest) SetId(v interface{}) {
+	o.Id = v
 }
 
 // GetDoc returns the Doc field value
-func (o *InsertDocumentRequest) GetDoc() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *InsertDocumentRequest) GetDoc() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -153,15 +158,16 @@ func (o *InsertDocumentRequest) GetDoc() map[string]interface{} {
 
 // GetDocOk returns a tuple with the Doc field value
 // and a boolean to check if the value has been set.
-func (o *InsertDocumentRequest) GetDocOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InsertDocumentRequest) GetDocOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Doc) {
+		return nil, false
 	}
-	return o.Doc, true
+	return &o.Doc, true
 }
 
 // SetDoc sets field value
-func (o *InsertDocumentRequest) SetDoc(v map[string]interface{}) {
+func (o *InsertDocumentRequest) SetDoc(v interface{}) {
 	o.Doc = v
 }
 
@@ -175,14 +181,18 @@ func (o InsertDocumentRequest) MarshalJSON() ([]byte, error) {
 
 func (o InsertDocumentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["table"] = o.Table
-	if !IsNil(o.Cluster) {
+	if o.Table != nil {
+		toSerialize["table"] = o.Table
+	}
+	if o.Cluster != nil {
 		toSerialize["cluster"] = o.Cluster
 	}
-	if !IsNil(o.Id) {
+	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	toSerialize["doc"] = o.Doc
+	if o.Doc != nil {
+		toSerialize["doc"] = o.Doc
+	}
 	return toSerialize, nil
 }
 

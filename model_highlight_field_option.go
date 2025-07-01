@@ -21,15 +21,15 @@ var _ MappedNullable = &HighlightFieldOption{}
 // HighlightFieldOption Options for controlling the behavior of highlighting on a per-field basis
 type HighlightFieldOption struct {
 	// Maximum size of the text fragments in highlighted snippets per field
-	FragmentSize *int32 `json:"fragment_size"` 
+	FragmentSize interface{} `json:"fragment_size"` 
 	// Maximum size of snippets per field
-	Limit *int32 `json:"limit"` 
+	Limit interface{} `json:"limit"` 
 	// Maximum number of snippets per field
-	LimitSnippets *int32 `json:"limit_snippets"` 
+	LimitSnippets interface{} `json:"limit_snippets"` 
 	// Maximum number of words per field
-	LimitWords *int32 `json:"limit_words"` 
+	LimitWords interface{} `json:"limit_words"` 
 	// Total number of highlighted fragments per field
-	NumberOfFragments *int32 `json:"number_of_fragments"` 
+	NumberOfFragments interface{} `json:"number_of_fragments"` 
 }
 
 // NewHighlightFieldOption instantiates a new HighlightFieldOption object
@@ -49,22 +49,23 @@ func NewHighlightFieldOptionWithDefaults() *HighlightFieldOption {
 	return &this
 }
 
-// GetFragmentSize returns the FragmentSize field value if set, zero value otherwise.
-func (o *HighlightFieldOption) GetFragmentSize() int32 {
-	if o == nil || IsNil(o.FragmentSize) {
-		var ret int32
+// GetFragmentSize returns the FragmentSize field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HighlightFieldOption) GetFragmentSize() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.FragmentSize
+	return o.FragmentSize
 }
 
 // GetFragmentSizeOk returns a tuple with the FragmentSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightFieldOption) GetFragmentSizeOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HighlightFieldOption) GetFragmentSizeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.FragmentSize) {
 		return nil, false
 	}
-	return o.FragmentSize, true
+	return &o.FragmentSize, true
 }
 
 // HasFragmentSize returns a boolean if a field has been set.
@@ -76,27 +77,28 @@ func (o *HighlightFieldOption) HasFragmentSize() bool {
 	return false
 }
 
-// SetFragmentSize gets a reference to the given int32 and assigns it to the FragmentSize field.
-func (o *HighlightFieldOption) SetFragmentSize(v int32) {
-	o.FragmentSize = &v
+// SetFragmentSize gets a reference to the given interface{} and assigns it to the FragmentSize field.
+func (o *HighlightFieldOption) SetFragmentSize(v interface{}) {
+	o.FragmentSize = v
 }
 
-// GetLimit returns the Limit field value if set, zero value otherwise.
-func (o *HighlightFieldOption) GetLimit() int32 {
-	if o == nil || IsNil(o.Limit) {
-		var ret int32
+// GetLimit returns the Limit field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HighlightFieldOption) GetLimit() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Limit
+	return o.Limit
 }
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightFieldOption) GetLimitOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HighlightFieldOption) GetLimitOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Limit) {
 		return nil, false
 	}
-	return o.Limit, true
+	return &o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
@@ -108,27 +110,28 @@ func (o *HighlightFieldOption) HasLimit() bool {
 	return false
 }
 
-// SetLimit gets a reference to the given int32 and assigns it to the Limit field.
-func (o *HighlightFieldOption) SetLimit(v int32) {
-	o.Limit = &v
+// SetLimit gets a reference to the given interface{} and assigns it to the Limit field.
+func (o *HighlightFieldOption) SetLimit(v interface{}) {
+	o.Limit = v
 }
 
-// GetLimitSnippets returns the LimitSnippets field value if set, zero value otherwise.
-func (o *HighlightFieldOption) GetLimitSnippets() int32 {
-	if o == nil || IsNil(o.LimitSnippets) {
-		var ret int32
+// GetLimitSnippets returns the LimitSnippets field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HighlightFieldOption) GetLimitSnippets() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.LimitSnippets
+	return o.LimitSnippets
 }
 
 // GetLimitSnippetsOk returns a tuple with the LimitSnippets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightFieldOption) GetLimitSnippetsOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HighlightFieldOption) GetLimitSnippetsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.LimitSnippets) {
 		return nil, false
 	}
-	return o.LimitSnippets, true
+	return &o.LimitSnippets, true
 }
 
 // HasLimitSnippets returns a boolean if a field has been set.
@@ -140,27 +143,28 @@ func (o *HighlightFieldOption) HasLimitSnippets() bool {
 	return false
 }
 
-// SetLimitSnippets gets a reference to the given int32 and assigns it to the LimitSnippets field.
-func (o *HighlightFieldOption) SetLimitSnippets(v int32) {
-	o.LimitSnippets = &v
+// SetLimitSnippets gets a reference to the given interface{} and assigns it to the LimitSnippets field.
+func (o *HighlightFieldOption) SetLimitSnippets(v interface{}) {
+	o.LimitSnippets = v
 }
 
-// GetLimitWords returns the LimitWords field value if set, zero value otherwise.
-func (o *HighlightFieldOption) GetLimitWords() int32 {
-	if o == nil || IsNil(o.LimitWords) {
-		var ret int32
+// GetLimitWords returns the LimitWords field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HighlightFieldOption) GetLimitWords() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.LimitWords
+	return o.LimitWords
 }
 
 // GetLimitWordsOk returns a tuple with the LimitWords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightFieldOption) GetLimitWordsOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HighlightFieldOption) GetLimitWordsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.LimitWords) {
 		return nil, false
 	}
-	return o.LimitWords, true
+	return &o.LimitWords, true
 }
 
 // HasLimitWords returns a boolean if a field has been set.
@@ -172,27 +176,28 @@ func (o *HighlightFieldOption) HasLimitWords() bool {
 	return false
 }
 
-// SetLimitWords gets a reference to the given int32 and assigns it to the LimitWords field.
-func (o *HighlightFieldOption) SetLimitWords(v int32) {
-	o.LimitWords = &v
+// SetLimitWords gets a reference to the given interface{} and assigns it to the LimitWords field.
+func (o *HighlightFieldOption) SetLimitWords(v interface{}) {
+	o.LimitWords = v
 }
 
-// GetNumberOfFragments returns the NumberOfFragments field value if set, zero value otherwise.
-func (o *HighlightFieldOption) GetNumberOfFragments() int32 {
-	if o == nil || IsNil(o.NumberOfFragments) {
-		var ret int32
+// GetNumberOfFragments returns the NumberOfFragments field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HighlightFieldOption) GetNumberOfFragments() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.NumberOfFragments
+	return o.NumberOfFragments
 }
 
 // GetNumberOfFragmentsOk returns a tuple with the NumberOfFragments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightFieldOption) GetNumberOfFragmentsOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HighlightFieldOption) GetNumberOfFragmentsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.NumberOfFragments) {
 		return nil, false
 	}
-	return o.NumberOfFragments, true
+	return &o.NumberOfFragments, true
 }
 
 // HasNumberOfFragments returns a boolean if a field has been set.
@@ -204,9 +209,9 @@ func (o *HighlightFieldOption) HasNumberOfFragments() bool {
 	return false
 }
 
-// SetNumberOfFragments gets a reference to the given int32 and assigns it to the NumberOfFragments field.
-func (o *HighlightFieldOption) SetNumberOfFragments(v int32) {
-	o.NumberOfFragments = &v
+// SetNumberOfFragments gets a reference to the given interface{} and assigns it to the NumberOfFragments field.
+func (o *HighlightFieldOption) SetNumberOfFragments(v interface{}) {
+	o.NumberOfFragments = v
 }
 
 func (o HighlightFieldOption) MarshalJSON() ([]byte, error) {
@@ -219,19 +224,19 @@ func (o HighlightFieldOption) MarshalJSON() ([]byte, error) {
 
 func (o HighlightFieldOption) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.FragmentSize) {
+	if o.FragmentSize != nil {
 		toSerialize["fragment_size"] = o.FragmentSize
 	}
-	if !IsNil(o.Limit) {
+	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
 	}
-	if !IsNil(o.LimitSnippets) {
+	if o.LimitSnippets != nil {
 		toSerialize["limit_snippets"] = o.LimitSnippets
 	}
-	if !IsNil(o.LimitWords) {
+	if o.LimitWords != nil {
 		toSerialize["limit_words"] = o.LimitWords
 	}
-	if !IsNil(o.NumberOfFragments) {
+	if o.NumberOfFragments != nil {
 		toSerialize["number_of_fragments"] = o.NumberOfFragments
 	}
 	return toSerialize, nil

@@ -31,39 +31,39 @@ type Highlight struct {
 	// Total number of highlighted fragments per field
 	NumberOfFragments interface{} `json:"number_of_fragments"` 
 	// Text inserted after the matched term, typically used for HTML formatting
-	AfterMatch *string `json:"after_match"` 
+	AfterMatch interface{} `json:"after_match"` 
 	// Permits an empty string to be returned as the highlighting result. Otherwise, the beginning of the original text would be returned
-	AllowEmpty *bool `json:"allow_empty"` 
+	AllowEmpty interface{} `json:"allow_empty"` 
 	// Number of words around the match to include in the highlight
-	Around *int32 `json:"around"` 
+	Around interface{} `json:"around"` 
 	// Text inserted before the match, typically used for HTML formatting
-	BeforeMatch *string `json:"before_match"` 
+	BeforeMatch interface{} `json:"before_match"` 
 	// Emits an HTML tag with the enclosing zone name before each highlighted snippet
-	EmitZones *bool `json:"emit_zones"` 
+	EmitZones interface{} `json:"emit_zones"` 
 	// If set to 'html', retains HTML markup when highlighting
-	Encoder *string `json:"encoder"` 
-	Fields map[string]interface{} `json:"fields"` 
+	Encoder interface{} `json:"encoder"` 
+	Fields *HighlightFields `json:"fields"` 
 	// Ignores the length limit until the result includes all keywords
-	ForceAllWords *bool `json:"force_all_words"` 
+	ForceAllWords interface{} `json:"force_all_words"` 
 	// Forces snippet generation even if limits allow highlighting the entire text
-	ForceSnippets *bool `json:"force_snippets"` 
-	HighlightQuery NullableQueryFilter `json:"highlight_query"` 
+	ForceSnippets interface{} `json:"force_snippets"` 
+	HighlightQuery *HighlightAllOfHighlightQuery `json:"highlight_query"` 
 	// Defines the mode for handling HTML markup in the highlight
-	HtmlStripMode *string `json:"html_strip_mode"` 
+	HtmlStripMode interface{} `json:"html_strip_mode"` 
 	// Determines whether the 'limit', 'limit_words', and 'limit_snippets' options operate as individual limits in each field of the document
-	LimitsPerField *bool `json:"limits_per_field"` 
+	LimitsPerField interface{} `json:"limits_per_field"` 
 	// If set to 1, allows an empty string to be returned as a highlighting result
-	NoMatchSize *int32 `json:"no_match_size"` 
+	NoMatchSize interface{} `json:"no_match_size"` 
 	// Sets the sorting order of highlighted snippets
-	Order *string `json:"order"` 
+	Order interface{} `json:"order"` 
 	// Text inserted before each highlighted snippet
-	PreTags *string `json:"pre_tags"` 
+	PreTags interface{} `json:"pre_tags"` 
 	// Text inserted after each highlighted snippet
-	PostTags *string `json:"post_tags"` 
+	PostTags interface{} `json:"post_tags"` 
 	// Sets the starting value of the %SNIPPET_ID% macro
-	StartSnippetId *int32 `json:"start_snippet_id"` 
+	StartSnippetId interface{} `json:"start_snippet_id"` 
 	// Defines whether to additionally break snippets by phrase boundary characters
-	UseBoundaries *bool `json:"use_boundaries"` 
+	UseBoundaries interface{} `json:"use_boundaries"` 
 }
 
 // NewHighlight instantiates a new Highlight object
@@ -72,14 +72,6 @@ type Highlight struct {
 // will change when the set of required properties is changed
 func NewHighlight() *Highlight {
 	this := Highlight{}
-	var afterMatch string = "</strong>"
-	this.AfterMatch = &afterMatch
-	var beforeMatch string = "<strong>"
-	this.BeforeMatch = &beforeMatch
-	var preTags string = "<strong>"
-	this.PreTags = &preTags
-	var postTags string = "</strong>"
-	this.PostTags = &postTags
 	return &this
 }
 
@@ -88,14 +80,6 @@ func NewHighlight() *Highlight {
 // but it doesn't guarantee that properties required by API are set
 func NewHighlightWithDefaults() *Highlight {
 	this := Highlight{}
-	var afterMatch string = "</strong>"
-	this.AfterMatch = &afterMatch
-	var beforeMatch string = "<strong>"
-	this.BeforeMatch = &beforeMatch
-	var preTags string = "<strong>"
-	this.PreTags = &preTags
-	var postTags string = "</strong>"
-	this.PostTags = &postTags
 	return &this
 }
 
@@ -264,22 +248,23 @@ func (o *Highlight) SetNumberOfFragments(v interface{}) {
 	o.NumberOfFragments = v
 }
 
-// GetAfterMatch returns the AfterMatch field value if set, zero value otherwise.
-func (o *Highlight) GetAfterMatch() string {
-	if o == nil || IsNil(o.AfterMatch) {
-		var ret string
+// GetAfterMatch returns the AfterMatch field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetAfterMatch() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.AfterMatch
+	return o.AfterMatch
 }
 
 // GetAfterMatchOk returns a tuple with the AfterMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetAfterMatchOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetAfterMatchOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.AfterMatch) {
 		return nil, false
 	}
-	return o.AfterMatch, true
+	return &o.AfterMatch, true
 }
 
 // HasAfterMatch returns a boolean if a field has been set.
@@ -291,27 +276,28 @@ func (o *Highlight) HasAfterMatch() bool {
 	return false
 }
 
-// SetAfterMatch gets a reference to the given string and assigns it to the AfterMatch field.
-func (o *Highlight) SetAfterMatch(v string) {
-	o.AfterMatch = &v
+// SetAfterMatch gets a reference to the given interface{} and assigns it to the AfterMatch field.
+func (o *Highlight) SetAfterMatch(v interface{}) {
+	o.AfterMatch = v
 }
 
-// GetAllowEmpty returns the AllowEmpty field value if set, zero value otherwise.
-func (o *Highlight) GetAllowEmpty() bool {
-	if o == nil || IsNil(o.AllowEmpty) {
-		var ret bool
+// GetAllowEmpty returns the AllowEmpty field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetAllowEmpty() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.AllowEmpty
+	return o.AllowEmpty
 }
 
 // GetAllowEmptyOk returns a tuple with the AllowEmpty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetAllowEmptyOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetAllowEmptyOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.AllowEmpty) {
 		return nil, false
 	}
-	return o.AllowEmpty, true
+	return &o.AllowEmpty, true
 }
 
 // HasAllowEmpty returns a boolean if a field has been set.
@@ -323,27 +309,28 @@ func (o *Highlight) HasAllowEmpty() bool {
 	return false
 }
 
-// SetAllowEmpty gets a reference to the given bool and assigns it to the AllowEmpty field.
-func (o *Highlight) SetAllowEmpty(v bool) {
-	o.AllowEmpty = &v
+// SetAllowEmpty gets a reference to the given interface{} and assigns it to the AllowEmpty field.
+func (o *Highlight) SetAllowEmpty(v interface{}) {
+	o.AllowEmpty = v
 }
 
-// GetAround returns the Around field value if set, zero value otherwise.
-func (o *Highlight) GetAround() int32 {
-	if o == nil || IsNil(o.Around) {
-		var ret int32
+// GetAround returns the Around field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetAround() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Around
+	return o.Around
 }
 
 // GetAroundOk returns a tuple with the Around field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetAroundOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetAroundOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Around) {
 		return nil, false
 	}
-	return o.Around, true
+	return &o.Around, true
 }
 
 // HasAround returns a boolean if a field has been set.
@@ -355,27 +342,28 @@ func (o *Highlight) HasAround() bool {
 	return false
 }
 
-// SetAround gets a reference to the given int32 and assigns it to the Around field.
-func (o *Highlight) SetAround(v int32) {
-	o.Around = &v
+// SetAround gets a reference to the given interface{} and assigns it to the Around field.
+func (o *Highlight) SetAround(v interface{}) {
+	o.Around = v
 }
 
-// GetBeforeMatch returns the BeforeMatch field value if set, zero value otherwise.
-func (o *Highlight) GetBeforeMatch() string {
-	if o == nil || IsNil(o.BeforeMatch) {
-		var ret string
+// GetBeforeMatch returns the BeforeMatch field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetBeforeMatch() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.BeforeMatch
+	return o.BeforeMatch
 }
 
 // GetBeforeMatchOk returns a tuple with the BeforeMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetBeforeMatchOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetBeforeMatchOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.BeforeMatch) {
 		return nil, false
 	}
-	return o.BeforeMatch, true
+	return &o.BeforeMatch, true
 }
 
 // HasBeforeMatch returns a boolean if a field has been set.
@@ -387,27 +375,28 @@ func (o *Highlight) HasBeforeMatch() bool {
 	return false
 }
 
-// SetBeforeMatch gets a reference to the given string and assigns it to the BeforeMatch field.
-func (o *Highlight) SetBeforeMatch(v string) {
-	o.BeforeMatch = &v
+// SetBeforeMatch gets a reference to the given interface{} and assigns it to the BeforeMatch field.
+func (o *Highlight) SetBeforeMatch(v interface{}) {
+	o.BeforeMatch = v
 }
 
-// GetEmitZones returns the EmitZones field value if set, zero value otherwise.
-func (o *Highlight) GetEmitZones() bool {
-	if o == nil || IsNil(o.EmitZones) {
-		var ret bool
+// GetEmitZones returns the EmitZones field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetEmitZones() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.EmitZones
+	return o.EmitZones
 }
 
 // GetEmitZonesOk returns a tuple with the EmitZones field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetEmitZonesOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetEmitZonesOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.EmitZones) {
 		return nil, false
 	}
-	return o.EmitZones, true
+	return &o.EmitZones, true
 }
 
 // HasEmitZones returns a boolean if a field has been set.
@@ -419,27 +408,28 @@ func (o *Highlight) HasEmitZones() bool {
 	return false
 }
 
-// SetEmitZones gets a reference to the given bool and assigns it to the EmitZones field.
-func (o *Highlight) SetEmitZones(v bool) {
-	o.EmitZones = &v
+// SetEmitZones gets a reference to the given interface{} and assigns it to the EmitZones field.
+func (o *Highlight) SetEmitZones(v interface{}) {
+	o.EmitZones = v
 }
 
-// GetEncoder returns the Encoder field value if set, zero value otherwise.
-func (o *Highlight) GetEncoder() string {
-	if o == nil || IsNil(o.Encoder) {
-		var ret string
+// GetEncoder returns the Encoder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetEncoder() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Encoder
+	return o.Encoder
 }
 
 // GetEncoderOk returns a tuple with the Encoder field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetEncoderOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetEncoderOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Encoder) {
 		return nil, false
 	}
-	return o.Encoder, true
+	return &o.Encoder, true
 }
 
 // HasEncoder returns a boolean if a field has been set.
@@ -451,26 +441,25 @@ func (o *Highlight) HasEncoder() bool {
 	return false
 }
 
-// SetEncoder gets a reference to the given string and assigns it to the Encoder field.
-func (o *Highlight) SetEncoder(v string) {
-	o.Encoder = &v
+// SetEncoder gets a reference to the given interface{} and assigns it to the Encoder field.
+func (o *Highlight) SetEncoder(v interface{}) {
+	o.Encoder = v
 }
 
-// GetFields returns the Fields field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Highlight) GetFields() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetFields returns the Fields field value if set, zero value otherwise.
+func (o *Highlight) GetFields() HighlightFields {
+	if o == nil || IsNil(o.Fields) {
+		var ret HighlightFields
 		return ret
 	}
-	return o.Fields
+	return *o.Fields
 }
 
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Highlight) GetFieldsOk() (map[string]interface{}, bool) {
+func (o *Highlight) GetFieldsOk() (*HighlightFields, bool) {
 	if o == nil || IsNil(o.Fields) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Fields, true
 }
@@ -484,27 +473,28 @@ func (o *Highlight) HasFields() bool {
 	return false
 }
 
-// SetFields gets a reference to the given map[string]interface{} and assigns it to the Fields field.
-func (o *Highlight) SetFields(v map[string]interface{}) {
-	o.Fields = v
+// SetFields gets a reference to the given HighlightFields and assigns it to the Fields field.
+func (o *Highlight) SetFields(v HighlightFields) {
+	o.Fields = &v
 }
 
-// GetForceAllWords returns the ForceAllWords field value if set, zero value otherwise.
-func (o *Highlight) GetForceAllWords() bool {
-	if o == nil || IsNil(o.ForceAllWords) {
-		var ret bool
+// GetForceAllWords returns the ForceAllWords field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetForceAllWords() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.ForceAllWords
+	return o.ForceAllWords
 }
 
 // GetForceAllWordsOk returns a tuple with the ForceAllWords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetForceAllWordsOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetForceAllWordsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ForceAllWords) {
 		return nil, false
 	}
-	return o.ForceAllWords, true
+	return &o.ForceAllWords, true
 }
 
 // HasForceAllWords returns a boolean if a field has been set.
@@ -516,27 +506,28 @@ func (o *Highlight) HasForceAllWords() bool {
 	return false
 }
 
-// SetForceAllWords gets a reference to the given bool and assigns it to the ForceAllWords field.
-func (o *Highlight) SetForceAllWords(v bool) {
-	o.ForceAllWords = &v
+// SetForceAllWords gets a reference to the given interface{} and assigns it to the ForceAllWords field.
+func (o *Highlight) SetForceAllWords(v interface{}) {
+	o.ForceAllWords = v
 }
 
-// GetForceSnippets returns the ForceSnippets field value if set, zero value otherwise.
-func (o *Highlight) GetForceSnippets() bool {
-	if o == nil || IsNil(o.ForceSnippets) {
-		var ret bool
+// GetForceSnippets returns the ForceSnippets field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetForceSnippets() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.ForceSnippets
+	return o.ForceSnippets
 }
 
 // GetForceSnippetsOk returns a tuple with the ForceSnippets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetForceSnippetsOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetForceSnippetsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ForceSnippets) {
 		return nil, false
 	}
-	return o.ForceSnippets, true
+	return &o.ForceSnippets, true
 }
 
 // HasForceSnippets returns a boolean if a field has been set.
@@ -548,69 +539,60 @@ func (o *Highlight) HasForceSnippets() bool {
 	return false
 }
 
-// SetForceSnippets gets a reference to the given bool and assigns it to the ForceSnippets field.
-func (o *Highlight) SetForceSnippets(v bool) {
-	o.ForceSnippets = &v
+// SetForceSnippets gets a reference to the given interface{} and assigns it to the ForceSnippets field.
+func (o *Highlight) SetForceSnippets(v interface{}) {
+	o.ForceSnippets = v
 }
 
-// GetHighlightQuery returns the HighlightQuery field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Highlight) GetHighlightQuery() QueryFilter {
-	if o == nil || IsNil(o.HighlightQuery.Get()) {
-		var ret QueryFilter
+// GetHighlightQuery returns the HighlightQuery field value if set, zero value otherwise.
+func (o *Highlight) GetHighlightQuery() HighlightAllOfHighlightQuery {
+	if o == nil || IsNil(o.HighlightQuery) {
+		var ret HighlightAllOfHighlightQuery
 		return ret
 	}
-	return *o.HighlightQuery.Get()
+	return *o.HighlightQuery
 }
 
 // GetHighlightQueryOk returns a tuple with the HighlightQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Highlight) GetHighlightQueryOk() (*QueryFilter, bool) {
-	if o == nil {
+func (o *Highlight) GetHighlightQueryOk() (*HighlightAllOfHighlightQuery, bool) {
+	if o == nil || IsNil(o.HighlightQuery) {
 		return nil, false
 	}
-	return o.HighlightQuery.Get(), o.HighlightQuery.IsSet()
+	return o.HighlightQuery, true
 }
 
 // HasHighlightQuery returns a boolean if a field has been set.
 func (o *Highlight) HasHighlightQuery() bool {
-	if o != nil && o.HighlightQuery.IsSet() {
+	if o != nil && !IsNil(o.HighlightQuery) {
 		return true
 	}
 
 	return false
 }
 
-// SetHighlightQuery gets a reference to the given NullableQueryFilter and assigns it to the HighlightQuery field.
-func (o *Highlight) SetHighlightQuery(v QueryFilter) {
-	o.HighlightQuery.Set(&v)
-}
-// SetHighlightQueryNil sets the value for HighlightQuery to be an explicit nil
-func (o *Highlight) SetHighlightQueryNil() {
-	o.HighlightQuery.Set(nil)
+// SetHighlightQuery gets a reference to the given HighlightAllOfHighlightQuery and assigns it to the HighlightQuery field.
+func (o *Highlight) SetHighlightQuery(v HighlightAllOfHighlightQuery) {
+	o.HighlightQuery = &v
 }
 
-// UnsetHighlightQuery ensures that no value is present for HighlightQuery, not even an explicit nil
-func (o *Highlight) UnsetHighlightQuery() {
-	o.HighlightQuery.Unset()
-}
-
-// GetHtmlStripMode returns the HtmlStripMode field value if set, zero value otherwise.
-func (o *Highlight) GetHtmlStripMode() string {
-	if o == nil || IsNil(o.HtmlStripMode) {
-		var ret string
+// GetHtmlStripMode returns the HtmlStripMode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetHtmlStripMode() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.HtmlStripMode
+	return o.HtmlStripMode
 }
 
 // GetHtmlStripModeOk returns a tuple with the HtmlStripMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetHtmlStripModeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetHtmlStripModeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.HtmlStripMode) {
 		return nil, false
 	}
-	return o.HtmlStripMode, true
+	return &o.HtmlStripMode, true
 }
 
 // HasHtmlStripMode returns a boolean if a field has been set.
@@ -622,27 +604,28 @@ func (o *Highlight) HasHtmlStripMode() bool {
 	return false
 }
 
-// SetHtmlStripMode gets a reference to the given string and assigns it to the HtmlStripMode field.
-func (o *Highlight) SetHtmlStripMode(v string) {
-	o.HtmlStripMode = &v
+// SetHtmlStripMode gets a reference to the given interface{} and assigns it to the HtmlStripMode field.
+func (o *Highlight) SetHtmlStripMode(v interface{}) {
+	o.HtmlStripMode = v
 }
 
-// GetLimitsPerField returns the LimitsPerField field value if set, zero value otherwise.
-func (o *Highlight) GetLimitsPerField() bool {
-	if o == nil || IsNil(o.LimitsPerField) {
-		var ret bool
+// GetLimitsPerField returns the LimitsPerField field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetLimitsPerField() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.LimitsPerField
+	return o.LimitsPerField
 }
 
 // GetLimitsPerFieldOk returns a tuple with the LimitsPerField field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetLimitsPerFieldOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetLimitsPerFieldOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.LimitsPerField) {
 		return nil, false
 	}
-	return o.LimitsPerField, true
+	return &o.LimitsPerField, true
 }
 
 // HasLimitsPerField returns a boolean if a field has been set.
@@ -654,27 +637,28 @@ func (o *Highlight) HasLimitsPerField() bool {
 	return false
 }
 
-// SetLimitsPerField gets a reference to the given bool and assigns it to the LimitsPerField field.
-func (o *Highlight) SetLimitsPerField(v bool) {
-	o.LimitsPerField = &v
+// SetLimitsPerField gets a reference to the given interface{} and assigns it to the LimitsPerField field.
+func (o *Highlight) SetLimitsPerField(v interface{}) {
+	o.LimitsPerField = v
 }
 
-// GetNoMatchSize returns the NoMatchSize field value if set, zero value otherwise.
-func (o *Highlight) GetNoMatchSize() int32 {
-	if o == nil || IsNil(o.NoMatchSize) {
-		var ret int32
+// GetNoMatchSize returns the NoMatchSize field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetNoMatchSize() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.NoMatchSize
+	return o.NoMatchSize
 }
 
 // GetNoMatchSizeOk returns a tuple with the NoMatchSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetNoMatchSizeOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetNoMatchSizeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.NoMatchSize) {
 		return nil, false
 	}
-	return o.NoMatchSize, true
+	return &o.NoMatchSize, true
 }
 
 // HasNoMatchSize returns a boolean if a field has been set.
@@ -686,27 +670,28 @@ func (o *Highlight) HasNoMatchSize() bool {
 	return false
 }
 
-// SetNoMatchSize gets a reference to the given int32 and assigns it to the NoMatchSize field.
-func (o *Highlight) SetNoMatchSize(v int32) {
-	o.NoMatchSize = &v
+// SetNoMatchSize gets a reference to the given interface{} and assigns it to the NoMatchSize field.
+func (o *Highlight) SetNoMatchSize(v interface{}) {
+	o.NoMatchSize = v
 }
 
-// GetOrder returns the Order field value if set, zero value otherwise.
-func (o *Highlight) GetOrder() string {
-	if o == nil || IsNil(o.Order) {
-		var ret string
+// GetOrder returns the Order field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetOrder() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Order
+	return o.Order
 }
 
 // GetOrderOk returns a tuple with the Order field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetOrderOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetOrderOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Order) {
 		return nil, false
 	}
-	return o.Order, true
+	return &o.Order, true
 }
 
 // HasOrder returns a boolean if a field has been set.
@@ -718,27 +703,28 @@ func (o *Highlight) HasOrder() bool {
 	return false
 }
 
-// SetOrder gets a reference to the given string and assigns it to the Order field.
-func (o *Highlight) SetOrder(v string) {
-	o.Order = &v
+// SetOrder gets a reference to the given interface{} and assigns it to the Order field.
+func (o *Highlight) SetOrder(v interface{}) {
+	o.Order = v
 }
 
-// GetPreTags returns the PreTags field value if set, zero value otherwise.
-func (o *Highlight) GetPreTags() string {
-	if o == nil || IsNil(o.PreTags) {
-		var ret string
+// GetPreTags returns the PreTags field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetPreTags() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.PreTags
+	return o.PreTags
 }
 
 // GetPreTagsOk returns a tuple with the PreTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetPreTagsOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetPreTagsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.PreTags) {
 		return nil, false
 	}
-	return o.PreTags, true
+	return &o.PreTags, true
 }
 
 // HasPreTags returns a boolean if a field has been set.
@@ -750,27 +736,28 @@ func (o *Highlight) HasPreTags() bool {
 	return false
 }
 
-// SetPreTags gets a reference to the given string and assigns it to the PreTags field.
-func (o *Highlight) SetPreTags(v string) {
-	o.PreTags = &v
+// SetPreTags gets a reference to the given interface{} and assigns it to the PreTags field.
+func (o *Highlight) SetPreTags(v interface{}) {
+	o.PreTags = v
 }
 
-// GetPostTags returns the PostTags field value if set, zero value otherwise.
-func (o *Highlight) GetPostTags() string {
-	if o == nil || IsNil(o.PostTags) {
-		var ret string
+// GetPostTags returns the PostTags field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetPostTags() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.PostTags
+	return o.PostTags
 }
 
 // GetPostTagsOk returns a tuple with the PostTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetPostTagsOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetPostTagsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.PostTags) {
 		return nil, false
 	}
-	return o.PostTags, true
+	return &o.PostTags, true
 }
 
 // HasPostTags returns a boolean if a field has been set.
@@ -782,27 +769,28 @@ func (o *Highlight) HasPostTags() bool {
 	return false
 }
 
-// SetPostTags gets a reference to the given string and assigns it to the PostTags field.
-func (o *Highlight) SetPostTags(v string) {
-	o.PostTags = &v
+// SetPostTags gets a reference to the given interface{} and assigns it to the PostTags field.
+func (o *Highlight) SetPostTags(v interface{}) {
+	o.PostTags = v
 }
 
-// GetStartSnippetId returns the StartSnippetId field value if set, zero value otherwise.
-func (o *Highlight) GetStartSnippetId() int32 {
-	if o == nil || IsNil(o.StartSnippetId) {
-		var ret int32
+// GetStartSnippetId returns the StartSnippetId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetStartSnippetId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.StartSnippetId
+	return o.StartSnippetId
 }
 
 // GetStartSnippetIdOk returns a tuple with the StartSnippetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetStartSnippetIdOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetStartSnippetIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.StartSnippetId) {
 		return nil, false
 	}
-	return o.StartSnippetId, true
+	return &o.StartSnippetId, true
 }
 
 // HasStartSnippetId returns a boolean if a field has been set.
@@ -814,27 +802,28 @@ func (o *Highlight) HasStartSnippetId() bool {
 	return false
 }
 
-// SetStartSnippetId gets a reference to the given int32 and assigns it to the StartSnippetId field.
-func (o *Highlight) SetStartSnippetId(v int32) {
-	o.StartSnippetId = &v
+// SetStartSnippetId gets a reference to the given interface{} and assigns it to the StartSnippetId field.
+func (o *Highlight) SetStartSnippetId(v interface{}) {
+	o.StartSnippetId = v
 }
 
-// GetUseBoundaries returns the UseBoundaries field value if set, zero value otherwise.
-func (o *Highlight) GetUseBoundaries() bool {
-	if o == nil || IsNil(o.UseBoundaries) {
-		var ret bool
+// GetUseBoundaries returns the UseBoundaries field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Highlight) GetUseBoundaries() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.UseBoundaries
+	return o.UseBoundaries
 }
 
 // GetUseBoundariesOk returns a tuple with the UseBoundaries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Highlight) GetUseBoundariesOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Highlight) GetUseBoundariesOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.UseBoundaries) {
 		return nil, false
 	}
-	return o.UseBoundaries, true
+	return &o.UseBoundaries, true
 }
 
 // HasUseBoundaries returns a boolean if a field has been set.
@@ -846,9 +835,9 @@ func (o *Highlight) HasUseBoundaries() bool {
 	return false
 }
 
-// SetUseBoundaries gets a reference to the given bool and assigns it to the UseBoundaries field.
-func (o *Highlight) SetUseBoundaries(v bool) {
-	o.UseBoundaries = &v
+// SetUseBoundaries gets a reference to the given interface{} and assigns it to the UseBoundaries field.
+func (o *Highlight) SetUseBoundaries(v interface{}) {
+	o.UseBoundaries = v
 }
 
 func (o Highlight) MarshalJSON() ([]byte, error) {
@@ -876,58 +865,58 @@ func (o Highlight) ToMap() (map[string]interface{}, error) {
 	if o.NumberOfFragments != nil {
 		toSerialize["number_of_fragments"] = o.NumberOfFragments
 	}
-	if !IsNil(o.AfterMatch) {
+	if o.AfterMatch != nil {
 		toSerialize["after_match"] = o.AfterMatch
 	}
-	if !IsNil(o.AllowEmpty) {
+	if o.AllowEmpty != nil {
 		toSerialize["allow_empty"] = o.AllowEmpty
 	}
-	if !IsNil(o.Around) {
+	if o.Around != nil {
 		toSerialize["around"] = o.Around
 	}
-	if !IsNil(o.BeforeMatch) {
+	if o.BeforeMatch != nil {
 		toSerialize["before_match"] = o.BeforeMatch
 	}
-	if !IsNil(o.EmitZones) {
+	if o.EmitZones != nil {
 		toSerialize["emit_zones"] = o.EmitZones
 	}
-	if !IsNil(o.Encoder) {
+	if o.Encoder != nil {
 		toSerialize["encoder"] = o.Encoder
 	}
-	if o.Fields != nil {
+	if !IsNil(o.Fields) {
 		toSerialize["fields"] = o.Fields
 	}
-	if !IsNil(o.ForceAllWords) {
+	if o.ForceAllWords != nil {
 		toSerialize["force_all_words"] = o.ForceAllWords
 	}
-	if !IsNil(o.ForceSnippets) {
+	if o.ForceSnippets != nil {
 		toSerialize["force_snippets"] = o.ForceSnippets
 	}
-	if o.HighlightQuery.IsSet() {
-		toSerialize["highlight_query"] = o.HighlightQuery.Get()
+	if !IsNil(o.HighlightQuery) {
+		toSerialize["highlight_query"] = o.HighlightQuery
 	}
-	if !IsNil(o.HtmlStripMode) {
+	if o.HtmlStripMode != nil {
 		toSerialize["html_strip_mode"] = o.HtmlStripMode
 	}
-	if !IsNil(o.LimitsPerField) {
+	if o.LimitsPerField != nil {
 		toSerialize["limits_per_field"] = o.LimitsPerField
 	}
-	if !IsNil(o.NoMatchSize) {
+	if o.NoMatchSize != nil {
 		toSerialize["no_match_size"] = o.NoMatchSize
 	}
-	if !IsNil(o.Order) {
+	if o.Order != nil {
 		toSerialize["order"] = o.Order
 	}
-	if !IsNil(o.PreTags) {
+	if o.PreTags != nil {
 		toSerialize["pre_tags"] = o.PreTags
 	}
-	if !IsNil(o.PostTags) {
+	if o.PostTags != nil {
 		toSerialize["post_tags"] = o.PostTags
 	}
-	if !IsNil(o.StartSnippetId) {
+	if o.StartSnippetId != nil {
 		toSerialize["start_snippet_id"] = o.StartSnippetId
 	}
-	if !IsNil(o.UseBoundaries) {
+	if o.UseBoundaries != nil {
 		toSerialize["use_boundaries"] = o.UseBoundaries
 	}
 	return toSerialize, nil

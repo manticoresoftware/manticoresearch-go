@@ -11,6 +11,7 @@ configuration.go
 docs/AggComposite.md
 docs/AggCompositeSource.md
 docs/AggCompositeTerm.md
+docs/AggDateHistogram.md
 docs/AggHistogram.md
 docs/AggTerms.md
 docs/Aggregation.md
@@ -24,7 +25,9 @@ docs/FulltextFilter.md
 docs/GeoDistance.md
 docs/GeoDistanceLocationAnchor.md
 docs/Highlight.md
+docs/HighlightAllOfHighlightQuery.md
 docs/HighlightFieldOption.md
+docs/HighlightFields.md
 docs/HitsHits.md
 docs/IndexAPI.md
 docs/InsertDocumentRequest.md
@@ -51,6 +54,7 @@ docs/SqlObjResponse.md
 docs/SqlResponse.md
 docs/SuccessResponse.md
 docs/UpdateDocumentRequest.md
+docs/UpdateDocumentRequestQuery.md
 docs/UpdateResponse.md
 docs/UtilsAPI.md
 git_push.sh
@@ -60,6 +64,7 @@ model__match.go
 model_agg_composite.go
 model_agg_composite_source.go
 model_agg_composite_term.go
+model_agg_date_histogram.go
 model_agg_histogram.go
 model_agg_terms.go
 model_aggregation.go
@@ -73,7 +78,9 @@ model_fulltext_filter.go
 model_geo_distance.go
 model_geo_distance_location_anchor.go
 model_highlight.go
+model_highlight_all_of_highlight_query.go
 model_highlight_field_option.go
+model_highlight_fields.go
 model_hits_hits.go
 model_insert_document_request.go
 model_join.go
@@ -97,6 +104,7 @@ model_sql_obj_response.go
 model_sql_response.go
 model_success_response.go
 model_update_document_request.go
+model_update_document_request_query.go
 model_update_response.go
 response.go
 test/api_index_test.go

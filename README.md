@@ -123,6 +123,7 @@ Class | Method | HTTP request | Description
  - [AggComposite](docs/AggComposite.md)
  - [AggCompositeSource](docs/AggCompositeSource.md)
  - [AggCompositeTerm](docs/AggCompositeTerm.md)
+ - [AggDateHistogram](docs/AggDateHistogram.md)
  - [AggHistogram](docs/AggHistogram.md)
  - [AggTerms](docs/AggTerms.md)
  - [Aggregation](docs/Aggregation.md)
@@ -136,7 +137,9 @@ Class | Method | HTTP request | Description
  - [GeoDistance](docs/GeoDistance.md)
  - [GeoDistanceLocationAnchor](docs/GeoDistanceLocationAnchor.md)
  - [Highlight](docs/Highlight.md)
+ - [HighlightAllOfHighlightQuery](docs/HighlightAllOfHighlightQuery.md)
  - [HighlightFieldOption](docs/HighlightFieldOption.md)
+ - [HighlightFields](docs/HighlightFields.md)
  - [HitsHits](docs/HitsHits.md)
  - [InsertDocumentRequest](docs/InsertDocumentRequest.md)
  - [Join](docs/Join.md)
@@ -161,6 +164,7 @@ Class | Method | HTTP request | Description
  - [SqlResponse](docs/SqlResponse.md)
  - [SuccessResponse](docs/SuccessResponse.md)
  - [UpdateDocumentRequest](docs/UpdateDocumentRequest.md)
+ - [UpdateDocumentRequestQuery](docs/UpdateDocumentRequestQuery.md)
  - [UpdateResponse](docs/UpdateResponse.md)
 
 

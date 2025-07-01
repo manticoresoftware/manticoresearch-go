@@ -22,7 +22,7 @@ var _ MappedNullable = &JoinOn{}
 type JoinOn struct {
 	Right *JoinCond `json:"right"` 
 	Left *JoinCond `json:"left"` 
-	Operator *string `json:"operator"` 
+	Operator interface{} `json:"operator"` 
 }
 
 // NewJoinOn instantiates a new JoinOn object
@@ -106,22 +106,23 @@ func (o *JoinOn) SetLeft(v JoinCond) {
 	o.Left = &v
 }
 
-// GetOperator returns the Operator field value if set, zero value otherwise.
-func (o *JoinOn) GetOperator() string {
-	if o == nil || IsNil(o.Operator) {
-		var ret string
+// GetOperator returns the Operator field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JoinOn) GetOperator() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Operator
+	return o.Operator
 }
 
 // GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JoinOn) GetOperatorOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JoinOn) GetOperatorOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Operator) {
 		return nil, false
 	}
-	return o.Operator, true
+	return &o.Operator, true
 }
 
 // HasOperator returns a boolean if a field has been set.
@@ -133,9 +134,9 @@ func (o *JoinOn) HasOperator() bool {
 	return false
 }
 
-// SetOperator gets a reference to the given string and assigns it to the Operator field.
-func (o *JoinOn) SetOperator(v string) {
-	o.Operator = &v
+// SetOperator gets a reference to the given interface{} and assigns it to the Operator field.
+func (o *JoinOn) SetOperator(v interface{}) {
+	o.Operator = v
 }
 
 func (o JoinOn) MarshalJSON() ([]byte, error) {
@@ -154,7 +155,7 @@ func (o JoinOn) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Left) {
 		toSerialize["left"] = o.Left
 	}
-	if !IsNil(o.Operator) {
+	if o.Operator != nil {
 		toSerialize["operator"] = o.Operator
 	}
 	return toSerialize, nil

@@ -21,21 +21,21 @@ var _ MappedNullable = &HitsHits{}
 // HitsHits Search hit representing a matched document
 type HitsHits struct {
 	// The ID of the matched document
-	Id *int64 `json:"_id"` 
+	Id interface{} `json:"_id"` 
 	// The score of the matched document
-	Score *int32 `json:"_score"` 
+	Score interface{} `json:"_score"` 
 	// The source data of the matched document
-	Source map[string]interface{} `json:"_source"` 
+	Source interface{} `json:"_source"` 
 	// The knn distance of the matched document returned for knn queries
-	KnnDist *float32 `json:"_knn_dist"` 
+	KnnDist interface{} `json:"_knn_dist"` 
 	// The highlighting-related data of the matched document
-	Highlight map[string]interface{} `json:"highlight"` 
+	Highlight interface{} `json:"highlight"` 
 	// The table name of the matched document returned for percolate queries
-	Table *string `json:"table"` 
+	Table interface{} `json:"table"` 
 	// The type of the matched document returned for percolate queries
-	Type *string `json:"_type:"` 
+	Type interface{} `json:"_type:"` 
 	// The percolate-related fields of the matched document returned for percolate queries
-	Fields map[string]interface{} `json:"fields"` 
+	Fields interface{} `json:"fields"` 
 }
 
 // NewHitsHits instantiates a new HitsHits object
@@ -55,22 +55,23 @@ func NewHitsHitsWithDefaults() *HitsHits {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *HitsHits) GetId() int64 {
-	if o == nil || IsNil(o.Id) {
-		var ret int64
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HitsHits) GetId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HitsHits) GetIdOk() (*int64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HitsHits) GetIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -82,27 +83,28 @@ func (o *HitsHits) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *HitsHits) SetId(v int64) {
-	o.Id = &v
+// SetId gets a reference to the given interface{} and assigns it to the Id field.
+func (o *HitsHits) SetId(v interface{}) {
+	o.Id = v
 }
 
-// GetScore returns the Score field value if set, zero value otherwise.
-func (o *HitsHits) GetScore() int32 {
-	if o == nil || IsNil(o.Score) {
-		var ret int32
+// GetScore returns the Score field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HitsHits) GetScore() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Score
+	return o.Score
 }
 
 // GetScoreOk returns a tuple with the Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HitsHits) GetScoreOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HitsHits) GetScoreOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Score) {
 		return nil, false
 	}
-	return o.Score, true
+	return &o.Score, true
 }
 
 // HasScore returns a boolean if a field has been set.
@@ -114,15 +116,15 @@ func (o *HitsHits) HasScore() bool {
 	return false
 }
 
-// SetScore gets a reference to the given int32 and assigns it to the Score field.
-func (o *HitsHits) SetScore(v int32) {
-	o.Score = &v
+// SetScore gets a reference to the given interface{} and assigns it to the Score field.
+func (o *HitsHits) SetScore(v interface{}) {
+	o.Score = v
 }
 
-// GetSource returns the Source field value if set, zero value otherwise.
-func (o *HitsHits) GetSource() map[string]interface{} {
-	if o == nil || IsNil(o.Source) {
-		var ret map[string]interface{}
+// GetSource returns the Source field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HitsHits) GetSource() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Source
@@ -130,11 +132,12 @@ func (o *HitsHits) GetSource() map[string]interface{} {
 
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HitsHits) GetSourceOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HitsHits) GetSourceOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Source) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Source, true
+	return &o.Source, true
 }
 
 // HasSource returns a boolean if a field has been set.
@@ -146,27 +149,28 @@ func (o *HitsHits) HasSource() bool {
 	return false
 }
 
-// SetSource gets a reference to the given map[string]interface{} and assigns it to the Source field.
-func (o *HitsHits) SetSource(v map[string]interface{}) {
+// SetSource gets a reference to the given interface{} and assigns it to the Source field.
+func (o *HitsHits) SetSource(v interface{}) {
 	o.Source = v
 }
 
-// GetKnnDist returns the KnnDist field value if set, zero value otherwise.
-func (o *HitsHits) GetKnnDist() float32 {
-	if o == nil || IsNil(o.KnnDist) {
-		var ret float32
+// GetKnnDist returns the KnnDist field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HitsHits) GetKnnDist() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.KnnDist
+	return o.KnnDist
 }
 
 // GetKnnDistOk returns a tuple with the KnnDist field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HitsHits) GetKnnDistOk() (*float32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HitsHits) GetKnnDistOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.KnnDist) {
 		return nil, false
 	}
-	return o.KnnDist, true
+	return &o.KnnDist, true
 }
 
 // HasKnnDist returns a boolean if a field has been set.
@@ -178,15 +182,15 @@ func (o *HitsHits) HasKnnDist() bool {
 	return false
 }
 
-// SetKnnDist gets a reference to the given float32 and assigns it to the KnnDist field.
-func (o *HitsHits) SetKnnDist(v float32) {
-	o.KnnDist = &v
+// SetKnnDist gets a reference to the given interface{} and assigns it to the KnnDist field.
+func (o *HitsHits) SetKnnDist(v interface{}) {
+	o.KnnDist = v
 }
 
-// GetHighlight returns the Highlight field value if set, zero value otherwise.
-func (o *HitsHits) GetHighlight() map[string]interface{} {
-	if o == nil || IsNil(o.Highlight) {
-		var ret map[string]interface{}
+// GetHighlight returns the Highlight field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HitsHits) GetHighlight() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Highlight
@@ -194,11 +198,12 @@ func (o *HitsHits) GetHighlight() map[string]interface{} {
 
 // GetHighlightOk returns a tuple with the Highlight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HitsHits) GetHighlightOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HitsHits) GetHighlightOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Highlight) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Highlight, true
+	return &o.Highlight, true
 }
 
 // HasHighlight returns a boolean if a field has been set.
@@ -210,27 +215,28 @@ func (o *HitsHits) HasHighlight() bool {
 	return false
 }
 
-// SetHighlight gets a reference to the given map[string]interface{} and assigns it to the Highlight field.
-func (o *HitsHits) SetHighlight(v map[string]interface{}) {
+// SetHighlight gets a reference to the given interface{} and assigns it to the Highlight field.
+func (o *HitsHits) SetHighlight(v interface{}) {
 	o.Highlight = v
 }
 
-// GetTable returns the Table field value if set, zero value otherwise.
-func (o *HitsHits) GetTable() string {
-	if o == nil || IsNil(o.Table) {
-		var ret string
+// GetTable returns the Table field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HitsHits) GetTable() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Table
+	return o.Table
 }
 
 // GetTableOk returns a tuple with the Table field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HitsHits) GetTableOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HitsHits) GetTableOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Table) {
 		return nil, false
 	}
-	return o.Table, true
+	return &o.Table, true
 }
 
 // HasTable returns a boolean if a field has been set.
@@ -242,27 +248,28 @@ func (o *HitsHits) HasTable() bool {
 	return false
 }
 
-// SetTable gets a reference to the given string and assigns it to the Table field.
-func (o *HitsHits) SetTable(v string) {
-	o.Table = &v
+// SetTable gets a reference to the given interface{} and assigns it to the Table field.
+func (o *HitsHits) SetTable(v interface{}) {
+	o.Table = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *HitsHits) GetType() string {
-	if o == nil || IsNil(o.Type) {
-		var ret string
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HitsHits) GetType() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HitsHits) GetTypeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HitsHits) GetTypeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -274,15 +281,15 @@ func (o *HitsHits) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *HitsHits) SetType(v string) {
-	o.Type = &v
+// SetType gets a reference to the given interface{} and assigns it to the Type field.
+func (o *HitsHits) SetType(v interface{}) {
+	o.Type = v
 }
 
-// GetFields returns the Fields field value if set, zero value otherwise.
-func (o *HitsHits) GetFields() map[string]interface{} {
-	if o == nil || IsNil(o.Fields) {
-		var ret map[string]interface{}
+// GetFields returns the Fields field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HitsHits) GetFields() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Fields
@@ -290,11 +297,12 @@ func (o *HitsHits) GetFields() map[string]interface{} {
 
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HitsHits) GetFieldsOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HitsHits) GetFieldsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Fields) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Fields, true
+	return &o.Fields, true
 }
 
 // HasFields returns a boolean if a field has been set.
@@ -306,8 +314,8 @@ func (o *HitsHits) HasFields() bool {
 	return false
 }
 
-// SetFields gets a reference to the given map[string]interface{} and assigns it to the Fields field.
-func (o *HitsHits) SetFields(v map[string]interface{}) {
+// SetFields gets a reference to the given interface{} and assigns it to the Fields field.
+func (o *HitsHits) SetFields(v interface{}) {
 	o.Fields = v
 }
 
@@ -321,28 +329,28 @@ func (o HitsHits) MarshalJSON() ([]byte, error) {
 
 func (o HitsHits) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
+	if o.Id != nil {
 		toSerialize["_id"] = o.Id
 	}
-	if !IsNil(o.Score) {
+	if o.Score != nil {
 		toSerialize["_score"] = o.Score
 	}
-	if !IsNil(o.Source) {
+	if o.Source != nil {
 		toSerialize["_source"] = o.Source
 	}
-	if !IsNil(o.KnnDist) {
+	if o.KnnDist != nil {
 		toSerialize["_knn_dist"] = o.KnnDist
 	}
-	if !IsNil(o.Highlight) {
+	if o.Highlight != nil {
 		toSerialize["highlight"] = o.Highlight
 	}
-	if !IsNil(o.Table) {
+	if o.Table != nil {
 		toSerialize["table"] = o.Table
 	}
-	if !IsNil(o.Type) {
+	if o.Type != nil {
 		toSerialize["_type:"] = o.Type
 	}
-	if !IsNil(o.Fields) {
+	if o.Fields != nil {
 		toSerialize["fields"] = o.Fields
 	}
 	return toSerialize, nil

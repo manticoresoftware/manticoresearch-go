@@ -29,6 +29,7 @@ type SearchQuery struct {
 	// Filter object to select all documents
 	MatchAll interface{} `json:"match_all"` 
 	Bool *BoolFilter `json:"bool"` 
+	// Filter to match exact attribute values.
 	Equals interface{} `json:"equals"` 
 	// Filter to match a given set of attribute values.
 	In interface{} `json:"in"` 

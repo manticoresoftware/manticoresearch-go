@@ -22,9 +22,9 @@ var _ MappedNullable = &SqlObjResponse{}
 
 // SqlObjResponse struct for SqlObjResponse
 type SqlObjResponse struct {
-	Hits map[string]interface{} `json:"hits"` 
-	Took *float32 `json:"took"` 
-	TimedOut *bool `json:"timed_out"` 
+	Hits interface{} `json:"hits"` 
+	Took interface{} `json:"took"` 
+	TimedOut interface{} `json:"timed_out"` 
 }
 
 type _SqlObjResponse SqlObjResponse
@@ -33,7 +33,7 @@ type _SqlObjResponse SqlObjResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSqlObjResponse(hits map[string]interface{}) *SqlObjResponse {
+func NewSqlObjResponse(hits interface{}) *SqlObjResponse {
 	this := SqlObjResponse{}
 	this.Hits = hits
 	return &this
@@ -48,9 +48,10 @@ func NewSqlObjResponseWithDefaults() *SqlObjResponse {
 }
 
 // GetHits returns the Hits field value
-func (o *SqlObjResponse) GetHits() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *SqlObjResponse) GetHits() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -59,34 +60,36 @@ func (o *SqlObjResponse) GetHits() map[string]interface{} {
 
 // GetHitsOk returns a tuple with the Hits field value
 // and a boolean to check if the value has been set.
-func (o *SqlObjResponse) GetHitsOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SqlObjResponse) GetHitsOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Hits) {
+		return nil, false
 	}
-	return o.Hits, true
+	return &o.Hits, true
 }
 
 // SetHits sets field value
-func (o *SqlObjResponse) SetHits(v map[string]interface{}) {
+func (o *SqlObjResponse) SetHits(v interface{}) {
 	o.Hits = v
 }
 
-// GetTook returns the Took field value if set, zero value otherwise.
-func (o *SqlObjResponse) GetTook() float32 {
-	if o == nil || IsNil(o.Took) {
-		var ret float32
+// GetTook returns the Took field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SqlObjResponse) GetTook() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Took
+	return o.Took
 }
 
 // GetTookOk returns a tuple with the Took field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SqlObjResponse) GetTookOk() (*float32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SqlObjResponse) GetTookOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Took) {
 		return nil, false
 	}
-	return o.Took, true
+	return &o.Took, true
 }
 
 // HasTook returns a boolean if a field has been set.
@@ -98,27 +101,28 @@ func (o *SqlObjResponse) HasTook() bool {
 	return false
 }
 
-// SetTook gets a reference to the given float32 and assigns it to the Took field.
-func (o *SqlObjResponse) SetTook(v float32) {
-	o.Took = &v
+// SetTook gets a reference to the given interface{} and assigns it to the Took field.
+func (o *SqlObjResponse) SetTook(v interface{}) {
+	o.Took = v
 }
 
-// GetTimedOut returns the TimedOut field value if set, zero value otherwise.
-func (o *SqlObjResponse) GetTimedOut() bool {
-	if o == nil || IsNil(o.TimedOut) {
-		var ret bool
+// GetTimedOut returns the TimedOut field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SqlObjResponse) GetTimedOut() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.TimedOut
+	return o.TimedOut
 }
 
 // GetTimedOutOk returns a tuple with the TimedOut field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SqlObjResponse) GetTimedOutOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SqlObjResponse) GetTimedOutOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.TimedOut) {
 		return nil, false
 	}
-	return o.TimedOut, true
+	return &o.TimedOut, true
 }
 
 // HasTimedOut returns a boolean if a field has been set.
@@ -130,9 +134,9 @@ func (o *SqlObjResponse) HasTimedOut() bool {
 	return false
 }
 
-// SetTimedOut gets a reference to the given bool and assigns it to the TimedOut field.
-func (o *SqlObjResponse) SetTimedOut(v bool) {
-	o.TimedOut = &v
+// SetTimedOut gets a reference to the given interface{} and assigns it to the TimedOut field.
+func (o *SqlObjResponse) SetTimedOut(v interface{}) {
+	o.TimedOut = v
 }
 
 func (o SqlObjResponse) MarshalJSON() ([]byte, error) {
@@ -145,11 +149,13 @@ func (o SqlObjResponse) MarshalJSON() ([]byte, error) {
 
 func (o SqlObjResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["hits"] = o.Hits
-	if !IsNil(o.Took) {
+	if o.Hits != nil {
+		toSerialize["hits"] = o.Hits
+	}
+	if o.Took != nil {
 		toSerialize["took"] = o.Took
 	}
-	if !IsNil(o.TimedOut) {
+	if o.TimedOut != nil {
 		toSerialize["timed_out"] = o.TimedOut
 	}
 	return toSerialize, nil

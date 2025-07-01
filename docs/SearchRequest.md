@@ -4,27 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Table** | **string** | The table to perform the search on | 
+**Table** | **interface{}** | The table to perform the search on | 
 **Query** | Pointer to [**SearchQuery**](SearchQuery.md) |  | [optional] 
-**Join** | Pointer to [**[]Join**](Join.md) | Join clause to combine search data from multiple tables | [optional] 
+**Join** | Pointer to **interface{}** | Join clause to combine search data from multiple tables | [optional] 
 **Highlight** | Pointer to [**Highlight**](Highlight.md) |  | [optional] 
-**Limit** | Pointer to **int32** | Maximum number of results to return | [optional] 
+**Limit** | Pointer to **interface{}** | Maximum number of results to return | [optional] 
 **Knn** | Pointer to [**KnnQuery**](KnnQuery.md) |  | [optional] 
 **Aggs** | Pointer to  | Defines aggregation settings for grouping results | [optional] 
 **Expressions** | Pointer to  | Expressions to calculate additional values for the result | [optional] 
-**MaxMatches** | Pointer to **int32** | Maximum number of matches allowed in the result | [optional] 
-**Offset** | Pointer to **int32** | Starting point for pagination of the result | [optional] 
-**Options** | Pointer to **map[string]interface{}** | Additional search options | [optional] 
-**Profile** | Pointer to **bool** | Enable or disable profiling of the search request | [optional] 
-**Sort** | Pointer to **interface{}** |  | [optional] 
-**Source** | Pointer to **interface{}** |  | [optional] 
-**TrackScores** | Pointer to **bool** | Enable or disable result weight calculation used for sorting | [optional] 
+**MaxMatches** | Pointer to **interface{}** | Maximum number of matches allowed in the result | [optional] 
+**Offset** | Pointer to **interface{}** | Starting point for pagination of the result | [optional] 
+**Options** | Pointer to **interface{}** | Additional search options | [optional] 
+**Profile** | Pointer to **interface{}** | Enable or disable profiling of the search request | [optional] 
+**Sort** | Pointer to **interface{}** | Sorting criteria for the search results | [optional] 
+**Source** | Pointer to **interface{}** | Specify which fields to include or exclude in the response | [optional] 
+**TrackScores** | Pointer to **interface{}** | Enable or disable result weight calculation used for sorting | [optional] 
 
 ## Methods
 
 ### NewSearchRequest
 
-`func NewSearchRequest(table string, ) *SearchRequest`
+`func NewSearchRequest(table interface{}, ) *SearchRequest`
 
 NewSearchRequest instantiates a new SearchRequest object
 This constructor will assign default values to properties that have it defined,
@@ -41,24 +41,34 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTable
 
-`func (o *SearchRequest) GetTable() string`
+`func (o *SearchRequest) GetTable() interface{}`
 
 GetTable returns the Table field if non-nil, zero value otherwise.
 
 ### GetTableOk
 
-`func (o *SearchRequest) GetTableOk() (*string, bool)`
+`func (o *SearchRequest) GetTableOk() (*interface{}, bool)`
 
 GetTableOk returns a tuple with the Table field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTable
 
-`func (o *SearchRequest) SetTable(v string)`
+`func (o *SearchRequest) SetTable(v interface{})`
 
 SetTable sets Table field to given value.
 
 
+### SetTableNil
+
+`func (o *SearchRequest) SetTableNil(b bool)`
+
+ SetTableNil sets the value for Table to be an explicit nil
+
+### UnsetTable
+`func (o *SearchRequest) UnsetTable()`
+
+UnsetTable ensures that no value is present for Table, not even an explicit nil
 ### GetQuery
 
 `func (o *SearchRequest) GetQuery() SearchQuery`
@@ -86,20 +96,20 @@ HasQuery returns a boolean if a field has been set.
 
 ### GetJoin
 
-`func (o *SearchRequest) GetJoin() []Join`
+`func (o *SearchRequest) GetJoin() interface{}`
 
 GetJoin returns the Join field if non-nil, zero value otherwise.
 
 ### GetJoinOk
 
-`func (o *SearchRequest) GetJoinOk() (*[]Join, bool)`
+`func (o *SearchRequest) GetJoinOk() (*interface{}, bool)`
 
 GetJoinOk returns a tuple with the Join field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetJoin
 
-`func (o *SearchRequest) SetJoin(v []Join)`
+`func (o *SearchRequest) SetJoin(v interface{})`
 
 SetJoin sets Join field to given value.
 
@@ -109,6 +119,16 @@ SetJoin sets Join field to given value.
 
 HasJoin returns a boolean if a field has been set.
 
+### SetJoinNil
+
+`func (o *SearchRequest) SetJoinNil(b bool)`
+
+ SetJoinNil sets the value for Join to be an explicit nil
+
+### UnsetJoin
+`func (o *SearchRequest) UnsetJoin()`
+
+UnsetJoin ensures that no value is present for Join, not even an explicit nil
 ### GetHighlight
 
 `func (o *SearchRequest) GetHighlight() Highlight`
@@ -136,20 +156,20 @@ HasHighlight returns a boolean if a field has been set.
 
 ### GetLimit
 
-`func (o *SearchRequest) GetLimit() int32`
+`func (o *SearchRequest) GetLimit() interface{}`
 
 GetLimit returns the Limit field if non-nil, zero value otherwise.
 
 ### GetLimitOk
 
-`func (o *SearchRequest) GetLimitOk() (*int32, bool)`
+`func (o *SearchRequest) GetLimitOk() (*interface{}, bool)`
 
 GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLimit
 
-`func (o *SearchRequest) SetLimit(v int32)`
+`func (o *SearchRequest) SetLimit(v interface{})`
 
 SetLimit sets Limit field to given value.
 
@@ -159,6 +179,16 @@ SetLimit sets Limit field to given value.
 
 HasLimit returns a boolean if a field has been set.
 
+### SetLimitNil
+
+`func (o *SearchRequest) SetLimitNil(b bool)`
+
+ SetLimitNil sets the value for Limit to be an explicit nil
+
+### UnsetLimit
+`func (o *SearchRequest) UnsetLimit()`
+
+UnsetLimit ensures that no value is present for Limit, not even an explicit nil
 ### GetKnn
 
 `func (o *SearchRequest) GetKnn() KnnQuery`
@@ -256,20 +286,20 @@ HasExpressions returns a boolean if a field has been set.
 UnsetExpressions ensures that no value is present for Expressions, not even an explicit nil
 ### GetMaxMatches
 
-`func (o *SearchRequest) GetMaxMatches() int32`
+`func (o *SearchRequest) GetMaxMatches() interface{}`
 
 GetMaxMatches returns the MaxMatches field if non-nil, zero value otherwise.
 
 ### GetMaxMatchesOk
 
-`func (o *SearchRequest) GetMaxMatchesOk() (*int32, bool)`
+`func (o *SearchRequest) GetMaxMatchesOk() (*interface{}, bool)`
 
 GetMaxMatchesOk returns a tuple with the MaxMatches field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMaxMatches
 
-`func (o *SearchRequest) SetMaxMatches(v int32)`
+`func (o *SearchRequest) SetMaxMatches(v interface{})`
 
 SetMaxMatches sets MaxMatches field to given value.
 
@@ -279,22 +309,32 @@ SetMaxMatches sets MaxMatches field to given value.
 
 HasMaxMatches returns a boolean if a field has been set.
 
+### SetMaxMatchesNil
+
+`func (o *SearchRequest) SetMaxMatchesNil(b bool)`
+
+ SetMaxMatchesNil sets the value for MaxMatches to be an explicit nil
+
+### UnsetMaxMatches
+`func (o *SearchRequest) UnsetMaxMatches()`
+
+UnsetMaxMatches ensures that no value is present for MaxMatches, not even an explicit nil
 ### GetOffset
 
-`func (o *SearchRequest) GetOffset() int32`
+`func (o *SearchRequest) GetOffset() interface{}`
 
 GetOffset returns the Offset field if non-nil, zero value otherwise.
 
 ### GetOffsetOk
 
-`func (o *SearchRequest) GetOffsetOk() (*int32, bool)`
+`func (o *SearchRequest) GetOffsetOk() (*interface{}, bool)`
 
 GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOffset
 
-`func (o *SearchRequest) SetOffset(v int32)`
+`func (o *SearchRequest) SetOffset(v interface{})`
 
 SetOffset sets Offset field to given value.
 
@@ -304,22 +344,32 @@ SetOffset sets Offset field to given value.
 
 HasOffset returns a boolean if a field has been set.
 
+### SetOffsetNil
+
+`func (o *SearchRequest) SetOffsetNil(b bool)`
+
+ SetOffsetNil sets the value for Offset to be an explicit nil
+
+### UnsetOffset
+`func (o *SearchRequest) UnsetOffset()`
+
+UnsetOffset ensures that no value is present for Offset, not even an explicit nil
 ### GetOptions
 
-`func (o *SearchRequest) GetOptions() map[string]interface{}`
+`func (o *SearchRequest) GetOptions() interface{}`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *SearchRequest) GetOptionsOk() (*map[string]interface{}, bool)`
+`func (o *SearchRequest) GetOptionsOk() (*interface{}, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *SearchRequest) SetOptions(v map[string]interface{})`
+`func (o *SearchRequest) SetOptions(v interface{})`
 
 SetOptions sets Options field to given value.
 
@@ -329,22 +379,32 @@ SetOptions sets Options field to given value.
 
 HasOptions returns a boolean if a field has been set.
 
+### SetOptionsNil
+
+`func (o *SearchRequest) SetOptionsNil(b bool)`
+
+ SetOptionsNil sets the value for Options to be an explicit nil
+
+### UnsetOptions
+`func (o *SearchRequest) UnsetOptions()`
+
+UnsetOptions ensures that no value is present for Options, not even an explicit nil
 ### GetProfile
 
-`func (o *SearchRequest) GetProfile() bool`
+`func (o *SearchRequest) GetProfile() interface{}`
 
 GetProfile returns the Profile field if non-nil, zero value otherwise.
 
 ### GetProfileOk
 
-`func (o *SearchRequest) GetProfileOk() (*bool, bool)`
+`func (o *SearchRequest) GetProfileOk() (*interface{}, bool)`
 
 GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfile
 
-`func (o *SearchRequest) SetProfile(v bool)`
+`func (o *SearchRequest) SetProfile(v interface{})`
 
 SetProfile sets Profile field to given value.
 
@@ -354,6 +414,16 @@ SetProfile sets Profile field to given value.
 
 HasProfile returns a boolean if a field has been set.
 
+### SetProfileNil
+
+`func (o *SearchRequest) SetProfileNil(b bool)`
+
+ SetProfileNil sets the value for Profile to be an explicit nil
+
+### UnsetProfile
+`func (o *SearchRequest) UnsetProfile()`
+
+UnsetProfile ensures that no value is present for Profile, not even an explicit nil
 ### GetSort
 
 `func (o *SearchRequest) GetSort() interface{}`
@@ -426,20 +496,20 @@ HasSource returns a boolean if a field has been set.
 UnsetSource ensures that no value is present for Source, not even an explicit nil
 ### GetTrackScores
 
-`func (o *SearchRequest) GetTrackScores() bool`
+`func (o *SearchRequest) GetTrackScores() interface{}`
 
 GetTrackScores returns the TrackScores field if non-nil, zero value otherwise.
 
 ### GetTrackScoresOk
 
-`func (o *SearchRequest) GetTrackScoresOk() (*bool, bool)`
+`func (o *SearchRequest) GetTrackScoresOk() (*interface{}, bool)`
 
 GetTrackScoresOk returns a tuple with the TrackScores field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTrackScores
 
-`func (o *SearchRequest) SetTrackScores(v bool)`
+`func (o *SearchRequest) SetTrackScores(v interface{})`
 
 SetTrackScores sets TrackScores field to given value.
 
@@ -449,6 +519,16 @@ SetTrackScores sets TrackScores field to given value.
 
 HasTrackScores returns a boolean if a field has been set.
 
+### SetTrackScoresNil
+
+`func (o *SearchRequest) SetTrackScoresNil(b bool)`
+
+ SetTrackScoresNil sets the value for TrackScores to be an explicit nil
+
+### UnsetTrackScores
+`func (o *SearchRequest) UnsetTrackScores()`
+
+UnsetTrackScores ensures that no value is present for TrackScores, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

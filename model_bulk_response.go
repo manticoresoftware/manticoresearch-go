@@ -21,15 +21,15 @@ var _ MappedNullable = &BulkResponse{}
 // BulkResponse Success response for bulk search requests
 type BulkResponse struct {
 	// List of results
-	Items []map[string]interface{} `json:"items"` 
+	Items interface{} `json:"items"` 
 	// Errors occurred during the bulk operation
-	Errors *bool `json:"errors"` 
+	Errors interface{} `json:"errors"` 
 	// Error message describing an error if such occurred
-	Error *string `json:"error"` 
+	Error interface{} `json:"error"` 
 	// Number of the row returned in the response
-	CurrentLine *int32 `json:"current_line"` 
+	CurrentLine interface{} `json:"current_line"` 
 	// Number of rows skipped in the response
-	SkippedLines *int32 `json:"skipped_lines"` 
+	SkippedLines interface{} `json:"skipped_lines"` 
 }
 
 // NewBulkResponse instantiates a new BulkResponse object
@@ -49,10 +49,10 @@ func NewBulkResponseWithDefaults() *BulkResponse {
 	return &this
 }
 
-// GetItems returns the Items field value if set, zero value otherwise.
-func (o *BulkResponse) GetItems() []map[string]interface{} {
-	if o == nil || IsNil(o.Items) {
-		var ret []map[string]interface{}
+// GetItems returns the Items field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BulkResponse) GetItems() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Items
@@ -60,11 +60,12 @@ func (o *BulkResponse) GetItems() []map[string]interface{} {
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BulkResponse) GetItemsOk() ([]map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BulkResponse) GetItemsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Items) {
 		return nil, false
 	}
-	return o.Items, true
+	return &o.Items, true
 }
 
 // HasItems returns a boolean if a field has been set.
@@ -76,27 +77,28 @@ func (o *BulkResponse) HasItems() bool {
 	return false
 }
 
-// SetItems gets a reference to the given []map[string]interface{} and assigns it to the Items field.
-func (o *BulkResponse) SetItems(v []map[string]interface{}) {
+// SetItems gets a reference to the given interface{} and assigns it to the Items field.
+func (o *BulkResponse) SetItems(v interface{}) {
 	o.Items = v
 }
 
-// GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *BulkResponse) GetErrors() bool {
-	if o == nil || IsNil(o.Errors) {
-		var ret bool
+// GetErrors returns the Errors field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BulkResponse) GetErrors() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BulkResponse) GetErrorsOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BulkResponse) GetErrorsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -108,27 +110,28 @@ func (o *BulkResponse) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given bool and assigns it to the Errors field.
-func (o *BulkResponse) SetErrors(v bool) {
-	o.Errors = &v
+// SetErrors gets a reference to the given interface{} and assigns it to the Errors field.
+func (o *BulkResponse) SetErrors(v interface{}) {
+	o.Errors = v
 }
 
-// GetError returns the Error field value if set, zero value otherwise.
-func (o *BulkResponse) GetError() string {
-	if o == nil || IsNil(o.Error) {
-		var ret string
+// GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BulkResponse) GetError() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Error
+	return o.Error
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BulkResponse) GetErrorOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BulkResponse) GetErrorOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
-	return o.Error, true
+	return &o.Error, true
 }
 
 // HasError returns a boolean if a field has been set.
@@ -140,27 +143,28 @@ func (o *BulkResponse) HasError() bool {
 	return false
 }
 
-// SetError gets a reference to the given string and assigns it to the Error field.
-func (o *BulkResponse) SetError(v string) {
-	o.Error = &v
+// SetError gets a reference to the given interface{} and assigns it to the Error field.
+func (o *BulkResponse) SetError(v interface{}) {
+	o.Error = v
 }
 
-// GetCurrentLine returns the CurrentLine field value if set, zero value otherwise.
-func (o *BulkResponse) GetCurrentLine() int32 {
-	if o == nil || IsNil(o.CurrentLine) {
-		var ret int32
+// GetCurrentLine returns the CurrentLine field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BulkResponse) GetCurrentLine() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.CurrentLine
+	return o.CurrentLine
 }
 
 // GetCurrentLineOk returns a tuple with the CurrentLine field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BulkResponse) GetCurrentLineOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BulkResponse) GetCurrentLineOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.CurrentLine) {
 		return nil, false
 	}
-	return o.CurrentLine, true
+	return &o.CurrentLine, true
 }
 
 // HasCurrentLine returns a boolean if a field has been set.
@@ -172,27 +176,28 @@ func (o *BulkResponse) HasCurrentLine() bool {
 	return false
 }
 
-// SetCurrentLine gets a reference to the given int32 and assigns it to the CurrentLine field.
-func (o *BulkResponse) SetCurrentLine(v int32) {
-	o.CurrentLine = &v
+// SetCurrentLine gets a reference to the given interface{} and assigns it to the CurrentLine field.
+func (o *BulkResponse) SetCurrentLine(v interface{}) {
+	o.CurrentLine = v
 }
 
-// GetSkippedLines returns the SkippedLines field value if set, zero value otherwise.
-func (o *BulkResponse) GetSkippedLines() int32 {
-	if o == nil || IsNil(o.SkippedLines) {
-		var ret int32
+// GetSkippedLines returns the SkippedLines field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BulkResponse) GetSkippedLines() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.SkippedLines
+	return o.SkippedLines
 }
 
 // GetSkippedLinesOk returns a tuple with the SkippedLines field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BulkResponse) GetSkippedLinesOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BulkResponse) GetSkippedLinesOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.SkippedLines) {
 		return nil, false
 	}
-	return o.SkippedLines, true
+	return &o.SkippedLines, true
 }
 
 // HasSkippedLines returns a boolean if a field has been set.
@@ -204,9 +209,9 @@ func (o *BulkResponse) HasSkippedLines() bool {
 	return false
 }
 
-// SetSkippedLines gets a reference to the given int32 and assigns it to the SkippedLines field.
-func (o *BulkResponse) SetSkippedLines(v int32) {
-	o.SkippedLines = &v
+// SetSkippedLines gets a reference to the given interface{} and assigns it to the SkippedLines field.
+func (o *BulkResponse) SetSkippedLines(v interface{}) {
+	o.SkippedLines = v
 }
 
 func (o BulkResponse) MarshalJSON() ([]byte, error) {
@@ -219,19 +224,19 @@ func (o BulkResponse) MarshalJSON() ([]byte, error) {
 
 func (o BulkResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Items) {
+	if o.Items != nil {
 		toSerialize["items"] = o.Items
 	}
-	if !IsNil(o.Errors) {
+	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
 	}
-	if !IsNil(o.Error) {
+	if o.Error != nil {
 		toSerialize["error"] = o.Error
 	}
-	if !IsNil(o.CurrentLine) {
+	if o.CurrentLine != nil {
 		toSerialize["current_line"] = o.CurrentLine
 	}
-	if !IsNil(o.SkippedLines) {
+	if o.SkippedLines != nil {
 		toSerialize["skipped_lines"] = o.SkippedLines
 	}
 	return toSerialize, nil

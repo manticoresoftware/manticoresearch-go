@@ -20,9 +20,13 @@ var _ MappedNullable = &ModelRange{}
 
 // ModelRange Filter helper object defining the 'range' condition
 type ModelRange struct {
+	// <Less than> condition value
 	Lt interface{} `json:"lt"` 
+	// <Less than or equal> condition value
 	Lte interface{} `json:"lte"` 
+	// <Greater than> condition value
 	Gt interface{} `json:"gt"` 
+	// <Greater than or equal> condition value
 	Gte interface{} `json:"gte"` 
 }
 

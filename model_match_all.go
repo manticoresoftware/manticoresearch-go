@@ -22,7 +22,7 @@ var _ MappedNullable = &MatchAll{}
 
 // MatchAll Filter helper object defining the 'match all'' condition
 type MatchAll struct {
-	All string `json:"_all"` 
+	All interface{} `json:"_all"` 
 }
 
 type _MatchAll MatchAll
@@ -31,7 +31,7 @@ type _MatchAll MatchAll
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMatchAll(all string) *MatchAll {
+func NewMatchAll(all interface{}) *MatchAll {
 	this := MatchAll{}
 	this.All = all
 	return &this
@@ -46,9 +46,10 @@ func NewMatchAllWithDefaults() *MatchAll {
 }
 
 // GetAll returns the All field value
-func (o *MatchAll) GetAll() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *MatchAll) GetAll() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -57,15 +58,16 @@ func (o *MatchAll) GetAll() string {
 
 // GetAllOk returns a tuple with the All field value
 // and a boolean to check if the value has been set.
-func (o *MatchAll) GetAllOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MatchAll) GetAllOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.All) {
 		return nil, false
 	}
 	return &o.All, true
 }
 
 // SetAll sets field value
-func (o *MatchAll) SetAll(v string) {
+func (o *MatchAll) SetAll(v interface{}) {
 	o.All = v
 }
 
@@ -79,7 +81,9 @@ func (o MatchAll) MarshalJSON() ([]byte, error) {
 
 func (o MatchAll) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["_all"] = o.All
+	if o.All != nil {
+		toSerialize["_all"] = o.All
+	}
 	return toSerialize, nil
 }
 

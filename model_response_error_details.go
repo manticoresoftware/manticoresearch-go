@@ -23,11 +23,11 @@ var _ MappedNullable = &ResponseErrorDetails{}
 // ResponseErrorDetails Detailed error information returned in case of an error response
 type ResponseErrorDetails struct {
 	// Type or category of the error
-	Type string `json:"type"` 
+	Type interface{} `json:"type"` 
 	// Detailed explanation of why the error occurred
-	Reason NullableString `json:"reason"` 
+	Reason interface{} `json:"reason"` 
 	// The table related to the error, if applicable
-	Table NullableString `json:"table"` 
+	Table interface{} `json:"table"` 
 }
 
 type _ResponseErrorDetails ResponseErrorDetails
@@ -36,7 +36,7 @@ type _ResponseErrorDetails ResponseErrorDetails
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponseErrorDetails(type_ string) *ResponseErrorDetails {
+func NewResponseErrorDetails(type_ interface{}) *ResponseErrorDetails {
 	this := ResponseErrorDetails{}
 	this.Type = type_
 	return &this
@@ -51,9 +51,10 @@ func NewResponseErrorDetailsWithDefaults() *ResponseErrorDetails {
 }
 
 // GetType returns the Type field value
-func (o *ResponseErrorDetails) GetType() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ResponseErrorDetails) GetType() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -62,100 +63,83 @@ func (o *ResponseErrorDetails) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ResponseErrorDetails) GetTypeOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ResponseErrorDetails) GetTypeOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return &o.Type, true
 }
 
 // SetType sets field value
-func (o *ResponseErrorDetails) SetType(v string) {
+func (o *ResponseErrorDetails) SetType(v interface{}) {
 	o.Type = v
 }
 
 // GetReason returns the Reason field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ResponseErrorDetails) GetReason() string {
-	if o == nil || IsNil(o.Reason.Get()) {
-		var ret string
+func (o *ResponseErrorDetails) GetReason() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Reason.Get()
+	return o.Reason
 }
 
 // GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ResponseErrorDetails) GetReasonOk() (*string, bool) {
-	if o == nil {
+func (o *ResponseErrorDetails) GetReasonOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Reason) {
 		return nil, false
 	}
-	return o.Reason.Get(), o.Reason.IsSet()
+	return &o.Reason, true
 }
 
 // HasReason returns a boolean if a field has been set.
 func (o *ResponseErrorDetails) HasReason() bool {
-	if o != nil && o.Reason.IsSet() {
+	if o != nil && !IsNil(o.Reason) {
 		return true
 	}
 
 	return false
 }
 
-// SetReason gets a reference to the given NullableString and assigns it to the Reason field.
-func (o *ResponseErrorDetails) SetReason(v string) {
-	o.Reason.Set(&v)
-}
-// SetReasonNil sets the value for Reason to be an explicit nil
-func (o *ResponseErrorDetails) SetReasonNil() {
-	o.Reason.Set(nil)
-}
-
-// UnsetReason ensures that no value is present for Reason, not even an explicit nil
-func (o *ResponseErrorDetails) UnsetReason() {
-	o.Reason.Unset()
+// SetReason gets a reference to the given interface{} and assigns it to the Reason field.
+func (o *ResponseErrorDetails) SetReason(v interface{}) {
+	o.Reason = v
 }
 
 // GetTable returns the Table field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ResponseErrorDetails) GetTable() string {
-	if o == nil || IsNil(o.Table.Get()) {
-		var ret string
+func (o *ResponseErrorDetails) GetTable() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Table.Get()
+	return o.Table
 }
 
 // GetTableOk returns a tuple with the Table field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ResponseErrorDetails) GetTableOk() (*string, bool) {
-	if o == nil {
+func (o *ResponseErrorDetails) GetTableOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Table) {
 		return nil, false
 	}
-	return o.Table.Get(), o.Table.IsSet()
+	return &o.Table, true
 }
 
 // HasTable returns a boolean if a field has been set.
 func (o *ResponseErrorDetails) HasTable() bool {
-	if o != nil && o.Table.IsSet() {
+	if o != nil && !IsNil(o.Table) {
 		return true
 	}
 
 	return false
 }
 
-// SetTable gets a reference to the given NullableString and assigns it to the Table field.
-func (o *ResponseErrorDetails) SetTable(v string) {
-	o.Table.Set(&v)
-}
-// SetTableNil sets the value for Table to be an explicit nil
-func (o *ResponseErrorDetails) SetTableNil() {
-	o.Table.Set(nil)
-}
-
-// UnsetTable ensures that no value is present for Table, not even an explicit nil
-func (o *ResponseErrorDetails) UnsetTable() {
-	o.Table.Unset()
+// SetTable gets a reference to the given interface{} and assigns it to the Table field.
+func (o *ResponseErrorDetails) SetTable(v interface{}) {
+	o.Table = v
 }
 
 func (o ResponseErrorDetails) MarshalJSON() ([]byte, error) {
@@ -168,12 +152,14 @@ func (o ResponseErrorDetails) MarshalJSON() ([]byte, error) {
 
 func (o ResponseErrorDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	if o.Reason.IsSet() {
-		toSerialize["reason"] = o.Reason.Get()
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
-	if o.Table.IsSet() {
-		toSerialize["table"] = o.Table.Get()
+	if o.Reason != nil {
+		toSerialize["reason"] = o.Reason
+	}
+	if o.Table != nil {
+		toSerialize["table"] = o.Table
 	}
 	return toSerialize, nil
 }

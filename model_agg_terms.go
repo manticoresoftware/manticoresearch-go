@@ -23,9 +23,9 @@ var _ MappedNullable = &AggTerms{}
 // AggTerms Object containing term fields to aggregate on
 type AggTerms struct {
 	// Name of attribute to aggregate by
-	Field string `json:"field"` 
+	Field interface{} `json:"field"` 
 	// Maximum number of buckets in the result
-	Size *int32 `json:"size"` 
+	Size interface{} `json:"size"` 
 }
 
 type _AggTerms AggTerms
@@ -34,7 +34,7 @@ type _AggTerms AggTerms
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAggTerms(field string) *AggTerms {
+func NewAggTerms(field interface{}) *AggTerms {
 	this := AggTerms{}
 	this.Field = field
 	return &this
@@ -49,9 +49,10 @@ func NewAggTermsWithDefaults() *AggTerms {
 }
 
 // GetField returns the Field field value
-func (o *AggTerms) GetField() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *AggTerms) GetField() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -60,34 +61,36 @@ func (o *AggTerms) GetField() string {
 
 // GetFieldOk returns a tuple with the Field field value
 // and a boolean to check if the value has been set.
-func (o *AggTerms) GetFieldOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AggTerms) GetFieldOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Field) {
 		return nil, false
 	}
 	return &o.Field, true
 }
 
 // SetField sets field value
-func (o *AggTerms) SetField(v string) {
+func (o *AggTerms) SetField(v interface{}) {
 	o.Field = v
 }
 
-// GetSize returns the Size field value if set, zero value otherwise.
-func (o *AggTerms) GetSize() int32 {
-	if o == nil || IsNil(o.Size) {
-		var ret int32
+// GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AggTerms) GetSize() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Size
+	return o.Size
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AggTerms) GetSizeOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AggTerms) GetSizeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
-	return o.Size, true
+	return &o.Size, true
 }
 
 // HasSize returns a boolean if a field has been set.
@@ -99,9 +102,9 @@ func (o *AggTerms) HasSize() bool {
 	return false
 }
 
-// SetSize gets a reference to the given int32 and assigns it to the Size field.
-func (o *AggTerms) SetSize(v int32) {
-	o.Size = &v
+// SetSize gets a reference to the given interface{} and assigns it to the Size field.
+func (o *AggTerms) SetSize(v interface{}) {
+	o.Size = v
 }
 
 func (o AggTerms) MarshalJSON() ([]byte, error) {
@@ -114,8 +117,10 @@ func (o AggTerms) MarshalJSON() ([]byte, error) {
 
 func (o AggTerms) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["field"] = o.Field
-	if !IsNil(o.Size) {
+	if o.Field != nil {
+		toSerialize["field"] = o.Field
+	}
+	if o.Size != nil {
 		toSerialize["size"] = o.Size
 	}
 	return toSerialize, nil
