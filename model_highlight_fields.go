@@ -14,45 +14,79 @@ package openapi
 import (
 	"encoding/json"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
-
-// HighlightFields List of fields available for highlighting
+// HighlightFields - List of fields available for highlighting
 type HighlightFields struct {
 	ArrayOfString *[]string
 	MapmapOfStringAny *map[string]interface{}
 }
 
-// Unmarshal JSON data into any of the pointers in the struct
+// []stringAsHighlightFields is a convenience function that returns []string wrapped in HighlightFields
+func ArrayOfStringAsHighlightFields(v *[]string) HighlightFields {
+	return HighlightFields{
+		ArrayOfString: v,
+	}
+}
+
+// map[string]interface{}AsHighlightFields is a convenience function that returns map[string]interface{} wrapped in HighlightFields
+func MapmapOfStringAnyAsHighlightFields(v *map[string]interface{}) HighlightFields {
+	return HighlightFields{
+		MapmapOfStringAny: v,
+	}
+}
+
+
+// Unmarshal JSON data into one of the pointers in the struct
 func (dst *HighlightFields) UnmarshalJSON(data []byte) error {
 	var err error
-	// try to unmarshal JSON data into ArrayOfString
-	err = json.Unmarshal(data, &dst.ArrayOfString);
+	match := 0
+	// try to unmarshal data into ArrayOfString
+	err = newStrictDecoder(data).Decode(&dst.ArrayOfString)
 	if err == nil {
 		jsonArrayOfString, _ := json.Marshal(dst.ArrayOfString)
 		if string(jsonArrayOfString) == "{}" { // empty struct
 			dst.ArrayOfString = nil
 		} else {
-			return nil // data stored in dst.ArrayOfString, return on the first match
+			if err = validator.Validate(dst.ArrayOfString); err != nil {
+				dst.ArrayOfString = nil
+			} else {
+				match++
+			}
 		}
 	} else {
 		dst.ArrayOfString = nil
 	}
 
-	// try to unmarshal JSON data into MapmapOfStringAny
-	err = json.Unmarshal(data, &dst.MapmapOfStringAny);
+	// try to unmarshal data into MapmapOfStringAny
+	err = newStrictDecoder(data).Decode(&dst.MapmapOfStringAny)
 	if err == nil {
 		jsonMapmapOfStringAny, _ := json.Marshal(dst.MapmapOfStringAny)
 		if string(jsonMapmapOfStringAny) == "{}" { // empty struct
 			dst.MapmapOfStringAny = nil
 		} else {
-			return nil // data stored in dst.MapmapOfStringAny, return on the first match
+			if err = validator.Validate(dst.MapmapOfStringAny); err != nil {
+				dst.MapmapOfStringAny = nil
+			} else {
+				match++
+			}
 		}
 	} else {
 		dst.MapmapOfStringAny = nil
 	}
 
-	return fmt.Errorf("data failed to match schemas in anyOf(HighlightFields)")
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.ArrayOfString = nil
+		dst.MapmapOfStringAny = nil
+
+		return fmt.Errorf("data matches more than one schema in oneOf(HighlightFields)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(HighlightFields)")
+	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
@@ -65,9 +99,39 @@ func (src HighlightFields) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.MapmapOfStringAny)
 	}
 
-	return nil, nil // no data in anyOf schemas
+	return nil, nil // no data in oneOf schemas
 }
 
+// Get the actual instance
+func (obj *HighlightFields) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.ArrayOfString != nil {
+		return obj.ArrayOfString
+	}
+
+	if obj.MapmapOfStringAny != nil {
+		return obj.MapmapOfStringAny
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj HighlightFields) GetActualInstanceValue() (interface{}) {
+	if obj.ArrayOfString != nil {
+		return *obj.ArrayOfString
+	}
+
+	if obj.MapmapOfStringAny != nil {
+		return *obj.MapmapOfStringAny
+	}
+
+	// all schemas are nil
+	return nil
+}
 
 type NullableHighlightFields struct {
 	value *HighlightFields

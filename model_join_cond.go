@@ -26,6 +26,7 @@ type JoinCond struct {
 	Field string `json:"field"`
 	// Joined table
 	Table string `json:"table"`
+	Query *FulltextFilter `json:"query,omitempty"`
 	Type interface{} `json:"type,omitempty"`
 }
 
@@ -98,6 +99,38 @@ func (o *JoinCond) SetTable(v string) {
 	o.Table = v
 }
 
+// GetQuery returns the Query field value if set, zero value otherwise.
+func (o *JoinCond) GetQuery() FulltextFilter {
+	if o == nil || IsNil(o.Query) {
+		var ret FulltextFilter
+		return ret
+	}
+	return *o.Query
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JoinCond) GetQueryOk() (*FulltextFilter, bool) {
+	if o == nil || IsNil(o.Query) {
+		return nil, false
+	}
+	return o.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *JoinCond) HasQuery() bool {
+	if o != nil && !IsNil(o.Query) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery gets a reference to the given FulltextFilter and assigns it to the Query field.
+func (o *JoinCond) SetQuery(v FulltextFilter) {
+	o.Query = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *JoinCond) GetType() interface{} {
 	if o == nil {
@@ -143,6 +176,9 @@ func (o JoinCond) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["field"] = o.Field
 	toSerialize["table"] = o.Table
+	if !IsNil(o.Query) {
+		toSerialize["query"] = o.Query
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}

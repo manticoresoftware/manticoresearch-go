@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | **string** | Field to join on | 
 **Table** | **string** | Joined table | 
+**Query** | Pointer to [**FulltextFilter**](FulltextFilter.md) |  | [optional] 
 **Type** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
@@ -66,6 +67,31 @@ and a boolean to check if the value has been set.
 
 SetTable sets Table field to given value.
 
+
+### GetQuery
+
+`func (o *JoinCond) GetQuery() FulltextFilter`
+
+GetQuery returns the Query field if non-nil, zero value otherwise.
+
+### GetQueryOk
+
+`func (o *JoinCond) GetQueryOk() (*FulltextFilter, bool)`
+
+GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuery
+
+`func (o *JoinCond) SetQuery(v FulltextFilter)`
+
+SetQuery sets Query field to given value.
+
+### HasQuery
+
+`func (o *JoinCond) HasQuery() bool`
+
+HasQuery returns a boolean if a field has been set.
 
 ### GetType
 

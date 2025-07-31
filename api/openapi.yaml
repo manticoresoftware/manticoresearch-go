@@ -979,12 +979,12 @@ components:
             type: boolean
       - $ref: "#/components/schemas/highlightFieldOption"
     highlightFields:
-      anyOf:
+      description: List of fields available for highlighting
+      oneOf:
       - items:
           type: string
         type: array
       - type: object
-      description: List of fields available for highlighting
     highlightFieldOption:
       additionalProperties: false
       description: Options for controlling the behavior of highlighting on a per-field
@@ -1117,6 +1117,8 @@ components:
         table:
           description: Joined table
           type: string
+        query:
+          $ref: "#/components/schemas/fulltextFilter"
         type: {}
       required:
       - field
