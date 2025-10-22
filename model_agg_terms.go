@@ -194,4 +194,3 @@ func (v *NullableAggTerms) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

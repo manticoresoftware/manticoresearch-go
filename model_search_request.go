@@ -30,7 +30,7 @@ type SearchRequest struct {
 	Highlight *Highlight `json:"highlight,omitempty"`
 	// Maximum number of results to return
 	Limit *int32 `json:"limit,omitempty"`
-	Knn *KnnQuery `json:"knn,omitempty"`
+	Knn *Knn `json:"knn,omitempty"`
 	// Defines aggregation settings for grouping results
 	Aggs map[string]Aggregation `json:"aggs,omitempty"`
 	// Expressions to calculate additional values for the result
@@ -222,9 +222,9 @@ func (o *SearchRequest) SetLimit(v int32) {
 }
 
 // GetKnn returns the Knn field value if set, zero value otherwise.
-func (o *SearchRequest) GetKnn() KnnQuery {
+func (o *SearchRequest) GetKnn() Knn {
 	if o == nil || IsNil(o.Knn) {
-		var ret KnnQuery
+		var ret Knn
 		return ret
 	}
 	return *o.Knn
@@ -232,7 +232,7 @@ func (o *SearchRequest) GetKnn() KnnQuery {
 
 // GetKnnOk returns a tuple with the Knn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchRequest) GetKnnOk() (*KnnQuery, bool) {
+func (o *SearchRequest) GetKnnOk() (*Knn, bool) {
 	if o == nil || IsNil(o.Knn) {
 		return nil, false
 	}
@@ -248,8 +248,8 @@ func (o *SearchRequest) HasKnn() bool {
 	return false
 }
 
-// SetKnn gets a reference to the given KnnQuery and assigns it to the Knn field.
-func (o *SearchRequest) SetKnn(v KnnQuery) {
+// SetKnn gets a reference to the given Knn and assigns it to the Knn field.
+func (o *SearchRequest) SetKnn(v Knn) {
 	o.Knn = &v
 }
 
@@ -671,5 +671,4 @@ func (v *NullableSearchRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
 

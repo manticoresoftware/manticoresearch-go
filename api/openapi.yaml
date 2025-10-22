@@ -659,7 +659,7 @@ components:
             $ref: "#/components/schemas/aggComposite"
           histogram:
             $ref: "#/components/schemas/aggHistogram"
-    knnQuery:
+    knn:
       description: Object representing a k-nearest neighbor search query
       properties:
         field:
@@ -668,6 +668,8 @@ components:
         k:
           description: The number of nearest neighbors to return
           type: integer
+        query:
+          $ref: "#/components/schemas/knn_query"
         query_vector:
           description: The vector used as input for the KNN search
           items:
@@ -693,14 +695,17 @@ components:
           $ref: "#/components/schemas/geoDistance_location_anchor"
         location_source:
           description: Field name in the document that contains location data
+          type: string
         distance_type:
           description: Algorithm used to calculate the distance
           enum:
           - adaptive
           - haversine
+          type: string
         distance:
           description: The distance from the anchor point to filter results by
           pattern: /^\.+(km|m|cm|mm|mi|yd|ft|in|NM|nmi|kilometers|meters|centimeters|millimeters|miles|yards|foots|inches|nauticalmiles|)$/
+          type: string
     searchQuery:
       allOf:
       - $ref: "#/components/schemas/queryFilter"
@@ -711,7 +716,7 @@ components:
     searchRequest:
       description: Request object for search operation
       example:
-        tabke: your_table
+        table: your_table
         query:
           query_string: your_query
       properties:
@@ -731,7 +736,7 @@ components:
           description: Maximum number of results to return
           type: integer
         knn:
-          $ref: "#/components/schemas/knnQuery"
+          $ref: "#/components/schemas/knn"
         aggs:
           additionalProperties:
             $ref: "#/components/schemas/aggregation"
@@ -1218,12 +1223,14 @@ components:
           description: List of fields to include in the response
           items:
             type: string
+          type: array
         excludes:
           default:
           - ""
           description: List of fields to exclude from the response
           items:
             type: string
+          type: array
     successResponse:
       description: "Response object indicating the success of an operation, such as\
         \ inserting or updating a document"
@@ -1410,14 +1417,22 @@ components:
         result:
           description: "Result of the update operation, typically 'updated'"
           type: string
+    knn_query:
+      oneOf:
+      - type: string
+      - items:
+          type: number
+        type: array
     geoDistance_location_anchor:
       additionalProperties: false
       description: Specifies the location of the pin point used for search
       properties:
         lat:
           description: Latitude of the anchor point
+          type: number
         lon:
           description: Longitude of the anchor point
+          type: number
     queryFilter_allOf_in:
       description: Filter to match a given set of attribute values.
       type: object

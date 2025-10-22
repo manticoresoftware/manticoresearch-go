@@ -199,4 +199,3 @@ func (v *NullableBoolFilter) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

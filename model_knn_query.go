@@ -13,288 +13,124 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
-// checks if the KnnQuery type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &KnnQuery{}
-
-// KnnQuery Object representing a k-nearest neighbor search query
+// KnnQuery - struct for KnnQuery
 type KnnQuery struct {
-	// Field to perform the k-nearest neighbor search on
-	Field string `json:"field"`
-	// The number of nearest neighbors to return
-	K int32 `json:"k"`
-	// The vector used as input for the KNN search
-	QueryVector []float32 `json:"query_vector,omitempty"`
-	// The docuemnt ID used as input for the KNN search
-	DocId *uint64 `json:"doc_id,omitempty"`
-	// Optional parameter controlling the accuracy of the search
-	Ef *int32 `json:"ef,omitempty"`
-	Filter *QueryFilter `json:"filter,omitempty"`
+	ArrayOfFloat32 *[]float32
+	String *string
 }
 
-type _KnnQuery KnnQuery
-
-// NewKnnQuery instantiates a new KnnQuery object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewKnnQuery(field string, k int32) *KnnQuery {
-	this := KnnQuery{}
-	this.Field = field
-	this.K = k
-	return &this
-}
-
-// NewKnnQueryWithDefaults instantiates a new KnnQuery object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewKnnQueryWithDefaults() *KnnQuery {
-	this := KnnQuery{}
-	return &this
-}
-
-// GetField returns the Field field value
-func (o *KnnQuery) GetField() string {
-	if o == nil {
-		var ret string
-		return ret
+// []float32AsKnnQuery is a convenience function that returns []float32 wrapped in KnnQuery
+func ArrayOfFloat32AsKnnQuery(v *[]float32) KnnQuery {
+	return KnnQuery{
+		ArrayOfFloat32: v,
 	}
-
-	return o.Field
 }
 
-// GetFieldOk returns a tuple with the Field field value
-// and a boolean to check if the value has been set.
-func (o *KnnQuery) GetFieldOk() (*string, bool) {
-	if o == nil {
-		return nil, false
+// stringAsKnnQuery is a convenience function that returns string wrapped in KnnQuery
+func StringAsKnnQuery(v *string) KnnQuery {
+	return KnnQuery{
+		String: v,
 	}
-	return &o.Field, true
 }
 
-// SetField sets field value
-func (o *KnnQuery) SetField(v string) {
-	o.Field = v
-}
 
-// GetK returns the K field value
-func (o *KnnQuery) GetK() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.K
-}
-
-// GetKOk returns a tuple with the K field value
-// and a boolean to check if the value has been set.
-func (o *KnnQuery) GetKOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.K, true
-}
-
-// SetK sets field value
-func (o *KnnQuery) SetK(v int32) {
-	o.K = v
-}
-
-// GetQueryVector returns the QueryVector field value if set, zero value otherwise.
-func (o *KnnQuery) GetQueryVector() []float32 {
-	if o == nil || IsNil(o.QueryVector) {
-		var ret []float32
-		return ret
-	}
-	return o.QueryVector
-}
-
-// GetQueryVectorOk returns a tuple with the QueryVector field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *KnnQuery) GetQueryVectorOk() ([]float32, bool) {
-	if o == nil || IsNil(o.QueryVector) {
-		return nil, false
-	}
-	return o.QueryVector, true
-}
-
-// HasQueryVector returns a boolean if a field has been set.
-func (o *KnnQuery) HasQueryVector() bool {
-	if o != nil && !IsNil(o.QueryVector) {
-		return true
-	}
-
-	return false
-}
-
-// SetQueryVector gets a reference to the given []float32 and assigns it to the QueryVector field.
-func (o *KnnQuery) SetQueryVector(v []float32) {
-	o.QueryVector = v
-}
-
-// GetDocId returns the DocId field value if set, zero value otherwise.
-func (o *KnnQuery) GetDocId() uint64 {
-	if o == nil || IsNil(o.DocId) {
-		var ret uint64
-		return ret
-	}
-	return *o.DocId
-}
-
-// GetDocIdOk returns a tuple with the DocId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *KnnQuery) GetDocIdOk() (*uint64, bool) {
-	if o == nil || IsNil(o.DocId) {
-		return nil, false
-	}
-	return o.DocId, true
-}
-
-// HasDocId returns a boolean if a field has been set.
-func (o *KnnQuery) HasDocId() bool {
-	if o != nil && !IsNil(o.DocId) {
-		return true
-	}
-
-	return false
-}
-
-// SetDocId gets a reference to the given uint64 and assigns it to the DocId field.
-func (o *KnnQuery) SetDocId(v uint64) {
-	o.DocId = &v
-}
-
-// GetEf returns the Ef field value if set, zero value otherwise.
-func (o *KnnQuery) GetEf() int32 {
-	if o == nil || IsNil(o.Ef) {
-		var ret int32
-		return ret
-	}
-	return *o.Ef
-}
-
-// GetEfOk returns a tuple with the Ef field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *KnnQuery) GetEfOk() (*int32, bool) {
-	if o == nil || IsNil(o.Ef) {
-		return nil, false
-	}
-	return o.Ef, true
-}
-
-// HasEf returns a boolean if a field has been set.
-func (o *KnnQuery) HasEf() bool {
-	if o != nil && !IsNil(o.Ef) {
-		return true
-	}
-
-	return false
-}
-
-// SetEf gets a reference to the given int32 and assigns it to the Ef field.
-func (o *KnnQuery) SetEf(v int32) {
-	o.Ef = &v
-}
-
-// GetFilter returns the Filter field value if set, zero value otherwise.
-func (o *KnnQuery) GetFilter() QueryFilter {
-	if o == nil || IsNil(o.Filter) {
-		var ret QueryFilter
-		return ret
-	}
-	return *o.Filter
-}
-
-// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *KnnQuery) GetFilterOk() (*QueryFilter, bool) {
-	if o == nil || IsNil(o.Filter) {
-		return nil, false
-	}
-	return o.Filter, true
-}
-
-// HasFilter returns a boolean if a field has been set.
-func (o *KnnQuery) HasFilter() bool {
-	if o != nil && !IsNil(o.Filter) {
-		return true
-	}
-
-	return false
-}
-
-// SetFilter gets a reference to the given QueryFilter and assigns it to the Filter field.
-func (o *KnnQuery) SetFilter(v QueryFilter) {
-	o.Filter = &v
-}
-
-func (o KnnQuery) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o KnnQuery) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	toSerialize["field"] = o.Field
-	toSerialize["k"] = o.K
-	if !IsNil(o.QueryVector) {
-		toSerialize["query_vector"] = o.QueryVector
-	}
-	if !IsNil(o.DocId) {
-		toSerialize["doc_id"] = o.DocId
-	}
-	if !IsNil(o.Ef) {
-		toSerialize["ef"] = o.Ef
-	}
-	if !IsNil(o.Filter) {
-		toSerialize["filter"] = o.Filter
-	}
-	return toSerialize, nil
-}
-
-func (o *KnnQuery) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"field",
-		"k",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *KnnQuery) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into ArrayOfFloat32
+	err = newStrictDecoder(data).Decode(&dst.ArrayOfFloat32)
+	if err == nil {
+		jsonArrayOfFloat32, _ := json.Marshal(dst.ArrayOfFloat32)
+		if string(jsonArrayOfFloat32) == "{}" { // empty struct
+			dst.ArrayOfFloat32 = nil
+		} else {
+			if err = validator.Validate(dst.ArrayOfFloat32); err != nil {
+				dst.ArrayOfFloat32 = nil
+			} else {
+				match++
+			}
 		}
+	} else {
+		dst.ArrayOfFloat32 = nil
 	}
 
-	varKnnQuery := _KnnQuery{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varKnnQuery)
-
-	if err != nil {
-		return err
+	// try to unmarshal data into String
+	err = newStrictDecoder(data).Decode(&dst.String)
+	if err == nil {
+		jsonString, _ := json.Marshal(dst.String)
+		if string(jsonString) == "{}" { // empty struct
+			dst.String = nil
+		} else {
+			if err = validator.Validate(dst.String); err != nil {
+				dst.String = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.String = nil
 	}
 
-	*o = KnnQuery(varKnnQuery)
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.ArrayOfFloat32 = nil
+		dst.String = nil
 
-	return err
+		return fmt.Errorf("data matches more than one schema in oneOf(KnnQuery)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(KnnQuery)")
+	}
+}
+
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src KnnQuery) MarshalJSON() ([]byte, error) {
+	if src.ArrayOfFloat32 != nil {
+		return json.Marshal(&src.ArrayOfFloat32)
+	}
+
+	if src.String != nil {
+		return json.Marshal(&src.String)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *KnnQuery) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.ArrayOfFloat32 != nil {
+		return obj.ArrayOfFloat32
+	}
+
+	if obj.String != nil {
+		return obj.String
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj KnnQuery) GetActualInstanceValue() (interface{}) {
+	if obj.ArrayOfFloat32 != nil {
+		return *obj.ArrayOfFloat32
+	}
+
+	if obj.String != nil {
+		return *obj.String
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableKnnQuery struct {
@@ -332,5 +168,4 @@ func (v *NullableKnnQuery) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
 

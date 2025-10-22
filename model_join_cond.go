@@ -259,4 +259,3 @@ func (v *NullableJoinCond) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

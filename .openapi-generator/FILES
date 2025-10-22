@@ -33,6 +33,7 @@ docs/InsertDocumentRequest.md
 docs/Join.md
 docs/JoinCond.md
 docs/JoinOn.md
+docs/Knn.md
 docs/KnnQuery.md
 docs/Match.md
 docs/MatchAll.md
@@ -83,6 +84,7 @@ model_insert_document_request.go
 model_join.go
 model_join_cond.go
 model_join_on.go
+model_knn.go
 model_knn_query.go
 model_match_all.go
 model_percolate_request.go

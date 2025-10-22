@@ -2,7 +2,7 @@
 
 Сlient for Manticore Search.
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-go/tree/v1.9.0
+❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-go/tree/v1.10.0
 
 ## Compatibility Table
 
@@ -144,6 +144,7 @@ Class | Method | HTTP request | Description
  - [Join](docs/Join.md)
  - [JoinCond](docs/JoinCond.md)
  - [JoinOn](docs/JoinOn.md)
+ - [Knn](docs/Knn.md)
  - [KnnQuery](docs/KnnQuery.md)
  - [Match](docs/Match.md)
  - [MatchAll](docs/MatchAll.md)

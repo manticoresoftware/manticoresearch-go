@@ -273,4 +273,3 @@ func (v *NullableBulkResponse) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

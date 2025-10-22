@@ -236,4 +236,3 @@ func (v *NullableSearchResponseHits) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

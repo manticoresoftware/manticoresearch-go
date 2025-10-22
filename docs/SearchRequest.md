@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Join** | Pointer to [**[]Join**](Join.md) | Join clause to combine search data from multiple tables | [optional] 
 **Highlight** | Pointer to [**Highlight**](Highlight.md) |  | [optional] 
 **Limit** | Pointer to **int32** | Maximum number of results to return | [optional] 
-**Knn** | Pointer to [**KnnQuery**](KnnQuery.md) |  | [optional] 
+**Knn** | Pointer to [**Knn**](Knn.md) |  | [optional] 
 **Aggs** | Pointer to [**map[string]Aggregation**](Aggregation.md) | Defines aggregation settings for grouping results | [optional] 
 **Expressions** | Pointer to **map[string]string** | Expressions to calculate additional values for the result | [optional] 
 **MaxMatches** | Pointer to **int32** | Maximum number of matches allowed in the result | [optional] 
@@ -161,20 +161,20 @@ HasLimit returns a boolean if a field has been set.
 
 ### GetKnn
 
-`func (o *SearchRequest) GetKnn() KnnQuery`
+`func (o *SearchRequest) GetKnn() Knn`
 
 GetKnn returns the Knn field if non-nil, zero value otherwise.
 
 ### GetKnnOk
 
-`func (o *SearchRequest) GetKnnOk() (*KnnQuery, bool)`
+`func (o *SearchRequest) GetKnnOk() (*Knn, bool)`
 
 GetKnnOk returns a tuple with the Knn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKnn
 
-`func (o *SearchRequest) SetKnn(v KnnQuery)`
+`func (o *SearchRequest) SetKnn(v Knn)`
 
 SetKnn sets Knn field to given value.
 
