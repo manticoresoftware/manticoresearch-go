@@ -8,8 +8,10 @@ Name | Type | Description | Notes
 **K** | **int32** | The number of nearest neighbors to return | 
 **Query** | Pointer to [**KnnQuery**](KnnQuery.md) |  | [optional] 
 **QueryVector** | Pointer to **[]float32** | The vector used as input for the KNN search | [optional] 
-**DocId** | Pointer to **uint64** | The docuemnt ID used as input for the KNN search | [optional]
+**DocId** | Pointer to **uint64** | The docuemnt ID used as input for the KNN search | [optional] 
 **Ef** | Pointer to **int32** | Optional parameter controlling the accuracy of the search | [optional] 
+**Rescore** | Pointer to **bool** | Optional parameter enabling KNN rescoring (disabled by default) | [optional] 
+**Oversampling** | Pointer to **float32** | Optional parameter setting a factor by which k is multiplied when executing the KNN search | [optional] 
 **Filter** | Pointer to [**QueryFilter**](QueryFilter.md) |  | [optional] 
 
 ## Methods
@@ -123,20 +125,20 @@ HasQueryVector returns a boolean if a field has been set.
 
 ### GetDocId
 
-`func (o *Knn) GetDocId() uint64`
+`func (o *Knn) GetDocId() int32`
 
 GetDocId returns the DocId field if non-nil, zero value otherwise.
 
 ### GetDocIdOk
 
-`func (o *Knn) GetDocIdOk() (*uint64, bool)`
+`func (o *Knn) GetDocIdOk() (*int32, bool)`
 
 GetDocIdOk returns a tuple with the DocId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDocId
 
-`func (o *Knn) SetDocId(v uint64)`
+`func (o *Knn) SetDocId(v int32)`
 
 SetDocId sets DocId field to given value.
 
@@ -170,6 +172,56 @@ SetEf sets Ef field to given value.
 `func (o *Knn) HasEf() bool`
 
 HasEf returns a boolean if a field has been set.
+
+### GetRescore
+
+`func (o *Knn) GetRescore() bool`
+
+GetRescore returns the Rescore field if non-nil, zero value otherwise.
+
+### GetRescoreOk
+
+`func (o *Knn) GetRescoreOk() (*bool, bool)`
+
+GetRescoreOk returns a tuple with the Rescore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRescore
+
+`func (o *Knn) SetRescore(v bool)`
+
+SetRescore sets Rescore field to given value.
+
+### HasRescore
+
+`func (o *Knn) HasRescore() bool`
+
+HasRescore returns a boolean if a field has been set.
+
+### GetOversampling
+
+`func (o *Knn) GetOversampling() float32`
+
+GetOversampling returns the Oversampling field if non-nil, zero value otherwise.
+
+### GetOversamplingOk
+
+`func (o *Knn) GetOversamplingOk() (*float32, bool)`
+
+GetOversamplingOk returns a tuple with the Oversampling field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOversampling
+
+`func (o *Knn) SetOversampling(v float32)`
+
+SetOversampling sets Oversampling field to given value.
+
+### HasOversampling
+
+`func (o *Knn) HasOversampling() bool`
+
+HasOversampling returns a boolean if a field has been set.
 
 ### GetFilter
 

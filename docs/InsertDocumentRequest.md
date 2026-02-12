@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Table** | **string** | Name of the table to insert the document into | 
 **Cluster** | Pointer to **string** | Name of the cluster to insert the document into | [optional] 
-**Id** | Pointer to **uint64** | Document ID. If not provided, an ID will be auto-generated  | [optional]
+**Id** | Pointer to **int32** | Document ID. If not provided, an ID will be auto-generated  | [optional] 
 **Doc** | **map[string]interface{}** | Object containing document data  | 
 
 ## Methods
@@ -75,20 +75,20 @@ HasCluster returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *InsertDocumentRequest) GetId() uint64`
+`func (o *InsertDocumentRequest) GetId() int32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *InsertDocumentRequest) GetIdOk() (*uint64, bool)`
+`func (o *InsertDocumentRequest) GetIdOk() (*int32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *InsertDocumentRequest) SetId(v uint64)`
+`func (o *InsertDocumentRequest) SetId(v int32)`
 
 SetId sets Id field to given value.
 

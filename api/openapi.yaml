@@ -682,6 +682,13 @@ components:
         ef:
           description: Optional parameter controlling the accuracy of the search
           type: integer
+        rescore:
+          description: Optional parameter enabling KNN rescoring (disabled by default)
+          type: boolean
+        oversampling:
+          description: Optional parameter setting a factor by which k is multiplied
+            when executing the KNN search
+          type: number
         filter:
           $ref: "#/components/schemas/queryFilter"
       required:
@@ -709,7 +716,8 @@ components:
     searchQuery:
       allOf:
       - $ref: "#/components/schemas/queryFilter"
-      - properties:
+      - additionalProperties: false
+        properties:
           highlight:
             $ref: "#/components/schemas/highlight"
       description: Defines a query structure for performing search operations

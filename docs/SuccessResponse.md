@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Table** | Pointer to **string** | Name of the document table | [optional] 
-**Id** | Pointer to **uint64** | ID of the document affected by the request operation | [optional]
+**Id** | Pointer to **int32** | ID of the document affected by the request operation | [optional] 
 **Created** | Pointer to **bool** | Indicates whether the document was created as a result of the operation | [optional] 
 **Result** | Pointer to **string** | Result of the operation, typically &#39;created&#39;, &#39;updated&#39;, or &#39;deleted&#39; | [optional] 
 **Found** | Pointer to **bool** | Indicates whether the document was found in the table | [optional] 
@@ -57,20 +57,20 @@ HasTable returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *SuccessResponse) GetId() uint64`
+`func (o *SuccessResponse) GetId() int32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SuccessResponse) GetIdOk() (*uint64, bool)`
+`func (o *SuccessResponse) GetIdOk() (*int32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SuccessResponse) SetId(v uint64)`
+`func (o *SuccessResponse) SetId(v int32)`
 
 SetId sets Id field to given value.
 

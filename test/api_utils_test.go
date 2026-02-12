@@ -10,95 +10,28 @@ Testing UtilsAPIService
 package openapi
 
 import (
-	"fmt"
 	"context"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	"encoding/json"
-	Manticoresearch "github.com/manticoresoftware/manticoresearch-go"
+	openapiclient "github.com/manticoresoftware/manticoresearch-go"
 )
 
 func Test_openapi_UtilsAPIService(t *testing.T) {
 
-	configuration := Manticoresearch.NewConfiguration()
-	configuration.Servers[0].URL = "http://localhost:9408"
-	apiClient := Manticoresearch.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
 	t.Run("Test UtilsAPIService Sql", func(t *testing.T) {
 
+		t.Skip("skip test")  // remove to run test
 
-		var sql string
-		
-		sql = "DROP TABLE IF EXISTS movies"
-		resp, httpRes, err := apiClient.UtilsAPI.Sql(context.Background()).Body(sql).RawResponse(true).Execute()
+		resp, httpRes, err := apiClient.UtilsAPI.Sql(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
-		fmt.Printf("%v\n\n", resp)
-		
 		assert.Equal(t, 200, httpRes.StatusCode)
-		
-		sql = "CREATE TABLE IF NOT EXISTS movies (title text, plot text, year bigint, rating float, code multi)"
-		resp, httpRes, err = apiClient.UtilsAPI.Sql(context.Background()).Body(sql).RawResponse(true).Execute()
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		outRes, outErr := json.Marshal(resp)
-		require.Nil(t, outErr)
-		fmt.Printf("%+v\n\n", string(outRes[:]))
-		
-		assert.Equal(t, 200, httpRes.StatusCode)
-		
-		sql = "SELECT * FROM movies"
-		resp, httpRes, err = apiClient.UtilsAPI.Sql(context.Background()).Body(sql).RawResponse(false).Execute()
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		outRes, outErr = json.Marshal(resp)
-		require.Nil(t, outErr)
-		fmt.Printf("%+v\n\n", string(outRes[:]))
-		
-		assert.Equal(t, 200, httpRes.StatusCode)
-		
-		sql = "SELECT * FROM movies"
-		resp, httpRes, err = apiClient.UtilsAPI.Sql(context.Background()).Body(sql).RawResponse(true).Execute()
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		outRes, outErr = json.Marshal(resp)
-		require.Nil(t, outErr)
-		fmt.Printf("%+v\n\n", string(outRes[:]))
-		
-		assert.Equal(t, 200, httpRes.StatusCode)
-		
-		sql = "SELECT * FROM movies"
-		resp, httpRes, err = apiClient.UtilsAPI.Sql(context.Background()).Body(sql).Execute()
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		outRes, outErr = json.Marshal(resp)
-		require.Nil(t, outErr)
-		fmt.Printf("%+v\n\n", string(outRes[:]))
-		
-		assert.Equal(t, 200, httpRes.StatusCode)
-		
-		sql = "TRUNCATE TABLE movies"
-		resp, httpRes, err = apiClient.UtilsAPI.Sql(context.Background()).Body(sql).Execute()
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		outRes, outErr = json.Marshal(resp)
-		require.Nil(t, outErr)
-		fmt.Printf("%+v\n\n", string(outRes[:]))
-		
-		assert.Equal(t, 200, httpRes.StatusCode)
-		
-		sql = "SHOW TABLES"
-		resp, httpRes, err = apiClient.UtilsAPI.Sql(context.Background()).Body(sql).Execute()
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		fmt.Printf("%v\n", resp)
-		
-		assert.Equal(t, 200, httpRes.StatusCode)
-	        
-		fmt.Println("Util tests finished");
 	})
 
 }

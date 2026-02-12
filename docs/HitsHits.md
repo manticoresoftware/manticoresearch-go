@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **uint64** | The ID of the matched document | [optional]
+**Id** | Pointer to **int32** | The ID of the matched document | [optional] 
 **Score** | Pointer to **int32** | The score of the matched document | [optional] 
 **Source** | Pointer to **map[string]interface{}** | The source data of the matched document | [optional] 
 **KnnDist** | Pointer to **float32** | The knn distance of the matched document returned for knn queries | [optional] 
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *HitsHits) GetId() uint64`
+`func (o *HitsHits) GetId() int32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *HitsHits) GetIdOk() (*uint64, bool)`
+`func (o *HitsHits) GetIdOk() (*int32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *HitsHits) SetId(v uint64)`
+`func (o *HitsHits) SetId(v int32)`
 
 SetId sets Id field to given value.
 

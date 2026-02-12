@@ -233,7 +233,7 @@ import (
 
 func main() {
 	table := "table_example" // string | Name of the percolate table
-	id := uint64(56) // uint64 | Id of the document to replace
+	id := int32(56) // int32 | Id of the document to replace
 	replaceDocumentRequest := *openapiclient.NewReplaceDocumentRequest(map[string]interface{}(123)) // ReplaceDocumentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -255,7 +255,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **table** | **string** | Name of the percolate table | 
-**id** | **uint64** | Id of the document to replace |
+**id** | **int32** | Id of the document to replace | 
 
 ### Other Parameters
 
