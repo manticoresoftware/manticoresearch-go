@@ -29,7 +29,7 @@ type Knn struct {
 	Query *KnnQuery `json:"query,omitempty"`
 	// The vector used as input for the KNN search
 	QueryVector []float32 `json:"query_vector,omitempty"`
-	// The document ID used as input for the KNN search
+	// The docuemnt ID used as input for the KNN search
 	DocId *uint64 `json:"doc_id,omitempty"`
 	// Optional parameter controlling the accuracy of the search
 	Ef *int32 `json:"ef,omitempty"`
@@ -201,7 +201,7 @@ func (o *Knn) HasDocId() bool {
 }
 
 // SetDocId gets a reference to the given int32 and assigns it to the DocId field.
-func (o *Knn) SetDocId(v uint64) {
+func (o *Knn) SetDocId(v unt64) {
 	o.DocId = &v
 }
 

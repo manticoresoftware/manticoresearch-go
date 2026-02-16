@@ -27,7 +27,7 @@ type InsertDocumentRequest struct {
 	// Name of the cluster to insert the document into
 	Cluster *string `json:"cluster,omitempty"`
 	// Document ID. If not provided, an ID will be auto-generated 
-	Id *int32 `json:"id,omitempty"`
+	Id *uint64 `json:"id,omitempty"`
 	// Object containing document data 
 	Doc map[string]interface{} `json:"doc"`
 }
@@ -110,9 +110,9 @@ func (o *InsertDocumentRequest) SetCluster(v string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *InsertDocumentRequest) GetId() int32 {
+func (o *InsertDocumentRequest) GetId() uint64 {
 	if o == nil || IsNil(o.Id) {
-		var ret int32
+		var ret uint64
 		return ret
 	}
 	return *o.Id
@@ -120,7 +120,7 @@ func (o *InsertDocumentRequest) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InsertDocumentRequest) GetIdOk() (*int32, bool) {
+func (o *InsertDocumentRequest) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -136,8 +136,8 @@ func (o *InsertDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *InsertDocumentRequest) SetId(v int32) {
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *InsertDocumentRequest) SetId(v uint64) {
 	o.Id = &v
 }
 

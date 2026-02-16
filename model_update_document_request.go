@@ -29,7 +29,7 @@ type UpdateDocumentRequest struct {
 	// Object containing the document fields to update
 	Doc map[string]interface{} `json:"doc"`
 	// Document ID
-	Id *int32 `json:"id,omitempty"`
+	Id *uint64 `json:"id,omitempty"`
 	Query NullableQueryFilter `json:"query,omitempty"`
 }
 
@@ -135,9 +135,9 @@ func (o *UpdateDocumentRequest) SetDoc(v map[string]interface{}) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *UpdateDocumentRequest) GetId() int32 {
+func (o *UpdateDocumentRequest) GetId() uint64 {
 	if o == nil || IsNil(o.Id) {
-		var ret int32
+		var ret uint64
 		return ret
 	}
 	return *o.Id
@@ -145,7 +145,7 @@ func (o *UpdateDocumentRequest) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDocumentRequest) GetIdOk() (*int32, bool) {
+func (o *UpdateDocumentRequest) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -161,8 +161,8 @@ func (o *UpdateDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *UpdateDocumentRequest) SetId(v int32) {
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *UpdateDocumentRequest) SetId(v uint64) {
 	o.Id = &v
 }
 

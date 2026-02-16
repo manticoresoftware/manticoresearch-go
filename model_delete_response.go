@@ -25,7 +25,7 @@ type DeleteResponse struct {
 	// Number of documents deleted
 	Deleted *int32 `json:"deleted,omitempty"`
 	// The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned
-	Id *int32 `json:"id,omitempty"`
+	Id *uint64 `json:"id,omitempty"`
 	// Indicates whether any documents to be deleted were found
 	Found *bool `json:"found,omitempty"`
 	// Result of the delete operation, typically 'deleted'
@@ -114,9 +114,9 @@ func (o *DeleteResponse) SetDeleted(v int32) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *DeleteResponse) GetId() int32 {
+func (o *DeleteResponse) GetId() uint64 {
 	if o == nil || IsNil(o.Id) {
-		var ret int32
+		var ret uint64
 		return ret
 	}
 	return *o.Id
@@ -124,7 +124,7 @@ func (o *DeleteResponse) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteResponse) GetIdOk() (*int32, bool) {
+func (o *DeleteResponse) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -140,8 +140,8 @@ func (o *DeleteResponse) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *DeleteResponse) SetId(v int32) {
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *DeleteResponse) SetId(v uint64) {
 	o.Id = &v
 }
 

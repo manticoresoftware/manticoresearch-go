@@ -21,7 +21,7 @@ var _ MappedNullable = &HitsHits{}
 // HitsHits Search hit representing a matched document
 type HitsHits struct {
 	// The ID of the matched document
-	Id *int32 `json:"_id,omitempty"`
+	Id *uint64 `json:"_id,omitempty"`
 	// The score of the matched document
 	Score *int32 `json:"_score,omitempty"`
 	// The source data of the matched document
@@ -56,9 +56,9 @@ func NewHitsHitsWithDefaults() *HitsHits {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *HitsHits) GetId() int32 {
+func (o *HitsHits) GetId() uint64 {
 	if o == nil || IsNil(o.Id) {
-		var ret int32
+		var ret uint64
 		return ret
 	}
 	return *o.Id
@@ -66,7 +66,7 @@ func (o *HitsHits) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HitsHits) GetIdOk() (*int32, bool) {
+func (o *HitsHits) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -82,8 +82,8 @@ func (o *HitsHits) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *HitsHits) SetId(v int32) {
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *HitsHits) SetId(v uint64) {
 	o.Id = &v
 }
 
