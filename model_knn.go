@@ -201,7 +201,7 @@ func (o *Knn) HasDocId() bool {
 }
 
 // SetDocId gets a reference to the given int32 and assigns it to the DocId field.
-func (o *Knn) SetDocId(v unt64) {
+func (o *Knn) SetDocId(v uint64) {
 	o.DocId = &v
 }
 
