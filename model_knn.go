@@ -30,7 +30,7 @@ type Knn struct {
 	// The vector used as input for the KNN search
 	QueryVector []float32 `json:"query_vector,omitempty"`
 	// The docuemnt ID used as input for the KNN search
-	DocId *int32 `json:"doc_id,omitempty"`
+	DocId *uint64 `json:"doc_id,omitempty"`
 	// Optional parameter controlling the accuracy of the search
 	Ef *int32 `json:"ef,omitempty"`
 	// Optional parameter enabling KNN rescoring (disabled by default)
@@ -174,9 +174,9 @@ func (o *Knn) SetQueryVector(v []float32) {
 }
 
 // GetDocId returns the DocId field value if set, zero value otherwise.
-func (o *Knn) GetDocId() int32 {
+func (o *Knn) GetDocId() uint64 {
 	if o == nil || IsNil(o.DocId) {
-		var ret int32
+		var ret uint64
 		return ret
 	}
 	return *o.DocId
@@ -184,7 +184,7 @@ func (o *Knn) GetDocId() int32 {
 
 // GetDocIdOk returns a tuple with the DocId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Knn) GetDocIdOk() (*int32, bool) {
+func (o *Knn) GetDocIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.DocId) {
 		return nil, false
 	}
@@ -201,7 +201,7 @@ func (o *Knn) HasDocId() bool {
 }
 
 // SetDocId gets a reference to the given int32 and assigns it to the DocId field.
-func (o *Knn) SetDocId(v int32) {
+func (o *Knn) SetDocId(v unt64) {
 	o.DocId = &v
 }
 
