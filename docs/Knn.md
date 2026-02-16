@@ -125,20 +125,20 @@ HasQueryVector returns a boolean if a field has been set.
 
 ### GetDocId
 
-`func (o *Knn) GetDocId() int32`
+`func (o *Knn) GetDocId() uint64`
 
 GetDocId returns the DocId field if non-nil, zero value otherwise.
 
 ### GetDocIdOk
 
-`func (o *Knn) GetDocIdOk() (*int32, bool)`
+`func (o *Knn) GetDocIdOk() (*uint64, bool)`
 
 GetDocIdOk returns a tuple with the DocId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDocId
 
-`func (o *Knn) SetDocId(v int32)`
+`func (o *Knn) SetDocId(v unt64)`
 
 SetDocId sets DocId field to given value.
 
