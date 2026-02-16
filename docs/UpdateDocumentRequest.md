@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Table** | **string** | Name of the document table | 
 **Cluster** | Pointer to **string** | Name of the document cluster | [optional] 
 **Doc** | **map[string]interface{}** | Object containing the document fields to update | 
-**Id** | Pointer to **int32** | Document ID | [optional] 
+**Id** | Pointer to **uint64** | Document ID | [optional]
 **Query** | Pointer to [**NullableQueryFilter**](QueryFilter.md) |  | [optional] 
 
 ## Methods
@@ -96,20 +96,20 @@ SetDoc sets Doc field to given value.
 
 ### GetId
 
-`func (o *UpdateDocumentRequest) GetId() int32`
+`func (o *UpdateDocumentRequest) GetId() uint64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *UpdateDocumentRequest) GetIdOk() (*int32, bool)`
+`func (o *UpdateDocumentRequest) GetIdOk() (*uint64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *UpdateDocumentRequest) SetId(v int32)`
+`func (o *UpdateDocumentRequest) SetId(v uint64)`
 
 SetId sets Id field to given value.
 

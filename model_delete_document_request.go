@@ -27,7 +27,7 @@ type DeleteDocumentRequest struct {
 	// Cluster name
 	Cluster *string `json:"cluster,omitempty"`
 	// The ID of document for deletion
-	Id *int32 `json:"id,omitempty"`
+	Id *uint64 `json:"id,omitempty"`
 	// Defines the criteria to match documents for deletion
 	Query map[string]interface{} `json:"query,omitempty"`
 }
@@ -109,9 +109,9 @@ func (o *DeleteDocumentRequest) SetCluster(v string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *DeleteDocumentRequest) GetId() int32 {
+func (o *DeleteDocumentRequest) GetId() uint64 {
 	if o == nil || IsNil(o.Id) {
-		var ret int32
+		var ret uint64
 		return ret
 	}
 	return *o.Id
@@ -119,7 +119,7 @@ func (o *DeleteDocumentRequest) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteDocumentRequest) GetIdOk() (*int32, bool) {
+func (o *DeleteDocumentRequest) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *DeleteDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *DeleteDocumentRequest) SetId(v int32) {
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *DeleteDocumentRequest) SetId(v uint64) {
 	o.Id = &v
 }
 

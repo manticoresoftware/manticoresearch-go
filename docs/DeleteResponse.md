@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Table** | Pointer to **string** | The name of the table from which the document was deleted | [optional] 
 **Deleted** | Pointer to **int32** | Number of documents deleted | [optional] 
-**Id** | Pointer to **int32** | The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned | [optional] 
+**Id** | Pointer to **uint64** | The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned | [optional]
 **Found** | Pointer to **bool** | Indicates whether any documents to be deleted were found | [optional] 
 **Result** | Pointer to **string** | Result of the delete operation, typically &#39;deleted&#39; | [optional] 
 
@@ -81,20 +81,20 @@ HasDeleted returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *DeleteResponse) GetId() int32`
+`func (o *DeleteResponse) GetId() uint64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DeleteResponse) GetIdOk() (*int32, bool)`
+`func (o *DeleteResponse) GetIdOk() (*uint64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DeleteResponse) SetId(v int32)`
+`func (o *DeleteResponse) SetId(v uint64)`
 
 SetId sets Id field to given value.
 

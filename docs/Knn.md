@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **K** | **int32** | The number of nearest neighbors to return | 
 **Query** | Pointer to [**KnnQuery**](KnnQuery.md) |  | [optional] 
 **QueryVector** | Pointer to **[]float32** | The vector used as input for the KNN search | [optional] 
-**DocId** | Pointer to **uint64** | The docuemnt ID used as input for the KNN search | [optional] 
+**DocId** | Pointer to **int32** | The docuemnt ID used as input for the KNN search | [optional] 
 **Ef** | Pointer to **int32** | Optional parameter controlling the accuracy of the search | [optional] 
 **Rescore** | Pointer to **bool** | Optional parameter enabling KNN rescoring (disabled by default) | [optional] 
 **Oversampling** | Pointer to **float32** | Optional parameter setting a factor by which k is multiplied when executing the KNN search | [optional] 
@@ -125,20 +125,20 @@ HasQueryVector returns a boolean if a field has been set.
 
 ### GetDocId
 
-`func (o *Knn) GetDocId() uint64`
+`func (o *Knn) GetDocId() int32`
 
 GetDocId returns the DocId field if non-nil, zero value otherwise.
 
 ### GetDocIdOk
 
-`func (o *Knn) GetDocIdOk() (*uint64, bool)`
+`func (o *Knn) GetDocIdOk() (*int32, bool)`
 
 GetDocIdOk returns a tuple with the DocId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDocId
 
-`func (o *Knn) SetDocId(v unt64)`
+`func (o *Knn) SetDocId(v int32)`
 
 SetDocId sets DocId field to given value.
 

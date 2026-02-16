@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Table** | **string** | Table name | 
 **Cluster** | Pointer to **string** | Cluster name | [optional] 
-**Id** | Pointer to **int32** | The ID of document for deletion | [optional] 
+**Id** | Pointer to **uint64** | The ID of document for deletion | [optional]
 **Query** | Pointer to **map[string]interface{}** | Defines the criteria to match documents for deletion | [optional] 
 
 ## Methods
@@ -75,20 +75,20 @@ HasCluster returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *DeleteDocumentRequest) GetId() int32`
+`func (o *DeleteDocumentRequest) GetId() uint64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *DeleteDocumentRequest) GetIdOk() (*int32, bool)`
+`func (o *DeleteDocumentRequest) GetIdOk() (*uint64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *DeleteDocumentRequest) SetId(v int32)`
+`func (o *DeleteDocumentRequest) SetId(v uint64)`
 
 SetId sets Id field to given value.
 

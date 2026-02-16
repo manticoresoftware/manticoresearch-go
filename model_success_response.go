@@ -23,7 +23,7 @@ type SuccessResponse struct {
 	// Name of the document table
 	Table *string `json:"table,omitempty"`
 	// ID of the document affected by the request operation
-	Id *int32 `json:"id,omitempty"`
+	Id *uint64 `json:"id,omitempty"`
 	// Indicates whether the document was created as a result of the operation
 	Created *bool `json:"created,omitempty"`
 	// Result of the operation, typically 'created', 'updated', or 'deleted'
@@ -84,9 +84,9 @@ func (o *SuccessResponse) SetTable(v string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *SuccessResponse) GetId() int32 {
+func (o *SuccessResponse) GetId() uint64 {
 	if o == nil || IsNil(o.Id) {
-		var ret int32
+		var ret uint64
 		return ret
 	}
 	return *o.Id
@@ -94,7 +94,7 @@ func (o *SuccessResponse) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuccessResponse) GetIdOk() (*int32, bool) {
+func (o *SuccessResponse) GetIdOk() (*uint64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -110,8 +110,8 @@ func (o *SuccessResponse) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *SuccessResponse) SetId(v int32) {
+// SetId gets a reference to the given uint64 and assigns it to the Id field.
+func (o *SuccessResponse) SetId(v uint64) {
 	o.Id = &v
 }
 
