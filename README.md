@@ -2,15 +2,17 @@
 
 Сlient for Manticore Search.
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-go/tree/v1.11.0
+❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-go/tree/v1.12.0
 
 ## Compatibility Table
 
 | **manticoresearch-go**    | **Manticore Search**                | **Go**           | **Compatibility**       |
 | --------------------------| ----------------------------------- | -----------------| ------------------------|
 | `dev`                     | `dev` (latest development version)  | 1.17.0 or newer  | ✅ Fully Compatible     |
-| v1.11.0 or newer          | 17.5.1 or newer                     | 1.17.0 or newer  | ✅ Fully Compatible     |
-| v1.11.0 or newer          | 13.2.3 to 17.5.1                    | 1.17.0 or newer  | ⚠️ Partially Compatible |
+| v1.12.0 or newer          | 28.4.4 or newer                     | 1.17.0 or newer  | ✅ Fully Compatible     |
+| v1.11.0 to v1.12.0        | 28.4.4 or newer                     | 1.17.0 or newer  | ⚠️ Partially Compatible |
+| v1.11.0 to v1.12.0        | 17.5.1 to 28.4.4                    | 1.17.0 or newer  | ✅ Fully Compatible     |
+| v1.11.0 to v1.12.0        | 13.2.3 to 17.5.1                    | 1.17.0 or newer  | ⚠️ Partially Compatible |
 | v1.9.0 to v1.11.0         | 13.2.3 to 17.5.1                    | 1.17.0 or newer  | ✅ Fully Compatible     |
 | v1.9.0 to v1.11.0         | 7.0.0 to 13.2.3                     | 1.17.0 or newer  | ⚠️ Partially Compatible |
 | v1.6.0 to v1.9.0          | 7.0.0 to 13.2.3                     | 1.17.0 or newer  | ✅ Fully Compatible     |
@@ -120,23 +122,35 @@ Class | Method | HTTP request | Description
 *SearchAPI* | [**Percolate**](docs/SearchAPI.md#percolate) | **Post** /pq/{table}/search | Perform reverse search on a percolate table
 *SearchAPI* | [**Search**](docs/SearchAPI.md#search) | **Post** /search | Performs a search on a table
 *UtilsAPI* | [**Sql**](docs/UtilsAPI.md#sql) | **Post** /sql | Perform SQL requests
+*UtilsAPI* | [**Token**](docs/UtilsAPI.md#token) | **Post** /token | Create or rotate a bearer token
 
 
 ## Documentation For Models
 
+ - [AggBucket](docs/AggBucket.md)
+ - [AggBucketsResult](docs/AggBucketsResult.md)
  - [AggComposite](docs/AggComposite.md)
  - [AggCompositeSource](docs/AggCompositeSource.md)
  - [AggCompositeTerm](docs/AggCompositeTerm.md)
  - [AggDateHistogram](docs/AggDateHistogram.md)
  - [AggHistogram](docs/AggHistogram.md)
+ - [AggMedianAbsoluteDeviation](docs/AggMedianAbsoluteDeviation.md)
+ - [AggMetric](docs/AggMetric.md)
+ - [AggPercentileRanks](docs/AggPercentileRanks.md)
+ - [AggPercentiles](docs/AggPercentiles.md)
+ - [AggRange](docs/AggRange.md)
+ - [AggTDigest](docs/AggTDigest.md)
  - [AggTerms](docs/AggTerms.md)
  - [Aggregation](docs/Aggregation.md)
  - [AutocompleteRequest](docs/AutocompleteRequest.md)
  - [BoolFilter](docs/BoolFilter.md)
  - [BulkResponse](docs/BulkResponse.md)
+ - [Chat](docs/Chat.md)
  - [DeleteDocumentRequest](docs/DeleteDocumentRequest.md)
  - [DeleteResponse](docs/DeleteResponse.md)
  - [ErrorResponse](docs/ErrorResponse.md)
+ - [FacetBucketStatus](docs/FacetBucketStatus.md)
+ - [FacetFilterMode](docs/FacetFilterMode.md)
  - [FulltextFilter](docs/FulltextFilter.md)
  - [GeoDistance](docs/GeoDistance.md)
  - [GeoDistanceLocationAnchor](docs/GeoDistanceLocationAnchor.md)
@@ -144,6 +158,7 @@ Class | Method | HTTP request | Description
  - [HighlightFieldOption](docs/HighlightFieldOption.md)
  - [HighlightFields](docs/HighlightFields.md)
  - [HitsHits](docs/HitsHits.md)
+ - [Hybrid](docs/Hybrid.md)
  - [InsertDocumentRequest](docs/InsertDocumentRequest.md)
  - [Join](docs/Join.md)
  - [JoinCond](docs/JoinCond.md)
@@ -156,9 +171,12 @@ Class | Method | HTTP request | Description
  - [PercolateRequest](docs/PercolateRequest.md)
  - [PercolateRequestQuery](docs/PercolateRequestQuery.md)
  - [QueryFilter](docs/QueryFilter.md)
+ - [RangeFilter](docs/RangeFilter.md)
  - [ReplaceDocumentRequest](docs/ReplaceDocumentRequest.md)
  - [ResponseError](docs/ResponseError.md)
  - [ResponseErrorDetails](docs/ResponseErrorDetails.md)
+ - [ScriptField](docs/ScriptField.md)
+ - [ScriptFieldScript](docs/ScriptFieldScript.md)
  - [SearchQuery](docs/SearchQuery.md)
  - [SearchRequest](docs/SearchRequest.md)
  - [SearchResponse](docs/SearchResponse.md)
@@ -173,7 +191,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
-Endpoints do not require authorization.
+
 
 ## Documentation for Utility Methods
 

@@ -25,7 +25,7 @@ type AggDateHistogram struct {
 	// Field to group by
 	Field string `json:"field"`
 	// Interval of the histogram values
-	Interval int32 `json:"interval"`
+	CalendarInterval int32 `json:"calendar_interval"`
 	// Offset of the histogram values. Default value is 0.
 	Offset *int32 `json:"offset,omitempty"`
 	// Flag that defines if a search response will be a dictionary with the bucket keys. Default value is false.
@@ -38,10 +38,10 @@ type _AggDateHistogram AggDateHistogram
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAggDateHistogram(field string, interval int32) *AggDateHistogram {
+func NewAggDateHistogram(field string, calendarInterval int32) *AggDateHistogram {
 	this := AggDateHistogram{}
 	this.Field = field
-	this.Interval = interval
+	this.CalendarInterval = calendarInterval
 	return &this
 }
 
@@ -77,28 +77,28 @@ func (o *AggDateHistogram) SetField(v string) {
 	o.Field = v
 }
 
-// GetInterval returns the Interval field value
-func (o *AggDateHistogram) GetInterval() int32 {
+// GetCalendarInterval returns the CalendarInterval field value
+func (o *AggDateHistogram) GetCalendarInterval() int32 {
 	if o == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.Interval
+	return o.CalendarInterval
 }
 
-// GetIntervalOk returns a tuple with the Interval field value
+// GetCalendarIntervalOk returns a tuple with the CalendarInterval field value
 // and a boolean to check if the value has been set.
-func (o *AggDateHistogram) GetIntervalOk() (*int32, bool) {
+func (o *AggDateHistogram) GetCalendarIntervalOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Interval, true
+	return &o.CalendarInterval, true
 }
 
-// SetInterval sets field value
-func (o *AggDateHistogram) SetInterval(v int32) {
-	o.Interval = v
+// SetCalendarInterval sets field value
+func (o *AggDateHistogram) SetCalendarInterval(v int32) {
+	o.CalendarInterval = v
 }
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
@@ -176,7 +176,7 @@ func (o AggDateHistogram) MarshalJSON() ([]byte, error) {
 func (o AggDateHistogram) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["field"] = o.Field
-	toSerialize["interval"] = o.Interval
+	toSerialize["calendar_interval"] = o.CalendarInterval
 	if !IsNil(o.Offset) {
 		toSerialize["offset"] = o.Offset
 	}
@@ -192,7 +192,7 @@ func (o *AggDateHistogram) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"field",
-		"interval",
+		"calendar_interval",
 	}
 
 	allProperties := make(map[string]interface{})

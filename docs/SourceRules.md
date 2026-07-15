@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Includes** | Pointer to **[]string** | List of fields to include in the response | [optional] [default to []]
-**Excludes** | Pointer to **[]string** | List of fields to exclude from the response | [optional] [default to [""]]
+**Includes** | Pointer to **[]string** | List of fields to include in the response | [optional] [default to {}]
+**Excludes** | Pointer to **[]string** | List of fields to exclude from the response | [optional] [default to {""}]
 
 ## Methods
 

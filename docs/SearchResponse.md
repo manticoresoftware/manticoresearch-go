@@ -6,11 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Took** | Pointer to **int32** | Time taken to execute the search | [optional] 
 **TimedOut** | Pointer to **bool** | Indicates whether the search operation timed out | [optional] 
-**Aggregations** | Pointer to **map[string]interface{}** | Aggregated search results grouped by the specified criteria | [optional] 
+**Aggregations** | Pointer to [**map[string]AggBucketsResult**](AggBucketsResult.md) | Aggregated search results grouped by the specified criteria. Each named aggregation typically contains a &#x60;buckets&#x60; array (or keyed map) of bucket objects with &#x60;key&#x60;, &#x60;doc_count&#x60;, and optional &#x60;status&#x60;.  | [optional] 
 **Hits** | Pointer to [**SearchResponseHits**](SearchResponseHits.md) |  | [optional] 
 **Profile** | Pointer to **map[string]interface{}** | Profile information about the search execution, if profiling is enabled | [optional] 
 **Scroll** | Pointer to **string** | Scroll token to be used fo pagination | [optional] 
 **Warning** | Pointer to **map[string]interface{}** | Warnings encountered during the search operation | [optional] 
+**ConversationUuid** | Pointer to **string** | Existing or generated conversation id (conversational search) | [optional] 
+**UserQuery** | Pointer to **string** | Original user query (conversational search) | [optional] 
+**SearchQuery** | Pointer to **string** | Standalone search query used for KNN retrieval (conversational search) | [optional] 
+**Response** | Pointer to **string** | LLM answer as generated (conversational search) | [optional] 
+**Sources** | Pointer to **string** | JSON string containing retrieved source rows used as LLM context (conversational search).  | [optional] 
 
 ## Methods
 
@@ -83,20 +88,20 @@ HasTimedOut returns a boolean if a field has been set.
 
 ### GetAggregations
 
-`func (o *SearchResponse) GetAggregations() map[string]interface{}`
+`func (o *SearchResponse) GetAggregations() map[string]AggBucketsResult`
 
 GetAggregations returns the Aggregations field if non-nil, zero value otherwise.
 
 ### GetAggregationsOk
 
-`func (o *SearchResponse) GetAggregationsOk() (*map[string]interface{}, bool)`
+`func (o *SearchResponse) GetAggregationsOk() (*map[string]AggBucketsResult, bool)`
 
 GetAggregationsOk returns a tuple with the Aggregations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAggregations
 
-`func (o *SearchResponse) SetAggregations(v map[string]interface{})`
+`func (o *SearchResponse) SetAggregations(v map[string]AggBucketsResult)`
 
 SetAggregations sets Aggregations field to given value.
 
@@ -205,6 +210,131 @@ SetWarning sets Warning field to given value.
 `func (o *SearchResponse) HasWarning() bool`
 
 HasWarning returns a boolean if a field has been set.
+
+### GetConversationUuid
+
+`func (o *SearchResponse) GetConversationUuid() string`
+
+GetConversationUuid returns the ConversationUuid field if non-nil, zero value otherwise.
+
+### GetConversationUuidOk
+
+`func (o *SearchResponse) GetConversationUuidOk() (*string, bool)`
+
+GetConversationUuidOk returns a tuple with the ConversationUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConversationUuid
+
+`func (o *SearchResponse) SetConversationUuid(v string)`
+
+SetConversationUuid sets ConversationUuid field to given value.
+
+### HasConversationUuid
+
+`func (o *SearchResponse) HasConversationUuid() bool`
+
+HasConversationUuid returns a boolean if a field has been set.
+
+### GetUserQuery
+
+`func (o *SearchResponse) GetUserQuery() string`
+
+GetUserQuery returns the UserQuery field if non-nil, zero value otherwise.
+
+### GetUserQueryOk
+
+`func (o *SearchResponse) GetUserQueryOk() (*string, bool)`
+
+GetUserQueryOk returns a tuple with the UserQuery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserQuery
+
+`func (o *SearchResponse) SetUserQuery(v string)`
+
+SetUserQuery sets UserQuery field to given value.
+
+### HasUserQuery
+
+`func (o *SearchResponse) HasUserQuery() bool`
+
+HasUserQuery returns a boolean if a field has been set.
+
+### GetSearchQuery
+
+`func (o *SearchResponse) GetSearchQuery() string`
+
+GetSearchQuery returns the SearchQuery field if non-nil, zero value otherwise.
+
+### GetSearchQueryOk
+
+`func (o *SearchResponse) GetSearchQueryOk() (*string, bool)`
+
+GetSearchQueryOk returns a tuple with the SearchQuery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSearchQuery
+
+`func (o *SearchResponse) SetSearchQuery(v string)`
+
+SetSearchQuery sets SearchQuery field to given value.
+
+### HasSearchQuery
+
+`func (o *SearchResponse) HasSearchQuery() bool`
+
+HasSearchQuery returns a boolean if a field has been set.
+
+### GetResponse
+
+`func (o *SearchResponse) GetResponse() string`
+
+GetResponse returns the Response field if non-nil, zero value otherwise.
+
+### GetResponseOk
+
+`func (o *SearchResponse) GetResponseOk() (*string, bool)`
+
+GetResponseOk returns a tuple with the Response field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResponse
+
+`func (o *SearchResponse) SetResponse(v string)`
+
+SetResponse sets Response field to given value.
+
+### HasResponse
+
+`func (o *SearchResponse) HasResponse() bool`
+
+HasResponse returns a boolean if a field has been set.
+
+### GetSources
+
+`func (o *SearchResponse) GetSources() string`
+
+GetSources returns the Sources field if non-nil, zero value otherwise.
+
+### GetSourcesOk
+
+`func (o *SearchResponse) GetSourcesOk() (*string, bool)`
+
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSources
+
+`func (o *SearchResponse) SetSources(v string)`
+
+SetSources sets Sources field to given value.
+
+### HasSources
+
+`func (o *SearchResponse) HasSources() bool`
+
+HasSources returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

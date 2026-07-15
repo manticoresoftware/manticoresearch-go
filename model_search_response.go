@@ -18,14 +18,14 @@ import (
 // checks if the SearchResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SearchResponse{}
 
-// SearchResponse Response object containing the results of a search request
+// SearchResponse Response object containing search results. For conversational search requests that include a `chat` object, the optional chat fields below are also populated. For conversational search response fields see [Conversational search](https://manual.manticoresearch.com/Searching/Conversational_search#Response) 
 type SearchResponse struct {
 	// Time taken to execute the search
 	Took *int32 `json:"took,omitempty"`
 	// Indicates whether the search operation timed out
 	TimedOut *bool `json:"timed_out,omitempty"`
-	// Aggregated search results grouped by the specified criteria
-	Aggregations map[string]interface{} `json:"aggregations,omitempty"`
+	// Aggregated search results grouped by the specified criteria. Each named aggregation typically contains a `buckets` array (or keyed map) of bucket objects with `key`, `doc_count`, and optional `status`. 
+	Aggregations map[string]AggBucketsResult `json:"aggregations,omitempty"`
 	Hits *SearchResponseHits `json:"hits,omitempty"`
 	// Profile information about the search execution, if profiling is enabled
 	Profile map[string]interface{} `json:"profile,omitempty"`
@@ -33,6 +33,16 @@ type SearchResponse struct {
 	Scroll *string `json:"scroll,omitempty"`
 	// Warnings encountered during the search operation
 	Warning map[string]interface{} `json:"warning,omitempty"`
+	// Existing or generated conversation id (conversational search)
+	ConversationUuid *string `json:"conversation_uuid,omitempty"`
+	// Original user query (conversational search)
+	UserQuery *string `json:"user_query,omitempty"`
+	// Standalone search query used for KNN retrieval (conversational search)
+	SearchQuery *string `json:"search_query,omitempty"`
+	// LLM answer as generated (conversational search)
+	Response *string `json:"response,omitempty"`
+	// JSON string containing retrieved source rows used as LLM context (conversational search). 
+	Sources *string `json:"sources,omitempty"`
 }
 
 // NewSearchResponse instantiates a new SearchResponse object
@@ -117,9 +127,9 @@ func (o *SearchResponse) SetTimedOut(v bool) {
 }
 
 // GetAggregations returns the Aggregations field value if set, zero value otherwise.
-func (o *SearchResponse) GetAggregations() map[string]interface{} {
+func (o *SearchResponse) GetAggregations() map[string]AggBucketsResult {
 	if o == nil || IsNil(o.Aggregations) {
-		var ret map[string]interface{}
+		var ret map[string]AggBucketsResult
 		return ret
 	}
 	return o.Aggregations
@@ -127,9 +137,9 @@ func (o *SearchResponse) GetAggregations() map[string]interface{} {
 
 // GetAggregationsOk returns a tuple with the Aggregations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchResponse) GetAggregationsOk() (map[string]interface{}, bool) {
+func (o *SearchResponse) GetAggregationsOk() (map[string]AggBucketsResult, bool) {
 	if o == nil || IsNil(o.Aggregations) {
-		return map[string]interface{}{}, false
+		return map[string]AggBucketsResult{}, false
 	}
 	return o.Aggregations, true
 }
@@ -143,8 +153,8 @@ func (o *SearchResponse) HasAggregations() bool {
 	return false
 }
 
-// SetAggregations gets a reference to the given map[string]interface{} and assigns it to the Aggregations field.
-func (o *SearchResponse) SetAggregations(v map[string]interface{}) {
+// SetAggregations gets a reference to the given map[string]AggBucketsResult and assigns it to the Aggregations field.
+func (o *SearchResponse) SetAggregations(v map[string]AggBucketsResult) {
 	o.Aggregations = v
 }
 
@@ -276,6 +286,166 @@ func (o *SearchResponse) SetWarning(v map[string]interface{}) {
 	o.Warning = v
 }
 
+// GetConversationUuid returns the ConversationUuid field value if set, zero value otherwise.
+func (o *SearchResponse) GetConversationUuid() string {
+	if o == nil || IsNil(o.ConversationUuid) {
+		var ret string
+		return ret
+	}
+	return *o.ConversationUuid
+}
+
+// GetConversationUuidOk returns a tuple with the ConversationUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchResponse) GetConversationUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.ConversationUuid) {
+		return nil, false
+	}
+	return o.ConversationUuid, true
+}
+
+// HasConversationUuid returns a boolean if a field has been set.
+func (o *SearchResponse) HasConversationUuid() bool {
+	if o != nil && !IsNil(o.ConversationUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetConversationUuid gets a reference to the given string and assigns it to the ConversationUuid field.
+func (o *SearchResponse) SetConversationUuid(v string) {
+	o.ConversationUuid = &v
+}
+
+// GetUserQuery returns the UserQuery field value if set, zero value otherwise.
+func (o *SearchResponse) GetUserQuery() string {
+	if o == nil || IsNil(o.UserQuery) {
+		var ret string
+		return ret
+	}
+	return *o.UserQuery
+}
+
+// GetUserQueryOk returns a tuple with the UserQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchResponse) GetUserQueryOk() (*string, bool) {
+	if o == nil || IsNil(o.UserQuery) {
+		return nil, false
+	}
+	return o.UserQuery, true
+}
+
+// HasUserQuery returns a boolean if a field has been set.
+func (o *SearchResponse) HasUserQuery() bool {
+	if o != nil && !IsNil(o.UserQuery) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserQuery gets a reference to the given string and assigns it to the UserQuery field.
+func (o *SearchResponse) SetUserQuery(v string) {
+	o.UserQuery = &v
+}
+
+// GetSearchQuery returns the SearchQuery field value if set, zero value otherwise.
+func (o *SearchResponse) GetSearchQuery() string {
+	if o == nil || IsNil(o.SearchQuery) {
+		var ret string
+		return ret
+	}
+	return *o.SearchQuery
+}
+
+// GetSearchQueryOk returns a tuple with the SearchQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchResponse) GetSearchQueryOk() (*string, bool) {
+	if o == nil || IsNil(o.SearchQuery) {
+		return nil, false
+	}
+	return o.SearchQuery, true
+}
+
+// HasSearchQuery returns a boolean if a field has been set.
+func (o *SearchResponse) HasSearchQuery() bool {
+	if o != nil && !IsNil(o.SearchQuery) {
+		return true
+	}
+
+	return false
+}
+
+// SetSearchQuery gets a reference to the given string and assigns it to the SearchQuery field.
+func (o *SearchResponse) SetSearchQuery(v string) {
+	o.SearchQuery = &v
+}
+
+// GetResponse returns the Response field value if set, zero value otherwise.
+func (o *SearchResponse) GetResponse() string {
+	if o == nil || IsNil(o.Response) {
+		var ret string
+		return ret
+	}
+	return *o.Response
+}
+
+// GetResponseOk returns a tuple with the Response field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchResponse) GetResponseOk() (*string, bool) {
+	if o == nil || IsNil(o.Response) {
+		return nil, false
+	}
+	return o.Response, true
+}
+
+// HasResponse returns a boolean if a field has been set.
+func (o *SearchResponse) HasResponse() bool {
+	if o != nil && !IsNil(o.Response) {
+		return true
+	}
+
+	return false
+}
+
+// SetResponse gets a reference to the given string and assigns it to the Response field.
+func (o *SearchResponse) SetResponse(v string) {
+	o.Response = &v
+}
+
+// GetSources returns the Sources field value if set, zero value otherwise.
+func (o *SearchResponse) GetSources() string {
+	if o == nil || IsNil(o.Sources) {
+		var ret string
+		return ret
+	}
+	return *o.Sources
+}
+
+// GetSourcesOk returns a tuple with the Sources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchResponse) GetSourcesOk() (*string, bool) {
+	if o == nil || IsNil(o.Sources) {
+		return nil, false
+	}
+	return o.Sources, true
+}
+
+// HasSources returns a boolean if a field has been set.
+func (o *SearchResponse) HasSources() bool {
+	if o != nil && !IsNil(o.Sources) {
+		return true
+	}
+
+	return false
+}
+
+// SetSources gets a reference to the given string and assigns it to the Sources field.
+func (o *SearchResponse) SetSources(v string) {
+	o.Sources = &v
+}
+
 func (o SearchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -306,6 +476,21 @@ func (o SearchResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Warning) {
 		toSerialize["warning"] = o.Warning
+	}
+	if !IsNil(o.ConversationUuid) {
+		toSerialize["conversation_uuid"] = o.ConversationUuid
+	}
+	if !IsNil(o.UserQuery) {
+		toSerialize["user_query"] = o.UserQuery
+	}
+	if !IsNil(o.SearchQuery) {
+		toSerialize["search_query"] = o.SearchQuery
+	}
+	if !IsNil(o.Response) {
+		toSerialize["response"] = o.Response
+	}
+	if !IsNil(o.Sources) {
+		toSerialize["sources"] = o.Sources
 	}
 	return toSerialize, nil
 }

@@ -24,6 +24,16 @@ type Aggregation struct {
 	Sort []interface{} `json:"sort,omitempty"`
 	Composite *AggComposite `json:"composite,omitempty"`
 	Histogram *AggHistogram `json:"histogram,omitempty"`
+	DateHistogram *AggDateHistogram `json:"date_histogram,omitempty"`
+	Range *AggRange `json:"range,omitempty"`
+	DateRange *AggRange `json:"date_range,omitempty"`
+	Percentiles *AggPercentiles `json:"percentiles,omitempty"`
+	PercentileRanks *AggPercentileRanks `json:"percentile_ranks,omitempty"`
+	MedianAbsoluteDeviation *AggMedianAbsoluteDeviation `json:"median_absolute_deviation,omitempty"`
+	Min *AggMetric `json:"min,omitempty"`
+	Max *AggMetric `json:"max,omitempty"`
+	Sum *AggMetric `json:"sum,omitempty"`
+	Avg *AggMetric `json:"avg,omitempty"`
 }
 
 // NewAggregation instantiates a new Aggregation object
@@ -171,6 +181,326 @@ func (o *Aggregation) SetHistogram(v AggHistogram) {
 	o.Histogram = &v
 }
 
+// GetDateHistogram returns the DateHistogram field value if set, zero value otherwise.
+func (o *Aggregation) GetDateHistogram() AggDateHistogram {
+	if o == nil || IsNil(o.DateHistogram) {
+		var ret AggDateHistogram
+		return ret
+	}
+	return *o.DateHistogram
+}
+
+// GetDateHistogramOk returns a tuple with the DateHistogram field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetDateHistogramOk() (*AggDateHistogram, bool) {
+	if o == nil || IsNil(o.DateHistogram) {
+		return nil, false
+	}
+	return o.DateHistogram, true
+}
+
+// HasDateHistogram returns a boolean if a field has been set.
+func (o *Aggregation) HasDateHistogram() bool {
+	if o != nil && !IsNil(o.DateHistogram) {
+		return true
+	}
+
+	return false
+}
+
+// SetDateHistogram gets a reference to the given AggDateHistogram and assigns it to the DateHistogram field.
+func (o *Aggregation) SetDateHistogram(v AggDateHistogram) {
+	o.DateHistogram = &v
+}
+
+// GetRange returns the Range field value if set, zero value otherwise.
+func (o *Aggregation) GetRange() AggRange {
+	if o == nil || IsNil(o.Range) {
+		var ret AggRange
+		return ret
+	}
+	return *o.Range
+}
+
+// GetRangeOk returns a tuple with the Range field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetRangeOk() (*AggRange, bool) {
+	if o == nil || IsNil(o.Range) {
+		return nil, false
+	}
+	return o.Range, true
+}
+
+// HasRange returns a boolean if a field has been set.
+func (o *Aggregation) HasRange() bool {
+	if o != nil && !IsNil(o.Range) {
+		return true
+	}
+
+	return false
+}
+
+// SetRange gets a reference to the given AggRange and assigns it to the Range field.
+func (o *Aggregation) SetRange(v AggRange) {
+	o.Range = &v
+}
+
+// GetDateRange returns the DateRange field value if set, zero value otherwise.
+func (o *Aggregation) GetDateRange() AggRange {
+	if o == nil || IsNil(o.DateRange) {
+		var ret AggRange
+		return ret
+	}
+	return *o.DateRange
+}
+
+// GetDateRangeOk returns a tuple with the DateRange field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetDateRangeOk() (*AggRange, bool) {
+	if o == nil || IsNil(o.DateRange) {
+		return nil, false
+	}
+	return o.DateRange, true
+}
+
+// HasDateRange returns a boolean if a field has been set.
+func (o *Aggregation) HasDateRange() bool {
+	if o != nil && !IsNil(o.DateRange) {
+		return true
+	}
+
+	return false
+}
+
+// SetDateRange gets a reference to the given AggRange and assigns it to the DateRange field.
+func (o *Aggregation) SetDateRange(v AggRange) {
+	o.DateRange = &v
+}
+
+// GetPercentiles returns the Percentiles field value if set, zero value otherwise.
+func (o *Aggregation) GetPercentiles() AggPercentiles {
+	if o == nil || IsNil(o.Percentiles) {
+		var ret AggPercentiles
+		return ret
+	}
+	return *o.Percentiles
+}
+
+// GetPercentilesOk returns a tuple with the Percentiles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetPercentilesOk() (*AggPercentiles, bool) {
+	if o == nil || IsNil(o.Percentiles) {
+		return nil, false
+	}
+	return o.Percentiles, true
+}
+
+// HasPercentiles returns a boolean if a field has been set.
+func (o *Aggregation) HasPercentiles() bool {
+	if o != nil && !IsNil(o.Percentiles) {
+		return true
+	}
+
+	return false
+}
+
+// SetPercentiles gets a reference to the given AggPercentiles and assigns it to the Percentiles field.
+func (o *Aggregation) SetPercentiles(v AggPercentiles) {
+	o.Percentiles = &v
+}
+
+// GetPercentileRanks returns the PercentileRanks field value if set, zero value otherwise.
+func (o *Aggregation) GetPercentileRanks() AggPercentileRanks {
+	if o == nil || IsNil(o.PercentileRanks) {
+		var ret AggPercentileRanks
+		return ret
+	}
+	return *o.PercentileRanks
+}
+
+// GetPercentileRanksOk returns a tuple with the PercentileRanks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetPercentileRanksOk() (*AggPercentileRanks, bool) {
+	if o == nil || IsNil(o.PercentileRanks) {
+		return nil, false
+	}
+	return o.PercentileRanks, true
+}
+
+// HasPercentileRanks returns a boolean if a field has been set.
+func (o *Aggregation) HasPercentileRanks() bool {
+	if o != nil && !IsNil(o.PercentileRanks) {
+		return true
+	}
+
+	return false
+}
+
+// SetPercentileRanks gets a reference to the given AggPercentileRanks and assigns it to the PercentileRanks field.
+func (o *Aggregation) SetPercentileRanks(v AggPercentileRanks) {
+	o.PercentileRanks = &v
+}
+
+// GetMedianAbsoluteDeviation returns the MedianAbsoluteDeviation field value if set, zero value otherwise.
+func (o *Aggregation) GetMedianAbsoluteDeviation() AggMedianAbsoluteDeviation {
+	if o == nil || IsNil(o.MedianAbsoluteDeviation) {
+		var ret AggMedianAbsoluteDeviation
+		return ret
+	}
+	return *o.MedianAbsoluteDeviation
+}
+
+// GetMedianAbsoluteDeviationOk returns a tuple with the MedianAbsoluteDeviation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetMedianAbsoluteDeviationOk() (*AggMedianAbsoluteDeviation, bool) {
+	if o == nil || IsNil(o.MedianAbsoluteDeviation) {
+		return nil, false
+	}
+	return o.MedianAbsoluteDeviation, true
+}
+
+// HasMedianAbsoluteDeviation returns a boolean if a field has been set.
+func (o *Aggregation) HasMedianAbsoluteDeviation() bool {
+	if o != nil && !IsNil(o.MedianAbsoluteDeviation) {
+		return true
+	}
+
+	return false
+}
+
+// SetMedianAbsoluteDeviation gets a reference to the given AggMedianAbsoluteDeviation and assigns it to the MedianAbsoluteDeviation field.
+func (o *Aggregation) SetMedianAbsoluteDeviation(v AggMedianAbsoluteDeviation) {
+	o.MedianAbsoluteDeviation = &v
+}
+
+// GetMin returns the Min field value if set, zero value otherwise.
+func (o *Aggregation) GetMin() AggMetric {
+	if o == nil || IsNil(o.Min) {
+		var ret AggMetric
+		return ret
+	}
+	return *o.Min
+}
+
+// GetMinOk returns a tuple with the Min field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetMinOk() (*AggMetric, bool) {
+	if o == nil || IsNil(o.Min) {
+		return nil, false
+	}
+	return o.Min, true
+}
+
+// HasMin returns a boolean if a field has been set.
+func (o *Aggregation) HasMin() bool {
+	if o != nil && !IsNil(o.Min) {
+		return true
+	}
+
+	return false
+}
+
+// SetMin gets a reference to the given AggMetric and assigns it to the Min field.
+func (o *Aggregation) SetMin(v AggMetric) {
+	o.Min = &v
+}
+
+// GetMax returns the Max field value if set, zero value otherwise.
+func (o *Aggregation) GetMax() AggMetric {
+	if o == nil || IsNil(o.Max) {
+		var ret AggMetric
+		return ret
+	}
+	return *o.Max
+}
+
+// GetMaxOk returns a tuple with the Max field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetMaxOk() (*AggMetric, bool) {
+	if o == nil || IsNil(o.Max) {
+		return nil, false
+	}
+	return o.Max, true
+}
+
+// HasMax returns a boolean if a field has been set.
+func (o *Aggregation) HasMax() bool {
+	if o != nil && !IsNil(o.Max) {
+		return true
+	}
+
+	return false
+}
+
+// SetMax gets a reference to the given AggMetric and assigns it to the Max field.
+func (o *Aggregation) SetMax(v AggMetric) {
+	o.Max = &v
+}
+
+// GetSum returns the Sum field value if set, zero value otherwise.
+func (o *Aggregation) GetSum() AggMetric {
+	if o == nil || IsNil(o.Sum) {
+		var ret AggMetric
+		return ret
+	}
+	return *o.Sum
+}
+
+// GetSumOk returns a tuple with the Sum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetSumOk() (*AggMetric, bool) {
+	if o == nil || IsNil(o.Sum) {
+		return nil, false
+	}
+	return o.Sum, true
+}
+
+// HasSum returns a boolean if a field has been set.
+func (o *Aggregation) HasSum() bool {
+	if o != nil && !IsNil(o.Sum) {
+		return true
+	}
+
+	return false
+}
+
+// SetSum gets a reference to the given AggMetric and assigns it to the Sum field.
+func (o *Aggregation) SetSum(v AggMetric) {
+	o.Sum = &v
+}
+
+// GetAvg returns the Avg field value if set, zero value otherwise.
+func (o *Aggregation) GetAvg() AggMetric {
+	if o == nil || IsNil(o.Avg) {
+		var ret AggMetric
+		return ret
+	}
+	return *o.Avg
+}
+
+// GetAvgOk returns a tuple with the Avg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Aggregation) GetAvgOk() (*AggMetric, bool) {
+	if o == nil || IsNil(o.Avg) {
+		return nil, false
+	}
+	return o.Avg, true
+}
+
+// HasAvg returns a boolean if a field has been set.
+func (o *Aggregation) HasAvg() bool {
+	if o != nil && !IsNil(o.Avg) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvg gets a reference to the given AggMetric and assigns it to the Avg field.
+func (o *Aggregation) SetAvg(v AggMetric) {
+	o.Avg = &v
+}
+
 func (o Aggregation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -192,6 +522,36 @@ func (o Aggregation) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Histogram) {
 		toSerialize["histogram"] = o.Histogram
+	}
+	if !IsNil(o.DateHistogram) {
+		toSerialize["date_histogram"] = o.DateHistogram
+	}
+	if !IsNil(o.Range) {
+		toSerialize["range"] = o.Range
+	}
+	if !IsNil(o.DateRange) {
+		toSerialize["date_range"] = o.DateRange
+	}
+	if !IsNil(o.Percentiles) {
+		toSerialize["percentiles"] = o.Percentiles
+	}
+	if !IsNil(o.PercentileRanks) {
+		toSerialize["percentile_ranks"] = o.PercentileRanks
+	}
+	if !IsNil(o.MedianAbsoluteDeviation) {
+		toSerialize["median_absolute_deviation"] = o.MedianAbsoluteDeviation
+	}
+	if !IsNil(o.Min) {
+		toSerialize["min"] = o.Min
+	}
+	if !IsNil(o.Max) {
+		toSerialize["max"] = o.Max
+	}
+	if !IsNil(o.Sum) {
+		toSerialize["sum"] = o.Sum
+	}
+	if !IsNil(o.Avg) {
+		toSerialize["avg"] = o.Avg
 	}
 	return toSerialize, nil
 }

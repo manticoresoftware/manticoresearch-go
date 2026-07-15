@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | **string** | Field to group by | 
-**Interval** | **int32** | Interval of the histogram values | 
+**CalendarInterval** | **int32** | Interval of the histogram values | 
 **Offset** | Pointer to **int32** | Offset of the histogram values. Default value is 0. | [optional] 
 **Keyed** | Pointer to **bool** | Flag that defines if a search response will be a dictionary with the bucket keys. Default value is false. | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewAggDateHistogram
 
-`func NewAggDateHistogram(field string, interval int32, ) *AggDateHistogram`
+`func NewAggDateHistogram(field string, calendarInterval int32, ) *AggDateHistogram`
 
 NewAggDateHistogram instantiates a new AggDateHistogram object
 This constructor will assign default values to properties that have it defined,
@@ -48,24 +48,24 @@ and a boolean to check if the value has been set.
 SetField sets Field field to given value.
 
 
-### GetInterval
+### GetCalendarInterval
 
-`func (o *AggDateHistogram) GetInterval() int32`
+`func (o *AggDateHistogram) GetCalendarInterval() int32`
 
-GetInterval returns the Interval field if non-nil, zero value otherwise.
+GetCalendarInterval returns the CalendarInterval field if non-nil, zero value otherwise.
 
-### GetIntervalOk
+### GetCalendarIntervalOk
 
-`func (o *AggDateHistogram) GetIntervalOk() (*int32, bool)`
+`func (o *AggDateHistogram) GetCalendarIntervalOk() (*int32, bool)`
 
-GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
+GetCalendarIntervalOk returns a tuple with the CalendarInterval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInterval
+### SetCalendarInterval
 
-`func (o *AggDateHistogram) SetInterval(v int32)`
+`func (o *AggDateHistogram) SetCalendarInterval(v int32)`
 
-SetInterval sets Interval field to given value.
+SetCalendarInterval sets CalendarInterval field to given value.
 
 
 ### GetOffset

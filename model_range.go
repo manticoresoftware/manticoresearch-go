@@ -18,12 +18,10 @@ import (
 // checks if the ModelRange type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ModelRange{}
 
-// ModelRange Filter helper object defining the 'range' condition
+// ModelRange An aggregation range. 
 type ModelRange struct {
-	Lt interface{} `json:"lt,omitempty"`
-	Lte interface{} `json:"lte,omitempty"`
-	Gt interface{} `json:"gt,omitempty"`
-	Gte interface{} `json:"gte,omitempty"`
+	From interface{} `json:"from,omitempty"`
+	To interface{} `json:"to,omitempty"`
 }
 
 // NewModelRange instantiates a new ModelRange object
@@ -43,136 +41,70 @@ func NewModelRangeWithDefaults() *ModelRange {
 	return &this
 }
 
-// GetLt returns the Lt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ModelRange) GetLt() interface{} {
+// GetFrom returns the From field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ModelRange) GetFrom() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-	return o.Lt
+	return o.From
 }
 
-// GetLtOk returns a tuple with the Lt field value if set, nil otherwise
+// GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ModelRange) GetLtOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Lt) {
+func (o *ModelRange) GetFromOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.From) {
 		return nil, false
 	}
-	return &o.Lt, true
+	return &o.From, true
 }
 
-// HasLt returns a boolean if a field has been set.
-func (o *ModelRange) HasLt() bool {
-	if o != nil && !IsNil(o.Lt) {
+// HasFrom returns a boolean if a field has been set.
+func (o *ModelRange) HasFrom() bool {
+	if o != nil && !IsNil(o.From) {
 		return true
 	}
 
 	return false
 }
 
-// SetLt gets a reference to the given interface{} and assigns it to the Lt field.
-func (o *ModelRange) SetLt(v interface{}) {
-	o.Lt = v
+// SetFrom gets a reference to the given interface{} and assigns it to the From field.
+func (o *ModelRange) SetFrom(v interface{}) {
+	o.From = v
 }
 
-// GetLte returns the Lte field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ModelRange) GetLte() interface{} {
+// GetTo returns the To field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ModelRange) GetTo() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-	return o.Lte
+	return o.To
 }
 
-// GetLteOk returns a tuple with the Lte field value if set, nil otherwise
+// GetToOk returns a tuple with the To field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ModelRange) GetLteOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Lte) {
+func (o *ModelRange) GetToOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.To) {
 		return nil, false
 	}
-	return &o.Lte, true
+	return &o.To, true
 }
 
-// HasLte returns a boolean if a field has been set.
-func (o *ModelRange) HasLte() bool {
-	if o != nil && !IsNil(o.Lte) {
+// HasTo returns a boolean if a field has been set.
+func (o *ModelRange) HasTo() bool {
+	if o != nil && !IsNil(o.To) {
 		return true
 	}
 
 	return false
 }
 
-// SetLte gets a reference to the given interface{} and assigns it to the Lte field.
-func (o *ModelRange) SetLte(v interface{}) {
-	o.Lte = v
-}
-
-// GetGt returns the Gt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ModelRange) GetGt() interface{} {
-	if o == nil {
-		var ret interface{}
-		return ret
-	}
-	return o.Gt
-}
-
-// GetGtOk returns a tuple with the Gt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ModelRange) GetGtOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Gt) {
-		return nil, false
-	}
-	return &o.Gt, true
-}
-
-// HasGt returns a boolean if a field has been set.
-func (o *ModelRange) HasGt() bool {
-	if o != nil && !IsNil(o.Gt) {
-		return true
-	}
-
-	return false
-}
-
-// SetGt gets a reference to the given interface{} and assigns it to the Gt field.
-func (o *ModelRange) SetGt(v interface{}) {
-	o.Gt = v
-}
-
-// GetGte returns the Gte field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ModelRange) GetGte() interface{} {
-	if o == nil {
-		var ret interface{}
-		return ret
-	}
-	return o.Gte
-}
-
-// GetGteOk returns a tuple with the Gte field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ModelRange) GetGteOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Gte) {
-		return nil, false
-	}
-	return &o.Gte, true
-}
-
-// HasGte returns a boolean if a field has been set.
-func (o *ModelRange) HasGte() bool {
-	if o != nil && !IsNil(o.Gte) {
-		return true
-	}
-
-	return false
-}
-
-// SetGte gets a reference to the given interface{} and assigns it to the Gte field.
-func (o *ModelRange) SetGte(v interface{}) {
-	o.Gte = v
+// SetTo gets a reference to the given interface{} and assigns it to the To field.
+func (o *ModelRange) SetTo(v interface{}) {
+	o.To = v
 }
 
 func (o ModelRange) MarshalJSON() ([]byte, error) {
@@ -185,17 +117,11 @@ func (o ModelRange) MarshalJSON() ([]byte, error) {
 
 func (o ModelRange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Lt != nil {
-		toSerialize["lt"] = o.Lt
+	if o.From != nil {
+		toSerialize["from"] = o.From
 	}
-	if o.Lte != nil {
-		toSerialize["lte"] = o.Lte
-	}
-	if o.Gt != nil {
-		toSerialize["gt"] = o.Gt
-	}
-	if o.Gte != nil {
-		toSerialize["gte"] = o.Gte
+	if o.To != nil {
+		toSerialize["to"] = o.To
 	}
 	return toSerialize, nil
 }

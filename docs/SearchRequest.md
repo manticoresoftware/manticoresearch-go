@@ -4,14 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Table** | **string** | The table to perform the search on | 
+**Table** | Pointer to **string** | The table to perform the search on | [optional] 
+**Chat** | Pointer to [**Chat**](Chat.md) |  | [optional] 
 **Query** | Pointer to [**SearchQuery**](SearchQuery.md) |  | [optional] 
 **Join** | Pointer to [**[]Join**](Join.md) | Join clause to combine search data from multiple tables | [optional] 
 **Highlight** | Pointer to [**Highlight**](Highlight.md) |  | [optional] 
 **Limit** | Pointer to **int32** | Maximum number of results to return | [optional] 
-**Knn** | Pointer to [**Knn**](Knn.md) |  | [optional] 
+**Knn** | Pointer to [**Knn**](Knn.md) | K-nearest neighbor search settings. Pass a single &#x60;knn&#x60; object or an array of objects for multi-vector search.  | [optional] 
+**Hybrid** | Pointer to [**Hybrid**](Hybrid.md) |  | [optional] 
+**FacetFilterMode** | Pointer to [**FacetFilterMode**](FacetFilterMode.md) |  | [optional] 
 **Aggs** | Pointer to [**map[string]Aggregation**](Aggregation.md) | Defines aggregation settings for grouping results | [optional] 
-**Expressions** | Pointer to **map[string]string** | Expressions to calculate additional values for the result | [optional] 
+**Expressions** | Pointer to **map[string]string** | Expressions to calculate additional values for the result. Simpler alternative to &#x60;script_fields&#x60;; expression names must be lowercase.  | [optional] 
+**ScriptFields** | Pointer to [**map[string]ScriptField**](ScriptField.md) | Named expressions computed at search time. Each value defines an inline script whose result is stored under the field name. For more information see [Expressions](https://manual.manticoresearch.com/Searching/Expressions#script_fields)  | [optional] 
 **MaxMatches** | Pointer to **int32** | Maximum number of matches allowed in the result | [optional] 
 **Offset** | Pointer to **int32** | Starting point for pagination of the result | [optional] 
 **Options** | Pointer to **map[string]interface{}** | Additional search options | [optional] 
@@ -24,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewSearchRequest
 
-`func NewSearchRequest(table string, ) *SearchRequest`
+`func NewSearchRequest() *SearchRequest`
 
 NewSearchRequest instantiates a new SearchRequest object
 This constructor will assign default values to properties that have it defined,
@@ -58,6 +62,36 @@ and a boolean to check if the value has been set.
 
 SetTable sets Table field to given value.
 
+### HasTable
+
+`func (o *SearchRequest) HasTable() bool`
+
+HasTable returns a boolean if a field has been set.
+
+### GetChat
+
+`func (o *SearchRequest) GetChat() Chat`
+
+GetChat returns the Chat field if non-nil, zero value otherwise.
+
+### GetChatOk
+
+`func (o *SearchRequest) GetChatOk() (*Chat, bool)`
+
+GetChatOk returns a tuple with the Chat field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChat
+
+`func (o *SearchRequest) SetChat(v Chat)`
+
+SetChat sets Chat field to given value.
+
+### HasChat
+
+`func (o *SearchRequest) HasChat() bool`
+
+HasChat returns a boolean if a field has been set.
 
 ### GetQuery
 
@@ -184,6 +218,56 @@ SetKnn sets Knn field to given value.
 
 HasKnn returns a boolean if a field has been set.
 
+### GetHybrid
+
+`func (o *SearchRequest) GetHybrid() Hybrid`
+
+GetHybrid returns the Hybrid field if non-nil, zero value otherwise.
+
+### GetHybridOk
+
+`func (o *SearchRequest) GetHybridOk() (*Hybrid, bool)`
+
+GetHybridOk returns a tuple with the Hybrid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHybrid
+
+`func (o *SearchRequest) SetHybrid(v Hybrid)`
+
+SetHybrid sets Hybrid field to given value.
+
+### HasHybrid
+
+`func (o *SearchRequest) HasHybrid() bool`
+
+HasHybrid returns a boolean if a field has been set.
+
+### GetFacetFilterMode
+
+`func (o *SearchRequest) GetFacetFilterMode() FacetFilterMode`
+
+GetFacetFilterMode returns the FacetFilterMode field if non-nil, zero value otherwise.
+
+### GetFacetFilterModeOk
+
+`func (o *SearchRequest) GetFacetFilterModeOk() (*FacetFilterMode, bool)`
+
+GetFacetFilterModeOk returns a tuple with the FacetFilterMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFacetFilterMode
+
+`func (o *SearchRequest) SetFacetFilterMode(v FacetFilterMode)`
+
+SetFacetFilterMode sets FacetFilterMode field to given value.
+
+### HasFacetFilterMode
+
+`func (o *SearchRequest) HasFacetFilterMode() bool`
+
+HasFacetFilterMode returns a boolean if a field has been set.
+
 ### GetAggs
 
 `func (o *SearchRequest) GetAggs() map[string]Aggregation`
@@ -233,6 +317,31 @@ SetExpressions sets Expressions field to given value.
 `func (o *SearchRequest) HasExpressions() bool`
 
 HasExpressions returns a boolean if a field has been set.
+
+### GetScriptFields
+
+`func (o *SearchRequest) GetScriptFields() map[string]ScriptField`
+
+GetScriptFields returns the ScriptFields field if non-nil, zero value otherwise.
+
+### GetScriptFieldsOk
+
+`func (o *SearchRequest) GetScriptFieldsOk() (*map[string]ScriptField, bool)`
+
+GetScriptFieldsOk returns a tuple with the ScriptFields field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScriptFields
+
+`func (o *SearchRequest) SetScriptFields(v map[string]ScriptField)`
+
+SetScriptFields sets ScriptFields field to given value.
+
+### HasScriptFields
+
+`func (o *SearchRequest) HasScriptFields() bool`
+
+HasScriptFields returns a boolean if a field has been set.
 
 ### GetMaxMatches
 

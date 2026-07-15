@@ -4,10 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Lt** | Pointer to **interface{}** |  | [optional] 
-**Lte** | Pointer to **interface{}** |  | [optional] 
-**Gt** | Pointer to **interface{}** |  | [optional] 
-**Gte** | Pointer to **interface{}** |  | [optional] 
+**From** | Pointer to **interface{}** |  | [optional] 
+**To** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
 
@@ -28,146 +26,76 @@ NewModelRangeWithDefaults instantiates a new ModelRange object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLt
+### GetFrom
 
-`func (o *ModelRange) GetLt() interface{}`
+`func (o *ModelRange) GetFrom() interface{}`
 
-GetLt returns the Lt field if non-nil, zero value otherwise.
+GetFrom returns the From field if non-nil, zero value otherwise.
 
-### GetLtOk
+### GetFromOk
 
-`func (o *ModelRange) GetLtOk() (*interface{}, bool)`
+`func (o *ModelRange) GetFromOk() (*interface{}, bool)`
 
-GetLtOk returns a tuple with the Lt field if it's non-nil, zero value otherwise
+GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLt
+### SetFrom
 
-`func (o *ModelRange) SetLt(v interface{})`
+`func (o *ModelRange) SetFrom(v interface{})`
 
-SetLt sets Lt field to given value.
+SetFrom sets From field to given value.
 
-### HasLt
+### HasFrom
 
-`func (o *ModelRange) HasLt() bool`
+`func (o *ModelRange) HasFrom() bool`
 
-HasLt returns a boolean if a field has been set.
+HasFrom returns a boolean if a field has been set.
 
-### SetLtNil
+### SetFromNil
 
-`func (o *ModelRange) SetLtNil(b bool)`
+`func (o *ModelRange) SetFromNil(b bool)`
 
- SetLtNil sets the value for Lt to be an explicit nil
+ SetFromNil sets the value for From to be an explicit nil
 
-### UnsetLt
-`func (o *ModelRange) UnsetLt()`
+### UnsetFrom
+`func (o *ModelRange) UnsetFrom()`
 
-UnsetLt ensures that no value is present for Lt, not even an explicit nil
-### GetLte
+UnsetFrom ensures that no value is present for From, not even an explicit nil
+### GetTo
 
-`func (o *ModelRange) GetLte() interface{}`
+`func (o *ModelRange) GetTo() interface{}`
 
-GetLte returns the Lte field if non-nil, zero value otherwise.
+GetTo returns the To field if non-nil, zero value otherwise.
 
-### GetLteOk
+### GetToOk
 
-`func (o *ModelRange) GetLteOk() (*interface{}, bool)`
+`func (o *ModelRange) GetToOk() (*interface{}, bool)`
 
-GetLteOk returns a tuple with the Lte field if it's non-nil, zero value otherwise
+GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLte
+### SetTo
 
-`func (o *ModelRange) SetLte(v interface{})`
+`func (o *ModelRange) SetTo(v interface{})`
 
-SetLte sets Lte field to given value.
+SetTo sets To field to given value.
 
-### HasLte
+### HasTo
 
-`func (o *ModelRange) HasLte() bool`
+`func (o *ModelRange) HasTo() bool`
 
-HasLte returns a boolean if a field has been set.
+HasTo returns a boolean if a field has been set.
 
-### SetLteNil
+### SetToNil
 
-`func (o *ModelRange) SetLteNil(b bool)`
+`func (o *ModelRange) SetToNil(b bool)`
 
- SetLteNil sets the value for Lte to be an explicit nil
+ SetToNil sets the value for To to be an explicit nil
 
-### UnsetLte
-`func (o *ModelRange) UnsetLte()`
+### UnsetTo
+`func (o *ModelRange) UnsetTo()`
 
-UnsetLte ensures that no value is present for Lte, not even an explicit nil
-### GetGt
-
-`func (o *ModelRange) GetGt() interface{}`
-
-GetGt returns the Gt field if non-nil, zero value otherwise.
-
-### GetGtOk
-
-`func (o *ModelRange) GetGtOk() (*interface{}, bool)`
-
-GetGtOk returns a tuple with the Gt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGt
-
-`func (o *ModelRange) SetGt(v interface{})`
-
-SetGt sets Gt field to given value.
-
-### HasGt
-
-`func (o *ModelRange) HasGt() bool`
-
-HasGt returns a boolean if a field has been set.
-
-### SetGtNil
-
-`func (o *ModelRange) SetGtNil(b bool)`
-
- SetGtNil sets the value for Gt to be an explicit nil
-
-### UnsetGt
-`func (o *ModelRange) UnsetGt()`
-
-UnsetGt ensures that no value is present for Gt, not even an explicit nil
-### GetGte
-
-`func (o *ModelRange) GetGte() interface{}`
-
-GetGte returns the Gte field if non-nil, zero value otherwise.
-
-### GetGteOk
-
-`func (o *ModelRange) GetGteOk() (*interface{}, bool)`
-
-GetGteOk returns a tuple with the Gte field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGte
-
-`func (o *ModelRange) SetGte(v interface{})`
-
-SetGte sets Gte field to given value.
-
-### HasGte
-
-`func (o *ModelRange) HasGte() bool`
-
-HasGte returns a boolean if a field has been set.
-
-### SetGteNil
-
-`func (o *ModelRange) SetGteNil(b bool)`
-
- SetGteNil sets the value for Gte to be an explicit nil
-
-### UnsetGte
-`func (o *ModelRange) UnsetGte()`
-
-UnsetGte ensures that no value is present for Gte, not even an explicit nil
+UnsetTo ensures that no value is present for To, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

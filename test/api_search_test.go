@@ -20,6 +20,7 @@ import (
 	Manticoresearch "github.com/manticoresoftware/manticoresearch-go"
 )
 
+
 func Test_openapi_SearchAPIService(t *testing.T) {
 
 	configuration := Manticoresearch.NewConfiguration()
@@ -57,7 +58,8 @@ func Test_openapi_SearchAPIService(t *testing.T) {
 
 		searchQuery := Manticoresearch.NewSearchQuery()
 		searchQuery.SetQueryString("@title Trek 4")	
-		searchRequest := Manticoresearch.NewSearchRequest("movies")
+		searchRequest := Manticoresearch.NewSearchRequest()
+		searchRequest.SetTable("movies")
 		searchRequest.Highlight = queryHighlight
 		searchRequest.Query = searchQuery
 		resp, httpRes, err := apiClient.SearchAPI.Search(context.Background()).SearchRequest(*searchRequest).Execute()

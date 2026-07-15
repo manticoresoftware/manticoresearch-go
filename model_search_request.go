@@ -13,28 +13,32 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the SearchRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SearchRequest{}
 
-// SearchRequest Request object for search operation
+// SearchRequest Request object for search operation. Either `table` (regular search) or `chat` (conversational search) must be provided. 
 type SearchRequest struct {
 	// The table to perform the search on
-	Table string `json:"table"`
+	Table *string `json:"table,omitempty"`
+	Chat *Chat `json:"chat,omitempty"`
 	Query *SearchQuery `json:"query,omitempty"`
 	// Join clause to combine search data from multiple tables
 	Join []Join `json:"join,omitempty"`
 	Highlight *Highlight `json:"highlight,omitempty"`
 	// Maximum number of results to return
 	Limit *int32 `json:"limit,omitempty"`
+	// K-nearest neighbor search settings. Pass a single `knn` object or an array of objects for multi-vector search. 
 	Knn *Knn `json:"knn,omitempty"`
+	Hybrid *Hybrid `json:"hybrid,omitempty"`
+	FacetFilterMode *FacetFilterMode `json:"facet_filter_mode,omitempty"`
 	// Defines aggregation settings for grouping results
 	Aggs map[string]Aggregation `json:"aggs,omitempty"`
-	// Expressions to calculate additional values for the result
+	// Expressions to calculate additional values for the result. Simpler alternative to `script_fields`; expression names must be lowercase. 
 	Expressions map[string]string `json:"expressions,omitempty"`
+	// Named expressions computed at search time. Each value defines an inline script whose result is stored under the field name. For more information see [Expressions](https://manual.manticoresearch.com/Searching/Expressions#script_fields) 
+	ScriptFields map[string]ScriptField `json:"script_fields,omitempty"`
 	// Maximum number of matches allowed in the result
 	MaxMatches *int32 `json:"max_matches,omitempty"`
 	// Starting point for pagination of the result
@@ -49,15 +53,12 @@ type SearchRequest struct {
 	TrackScores *bool `json:"track_scores,omitempty"`
 }
 
-type _SearchRequest SearchRequest
-
 // NewSearchRequest instantiates a new SearchRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSearchRequest(table string) *SearchRequest {
+func NewSearchRequest() *SearchRequest {
 	this := SearchRequest{}
-	this.Table = table
 	return &this
 }
 
@@ -69,28 +70,68 @@ func NewSearchRequestWithDefaults() *SearchRequest {
 	return &this
 }
 
-// GetTable returns the Table field value
+// GetTable returns the Table field value if set, zero value otherwise.
 func (o *SearchRequest) GetTable() string {
-	if o == nil {
+	if o == nil || IsNil(o.Table) {
 		var ret string
 		return ret
 	}
-
-	return o.Table
+	return *o.Table
 }
 
-// GetTableOk returns a tuple with the Table field value
+// GetTableOk returns a tuple with the Table field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SearchRequest) GetTableOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Table) {
 		return nil, false
 	}
-	return &o.Table, true
+	return o.Table, true
 }
 
-// SetTable sets field value
+// HasTable returns a boolean if a field has been set.
+func (o *SearchRequest) HasTable() bool {
+	if o != nil && !IsNil(o.Table) {
+		return true
+	}
+
+	return false
+}
+
+// SetTable gets a reference to the given string and assigns it to the Table field.
 func (o *SearchRequest) SetTable(v string) {
-	o.Table = v
+	o.Table = &v
+}
+
+// GetChat returns the Chat field value if set, zero value otherwise.
+func (o *SearchRequest) GetChat() Chat {
+	if o == nil || IsNil(o.Chat) {
+		var ret Chat
+		return ret
+	}
+	return *o.Chat
+}
+
+// GetChatOk returns a tuple with the Chat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetChatOk() (*Chat, bool) {
+	if o == nil || IsNil(o.Chat) {
+		return nil, false
+	}
+	return o.Chat, true
+}
+
+// HasChat returns a boolean if a field has been set.
+func (o *SearchRequest) HasChat() bool {
+	if o != nil && !IsNil(o.Chat) {
+		return true
+	}
+
+	return false
+}
+
+// SetChat gets a reference to the given Chat and assigns it to the Chat field.
+func (o *SearchRequest) SetChat(v Chat) {
+	o.Chat = &v
 }
 
 // GetQuery returns the Query field value if set, zero value otherwise.
@@ -253,6 +294,70 @@ func (o *SearchRequest) SetKnn(v Knn) {
 	o.Knn = &v
 }
 
+// GetHybrid returns the Hybrid field value if set, zero value otherwise.
+func (o *SearchRequest) GetHybrid() Hybrid {
+	if o == nil || IsNil(o.Hybrid) {
+		var ret Hybrid
+		return ret
+	}
+	return *o.Hybrid
+}
+
+// GetHybridOk returns a tuple with the Hybrid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetHybridOk() (*Hybrid, bool) {
+	if o == nil || IsNil(o.Hybrid) {
+		return nil, false
+	}
+	return o.Hybrid, true
+}
+
+// HasHybrid returns a boolean if a field has been set.
+func (o *SearchRequest) HasHybrid() bool {
+	if o != nil && !IsNil(o.Hybrid) {
+		return true
+	}
+
+	return false
+}
+
+// SetHybrid gets a reference to the given Hybrid and assigns it to the Hybrid field.
+func (o *SearchRequest) SetHybrid(v Hybrid) {
+	o.Hybrid = &v
+}
+
+// GetFacetFilterMode returns the FacetFilterMode field value if set, zero value otherwise.
+func (o *SearchRequest) GetFacetFilterMode() FacetFilterMode {
+	if o == nil || IsNil(o.FacetFilterMode) {
+		var ret FacetFilterMode
+		return ret
+	}
+	return *o.FacetFilterMode
+}
+
+// GetFacetFilterModeOk returns a tuple with the FacetFilterMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetFacetFilterModeOk() (*FacetFilterMode, bool) {
+	if o == nil || IsNil(o.FacetFilterMode) {
+		return nil, false
+	}
+	return o.FacetFilterMode, true
+}
+
+// HasFacetFilterMode returns a boolean if a field has been set.
+func (o *SearchRequest) HasFacetFilterMode() bool {
+	if o != nil && !IsNil(o.FacetFilterMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetFacetFilterMode gets a reference to the given FacetFilterMode and assigns it to the FacetFilterMode field.
+func (o *SearchRequest) SetFacetFilterMode(v FacetFilterMode) {
+	o.FacetFilterMode = &v
+}
+
 // GetAggs returns the Aggs field value if set, zero value otherwise.
 func (o *SearchRequest) GetAggs() map[string]Aggregation {
 	if o == nil || IsNil(o.Aggs) {
@@ -315,6 +420,38 @@ func (o *SearchRequest) HasExpressions() bool {
 // SetExpressions gets a reference to the given map[string]string and assigns it to the Expressions field.
 func (o *SearchRequest) SetExpressions(v map[string]string) {
 	o.Expressions = v
+}
+
+// GetScriptFields returns the ScriptFields field value if set, zero value otherwise.
+func (o *SearchRequest) GetScriptFields() map[string]ScriptField {
+	if o == nil || IsNil(o.ScriptFields) {
+		var ret map[string]ScriptField
+		return ret
+	}
+	return o.ScriptFields
+}
+
+// GetScriptFieldsOk returns a tuple with the ScriptFields field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetScriptFieldsOk() (map[string]ScriptField, bool) {
+	if o == nil || IsNil(o.ScriptFields) {
+		return map[string]ScriptField{}, false
+	}
+	return o.ScriptFields, true
+}
+
+// HasScriptFields returns a boolean if a field has been set.
+func (o *SearchRequest) HasScriptFields() bool {
+	if o != nil && !IsNil(o.ScriptFields) {
+		return true
+	}
+
+	return false
+}
+
+// SetScriptFields gets a reference to the given map[string]ScriptField and assigns it to the ScriptFields field.
+func (o *SearchRequest) SetScriptFields(v map[string]ScriptField) {
+	o.ScriptFields = v
 }
 
 // GetMaxMatches returns the MaxMatches field value if set, zero value otherwise.
@@ -553,7 +690,12 @@ func (o SearchRequest) MarshalJSON() ([]byte, error) {
 
 func (o SearchRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["table"] = o.Table
+	if !IsNil(o.Table) {
+		toSerialize["table"] = o.Table
+	}
+	if !IsNil(o.Chat) {
+		toSerialize["chat"] = o.Chat
+	}
 	if !IsNil(o.Query) {
 		toSerialize["query"] = o.Query
 	}
@@ -569,11 +711,20 @@ func (o SearchRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Knn) {
 		toSerialize["knn"] = o.Knn
 	}
+	if !IsNil(o.Hybrid) {
+		toSerialize["hybrid"] = o.Hybrid
+	}
+	if !IsNil(o.FacetFilterMode) {
+		toSerialize["facet_filter_mode"] = o.FacetFilterMode
+	}
 	if !IsNil(o.Aggs) {
 		toSerialize["aggs"] = o.Aggs
 	}
 	if !IsNil(o.Expressions) {
 		toSerialize["expressions"] = o.Expressions
+	}
+	if !IsNil(o.ScriptFields) {
+		toSerialize["script_fields"] = o.ScriptFields
 	}
 	if !IsNil(o.MaxMatches) {
 		toSerialize["max_matches"] = o.MaxMatches
@@ -597,43 +748,6 @@ func (o SearchRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["track_scores"] = o.TrackScores
 	}
 	return toSerialize, nil
-}
-
-func (o *SearchRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"table",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSearchRequest := _SearchRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSearchRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SearchRequest(varSearchRequest)
-
-	return err
 }
 
 type NullableSearchRequest struct {
