@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Items** | Pointer to **[]map[string]interface{}** | List of results | [optional] 
 **Errors** | Pointer to **bool** | Errors occurred during the bulk operation | [optional] 
 **Error** | Pointer to **string** | Error message describing an error if such occurred | [optional] 
-**CurrentLine** | Pointer to **int32** | Number of the row returned in the response | [optional] 
-**SkippedLines** | Pointer to **int32** | Number of rows skipped in the response | [optional] 
+**CurrentLine** | Pointer to **uint64** | Number of the row returned in the response | [optional] 
+**SkippedLines** | Pointer to **uint64** | Number of rows skipped in the response | [optional] 
 
 ## Methods
 

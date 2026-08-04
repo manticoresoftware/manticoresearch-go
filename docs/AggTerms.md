@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | **string** | Name of attribute to aggregate by | 
-**Size** | Pointer to **int32** | Maximum number of buckets in the result | [optional] 
+**Size** | Pointer to **uint64** | Maximum number of buckets in the result | [optional] 
 
 ## Methods
 

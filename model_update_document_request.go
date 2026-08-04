@@ -29,7 +29,9 @@ type UpdateDocumentRequest struct {
 	// Object containing the document fields to update
 	Doc map[string]interface{} `json:"doc"`
 	// Document ID
-	Id *uint64 `json:"id,omitempty"`
+	Id *uint64 `json:"-"`
+	// UUID document id when the wire id is a string; Id is nil in that case
+	Uuid *string `json:"-"`
 	Query NullableQueryFilter `json:"query,omitempty"`
 }
 
@@ -161,10 +163,42 @@ func (o *UpdateDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given uint64 and assigns it to the Id field.
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *UpdateDocumentRequest) SetId(v uint64) {
 	o.Id = &v
 }
+
+// GetUuid returns the Uuid field value if set, zero value otherwise.
+func (o *UpdateDocumentRequest) GetUuid() string {
+	if o == nil || IsNil(o.Uuid) {
+		var ret string
+		return ret
+	}
+	return *o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateDocumentRequest) GetUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
+	}
+	return o.Uuid, true
+}
+
+// HasUuid returns a boolean if a Uuid field has been set.
+func (o *UpdateDocumentRequest) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
+func (o *UpdateDocumentRequest) SetUuid(v string) {
+	o.Uuid = &v
+}
+
 
 // GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateDocumentRequest) GetQuery() QueryFilter {
@@ -223,8 +257,8 @@ func (o UpdateDocumentRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["cluster"] = o.Cluster
 	}
 	toSerialize["doc"] = o.Doc
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if w := wireDocumentID(o.Id, o.Uuid); w != nil {
+		toSerialize["id"] = w
 	}
 	if o.Query.IsSet() {
 		toSerialize["query"] = o.Query.Get()

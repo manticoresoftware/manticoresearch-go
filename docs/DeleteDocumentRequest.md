@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Table** | **string** | Table name | 
 **Cluster** | Pointer to **string** | Cluster name | [optional] 
-**Id** | Pointer to **uint64** | The ID of document for deletion | [optional]
+**Id** | Pointer to **uint64** | The ID of document for deletion | [optional] 
 **Query** | Pointer to **map[string]interface{}** | Defines the criteria to match documents for deletion | [optional] 
 
 ## Methods

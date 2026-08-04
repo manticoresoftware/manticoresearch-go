@@ -74,4 +74,24 @@ func Test_openapi_SearchAPIService(t *testing.T) {
 		fmt.Println("Search tests finished");
 	})
 
+	t.Run("Search UUID document IDs", func(t *testing.T) {
+		const uuid = "550e8400-e29b-41d4-a716-446655440000"
+		_, _, err := apiClient.UtilsAPI.Sql(context.Background()).Body("DROP TABLE IF EXISTS movies_uuid").Execute()
+		require.NoError(t, err)
+		_, _, err = apiClient.UtilsAPI.Sql(context.Background()).Body("CREATE TABLE movies_uuid (id uuid, title text)").Execute()
+		require.NoError(t, err)
+
+		body := `{"insert":{"table":"movies_uuid","id":"550e8400-e29b-41d4-a716-446655440000","doc":{"title":"uuid doc"}}}`
+		_, _, err = apiClient.IndexAPI.Bulk(context.Background()).Body(body).Execute()
+		require.NoError(t, err)
+
+		request := Manticoresearch.NewSearchRequest()
+		request.SetTable("movies_uuid")
+		response, _, err := apiClient.SearchAPI.Search(context.Background()).SearchRequest(*request).Execute()
+		require.NoError(t, err)
+		require.Len(t, response.Hits.Hits, 1)
+		assert.Nil(t, response.Hits.Hits[0].Id)
+		assert.Equal(t, uuid, response.Hits.Hits[0].GetUuid())
+	})
+
 }

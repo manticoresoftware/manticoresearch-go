@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Took** | Pointer to **int32** | Time taken to execute the search | [optional] 
+**Took** | Pointer to **uint64** | Time taken to execute the search | [optional] 
 **TimedOut** | Pointer to **bool** | Indicates whether the search operation timed out | [optional] 
 **Aggregations** | Pointer to [**map[string]AggBucketsResult**](AggBucketsResult.md) | Aggregated search results grouped by the specified criteria. Each named aggregation typically contains a &#x60;buckets&#x60; array (or keyed map) of bucket objects with &#x60;key&#x60;, &#x60;doc_count&#x60;, and optional &#x60;status&#x60;.  | [optional] 
 **Hits** | Pointer to [**SearchResponseHits**](SearchResponseHits.md) |  | [optional] 

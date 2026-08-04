@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Table** | **string** | Name of the document table | 
 **Cluster** | Pointer to **string** | Name of the document cluster | [optional] 
 **Doc** | **map[string]interface{}** | Object containing the document fields to update | 
-**Id** | Pointer to **uint64** | Document ID | [optional]
+**Id** | Pointer to **uint64** | Document ID | [optional] 
 **Query** | Pointer to [**NullableQueryFilter**](QueryFilter.md) |  | [optional] 
 
 ## Methods

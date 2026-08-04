@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MaxScore** | Pointer to **int32** | Maximum score among the matched documents | [optional] 
-**Total** | Pointer to **int32** | Total number of matched documents | [optional] 
+**MaxScore** | Pointer to **uint64** | Maximum score among the matched documents | [optional] 
+**Total** | Pointer to **uint64** | Total number of matched documents | [optional] 
 **TotalRelation** | Pointer to **string** | Indicates whether the total number of hits is accurate or an estimate | [optional] 
 **Hits** | Pointer to [**[]HitsHits**](HitsHits.md) | Array of hit objects, each representing a matched document | [optional] 
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Table** | Pointer to **string** | The name of the table from which the document was deleted | [optional] 
-**Deleted** | Pointer to **int32** | Number of documents deleted | [optional] 
-**Id** | Pointer to **uint64** | The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned | [optional]
+**Deleted** | Pointer to **uint64** | Number of documents deleted | [optional] 
+**Id** | Pointer to **uint64** | The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned  | [optional] 
 **Found** | Pointer to **bool** | Indicates whether any documents to be deleted were found | [optional] 
 **Result** | Pointer to **string** | Result of the delete operation, typically &#39;deleted&#39; | [optional] 
 

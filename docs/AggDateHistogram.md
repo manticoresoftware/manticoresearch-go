@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | **string** | Field to group by | 
 **CalendarInterval** | **int32** | Interval of the histogram values | 
-**Offset** | Pointer to **int32** | Offset of the histogram values. Default value is 0. | [optional] 
+**Offset** | Pointer to **uint64** | Offset of the histogram values. Default value is 0. | [optional] 
 **Keyed** | Pointer to **bool** | Flag that defines if a search response will be a dictionary with the bucket keys. Default value is false. | [optional] 
 
 ## Methods

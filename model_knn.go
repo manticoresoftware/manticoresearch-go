@@ -24,13 +24,16 @@ var _ MappedNullable = &Knn{}
 type Knn struct {
 	// Field to perform the k-nearest neighbor search on
 	Field string `json:"field"`
-	// The number of nearest neighbors to return
-	K int32 `json:"k"`
+	// Deprecated. Use the top-level `limit` parameter instead.
+	// Deprecated
+	K *int32 `json:"k,omitempty"`
 	Query *KnnQuery `json:"query,omitempty"`
 	// The vector used as input for the KNN search
 	QueryVector []float32 `json:"query_vector,omitempty"`
-	// The docuemnt ID used as input for the KNN search
-	DocId *uint64 `json:"doc_id,omitempty"`
+	// The document ID used as input for the KNN search
+	DocId *uint64 `json:"-"`
+	// UUID document id when the wire id is a string; DocId is nil in that case
+	Uuid *string `json:"-"`
 	// Optional parameter controlling the accuracy of the search
 	Ef *int32 `json:"ef,omitempty"`
 	// Optional parameter enabling KNN rescoring (disabled by default)
@@ -46,10 +49,9 @@ type _Knn Knn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKnn(field string, k int32) *Knn {
+func NewKnn(field string) *Knn {
 	this := Knn{}
 	this.Field = field
-	this.K = k
 	return &this
 }
 
@@ -85,28 +87,39 @@ func (o *Knn) SetField(v string) {
 	o.Field = v
 }
 
-// GetK returns the K field value
+// GetK returns the K field value if set, zero value otherwise.
+// Deprecated
 func (o *Knn) GetK() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.K) {
 		var ret int32
 		return ret
 	}
-
-	return o.K
+	return *o.K
 }
 
-// GetKOk returns a tuple with the K field value
+// GetKOk returns a tuple with the K field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *Knn) GetKOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.K) {
 		return nil, false
 	}
-	return &o.K, true
+	return o.K, true
 }
 
-// SetK sets field value
+// HasK returns a boolean if a field has been set.
+func (o *Knn) HasK() bool {
+	if o != nil && !IsNil(o.K) {
+		return true
+	}
+
+	return false
+}
+
+// SetK gets a reference to the given int32 and assigns it to the K field.
+// Deprecated
 func (o *Knn) SetK(v int32) {
-	o.K = v
+	o.K = &v
 }
 
 // GetQuery returns the Query field value if set, zero value otherwise.
@@ -204,6 +217,38 @@ func (o *Knn) HasDocId() bool {
 func (o *Knn) SetDocId(v uint64) {
 	o.DocId = &v
 }
+
+// GetUuid returns the Uuid field value if set, zero value otherwise.
+func (o *Knn) GetUuid() string {
+	if o == nil || IsNil(o.Uuid) {
+		var ret string
+		return ret
+	}
+	return *o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Knn) GetUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
+	}
+	return o.Uuid, true
+}
+
+// HasUuid returns a boolean if a Uuid field has been set.
+func (o *Knn) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
+func (o *Knn) SetUuid(v string) {
+	o.Uuid = &v
+}
+
 
 // GetEf returns the Ef field value if set, zero value otherwise.
 func (o *Knn) GetEf() int32 {
@@ -344,15 +389,17 @@ func (o Knn) MarshalJSON() ([]byte, error) {
 func (o Knn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["field"] = o.Field
-	toSerialize["k"] = o.K
+	if !IsNil(o.K) {
+		toSerialize["k"] = o.K
+	}
 	if !IsNil(o.Query) {
 		toSerialize["query"] = o.Query
 	}
 	if !IsNil(o.QueryVector) {
 		toSerialize["query_vector"] = o.QueryVector
 	}
-	if !IsNil(o.DocId) {
-		toSerialize["doc_id"] = o.DocId
+	if w := wireDocumentID(o.DocId, o.Uuid); w != nil {
+		toSerialize["doc_id"] = w
 	}
 	if !IsNil(o.Ef) {
 		toSerialize["ef"] = o.Ef
@@ -375,7 +422,6 @@ func (o *Knn) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"field",
-		"k",
 	}
 
 	allProperties := make(map[string]interface{})

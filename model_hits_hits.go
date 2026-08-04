@@ -21,7 +21,9 @@ var _ MappedNullable = &HitsHits{}
 // HitsHits Search hit representing a matched document
 type HitsHits struct {
 	// The ID of the matched document
-	Id *uint64 `json:"_id,omitempty"`
+	Id *uint64 `json:"-"`
+	// UUID document id when the wire id is a string; Id is nil in that case
+	Uuid *string `json:"-"`
 	// The score of the matched document
 	Score *int32 `json:"_score,omitempty"`
 	// The source data of the matched document
@@ -82,10 +84,42 @@ func (o *HitsHits) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given uint64 and assigns it to the Id field.
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *HitsHits) SetId(v uint64) {
 	o.Id = &v
 }
+
+// GetUuid returns the Uuid field value if set, zero value otherwise.
+func (o *HitsHits) GetUuid() string {
+	if o == nil || IsNil(o.Uuid) {
+		var ret string
+		return ret
+	}
+	return *o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HitsHits) GetUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
+	}
+	return o.Uuid, true
+}
+
+// HasUuid returns a boolean if a Uuid field has been set.
+func (o *HitsHits) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
+func (o *HitsHits) SetUuid(v string) {
+	o.Uuid = &v
+}
+
 
 // GetScore returns the Score field value if set, zero value otherwise.
 func (o *HitsHits) GetScore() int32 {
@@ -321,8 +355,8 @@ func (o HitsHits) MarshalJSON() ([]byte, error) {
 
 func (o HitsHits) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["_id"] = o.Id
+	if w := wireDocumentID(o.Id, o.Uuid); w != nil {
+		toSerialize["_id"] = w
 	}
 	if !IsNil(o.Score) {
 		toSerialize["_score"] = o.Score
@@ -346,6 +380,27 @@ func (o HitsHits) ToMap() (map[string]interface{}, error) {
 		toSerialize["fields"] = o.Fields
 	}
 	return toSerialize, nil
+}
+
+
+func (o *HitsHits) UnmarshalJSON(data []byte) error {
+	type Alias HitsHits
+	aux := struct {
+		RawId json.RawMessage `json:"_id"`
+		*Alias
+	}{
+		Alias: (*Alias)(o),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	id, uuid, err := splitDocumentIDJSON(aux.RawId)
+	if err != nil {
+		return err
+	}
+	o.Id = id
+	o.Uuid = uuid
+	return nil
 }
 
 type NullableHitsHits struct {

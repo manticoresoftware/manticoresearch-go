@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**Delete**](IndexAPI.md#Delete) | **Post** /delete | Delete a document in a table
 [**Insert**](IndexAPI.md#Insert) | **Post** /insert | Create a new document in a table
 [**PartialReplace**](IndexAPI.md#PartialReplace) | **Post** /{table}/_update/{id} | Partially replaces a document in a table
+[**PartialReplaceUuid**](IndexAPI.md#PartialReplaceUuid) | **Post** /{table}/_update/{id} | Partially replaces a document in a table by UUID
 [**Replace**](IndexAPI.md#Replace) | **Post** /replace | Replace new document in a table
 [**Update**](IndexAPI.md#Update) | **Post** /update | Update a document in a table
 
@@ -233,7 +234,7 @@ import (
 
 func main() {
 	table := "table_example" // string | Name of the percolate table
-	id := uint64(56) // uint64 | Id of the document to replace
+	id := uint64(1) // uint64 | Id of the document to replace
 	replaceDocumentRequest := *openapiclient.NewReplaceDocumentRequest(map[string]interface{}(123)) // ReplaceDocumentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -255,7 +256,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **table** | **string** | Name of the percolate table | 
-**id** | **uint64** | Id of the document to replace |
+**id** | [**int32**](.md) | Id of the document to replace | 
 
 ### Other Parameters
 
@@ -280,6 +281,74 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PartialReplaceUuid
+
+> UpdateResponse PartialReplaceUuid(ctx, table, uuid).ReplaceDocumentRequest(replaceDocumentRequest).Execute()
+
+Partially replaces a document in a table by UUID string id (tables created with `id uuid`). Prefer this over passing a UUID into `PartialReplace`.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/manticoresoftware/manticoresearch-go"
+)
+
+func main() {
+	table := "movies_uuid"
+	uuid := "550e8400-e29b-41d4-a716-446655440000"
+	replaceDocumentRequest := *openapiclient.NewReplaceDocumentRequest(map[string]interface{}{"title": "updated"})
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IndexAPI.PartialReplaceUuid(context.Background(), table, uuid).ReplaceDocumentRequest(replaceDocumentRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IndexAPI.PartialReplaceUuid`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	fmt.Fprintf(os.Stdout, "Response from `IndexAPI.PartialReplaceUuid`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**table** | **string** | Name of the table | 
+**uuid** | **string** | UUID of the document to replace | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPartialReplaceUuidRequest struct via the builder pattern
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **replaceDocumentRequest** | [**ReplaceDocumentRequest**](ReplaceDocumentRequest.md) |  | 
+
+### Return type
+
+[**UpdateResponse**](UpdateResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

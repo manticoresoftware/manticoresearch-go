@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Table** | Pointer to **string** | Name of the document table | [optional] 
-**Updated** | Pointer to **int32** | Number of documents updated | [optional] 
-**Id** | Pointer to **uint64** | Document ID | [optional]
+**Updated** | Pointer to **uint64** | Number of documents updated | [optional] 
+**Id** | Pointer to **uint64** | Document ID | [optional] 
 **Result** | Pointer to **string** | Result of the update operation, typically &#39;updated&#39; | [optional] 
 
 ## Methods

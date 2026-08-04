@@ -27,7 +27,9 @@ type InsertDocumentRequest struct {
 	// Name of the cluster to insert the document into
 	Cluster *string `json:"cluster,omitempty"`
 	// Document ID. If not provided, an ID will be auto-generated 
-	Id *uint64 `json:"id,omitempty"`
+	Id *uint64 `json:"-"`
+	// UUID document id when the wire id is a string; Id is nil in that case
+	Uuid *string `json:"-"`
 	// Object containing document data 
 	Doc map[string]interface{} `json:"doc"`
 }
@@ -136,10 +138,42 @@ func (o *InsertDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given uint64 and assigns it to the Id field.
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *InsertDocumentRequest) SetId(v uint64) {
 	o.Id = &v
 }
+
+// GetUuid returns the Uuid field value if set, zero value otherwise.
+func (o *InsertDocumentRequest) GetUuid() string {
+	if o == nil || IsNil(o.Uuid) {
+		var ret string
+		return ret
+	}
+	return *o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InsertDocumentRequest) GetUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
+	}
+	return o.Uuid, true
+}
+
+// HasUuid returns a boolean if a Uuid field has been set.
+func (o *InsertDocumentRequest) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
+func (o *InsertDocumentRequest) SetUuid(v string) {
+	o.Uuid = &v
+}
+
 
 // GetDoc returns the Doc field value
 func (o *InsertDocumentRequest) GetDoc() map[string]interface{} {
@@ -179,8 +213,8 @@ func (o InsertDocumentRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Cluster) {
 		toSerialize["cluster"] = o.Cluster
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if w := wireDocumentID(o.Id, o.Uuid); w != nil {
+		toSerialize["id"] = w
 	}
 	toSerialize["doc"] = o.Doc
 	return toSerialize, nil

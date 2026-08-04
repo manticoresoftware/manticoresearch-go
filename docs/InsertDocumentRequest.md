@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Table** | **string** | Name of the table to insert the document into | 
 **Cluster** | Pointer to **string** | Name of the cluster to insert the document into | [optional] 
-**Id** | Pointer to **uint64** | Document ID. If not provided, an ID will be auto-generated  | [optional]
+**Id** | Pointer to **uint64** | Document ID. If not provided, an ID will be auto-generated  | [optional] 
 **Doc** | **map[string]interface{}** | Object containing document data  | 
 
 ## Methods

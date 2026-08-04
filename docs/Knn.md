@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | **string** | Field to perform the k-nearest neighbor search on | 
-**K** | **int32** | The number of nearest neighbors to return | 
+**K** | Pointer to **uint64** | Deprecated. Use the top-level &#x60;limit&#x60; parameter instead. | [optional] 
 **Query** | Pointer to [**KnnQuery**](KnnQuery.md) |  | [optional] 
 **QueryVector** | Pointer to **[]float32** | The vector used as input for the KNN search | [optional] 
-**DocId** | Pointer to **uint64** | The docuemnt ID used as input for the KNN search | [optional]
-**Ef** | Pointer to **int32** | Optional parameter controlling the accuracy of the search | [optional] 
+**DocId** | Pointer to **uint64** | The document ID used as input for the KNN search | [optional] 
+**Ef** | Pointer to **uint64** | Optional parameter controlling the accuracy of the search | [optional] 
 **Rescore** | Pointer to **bool** | Optional parameter enabling KNN rescoring (disabled by default) | [optional] 
 **Oversampling** | Pointer to **float32** | Optional parameter setting a factor by which k is multiplied when executing the KNN search | [optional] 
 **Filter** | Pointer to [**QueryFilter**](QueryFilter.md) |  | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewKnn
 
-`func NewKnn(field string, k int32, ) *Knn`
+`func NewKnn(field string, ) *Knn`
 
 NewKnn instantiates a new Knn object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetK sets K field to given value.
 
+### HasK
+
+`func (o *Knn) HasK() bool`
+
+HasK returns a boolean if a field has been set.
 
 ### GetQuery
 

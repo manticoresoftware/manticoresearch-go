@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FragmentSize** | Pointer to **int32** | Maximum size of the text fragments in highlighted snippets per field | [optional] 
-**Limit** | Pointer to **int32** | Maximum size of snippets per field | [optional] 
-**LimitSnippets** | Pointer to **int32** | Maximum number of snippets per field | [optional] 
-**LimitWords** | Pointer to **int32** | Maximum number of words per field | [optional] 
-**NumberOfFragments** | Pointer to **int32** | Total number of highlighted fragments per field | [optional] 
+**FragmentSize** | Pointer to **uint64** | Maximum size of the text fragments in highlighted snippets per field | [optional] 
+**Limit** | Pointer to **uint64** | Maximum size of snippets per field | [optional] 
+**LimitSnippets** | Pointer to **uint64** | Maximum number of snippets per field | [optional] 
+**LimitWords** | Pointer to **uint64** | Maximum number of words per field | [optional] 
+**NumberOfFragments** | Pointer to **uint64** | Total number of highlighted fragments per field | [optional] 
 
 ## Methods
 

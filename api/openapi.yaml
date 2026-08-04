@@ -568,8 +568,8 @@ paths:
         name: id
         required: true
         schema:
-          format: uint64
-          type: integer
+          allOf:
+          - $ref: "#/components/schemas/documentId"
         style: simple
       requestBody:
         content:
@@ -853,7 +853,8 @@ components:
           description: Field to perform the k-nearest neighbor search on
           type: string
         k:
-          description: The number of nearest neighbors to return
+          deprecated: true
+          description: Deprecated. Use the top-level `limit` parameter instead.
           type: integer
         query:
           $ref: "#/components/schemas/knn_query"
@@ -863,9 +864,9 @@ components:
             type: number
           type: array
         doc_id:
-          description: The docuemnt ID used as input for the KNN search
-          format: uint64
-          type: integer
+          allOf:
+          - $ref: "#/components/schemas/documentId"
+          description: The document ID used as input for the KNN search
         ef:
           description: Optional parameter controlling the accuracy of the search
           type: integer
@@ -880,7 +881,6 @@ components:
           $ref: "#/components/schemas/queryFilter"
       required:
       - field
-      - k
     geoDistance:
       additionalProperties: {}
       description: Object to perform geo-distance based filtering on queries
@@ -1168,9 +1168,9 @@ components:
           description: Cluster name
           type: string
         id:
+          allOf:
+          - $ref: "#/components/schemas/documentId"
           description: The ID of document for deletion
-          format: uint64
-          type: integer
         query:
           description: Defines the criteria to match documents for deletion
           type: object
@@ -1189,16 +1189,19 @@ components:
           description: Number of documents deleted
           type: integer
         id:
-          description: "The ID of the deleted document. If multiple documents are\
-            \ deleted, the ID of the first deleted document is returned"
-          format: uint64
-          type: integer
+          allOf:
+          - $ref: "#/components/schemas/documentId"
+          description: |
+            The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned
         found:
           description: Indicates whether any documents to be deleted were found
           type: boolean
         result:
           description: "Result of the delete operation, typically 'deleted'"
           type: string
+    documentId:
+      format: uint64
+      type: integer
     highlight:
       allOf:
       - description: Defines a query HIGHLIGHT expression to emphasize matched results
@@ -1316,9 +1319,9 @@ components:
       description: Search hit representing a matched document
       properties:
         _id:
+          allOf:
+          - $ref: "#/components/schemas/documentId"
           description: The ID of the matched document
-          format: uint64
-          type: integer
         _score:
           description: The score of the matched document
           type: integer
@@ -1358,10 +1361,10 @@ components:
           description: Name of the cluster to insert the document into
           type: string
         id:
+          allOf:
+          - $ref: "#/components/schemas/documentId"
           description: |
             Document ID. If not provided, an ID will be auto-generated
-          format: uint64
-          type: integer
         doc:
           additionalProperties: false
           description: |
@@ -1545,9 +1548,9 @@ components:
           description: Name of the document table
           type: string
         id:
+          allOf:
+          - $ref: "#/components/schemas/documentId"
           description: ID of the document affected by the request operation
-          format: uint64
-          type: integer
         created:
           description: Indicates whether the document was created as a result of the
             operation
@@ -1793,9 +1796,9 @@ components:
             gid: 10
           type: object
         id:
+          allOf:
+          - $ref: "#/components/schemas/documentId"
           description: Document ID
-          format: uint64
-          type: integer
         query:
           $ref: "#/components/schemas/queryFilter"
       required:
@@ -1814,9 +1817,9 @@ components:
           description: Number of documents updated
           type: integer
         id:
+          allOf:
+          - $ref: "#/components/schemas/documentId"
           description: Document ID
-          format: uint64
-          type: integer
         result:
           description: "Result of the update operation, typically 'updated'"
           type: string

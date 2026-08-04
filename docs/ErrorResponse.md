@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Error** | [**ResponseError**](ResponseError.md) |  | 
-**Status** | Pointer to **int32** | HTTP status code of the error response | [optional] [default to 500]
+**Status** | Pointer to **uint64** | HTTP status code of the error response | [optional] [default to 500]
 
 ## Methods
 

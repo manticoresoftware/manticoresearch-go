@@ -27,7 +27,9 @@ type DeleteDocumentRequest struct {
 	// Cluster name
 	Cluster *string `json:"cluster,omitempty"`
 	// The ID of document for deletion
-	Id *uint64 `json:"id,omitempty"`
+	Id *uint64 `json:"-"`
+	// UUID document id when the wire id is a string; Id is nil in that case
+	Uuid *string `json:"-"`
 	// Defines the criteria to match documents for deletion
 	Query map[string]interface{} `json:"query,omitempty"`
 }
@@ -135,10 +137,42 @@ func (o *DeleteDocumentRequest) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given uint64 and assigns it to the Id field.
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *DeleteDocumentRequest) SetId(v uint64) {
 	o.Id = &v
 }
+
+// GetUuid returns the Uuid field value if set, zero value otherwise.
+func (o *DeleteDocumentRequest) GetUuid() string {
+	if o == nil || IsNil(o.Uuid) {
+		var ret string
+		return ret
+	}
+	return *o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteDocumentRequest) GetUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
+	}
+	return o.Uuid, true
+}
+
+// HasUuid returns a boolean if a Uuid field has been set.
+func (o *DeleteDocumentRequest) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
+func (o *DeleteDocumentRequest) SetUuid(v string) {
+	o.Uuid = &v
+}
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *DeleteDocumentRequest) GetQuery() map[string]interface{} {
@@ -186,8 +220,8 @@ func (o DeleteDocumentRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Cluster) {
 		toSerialize["cluster"] = o.Cluster
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if w := wireDocumentID(o.Id, o.Uuid); w != nil {
+		toSerialize["id"] = w
 	}
 	if !IsNil(o.Query) {
 		toSerialize["query"] = o.Query

@@ -24,8 +24,10 @@ type DeleteResponse struct {
 	Table *string `json:"table,omitempty"`
 	// Number of documents deleted
 	Deleted *int32 `json:"deleted,omitempty"`
-	// The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned
-	Id *uint64 `json:"id,omitempty"`
+	// The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned 
+	Id *uint64 `json:"-"`
+	// UUID document id when the wire id is a string; Id is nil in that case
+	Uuid *string `json:"-"`
 	// Indicates whether any documents to be deleted were found
 	Found *bool `json:"found,omitempty"`
 	// Result of the delete operation, typically 'deleted'
@@ -140,10 +142,42 @@ func (o *DeleteResponse) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given uint64 and assigns it to the Id field.
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *DeleteResponse) SetId(v uint64) {
 	o.Id = &v
 }
+
+// GetUuid returns the Uuid field value if set, zero value otherwise.
+func (o *DeleteResponse) GetUuid() string {
+	if o == nil || IsNil(o.Uuid) {
+		var ret string
+		return ret
+	}
+	return *o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteResponse) GetUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
+	}
+	return o.Uuid, true
+}
+
+// HasUuid returns a boolean if a Uuid field has been set.
+func (o *DeleteResponse) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
+func (o *DeleteResponse) SetUuid(v string) {
+	o.Uuid = &v
+}
+
 
 // GetFound returns the Found field value if set, zero value otherwise.
 func (o *DeleteResponse) GetFound() bool {
@@ -225,8 +259,8 @@ func (o DeleteResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Deleted) {
 		toSerialize["deleted"] = o.Deleted
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if w := wireDocumentID(o.Id, o.Uuid); w != nil {
+		toSerialize["id"] = w
 	}
 	if !IsNil(o.Found) {
 		toSerialize["found"] = o.Found
@@ -235,6 +269,27 @@ func (o DeleteResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["result"] = o.Result
 	}
 	return toSerialize, nil
+}
+
+
+func (o *DeleteResponse) UnmarshalJSON(data []byte) error {
+	type Alias DeleteResponse
+	aux := struct {
+		RawId json.RawMessage `json:"id"`
+		*Alias
+	}{
+		Alias: (*Alias)(o),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	id, uuid, err := splitDocumentIDJSON(aux.RawId)
+	if err != nil {
+		return err
+	}
+	o.Id = id
+	o.Uuid = uuid
+	return nil
 }
 
 type NullableDeleteResponse struct {

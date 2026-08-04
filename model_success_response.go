@@ -23,7 +23,9 @@ type SuccessResponse struct {
 	// Name of the document table
 	Table *string `json:"table,omitempty"`
 	// ID of the document affected by the request operation
-	Id *uint64 `json:"id,omitempty"`
+	Id *uint64 `json:"-"`
+	// UUID document id when the wire id is a string; Id is nil in that case
+	Uuid *string `json:"-"`
 	// Indicates whether the document was created as a result of the operation
 	Created *bool `json:"created,omitempty"`
 	// Result of the operation, typically 'created', 'updated', or 'deleted'
@@ -110,10 +112,42 @@ func (o *SuccessResponse) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given uint64 and assigns it to the Id field.
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *SuccessResponse) SetId(v uint64) {
 	o.Id = &v
 }
+
+// GetUuid returns the Uuid field value if set, zero value otherwise.
+func (o *SuccessResponse) GetUuid() string {
+	if o == nil || IsNil(o.Uuid) {
+		var ret string
+		return ret
+	}
+	return *o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SuccessResponse) GetUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
+	}
+	return o.Uuid, true
+}
+
+// HasUuid returns a boolean if a Uuid field has been set.
+func (o *SuccessResponse) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
+func (o *SuccessResponse) SetUuid(v string) {
+	o.Uuid = &v
+}
+
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *SuccessResponse) GetCreated() bool {
@@ -256,8 +290,8 @@ func (o SuccessResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Table) {
 		toSerialize["table"] = o.Table
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if w := wireDocumentID(o.Id, o.Uuid); w != nil {
+		toSerialize["id"] = w
 	}
 	if !IsNil(o.Created) {
 		toSerialize["created"] = o.Created
@@ -272,6 +306,27 @@ func (o SuccessResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["status"] = o.Status
 	}
 	return toSerialize, nil
+}
+
+
+func (o *SuccessResponse) UnmarshalJSON(data []byte) error {
+	type Alias SuccessResponse
+	aux := struct {
+		RawId json.RawMessage `json:"id"`
+		*Alias
+	}{
+		Alias: (*Alias)(o),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	id, uuid, err := splitDocumentIDJSON(aux.RawId)
+	if err != nil {
+		return err
+	}
+	o.Id = id
+	o.Uuid = uuid
+	return nil
 }
 
 type NullableSuccessResponse struct {

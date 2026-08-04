@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FragmentSize** | Pointer to **int32** | Maximum size of the text fragments in highlighted snippets per field | [optional] 
-**Limit** | Pointer to **int32** | Maximum size of snippets per field | [optional] 
-**LimitSnippets** | Pointer to **int32** | Maximum number of snippets per field | [optional] 
-**LimitWords** | Pointer to **int32** | Maximum number of words per field | [optional] 
-**NumberOfFragments** | Pointer to **int32** | Total number of highlighted fragments per field | [optional] 
+**FragmentSize** | Pointer to **uint64** | Maximum size of the text fragments in highlighted snippets per field | [optional] 
+**Limit** | Pointer to **uint64** | Maximum size of snippets per field | [optional] 
+**LimitSnippets** | Pointer to **uint64** | Maximum number of snippets per field | [optional] 
+**LimitWords** | Pointer to **uint64** | Maximum number of words per field | [optional] 
+**NumberOfFragments** | Pointer to **uint64** | Total number of highlighted fragments per field | [optional] 
 **AfterMatch** | Pointer to **string** | Text inserted after the matched term, typically used for HTML formatting | [optional] [default to "</strong>"]
 **AllowEmpty** | Pointer to **bool** | Permits an empty string to be returned as the highlighting result. Otherwise, the beginning of the original text would be returned | [optional] 
-**Around** | Pointer to **int32** | Number of words around the match to include in the highlight | [optional] 
+**Around** | Pointer to **uint64** | Number of words around the match to include in the highlight | [optional] 
 **BeforeMatch** | Pointer to **string** | Text inserted before the match, typically used for HTML formatting | [optional] [default to "<strong>"]
 **EmitZones** | Pointer to **bool** | Emits an HTML tag with the enclosing zone name before each highlighted snippet | [optional] 
 **Encoder** | Pointer to **string** | If set to &#39;html&#39;, retains HTML markup when highlighting | [optional] 
@@ -21,11 +21,11 @@ Name | Type | Description | Notes
 **HighlightQuery** | Pointer to [**NullableQueryFilter**](QueryFilter.md) |  | [optional] 
 **HtmlStripMode** | Pointer to **string** | Defines the mode for handling HTML markup in the highlight | [optional] 
 **LimitsPerField** | Pointer to **bool** | Determines whether the &#39;limit&#39;, &#39;limit_words&#39;, and &#39;limit_snippets&#39; options operate as individual limits in each field of the document | [optional] 
-**NoMatchSize** | Pointer to **int32** | If set to 1, allows an empty string to be returned as a highlighting result | [optional] 
+**NoMatchSize** | Pointer to **uint64** | If set to 1, allows an empty string to be returned as a highlighting result | [optional] 
 **Order** | Pointer to **string** | Sets the sorting order of highlighted snippets | [optional] 
 **PreTags** | Pointer to **string** | Text inserted before each highlighted snippet | [optional] [default to "<strong>"]
 **PostTags** | Pointer to **string** | Text inserted after each highlighted snippet | [optional] [default to "</strong>"]
-**StartSnippetId** | Pointer to **int32** | Sets the starting value of the %SNIPPET_ID% macro | [optional] 
+**StartSnippetId** | Pointer to **uint64** | Sets the starting value of the %SNIPPET_ID% macro | [optional] 
 **UseBoundaries** | Pointer to **bool** | Defines whether to additionally break snippets by phrase boundary characters | [optional] 
 
 ## Methods

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Size** | Pointer to **int32** | Maximum number of composite buckets in the result | [optional] 
+**Size** | Pointer to **uint64** | Maximum number of composite buckets in the result | [optional] 
 **Sources** | Pointer to [**[]map[string]AggCompositeSource**](map[string]AggCompositeSource.md) |  | [optional] 
 
 ## Methods

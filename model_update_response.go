@@ -25,7 +25,9 @@ type UpdateResponse struct {
 	// Number of documents updated
 	Updated *int32 `json:"updated,omitempty"`
 	// Document ID
-	Id *uint64 `json:"id,omitempty"`
+	Id *uint64 `json:"-"`
+	// UUID document id when the wire id is a string; Id is nil in that case
+	Uuid *string `json:"-"`
 	// Result of the update operation, typically 'updated'
 	Result *string `json:"result,omitempty"`
 }
@@ -138,10 +140,42 @@ func (o *UpdateResponse) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given uint64 and assigns it to the Id field.
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *UpdateResponse) SetId(v uint64) {
 	o.Id = &v
 }
+
+// GetUuid returns the Uuid field value if set, zero value otherwise.
+func (o *UpdateResponse) GetUuid() string {
+	if o == nil || IsNil(o.Uuid) {
+		var ret string
+		return ret
+	}
+	return *o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateResponse) GetUuidOk() (*string, bool) {
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
+	}
+	return o.Uuid, true
+}
+
+// HasUuid returns a boolean if a Uuid field has been set.
+func (o *UpdateResponse) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
+func (o *UpdateResponse) SetUuid(v string) {
+	o.Uuid = &v
+}
+
 
 // GetResult returns the Result field value if set, zero value otherwise.
 func (o *UpdateResponse) GetResult() string {
@@ -191,13 +225,34 @@ func (o UpdateResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Updated) {
 		toSerialize["updated"] = o.Updated
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if w := wireDocumentID(o.Id, o.Uuid); w != nil {
+		toSerialize["id"] = w
 	}
 	if !IsNil(o.Result) {
 		toSerialize["result"] = o.Result
 	}
 	return toSerialize, nil
+}
+
+
+func (o *UpdateResponse) UnmarshalJSON(data []byte) error {
+	type Alias UpdateResponse
+	aux := struct {
+		RawId json.RawMessage `json:"id"`
+		*Alias
+	}{
+		Alias: (*Alias)(o),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	id, uuid, err := splitDocumentIDJSON(aux.RawId)
+	if err != nil {
+		return err
+	}
+	o.Id = id
+	o.Uuid = uuid
+	return nil
 }
 
 type NullableUpdateResponse struct {
